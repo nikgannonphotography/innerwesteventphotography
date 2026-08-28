@@ -27,20 +27,39 @@ const socialImage = new URL(image, Astro.site);
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "PhotographyBusiness",
+  "@type": ["PhotographyBusiness", "LocalBusiness"],
   name: SITE_NAME,
-  alternateName: "IWEP",
+  alternateName: [
+    "IWEP",
+    "Inner West Event Photography Sydney",
+    "Nikolas Gannon Photography",
+  ],
   description:
-    "Sydney event, conference, not-for-profit, campaign and workplace photography studio.",
+    "Sydney event, corporate conference, not-for-profit gala, brand activation, and workplace headshot photography studio.",
   url: SITE_URL,
   logo: `${SITE_URL}/logos/Master%20Logo%20-%205000x5000/Master%20Logo%20-%205000x5000.png`,
   image: `${SITE_URL}/og-image.jpg`,
   telephone: STUDIO_CONTACT.phoneRaw,
   email: STUDIO_CONTACT.email,
+  founder: {
+    "@type": "Person",
+    name: STUDIO_CONTACT.founder,
+    jobTitle: STUDIO_CONTACT.title,
+    sameAs: [
+      STUDIO_CONTACT.linkedinUrl,
+      STUDIO_CONTACT.instagramUrl,
+    ],
+  },
+  sameAs: [
+    STUDIO_CONTACT.linkedinUrl,
+    STUDIO_CONTACT.instagramUrl,
+    "https://innerwesteventphotography.com.au",
+  ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Sydney",
     addressRegion: "NSW",
+    postalCode: "2000",
     addressCountry: "AU",
   },
   geo: {
@@ -49,16 +68,27 @@ const localBusinessSchema = {
     longitude: "151.2093",
   },
   areaServed: [
-    "Sydney",
-    "Inner West",
-    "Sydney CBD",
-    "North Shore",
-    "Greater Western Sydney",
+    { "@type": "City", name: "Sydney" },
+    { "@type": "AdministrativeArea", name: "Inner West Sydney" },
+    { "@type": "AdministrativeArea", name: "Sydney CBD" },
+    { "@type": "AdministrativeArea", name: "North Shore Sydney" },
+    { "@type": "AdministrativeArea", name: "Eastern Suburbs Sydney" },
+    { "@type": "AdministrativeArea", name: "Greater Western Sydney" },
   ],
   priceRange: "$$",
+  currenciesAccepted: "AUD",
+  paymentAccepted: "Invoice, Direct Deposit, Credit Card",
+  knowsAbout: [
+    "Corporate Event Photography Sydney",
+    "Sydney Conference Photography",
+    "Not-For-Profit & Charity Gala Photography",
+    "Brand Activation & Commercial Photography",
+    "Executive Headshots & Workplace Portraits",
+    "Documentary Storytelling",
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Sydney photography services",
+    name: "Sydney Photography Services",
     itemListElement: SERVICES.map((service) => ({
       "@type": "Offer",
       itemOffered: {
@@ -70,6 +100,14 @@ const localBusinessSchema = {
     })),
   },
 };
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  alternateName: "Inner West Event Photography",
+  url: SITE_URL,
+};
 ---
 
 <meta charset="utf-8" />
@@ -77,6 +115,8 @@ const localBusinessSchema = {
   @layer base, patterns, components, utilities;
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://api-ap1.hsforms.net" crossorigin />
+<link rel="dns-prefetch" href="https://api-ap1.hsforms.net" />
 <Font cssVariable="--font-inter" preload />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
@@ -95,6 +135,7 @@ const localBusinessSchema = {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
 
+<meta name="keywords" content="Sydney event photography, corporate event photographer Sydney, conference photography Sydney, not for profit photographer Sydney, Sydney charity gala photography, Inner West event photography, commercial photography Sydney, corporate headshots Sydney" />
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -107,3 +148,4 @@ const localBusinessSchema = {
 <meta name="generator" content={Astro.generator} />
 
 <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />

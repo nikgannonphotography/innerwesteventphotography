@@ -24,7 +24,10 @@ const selectedWork = getFeaturedGalleries().slice(0, 4);
 const featuredArticles = BLOG_POSTS.slice(0, 3);
 ---
 
-<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production.">
+<Layout
+  title="Sydney Event Photography | Corporate Conferences, Summits & Galas"
+  description="Inner West Event Photography is a Sydney photography studio led by Nikolas Gannon. Quiet, dependable documentary coverage for corporate conferences, charity galas, brand activations, and workplace teams across Sydney."
+>
   <!-- Hero -->
   <Section
     id="hero"
@@ -38,7 +41,7 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <Img
       slot="background"
       src={selectedWork[0]?.posterImage}
-      alt=""
+      alt="Sydney corporate and event photography coverage"
       loading="eager"
       fetchPriority="high"
       class="home-hero_media object-fit-cover"
@@ -46,9 +49,9 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <div slot="background" class="home-hero_scrim"></div>
     <ContentWrapper class="home-hero_copy">
       <Eyebrow variant="tag">SYDNEY EVENT PHOTOGRAPHY</Eyebrow>
-      <Heading variant="h1" maxWidth={20} tag="h1">Event photography coverage built around your brief</Heading>
-      <Paragraph variant="large" maxWidth={34}>
-        Clear, documentary coverage for conferences, galas, campaigns, community events and workplace teams across Sydney.
+      <Heading variant="h1" maxWidth={22} tag="h1">Sydney Event Photography Built Around Your Brief</Heading>
+      <Paragraph variant="large" maxWidth={36}>
+        Documentary coverage for corporate conferences, summits, charity galas, brand campaigns, and workplace teams across Sydney and the Inner West.
       </Paragraph>
       <ButtonWrapper marginTop="5">
         <Button element="link" href="/contact">Send a brief</Button>
