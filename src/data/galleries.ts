@@ -175,21 +175,22 @@ export const GALLERIES: GalleryProject[] = [
   },
   {
     slug: "guy-jules-sebastian",
-    title: "Guy & Jules Sebastian",
+    title: "Guy & Jules Sebastian – The Sebastian Foundation",
     category: "not-for-profit",
     categoryLabel: "Not-For-Profit",
-    subtitle: "The Sebastian Foundation Keynote & Panel",
+    subtitle:
+      "Speaking on Behalf of The Sebastian Foundation at the Global Impact Summit",
     clientRole: "Stage & Keynote Documentation",
     year: "2024",
     location: "Sydney",
     summary:
-      "Keynote presentation and panel address by Guy and Jules Sebastian for The Sebastian Foundation at the Global Impact Summit.",
+      "Guy and Jules Sebastian speaking on behalf of The Sebastian Foundation at the Global Impact Summit in Sydney, documented across their main stage keynote address and panel dialogue.",
     overview:
-      "Stage and keynote documentation covering Guy and Jules Sebastian's address at the Global Impact Summit. Photography focused on the stage presentation, audience reactions, and backstage moments.",
+      "Stage and keynote documentation of Guy and Jules Sebastian presenting on behalf of The Sebastian Foundation at the Global Impact Summit in Sydney. Coverage captured their keynote address, panel discussion, audience interactions, and backstage moments.",
     scope: [
-      "Keynote stage address",
-      "Panel discussion",
-      "Speaker and audience interaction",
+      "Keynote stage address on behalf of The Sebastian Foundation",
+      "Panel discussion & Q&A session",
+      "Speaker and delegate interaction",
     ],
     deliverables: [
       "High-resolution stage selects",
