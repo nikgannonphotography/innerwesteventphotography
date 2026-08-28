@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-08-14",
     readTime: "7 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/tedx-macquarie-uni.webp",
+    heroImage: "/galleries/posters/tedx-macquarie-uni.webp",
     summary: "A transparent breakdown of Sydney commercial event photography rates, standard inclusions, overtime charges, and licensing models.",
     featured: true,
     content: {
@@ -116,7 +116,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-08-02",
     readTime: "6 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/echo-change-future-action-summit-2026.webp",
+    heroImage: "/galleries/posters/echo-change-future-action-summit-2026.webp",
     summary: "How to plan photography logistics at International Convention Centre Sydney, including room scale, low ambient lighting, and contractor induction.",
     featured: true,
     content: {
@@ -164,7 +164,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-07-22",
     readTime: "5 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/order-of-australia-the-school-of-st-jude.webp",
+    heroImage: "/galleries/posters/order-of-australia-the-school-of-st-jude.webp",
     summary: "The four parts of a clear photography brief, covering VIPs, sponsors, timing and delivery.",
     featured: false,
     content: {
@@ -210,7 +210,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-07-10",
     readTime: "6 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/australian-fashion-week-2026.webp",
+    heroImage: "/galleries/posters/australian-fashion-week-2026.webp",
     summary: "A photographer's guide to the unique architecture, lighting, and spatial characteristics of Inner West Sydney venues.",
     featured: false,
     content: {
@@ -259,7 +259,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-08-28",
     readTime: "5 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/tedx-macquarie-uni.webp",
+    heroImage: "/galleries/posters/tedx-macquarie-uni.webp",
     summary: "Structuring workplace headshot days to minimise business downtime while delivering consistent, confident team portraits.",
     featured: false,
     content: {
@@ -300,7 +300,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-06-15",
     readTime: "4 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/sony-foundation-tones-and-i-at-wharf4ward.webp",
+    heroImage: "/galleries/posters/sony-foundation-tones-and-i-at-wharf4ward.webp",
     summary: "How on-site transfer and editing can deliver selected images to media and social teams during an event.",
     featured: false,
     content: {
@@ -341,7 +341,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-06-01",
     readTime: "5 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/_posters/nrl-grand-final-2019.webp",
+    heroImage: "/galleries/posters/nrl-grand-final-2019.webp",
     summary: "Protect your event from data loss, poor lighting execution, and legal ambiguities with this 7-point contractor checklist.",
     featured: false,
     content: {

@@ -41,7 +41,7 @@ const numberedGalleryImages = (
   Array.from({ length: count }, (_, index) => {
     const number = String(index + 1).padStart(pad, "0");
     const filename = prefix ? `${prefix}-${number}` : number;
-    return `/galleries/_derived/display/${folder}/${filename}.webp`;
+    return `/galleries/${folder}/${filename}.webp`;
   });
 
 export const GALLERIES: GalleryProject[] = [
@@ -71,17 +71,17 @@ export const GALLERIES: GalleryProject[] = [
       "Social media-ready aspect ratios for partner reporting",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/sony-foundation-wharf4ward.webp",
+    posterImage: "/galleries/posters/sony-foundation-wharf4ward.webp",
     images: [
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-1.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-2.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-3.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-4.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-5.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-6.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-7.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-8.webp",
-      "/galleries/_derived/display/sony-foundation-wharf4ward/sony-foundation-wharf4ward-9.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-1.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-2.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-3.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-4.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-5.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-6.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-7.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-8.webp",
+      "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-9.webp",
     ],
   },
   {
@@ -109,7 +109,7 @@ export const GALLERIES: GalleryProject[] = [
       "Expedited social media highlight package",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/tedx-macquarie-uni.webp",
+    posterImage: "/galleries/posters/tedx-macquarie-uni.webp",
     images: numberedGalleryImages(
       "tedx-macquarie-uni",
       "tedx-macquarie-uni",
@@ -139,7 +139,7 @@ export const GALLERIES: GalleryProject[] = [
       "PR and media release files",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/maggie-beer.webp",
+    posterImage: "/galleries/posters/maggie-beer.webp",
     images: numberedGalleryImages("maggie-beer", "", 5),
   },
   {
@@ -166,7 +166,7 @@ export const GALLERIES: GalleryProject[] = [
       "Designer lookbook master files",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/australian-fashion-week-2026.webp",
+    posterImage: "/galleries/posters/australian-fashion-week-2026.webp",
     images: numberedGalleryImages(
       "australian-fashion-week-2026",
       "australian-fashion-week-2026",
@@ -198,8 +198,8 @@ export const GALLERIES: GalleryProject[] = [
       "Full digital master gallery",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/guy-jules-sebastian.webp",
-    images: numberedGalleryImages("guy-jules-sebastian", "", 9),
+    posterImage: "/galleries/posters/guy-jules-sebastian.webp",
+    images: numberedGalleryImages("guy-jules-sebastian", "", 10),
   },
   {
     slug: "annas-birthday",
@@ -224,10 +224,10 @@ export const GALLERIES: GalleryProject[] = [
       "Web-ready files for easy sharing",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/annas-birthday.webp",
+    posterImage: "/galleries/posters/annas-birthday.webp",
     images: [
       {
-        src: "/galleries/_derived/display/annas-birthday/annas-birthday-1.webp",
+        src: "/galleries/annas-birthday/annas-birthday-1.webp",
         alt: "Anna smiling beside her birthday cake as family watch",
         width: 1500,
         height: 1000,
@@ -235,7 +235,7 @@ export const GALLERIES: GalleryProject[] = [
         span: "full",
       },
       {
-        src: "/galleries/_derived/display/annas-birthday/annas-birthday-2.webp",
+        src: "/galleries/annas-birthday/annas-birthday-2.webp",
         alt: "Birthday pastries arranged with mint leaves",
         width: 1200,
         height: 1800,
@@ -243,7 +243,7 @@ export const GALLERIES: GalleryProject[] = [
         span: "half",
       },
       {
-        src: "/galleries/_derived/display/annas-birthday/annas-birthday-4.webp",
+        src: "/galleries/annas-birthday/annas-birthday-4.webp",
         alt: "Guests seated at a long backyard birthday lunch",
         width: 1200,
         height: 1800,
@@ -251,7 +251,7 @@ export const GALLERIES: GalleryProject[] = [
         span: "half",
       },
       {
-        src: "/galleries/_derived/display/annas-birthday/annas-birthday-3.webp",
+        src: "/galleries/annas-birthday/annas-birthday-3.webp",
         alt: "A guest choosing a pastry during the birthday lunch",
         width: 1500,
         height: 1000,
@@ -259,7 +259,7 @@ export const GALLERIES: GalleryProject[] = [
         span: "half",
       },
       {
-        src: "/galleries/_derived/display/annas-birthday/annas-birthday-5.webp",
+        src: "/galleries/annas-birthday/annas-birthday-5.webp",
         alt: "Two guests posing together in the afternoon light",
         width: 1500,
         height: 1000,
@@ -292,7 +292,7 @@ export const GALLERIES: GalleryProject[] = [
       "Media release selects",
     ],
     featured: true,
-    posterImage: "/galleries/_posters/global-impact-summit.webp",
+    posterImage: "/galleries/posters/global-impact-summit.webp",
     images: numberedGalleryImages("global-impact-summit", "", 16),
   },
   {
@@ -318,7 +318,7 @@ export const GALLERIES: GalleryProject[] = [
       "Partner recap assets",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/oz-harvest.webp",
+    posterImage: "/galleries/posters/oz-harvest.webp",
     images: numberedGalleryImages("oz-harvest", "", 7),
   },
   {
@@ -347,7 +347,7 @@ export const GALLERIES: GalleryProject[] = [
     ],
     featured: true,
     posterImage:
-      "/galleries/_posters/echo-change-future-action-summit-2026.webp",
+      "/galleries/posters/echo-change-future-action-summit-2026.webp",
     images: numberedGalleryImages(
       "echo-change-future-action-summit-2026",
       "echo-change-future-action-summit-2026",
@@ -379,13 +379,13 @@ export const GALLERIES: GalleryProject[] = [
     ],
     featured: false,
     posterImage:
-      "/galleries/_posters/royalle-modelling-x-leather-on-me-xteds-cameras.webp",
+      "/galleries/posters/royalle-modelling-x-leather-on-me-xteds-cameras.webp",
     images: [
-      "/galleries/_derived/display/royalle-modelling-x-leather-on-me-xteds-cameras/AFW-Royalle-Nikolas-Gannon-1.webp",
-      "/galleries/_derived/display/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00001.webp",
-      "/galleries/_derived/display/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00002.webp",
-      "/galleries/_derived/display/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00004.webp",
-      "/galleries/_derived/display/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00005.webp",
+      "/galleries/royalle-modelling-x-leather-on-me-xteds-cameras/AFW-Royalle-Nikolas-Gannon-1.webp",
+      "/galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00001.webp",
+      "/galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00002.webp",
+      "/galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00004.webp",
+      "/galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00005.webp",
     ],
   },
   {
@@ -411,7 +411,7 @@ export const GALLERIES: GalleryProject[] = [
       "Marketing and reporting selects",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/world-vision.webp",
+    posterImage: "/galleries/posters/world-vision.webp",
     images: numberedGalleryImages("world-vision", "", 4),
   },
   {
@@ -440,7 +440,7 @@ export const GALLERIES: GalleryProject[] = [
     ],
     featured: true,
     posterImage:
-      "/galleries/_posters/order-of-australia-the-school-of-st-jude.webp",
+      "/galleries/posters/order-of-australia-the-school-of-st-jude.webp",
     images: numberedGalleryImages(
       "order-of-australia-the-school-of-st-jude",
       "order-of-australia-the-school-of-st-jude",
@@ -471,7 +471,7 @@ export const GALLERIES: GalleryProject[] = [
       "High-resolution print files",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/george-and-adrianas-engagement.webp",
+    posterImage: "/galleries/posters/george-and-adrianas-engagement.webp",
     images: numberedGalleryImages(
       "george-and-adrianas-engagement",
       "george-and-adrianas-engagement",
@@ -500,7 +500,7 @@ export const GALLERIES: GalleryProject[] = [
       "Web-ready assets",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/kokoda-track-foundation.webp",
+    posterImage: "/galleries/posters/kokoda-track-foundation.webp",
     images: numberedGalleryImages("kokoda-track-foundation", "", 3),
   },
   {
@@ -528,14 +528,14 @@ export const GALLERIES: GalleryProject[] = [
     ],
     featured: false,
     posterImage:
-      "/galleries/_posters/sony-foundation-tones-and-i-at-wharf4ward.webp",
+      "/galleries/posters/sony-foundation-tones-and-i-at-wharf4ward.webp",
     images: [
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-1.webp",
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-2.webp",
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-3.webp",
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-4.webp",
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-5.webp",
-      "/galleries/_derived/display/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-6.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-1.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-2.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-3.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-4.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-5.webp",
+      "/galleries/sony-foundation-tones-and-i-at-wharf4ward/sony-foundation-tones-and-i-at-wharf4ward-6.webp",
     ],
   },
   {
@@ -563,7 +563,7 @@ export const GALLERIES: GalleryProject[] = [
       "Social media distribution assets",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/irish-festival-sydney-2026.webp",
+    posterImage: "/galleries/posters/irish-festival-sydney-2026.webp",
     images: numberedGalleryImages(
       "irish-festival-sydney-2026",
       "sydney-st-patricks-day-festival-2026",
@@ -592,7 +592,7 @@ export const GALLERIES: GalleryProject[] = [
       "Social and marketing selects",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/laundry-lane.webp",
+    posterImage: "/galleries/posters/laundry-lane.webp",
     images: numberedGalleryImages("laundry-lane", "", 3),
   },
   {
@@ -618,7 +618,7 @@ export const GALLERIES: GalleryProject[] = [
       "Full stadium match master gallery",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/nrl-grand-final-2019.webp",
+    posterImage: "/galleries/posters/nrl-grand-final-2019.webp",
     images: numberedGalleryImages("nrl-grand-final-2019", "", 8),
   },
   {
@@ -644,7 +644,7 @@ export const GALLERIES: GalleryProject[] = [
       "Monochrome high-resolution collector prints",
     ],
     featured: false,
-    posterImage: "/galleries/_posters/latrell-mitchell-daniel-tupou-2019.webp",
+    posterImage: "/galleries/posters/latrell-mitchell-daniel-tupou-2019.webp",
     images: numberedGalleryImages("latrell-mitchell-daniel-tupou-2019", "", 3),
   },
 ];
