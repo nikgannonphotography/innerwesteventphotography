@@ -27,6 +27,12 @@ for (const route of [
   "/docs/turnaround-and-delivery-specs/",
   "/docs/licensing-and-commercial-rights/",
   "/docs/sydney-venue-lighting-guide/",
+  "/docs/sydney-conference-photography-planning-checklist/",
+  "/docs/corporate-gala-dinner-photography-shot-list/",
+  "/docs/brand-activation-photography-production-guide/",
+  "/docs/product-launch-photography-pr-delivery-guide/",
+  "/docs/on-site-corporate-headshots-planning-guide/",
+  "/docs/not-for-profit-charity-event-photography-guide/",
 ]) {
   assertRoute(route);
 }
