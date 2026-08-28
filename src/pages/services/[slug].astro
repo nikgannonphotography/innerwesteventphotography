@@ -16,6 +16,7 @@ import {
 } from "@/data/services.ts";
 import { GALLERIES } from "@/data/galleries.ts";
 import { DOCS } from "@/data/docs.ts";
+import { LOCATIONS } from "@/data/locations.ts";
 
 export function getStaticPaths() {
   return SERVICES.map((service) => ({
@@ -43,12 +44,68 @@ const matchedGalleries = GALLERIES.filter((g) =>
 const planningGuides = DOCS.filter(
   (guide) => guide.relatedService === service.slug,
 ).slice(0, 3);
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: `${service.title} Sydney`,
+  description: service.summary,
+  provider: {
+    "@type": "PhotographyBusiness",
+    name: "Inner West Event Photography",
+    url: "https://innerwesteventphotography.com.au",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Sydney",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: `${service.title} Deliverables`,
+    itemListElement: service.deliverables.map((d) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: d,
+      },
+    })),
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://innerwesteventphotography.com.au",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Services",
+      item: "https://innerwesteventphotography.com.au/services",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: service.title,
+      item: `https://innerwesteventphotography.com.au/services/${service.slug}`,
+    },
+  ],
+};
 ---
 
 <Layout
   title={`${service.title} Sydney | Inner West Event Photography`}
   description={`${service.title} in Sydney. ${service.tagline} Clear scope, sub-12h PR delivery, and master retouched archives.`}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
   <!-- Hero -->
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
@@ -200,16 +257,45 @@ const planningGuides = DOCS.filter(
     </Section>
   )}
 
+  <!-- Sydney Coverage Hubs Cross-Link -->
+  <Section paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">SYDNEY VENUES & REGIONS</Eyebrow>
+        <Heading tag="h2" variant="h3">Coverage Across Sydney Suburbs & Venues</Heading>
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/locations" emphasis="secondary">
+          All Coverage Hubs &rarr;
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} medium={4}>
+      {LOCATIONS.map((loc) => (
+        <Card
+          heading={loc.name}
+          text={loc.tagline}
+          buttonHref={`/locations/${loc.slug}`}
+          buttonLabel={`View ${loc.name}`}
+        />
+      ))}
+    </Grid>
+  </Section>
+
   <!-- Booking CTA -->
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">DISCUSS YOUR EVENT</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Ready to Book or Discuss a Brief?</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Ready to Scope {service.title}?</Heading>
       <Paragraph maxWidth={36}>
         Get in touch with your event date and venue details for a clear, fixed-rate proposal.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="/contact">Request a Proposal &rarr;</Button>
+        <Button element="link" href="/docs/event-briefing-template" variant="link">
+          Download Briefing Template
+        </Button>
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

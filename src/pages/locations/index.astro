@@ -10,12 +10,35 @@ import Card from "@/components/Item/Card.astro";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { LOCATIONS } from "@/data/locations.ts";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://innerwesteventphotography.com.au",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Sydney Coverage Hubs",
+      item: "https://innerwesteventphotography.com.au/locations",
+    },
+  ],
+};
 ---
 
 <Layout
   title="Sydney Event Photography Coverage Hubs | Inner West Event Photography"
   description="Event, conference, and commercial photography coverage across Sydney: Inner West, Sydney CBD, North Shore, and Greater Western Sydney."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
       <Eyebrow variant="tag">REGIONAL COVERAGE</Eyebrow>
@@ -46,8 +69,8 @@ import { LOCATIONS } from "@/data/locations.ts";
             <div slot="column2">
               <Grid small={1}>
                 <Card
-                  heading="Key Suburbs"
-                  text={loc.suburbs.map((s) => `<span class="meta_line">• ${s}</span>`).join("")}
+                  heading={`Suburbs Covered (${loc.suburbs.length})`}
+                  text={loc.suburbs.map((s) => `<span class="suburb_pill">${s}</span>`).join(" ")}
                 />
                 <Card
                   heading="Prominent Venues"
@@ -106,6 +129,19 @@ import { LOCATIONS } from "@/data/locations.ts";
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    .suburb_pill {
+      display: inline-block;
+      margin: 0.15rem 0.2rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--background);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
     }
   }
 </style>
