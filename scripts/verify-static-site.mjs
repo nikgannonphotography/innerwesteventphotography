@@ -43,6 +43,7 @@ const home = readPage("/");
 assert.match(home, /class="[^"]*home-hero/);
 assert.match(home, /class="[^"]*home-hero_media/);
 assert.match(home, /fetchpriority="high"/i);
+assert.match(home, /"hasOfferCatalog"/);
 const footer = home.match(/<footer.*?<\/footer>/s)?.[0] ?? "";
 const footerDocLinks = [...footer.matchAll(/href="\/docs\/[^\"]+"/g)];
 assert.equal(footerDocLinks.length, 7);
@@ -56,6 +57,7 @@ assert.match(briefingGuide, /"@type":"BreadcrumbList"/);
 const pricingBlog = readPage(
   "/blog/corporate-event-photography-pricing-guide-sydney/",
 );
+assert.match(pricingBlog, /<meta property="og:type" content="article">/);
 assert.match(
   mainContent(pricingBlog),
   /href="\/services\/corporate-events-conferences"/,

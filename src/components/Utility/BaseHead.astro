@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, STUDIO_CONTACT } from "@/consts.ts";
 import { isNoindexRoute } from "@/utils/seo.ts";
+import { SERVICES } from "@/data/services.ts";
 import type { SeoProps } from "@/types.ts";
 
 type Props = SeoProps;
@@ -53,6 +54,19 @@ const localBusinessSchema = {
     "Greater Western Sydney",
   ],
   priceRange: "$$",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Sydney photography services",
+    itemListElement: SERVICES.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.tagline,
+        url: `${SITE_URL}/services/${service.slug}`,
+      },
+    })),
+  },
 };
 ---
 
