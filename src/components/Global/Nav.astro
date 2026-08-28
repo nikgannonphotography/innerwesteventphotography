@@ -119,14 +119,10 @@ const { render = true, overlap = false } = Astro.props;
       display: flex;
       justify-content: center;
       padding-inline: var(--site-margin);
-      background-color: var(--background);
-      color: var(--text);
-      border-bottom: var(--border-width) solid var(--border);
-
-      &.overlap {
-        position: fixed;
-        inset-inline: 0;
-      }
+      background-color: #ffffff;
+      color: var(--text, #111111);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
 
     .nav_inner {
@@ -161,11 +157,7 @@ const { render = true, overlap = false } = Astro.props;
       width: auto;
       object-fit: contain;
       display: block;
-    }
-
-    [class*="theme-dark"] .nav_logo_img,
-    html.theme-dark .nav_logo_img {
-      filter: brightness(0) invert(1);
+      filter: none !important;
     }
 
     .nav_toggle {

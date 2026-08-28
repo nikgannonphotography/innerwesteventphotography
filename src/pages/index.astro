@@ -24,13 +24,13 @@ const selectedWork = getFeaturedGalleries().slice(0, 4);
 const featuredArticles = BLOG_POSTS.slice(0, 3);
 ---
 
-<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production." overlap={true}>
+<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production.">
   <!-- Hero -->
   <Section
     id="hero"
     class="home-hero"
     containerClass="home-hero_content"
-    paddingTop="navoverlap"
+    paddingTop="even"
     paddingBottom="even"
     theme="dark"
     fullHeight={true}
@@ -229,25 +229,6 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
 
 <style is:global>
   @layer components {
-    .nav_wrap.overlap {
-      background-color: rgb(31 29 30 / 88%);
-      color: var(--light-100);
-      border-bottom-color: rgb(255 255 255 / 18%);
-    }
-
-    .nav_wrap.overlap .nav_logo_img {
-      filter: brightness(0) invert(1);
-    }
-
-    .nav_wrap.overlap .nav_link {
-      color: rgb(255 255 255 / 72%);
-
-      &[aria-current="page"],
-      &:hover {
-        color: var(--light-100);
-      }
-    }
-
     .home-hero {
       isolation: isolate;
       justify-content: flex-end;
