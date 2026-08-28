@@ -48,9 +48,9 @@ export const STUDIO_CONTACT = {
  * Fill in your HubSpot Portal ID and Form ID to switch to or embed HubSpot forms.
  */
 export const HUBSPOT_CONFIG = {
-  portalId: "",
-  formId: "",
-  region: "na1", // na1, eu1, or au1
+  portalId: "442724335",
+  formId: "6ded9649-fd5b-4bbe-a599-a0fc52b0f74e",
+  region: "ap1",
 };
 
 /**

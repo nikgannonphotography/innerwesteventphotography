@@ -13,6 +13,12 @@ interface Props extends HTMLAttributes<"form"> {
   projectId?: string;
   /** Formspree CLI form key. Used with `projectId` by the browser client. */
   formId?: string;
+  /** HubSpot Portal / Hub ID for native CRM submissions. */
+  hubspotPortalId?: string;
+  /** HubSpot Form GUID for native CRM submissions. */
+  hubspotFormId?: string;
+  /** HubSpot Region (e.g. ap1, na1, eu1). */
+  hubspotRegion?: string;
   /** Shown in place of the fields once it has sent. */
   successMessage?: string;
   /** Shown beneath the fields when it could not send. */
@@ -25,6 +31,9 @@ const {
   action,
   projectId,
   formId,
+  hubspotPortalId,
+  hubspotFormId,
+  hubspotRegion = "ap1",
   successMessage = "Thanks. We will be in touch.",
   errorMessage = "That did not send. Please try again.",
   method = "post",
@@ -43,6 +52,9 @@ const content = await slotContent(Astro.slots);
       data-endpoint={action}
       data-formspree-project={projectId}
       data-formspree-form={formId}
+      data-hubspot-portal={hubspotPortalId}
+      data-hubspot-form={hubspotFormId}
+      data-hubspot-region={hubspotRegion}
     >
       <form
         class="form_fields"
@@ -70,6 +82,103 @@ const content = await slotContent(Astro.slots);
   for (const form of document.querySelectorAll<HTMLElement>(".form_wrap")) {
     const fields = form.querySelector<HTMLFormElement>(".form_fields");
     if (!fields) continue;
+
+    const hubspotPortalId = form.dataset.hubspotPortal;
+    const hubspotFormId = form.dataset.hubspotForm;
+    const hubspotRegion = form.dataset.hubspotRegion || "ap1";
+
+    if (hubspotPortalId && hubspotFormId) {
+      const submit = fields.querySelector<HTMLButtonElement | HTMLInputElement>(
+        'button:not([type]), button[type="submit"], input[type="submit"]',
+      );
+
+      fields.addEventListener("submit", async (event) => {
+        if (!fields.checkValidity()) return;
+
+        event.preventDefault();
+        form.dataset.state = "sending";
+        if (submit) submit.disabled = true;
+
+        try {
+          const formData = new FormData(fields);
+          const fullName = String(formData.get("fullName") || "");
+          const nameParts = fullName.trim().split(/\s+/);
+          const firstname = nameParts[0] || "";
+          const lastname = nameParts.slice(1).join(" ") || firstname;
+
+          const email = String(formData.get("email") || "");
+          const phone = String(formData.get("phone") || "");
+          const company = String(formData.get("organisation") || "");
+          const eventType = String(formData.get("eventType") || "");
+          const eventDate = String(formData.get("eventDate") || "");
+          const venue = String(formData.get("venue") || "");
+          const coverageHours = String(formData.get("coverageHours") || "");
+          const turnaround = String(formData.get("turnaround") || "");
+          const runSheetLink = String(formData.get("runSheetLink") || "");
+          const userNotes = String(formData.get("message") || "");
+
+          const combinedMessage = [
+            `Event Category: ${eventType}`,
+            `Event Date: ${eventDate}`,
+            `Venue: ${venue}`,
+            `Estimated Hours: ${coverageHours}`,
+            `Turnaround Speed: ${turnaround}`,
+            runSheetLink ? `Run Sheet / Document Link: ${runSheetLink}` : "",
+            userNotes ? `\nClient Notes & Scope:\n${userNotes}` : "",
+          ]
+            .filter(Boolean)
+            .join("\n");
+
+          const hubspotFields = [
+            { name: "firstname", value: firstname },
+            { name: "lastname", value: lastname },
+            { name: "email", value: email },
+            { name: "phone", value: phone },
+            { name: "company", value: company },
+            { name: "message", value: combinedMessage },
+          ];
+
+          const endpoint = `https://api-${hubspotRegion}.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              fields: hubspotFields,
+              context: {
+                pageUri: window.location.href,
+                pageName: document.title,
+              },
+            }),
+          });
+
+          if (!response.ok) {
+            const fallbackEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+            const fallbackRes = await fetch(fallbackEndpoint, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                fields: hubspotFields,
+                context: {
+                  pageUri: window.location.href,
+                  pageName: document.title,
+                },
+              }),
+            });
+            if (!fallbackRes.ok) throw new Error("HubSpot submission failed");
+          }
+
+          form.dataset.state = "sent";
+          fields.reset();
+        } catch {
+          form.dataset.state = "failed";
+          if (submit) submit.disabled = false;
+        }
+      });
+      continue;
+    }
 
     const projectId = form.dataset.formspreeProject;
     const formId = form.dataset.formspreeForm;

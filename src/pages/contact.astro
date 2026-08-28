@@ -15,7 +15,7 @@ import Input from "@/components/Form/Input.astro";
 import Select from "@/components/Form/Select.astro";
 import Choice from "@/components/Form/Choice.astro";
 import Textarea from "@/components/Form/Textarea.astro";
-import { STUDIO_CONTACT } from "@/consts.ts";
+import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
 ---
 
 <Layout
@@ -43,9 +43,9 @@ import { STUDIO_CONTACT } from "@/consts.ts";
         <Form
           name="project-inquiry"
           action={STUDIO_CONTACT.formEndpoint}
-          projectId={STUDIO_CONTACT.formProjectId}
-          formId={STUDIO_CONTACT.formId}
-          enctype="multipart/form-data"
+          hubspotPortalId={HUBSPOT_CONFIG.portalId}
+          hubspotFormId={HUBSPOT_CONFIG.formId}
+          hubspotRegion={HUBSPOT_CONFIG.region}
           successMessage="Thanks. Your project brief has been received. We will review your requirements and respond within 24 hours."
         >
           <Fieldset legend="1. Contact Information" variant="columns">
