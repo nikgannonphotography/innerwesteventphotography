@@ -11,7 +11,7 @@ import Card from "@/components/Item/Card.astro";
 import BlogPostCard from "@/components/Item/BlogPostCard.astro";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
-import { DOCS, type DocGuide } from "@/data/docs.ts";
+import { DOCS, getDocBySlug, type DocGuide } from "@/data/docs.ts";
 import { SERVICES } from "@/data/services.ts";
 import { BLOG_POSTS } from "@/data/blog.ts";
 import { SITE_NAME, SITE_URL } from "@/consts.ts";
@@ -27,7 +27,12 @@ interface Props {
   doc: DocGuide;
 }
 
-const { doc } = Astro.props;
+const { slug } = Astro.params;
+const doc = Astro.props.doc ?? (slug ? getDocBySlug(slug) : undefined);
+
+if (!doc) {
+  return Astro.redirect("/404");
+}
 const relatedService = SERVICES.find(
   (service) => service.slug === doc.relatedService,
 );

@@ -13,6 +13,7 @@ import GalleryFacts from "@/components/Item/GalleryFacts.astro";
 import {
   GALLERIES,
   GALLERY_PAGE_LINKS,
+  getGalleryBySlug,
   type GalleryProject,
 } from "@/data/galleries.ts";
 import { SERVICES } from "@/data/services.ts";
@@ -29,7 +30,13 @@ interface Props {
   project: GalleryProject;
 }
 
-const { project } = Astro.props;
+const { slug } = Astro.params;
+const project =
+  Astro.props.project ?? (slug ? getGalleryBySlug(slug) : undefined);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
 const pageLinks = GALLERY_PAGE_LINKS[project.slug];
 const relatedService = SERVICES.find(
   (service) => service.slug === pageLinks?.service,

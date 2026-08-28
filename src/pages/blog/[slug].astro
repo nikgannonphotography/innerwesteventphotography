@@ -11,7 +11,12 @@ import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import RelatedBlogPosts from "@/components/Item/RelatedBlogPosts.astro";
 import ContentArticle from "@/components/Content/ContentArticle.astro";
-import { BLOG_POSTS, BLOG_SERVICE_LINKS, type BlogPost } from "@/data/blog.ts";
+import {
+  BLOG_POSTS,
+  BLOG_SERVICE_LINKS,
+  getBlogPostBySlug,
+  type BlogPost,
+} from "@/data/blog.ts";
 import { SERVICES } from "@/data/services.ts";
 import { SITE_NAME, SITE_URL, STUDIO_CONTACT } from "@/consts.ts";
 
@@ -26,7 +31,13 @@ interface Props {
   post: BlogPost;
 }
 
-const { post } = Astro.props;
+const { slug } = Astro.params;
+const post = Astro.props.post ?? (slug ? getBlogPostBySlug(slug) : undefined);
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
 const relatedService = SERVICES.find(
   (service) => service.slug === BLOG_SERVICE_LINKS[post.slug],
 );

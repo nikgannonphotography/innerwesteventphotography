@@ -9,7 +9,11 @@ import Grid from "@/components/Wrapper/Grid.astro";
 import Card from "@/components/Item/Card.astro";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
-import { LOCATIONS, type LocationHub } from "@/data/locations.ts";
+import {
+  LOCATIONS,
+  getLocationBySlug,
+  type LocationHub,
+} from "@/data/locations.ts";
 import { GALLERIES } from "@/data/galleries.ts";
 import { DOCS, type DocGuide } from "@/data/docs.ts";
 
@@ -24,7 +28,13 @@ interface Props {
   location: LocationHub;
 }
 
-const { location } = Astro.props;
+const { slug } = Astro.params;
+const location =
+  Astro.props.location ?? (slug ? getLocationBySlug(slug) : undefined);
+
+if (!location) {
+  return Astro.redirect("/404");
+}
 
 // Related case studies
 const matchedGalleries = GALLERIES.filter((g) =>
