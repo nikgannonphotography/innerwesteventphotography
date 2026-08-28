@@ -373,6 +373,21 @@ export const BLOG_POSTS: BlogPost[] = [
   }
 ];
 
+export const BLOG_SERVICE_LINKS: Record<string, string> = {
+  "corporate-event-photography-pricing-guide-sydney":
+    "corporate-events-conferences",
+  "icc-sydney-event-photography-guide": "corporate-events-conferences",
+  "how-to-write-an-event-photography-brief":
+    "corporate-events-conferences",
+  "top-event-venues-inner-west-sydney": "brand-campaigns-activations",
+  "sydney-corporate-headshots-team-portraits-guide":
+    "workplace-portraits-headshots",
+  "live-event-photo-delivery-for-press-social":
+    "brand-campaigns-activations",
+  "hiring-freelance-event-photographers-sydney-checklist":
+    "corporate-events-conferences",
+};
+
 export function getFeaturedBlogPosts(): BlogPost[] {
   return BLOG_POSTS.filter((p) => p.featured);
 }

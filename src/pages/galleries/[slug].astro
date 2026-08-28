@@ -10,7 +10,13 @@ import Button from "@/components/Button.astro";
 import ContentGallery from "@/components/Content/ContentGallery.astro";
 import ContentList from "@/components/Content/ContentList.astro";
 import GalleryFacts from "@/components/Item/GalleryFacts.astro";
-import { GALLERIES, type GalleryProject } from "@/data/galleries.ts";
+import {
+  GALLERIES,
+  GALLERY_PAGE_LINKS,
+  type GalleryProject,
+} from "@/data/galleries.ts";
+import { SERVICES } from "@/data/services.ts";
+import { LOCATIONS } from "@/data/locations.ts";
 
 export function getStaticPaths() {
   return GALLERIES.map((project) => ({
@@ -24,6 +30,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const pageLinks = GALLERY_PAGE_LINKS[project.slug];
+const relatedService = SERVICES.find(
+  (service) => service.slug === pageLinks?.service,
+);
+const relatedLocation = LOCATIONS.find(
+  (location) => location.slug === pageLinks?.location,
+);
 ---
 
 <Layout
@@ -52,6 +65,28 @@ const { project } = Astro.props;
       <div>
         <Heading tag="h2" variant="h3">Overview</Heading>
         <Paragraph>{project.overview}</Paragraph>
+        {(relatedService || relatedLocation) && (
+          <ButtonWrapper marginTop="4">
+            {relatedService && (
+              <Button
+                element="link"
+                href={`/services/${relatedService.slug}`}
+                variant="link"
+              >
+                View {relatedService.title}
+              </Button>
+            )}
+            {relatedLocation && (
+              <Button
+                element="link"
+                href={`/locations/${relatedLocation.slug}`}
+                variant="link"
+              >
+                Photography in {relatedLocation.name}
+              </Button>
+            )}
+          </ButtonWrapper>
+        )}
       </div>
       <GalleryFacts
         slot="column2"

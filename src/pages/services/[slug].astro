@@ -11,6 +11,7 @@ import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { SERVICES, type ServicePackage } from "@/data/services.ts";
 import { GALLERIES } from "@/data/galleries.ts";
+import { DOCS } from "@/data/docs.ts";
 
 export function getStaticPaths() {
   return SERVICES.map((service) => ({
@@ -29,6 +30,9 @@ const { service } = Astro.props;
 const matchedGalleries = GALLERIES.filter((g) =>
   service.relatedGallerySlugs.includes(g.slug)
 );
+const planningGuides = DOCS.filter(
+  (guide) => guide.relatedService === service.slug,
+).slice(0, 3);
 ---
 
 <Layout
@@ -153,6 +157,33 @@ const matchedGalleries = GALLERIES.filter((g) =>
             buttonLabel="View Case Study"
             image={item.posterImage}
             variant="stacked"
+          />
+        ))}
+      </Grid>
+    </Section>
+  )}
+
+  {planningGuides.length > 0 && (
+    <Section paddingTop="medium" paddingBottom="medium">
+      <ContentWrapper variant="auto-width">
+        <div>
+          <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
+          <Heading tag="h2" variant="h3">Plan the Assignment</Heading>
+        </div>
+        <ButtonWrapper slot="column2">
+          <Button element="link" href="/docs" emphasis="secondary">
+            All Docs and Guides &rarr;
+          </Button>
+        </ButtonWrapper>
+      </ContentWrapper>
+
+      <Grid small={1} medium={3}>
+        {planningGuides.map((guide) => (
+          <Card
+            heading={guide.title}
+            text={guide.summary}
+            buttonHref={`/docs/${guide.slug}`}
+            buttonLabel="Read Guide"
           />
         ))}
       </Grid>

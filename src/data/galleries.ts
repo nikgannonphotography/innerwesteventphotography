@@ -648,6 +648,49 @@ export const GALLERIES: GalleryProject[] = [
   },
 ];
 
+export const GALLERY_PAGE_LINKS: Record<
+  string,
+  { service: string; location?: string }
+> = {
+  "sony-foundation-wharf4ward": {
+    service: "not-for-profit-community",
+    location: "sydney-cbd",
+  },
+  "tedx-macquarie-uni": {
+    service: "corporate-events-conferences",
+    location: "north-shore",
+  },
+  "maggie-beer": { service: "not-for-profit-community" },
+  "australian-fashion-week-2026": {
+    service: "brand-campaigns-activations",
+    location: "inner-west",
+  },
+  "guy-jules-sebastian": { service: "not-for-profit-community" },
+  "global-impact-summit": { service: "corporate-events-conferences" },
+  "oz-harvest": { service: "not-for-profit-community" },
+  "echo-change-future-action-summit-2026": {
+    service: "corporate-events-conferences",
+    location: "sydney-cbd",
+  },
+  "royalle-modelling-x-leather-on-me-xteds-cameras": {
+    service: "brand-campaigns-activations",
+  },
+  "world-vision": { service: "not-for-profit-community" },
+  "order-of-australia-the-school-of-st-jude": {
+    service: "not-for-profit-community",
+  },
+  "kokoda-track-foundation": { service: "not-for-profit-community" },
+  "sony-foundation-tones-and-i-at-wharf4ward": {
+    service: "brand-campaigns-activations",
+    location: "sydney-cbd",
+  },
+  "irish-festival-sydney-2026": {
+    service: "not-for-profit-community",
+    location: "sydney-cbd",
+  },
+  "laundry-lane": { service: "corporate-events-conferences" },
+};
+
 export function getFeaturedGalleries(): GalleryProject[] {
   return GALLERIES.filter((g) => g.featured);
 }

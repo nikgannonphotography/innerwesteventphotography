@@ -7,6 +7,7 @@ export interface LocationHub {
   description: string;
   eventTypes: string[];
   relatedGalleries: string[];
+  relatedGuideSlugs: string[];
 }
 
 export const LOCATIONS: LocationHub[] = [
@@ -44,6 +45,11 @@ export const LOCATIONS: LocationHub[] = [
       "australian-fashion-week-2026",
       "the-clowns-court",
       "walk-of-faith"
+    ],
+    relatedGuideSlugs: [
+      "sydney-venue-lighting-guide",
+      "brand-activation-photography-production-guide",
+      "not-for-profit-charity-event-photography-guide"
     ]
   },
   {
@@ -79,6 +85,11 @@ export const LOCATIONS: LocationHub[] = [
       "sony-foundation-wharf4ward",
       "echo-change-future-action-summit-2026",
       "irish-festival-sydney-2026"
+    ],
+    relatedGuideSlugs: [
+      "sydney-conference-photography-planning-checklist",
+      "corporate-gala-dinner-photography-shot-list",
+      "product-launch-photography-pr-delivery-guide"
     ]
   },
   {
@@ -111,6 +122,11 @@ export const LOCATIONS: LocationHub[] = [
     relatedGalleries: [
       "tedx-macquarie-uni",
       "george-and-adrianas-engagement"
+    ],
+    relatedGuideSlugs: [
+      "on-site-corporate-headshots-planning-guide",
+      "sydney-conference-photography-planning-checklist",
+      "sydney-venue-lighting-guide"
     ]
   },
   {
@@ -141,6 +157,11 @@ export const LOCATIONS: LocationHub[] = [
     relatedGalleries: [
       "nrl-grand-final-2019",
       "latrell-mitchell-daniel-tupou-2019"
+    ],
+    relatedGuideSlugs: [
+      "sydney-conference-photography-planning-checklist",
+      "not-for-profit-charity-event-photography-guide",
+      "pricing-and-rates-guide"
     ]
   }
 ];

@@ -11,7 +11,8 @@ import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import RelatedBlogPosts from "@/components/Item/RelatedBlogPosts.astro";
 import ContentArticle from "@/components/Content/ContentArticle.astro";
-import { BLOG_POSTS, type BlogPost } from "@/data/blog.ts";
+import { BLOG_POSTS, BLOG_SERVICE_LINKS, type BlogPost } from "@/data/blog.ts";
+import { SERVICES } from "@/data/services.ts";
 import { SITE_NAME, SITE_URL, STUDIO_CONTACT } from "@/consts.ts";
 
 export function getStaticPaths() {
@@ -26,6 +27,9 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const relatedService = SERVICES.find(
+  (service) => service.slug === BLOG_SERVICE_LINKS[post.slug],
+);
 
 type ArticleBodyBlock =
   | { type: "paragraph"; text: string }
@@ -213,6 +217,17 @@ const articleSchema = {
 
       <div class="article-conclusion-block">
         <Paragraph variant="large">{post.content.conclusion}</Paragraph>
+        {relatedService && (
+          <ButtonWrapper marginTop="4">
+            <Button
+              element="link"
+              href={`/services/${relatedService.slug}`}
+              variant="link"
+            >
+              View {relatedService.title}
+            </Button>
+          </ButtonWrapper>
+        )}
       </div>
 
       <RelatedBlogPosts currentSlug={post.slug} />

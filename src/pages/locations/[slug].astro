@@ -11,6 +11,7 @@ import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { LOCATIONS, type LocationHub } from "@/data/locations.ts";
 import { GALLERIES } from "@/data/galleries.ts";
+import { DOCS, type DocGuide } from "@/data/docs.ts";
 
 export function getStaticPaths() {
   return LOCATIONS.map((location) => ({
@@ -29,6 +30,9 @@ const { location } = Astro.props;
 const matchedGalleries = GALLERIES.filter((g) =>
   location.relatedGalleries.includes(g.slug)
 );
+const planningGuides = location.relatedGuideSlugs
+  .map((slug) => DOCS.find((guide) => guide.slug === slug))
+  .filter((guide): guide is DocGuide => Boolean(guide));
 ---
 
 <Layout
@@ -126,6 +130,33 @@ const matchedGalleries = GALLERIES.filter((g) =>
             buttonLabel="View Case Study"
             image={item.posterImage}
             variant="stacked"
+          />
+        ))}
+      </Grid>
+    </Section>
+  )}
+
+  {planningGuides.length > 0 && (
+    <Section paddingTop="medium" paddingBottom="medium">
+      <ContentWrapper variant="auto-width">
+        <div>
+          <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
+          <Heading tag="h2" variant="h3">Planning for {location.name}</Heading>
+        </div>
+        <ButtonWrapper slot="column2">
+          <Button element="link" href="/docs" emphasis="secondary">
+            All Docs and Guides &rarr;
+          </Button>
+        </ButtonWrapper>
+      </ContentWrapper>
+
+      <Grid small={1} medium={3}>
+        {planningGuides.map((guide) => (
+          <Card
+            heading={guide.title}
+            text={guide.summary}
+            buttonHref={`/docs/${guide.slug}`}
+            buttonLabel="Read Guide"
           />
         ))}
       </Grid>

@@ -19,6 +19,8 @@ export const readPage = (route) => {
   return readFileSync(pageFile(route), "utf8");
 };
 
+const mainContent = (html) => html.match(/<main.*?<\/main>/s)?.[0] ?? "";
+
 for (const route of [
   "/",
   "/docs/",
@@ -50,5 +52,32 @@ const briefingGuide = readPage("/docs/event-briefing-template/");
 assert.match(briefingGuide, /href="\/docs"/);
 assert.match(briefingGuide, /"@type":"Article"/);
 assert.match(briefingGuide, /"@type":"BreadcrumbList"/);
+
+const pricingBlog = readPage(
+  "/blog/corporate-event-photography-pricing-guide-sydney/",
+);
+assert.match(
+  mainContent(pricingBlog),
+  /href="\/services\/corporate-events-conferences"/,
+);
+
+const sonyGallery = readPage("/galleries/sony-foundation-wharf4ward/");
+assert.match(
+  mainContent(sonyGallery),
+  /href="\/services\/not-for-profit-community"/,
+);
+assert.match(mainContent(sonyGallery), /href="\/locations\/sydney-cbd"/);
+
+const conferenceService = readPage("/services/corporate-events-conferences/");
+assert.match(
+  mainContent(conferenceService),
+  /href="\/docs\/event-briefing-template"/,
+);
+
+const innerWest = readPage("/locations/inner-west/");
+assert.match(
+  mainContent(innerWest),
+  /href="\/docs\/sydney-venue-lighting-guide"/,
+);
 
 console.log("Static route baseline passed");
