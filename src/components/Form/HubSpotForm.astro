@@ -3,47 +3,30 @@ interface Props {
   portalId?: string;
   formId?: string;
   region?: string;
-  target?: string;
 }
 
 const {
-  portalId = "",
-  formId = "",
-  region = "na1",
-  target = "#hubspot-form-container",
+  portalId = "442724335",
+  formId = "6ded9649-fd5b-4bbe-a599-a0fc52b0f74e",
+  region = "ap1",
 } = Astro.props;
 ---
 
-<div id="hubspot-form-container" class="hubspot-form-wrap" data-portal-id={portalId} data-form-id={formId} data-region={region}>
-  {portalId && formId ? (
-    <div class="hubspot-form-inner"></div>
-  ) : (
-    <div class="hubspot-placeholder">
-      <!-- Fallback when HubSpot ID is not yet entered -->
-    </div>
-  )}
+<div class="hubspot-form-container">
+  <script is:inline src={`https://js-${region}.hsforms.net/forms/embed/${portalId}.js`} defer></script>
+  <div
+    class="hs-form-frame"
+    data-region={region}
+    data-form-id={formId}
+    data-portal-id={portalId}
+  ></div>
 </div>
-
-{portalId && formId && (
-  <script is:inline src="https://js.hsforms.net/forms/embed/v2.js"></script>
-  <script is:inline define:vars={{ portalId, formId, region, target }}>
-    window.addEventListener("DOMContentLoaded", () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: region,
-          portalId: portalId,
-          formId: formId,
-          target: target,
-        });
-      }
-    });
-  </script>
-)}
 
 <style is:global>
   @layer components {
-    .hubspot-form-wrap {
+    .hubspot-form-container {
       width: 100%;
+      min-height: 380px;
     }
   }
 </style>
