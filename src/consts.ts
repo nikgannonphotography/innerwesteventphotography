@@ -39,6 +39,8 @@ export const STUDIO_CONTACT = {
     "North Shore & Eastern Suburbs",
     "Greater Western Sydney",
   ],
+  insurance: "$10,000,000 Public & Products Liability",
+  insurancePolicyNumber: "BIZ157345BUS",
 };
 
 /**
