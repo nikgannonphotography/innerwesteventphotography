@@ -3,11 +3,11 @@ export const SITE_NAME = "Inner West Event Photography";
 
 /** Tagline and concise positioning. */
 export const SITE_TAGLINE =
-  "Event, campaign, portrait and documentary photography studio based in Sydney.";
+  "Sydney event, conference, and documentary photography studio.";
 
 /** Fallback meta description for pages that don't set their own. */
 export const SITE_DESCRIPTION =
-  "Inner West Event Photography provides documentary-style photography for corporate events, conferences, not-for-profit organisations, campaigns and workplace teams across Sydney.";
+  "Inner West Event Photography provides quiet, dependable documentary coverage for corporate conferences, summits, charity galas, and workplace teams across Sydney.";
 
 /** Canonical origin. Resolves canonical URLs, social images, and the sitemap. */
 export const SITE_URL = "https://innerwesteventphotography.com.au";
