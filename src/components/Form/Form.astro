@@ -143,6 +143,8 @@ const content = await slotContent(Astro.slots);
             .filter(Boolean)
             .join("\n");
 
+          const uploadValue = [runSheetLink, fileNotice].filter(Boolean).join(" | ");
+
           const hubspotFields = [
             { name: "firstname", value: firstname },
             { name: "lastname", value: lastname },
@@ -151,6 +153,10 @@ const content = await slotContent(Astro.slots);
             { name: "company", value: company },
             { name: "message", value: combinedMessage },
           ];
+
+          if (uploadValue) {
+            hubspotFields.push({ name: "upload", value: uploadValue });
+          }
 
           const endpoint = `https://api-${hubspotRegion}.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
 
