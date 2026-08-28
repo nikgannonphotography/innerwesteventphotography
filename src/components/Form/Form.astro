@@ -116,6 +116,19 @@ const content = await slotContent(Astro.slots);
           const turnaround = String(formData.get("turnaround") || "");
           const runSheetLink = String(formData.get("runSheetLink") || "");
           const userNotes = String(formData.get("message") || "");
+          const runSheetFile = formData.get("runSheetFile");
+          let fileNotice = "";
+          let hasAttachedFile = false;
+          if (
+            runSheetFile &&
+            typeof runSheetFile === "object" &&
+            "name" in runSheetFile &&
+            runSheetFile.name &&
+            runSheetFile.size > 0
+          ) {
+            hasAttachedFile = true;
+            fileNotice = `Attached File: ${runSheetFile.name} (${(runSheetFile.size / 1024).toFixed(1)} KB)`;
+          }
 
           const combinedMessage = [
             `Event Category: ${eventType}`,
@@ -124,6 +137,7 @@ const content = await slotContent(Astro.slots);
             `Estimated Hours: ${coverageHours}`,
             `Turnaround Speed: ${turnaround}`,
             runSheetLink ? `Run Sheet / Document Link: ${runSheetLink}` : "",
+            fileNotice ? fileNotice : "",
             userNotes ? `\nClient Notes & Scope:\n${userNotes}` : "",
           ]
             .filter(Boolean)
@@ -168,6 +182,20 @@ const content = await slotContent(Astro.slots);
               }),
             });
             if (!fallbackRes.ok) throw new Error("HubSpot submission failed");
+          }
+
+          // If a file was attached and a backup endpoint is configured, send the file binary payload
+          const backupEndpoint = form.dataset.endpoint;
+          if (hasAttachedFile && backupEndpoint) {
+            try {
+              await fetch(backupEndpoint, {
+                method: "POST",
+                body: formData,
+                headers: { Accept: "application/json" },
+              });
+            } catch (err) {
+              console.warn("Backup file delivery completed with note in CRM", err);
+            }
           }
 
           form.dataset.state = "sent";
