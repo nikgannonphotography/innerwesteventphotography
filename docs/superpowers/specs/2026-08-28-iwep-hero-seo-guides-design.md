@@ -2,7 +2,7 @@
 
 Date 2026-08-28
 
-Status approved direction, awaiting specification review
+Status approved with incremental implementation constraint
 
 ## Outcome
 
@@ -106,28 +106,19 @@ No suburb or venue page is published solely by changing place names. A new locat
 
 ## Guide content system
 
-Guides move from `src/data/docs.ts` into an Astro content collection. Markdown or MDX becomes the authoring surface. A collection schema validates every entry at build time.
+Guides remain in `src/data/docs.ts`. The existing typed data model and static route stay in place. New fields extend the current `DocGuide` interface only where they directly support metadata, structured data, or contextual links.
 
-Each guide requires these fields.
+Each guide keeps the current fields and gains these fields.
 
-- `title`
 - `seoTitle`
-- `description`
-- `category`
-- `categoryLabel`
 - `searchIntent`
 - `publishedDate`
-- `updatedDate`
-- `readTime`
-- `summary`
-- `relatedService`
+- `metaDescription`
 - `relatedLocations`
 - `relatedGalleries`
 - `relatedGuides`
-- `relatedBlogPosts`
-- `draft`
 
-The page slug comes from the content filename or explicit content identifier. Existing guide URLs remain unchanged so no redirect work is needed.
+The existing `slug` field remains the route source. Existing guide URLs remain unchanged so no redirect work is needed.
 
 The docs index groups guides by useful topic. It exposes a short description for each category and a featured starting point. It does not add client-side filtering in the first release.
 
@@ -135,7 +126,7 @@ Guide pages include a clear introduction, descriptive heading hierarchy, practic
 
 ## Initial guide set
 
-The five existing guides migrate without changing their URLs.
+The five existing guides remain in place without changing their URLs.
 
 - Event photography briefing template
 - Sydney event photography pricing and rate structures
@@ -189,16 +180,15 @@ Structured data must contain only claims and business details already present in
 Expected implementation areas include these files and folders.
 
 - `src/pages/index.astro` for the viewport hero
-- `src/components/Wrapper/Section.astro` and existing utilities where the hero can use framework behaviour cleanly
-- `src/content.config.ts` for the guide collection schema
-- `src/content/docs/` for guide content
+- Existing `Section`, `ContentWrapper`, and `Img` components for the hero
+- `src/data/docs.ts` for the typed guide catalogue and new guide content
 - `src/pages/docs/index.astro` for the topic hub
-- `src/pages/docs/[slug].astro` for collection rendering and guide schema
+- `src/pages/docs/[slug].astro` for guide rendering and guide schema
 - `src/components/Utility/BaseHead.astro` for the service offer catalogue
 - Service, blog, gallery, and location data for explicit relationships
 - Service, blog, gallery, and location templates for contextual links
 
-Shared components may be added for guide cards, related resources, and breadcrumbs if repetition justifies them. Existing Lumos components and CSS conventions remain the first choice.
+Shared components are added only when repetition justifies them. Existing Lumos components, Stacki designer states, and CSS conventions remain the first choice.
 
 ## Content safeguards
 
@@ -215,11 +205,11 @@ Every page must satisfy all of these checks before publication.
 
 Future deep research outputs map into a content brief before they become pages. The brief records primary intent, supporting questions, required evidence, target service, useful proof, and overlap risks.
 
-## Migration behaviour
+## Compatibility behaviour
 
-Existing guide URLs and current content remain available during migration. The build must fail if an entry has a missing required relationship or invalid category.
+Existing guide URLs and current content remain available. Type checking must fail if an entry has a missing required field or invalid category.
 
-The old `DOCS` array is removed only after every current guide is represented in the collection and route output is verified.
+The `DOCS` array remains the single guide source. No content collection, CMS, framework, or dependency is introduced.
 
 No change is made to blog URLs, service URLs, location URLs, or gallery URLs.
 
@@ -250,12 +240,11 @@ Implementation is complete only when all checks pass.
 
 ## Delivery sequence
 
-1. Establish the content collection and migrate existing guides.
-2. Rebuild docs routes and topic hub.
-3. Add the six new guides.
-4. Add explicit internal relationships and render contextual links.
-5. Extend structured data.
-6. Build the full-viewport homepage hero.
-7. Run code, route, schema, build, and visual verification.
+1. Extend the existing typed guide data and add the six new guides.
+2. Improve the existing docs routes and topic hub.
+3. Add explicit internal relationships and render contextual links.
+4. Extend structured data.
+5. Build the full-viewport homepage hero with existing Lumos components.
+6. Run code, route, schema, build, and visual verification.
 
-This sequence protects existing indexed URLs before visual changes and makes each later step testable against a stable content layer.
+This sequence protects existing indexed URLs and the Stacki-compatible component structure before visual changes. Every change remains a small edit within the current architecture.
