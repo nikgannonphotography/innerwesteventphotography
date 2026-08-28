@@ -34,17 +34,18 @@ export const LOCATIONS: LocationHub[] = [
       "Balmain Town Hall & Harbourside Parks",
       "Botany View Hotel & Local Music Venues"
     ],
-    description: "Our home base and creative stomping ground. From warehouse brand activations in Marrickville and fashion runways at Carriageworks to community festivals and cultural assemblies in Newtown, we provide grounded, disciplined photographic documentation across the Inner West.",
+    description:
+      "Our home base and creative stomping ground. From warehouse brand activations in Marrickville and creative studio productions to community festivals and cultural assemblies in Newtown, we provide grounded, disciplined photographic documentation across the Inner West.",
     eventTypes: [
       "Brand launches & warehouse pop-ups",
       "Cultural street festivals & civic gatherings",
       "Creative agency mixers & studio productions",
-      "Intimate weddings & milestone celebrations"
+      "Intimate weddings & milestone celebrations",
     ],
     relatedGalleries: [
-      "australian-fashion-week-2026",
+      "royalle-modelling-x-leather-on-me-xteds-cameras",
       "the-clowns-court",
-      "walk-of-faith"
+      "walk-of-faith",
     ],
     relatedGuideSlugs: [
       "sydney-venue-lighting-guide",

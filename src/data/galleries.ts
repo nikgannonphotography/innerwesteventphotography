@@ -150,7 +150,7 @@ export const GALLERIES: GalleryProject[] = [
     subtitle: "Runway & Backstage Editorial Documentation",
     clientRole: "Accredited Editorial Photographer",
     year: "2026",
-    location: "Carriageworks, Eveleigh, Sydney",
+    location: "Sydney",
     summary:
       "Editorial and runway documentation across Australian Fashion Week, covering designer showcases, backstage preparation, and guest arrivals.",
     overview:
@@ -664,7 +664,6 @@ export const GALLERY_PAGE_LINKS: Record<
   "maggie-beer": { service: "not-for-profit-community" },
   "australian-fashion-week-2026": {
     service: "brand-campaigns-activations",
-    location: "inner-west",
   },
   "guy-jules-sebastian": { service: "not-for-profit-community" },
   "global-impact-summit": { service: "corporate-events-conferences" },
