@@ -14,6 +14,7 @@ import Button from "@/components/Button.astro";
 import { DOCS, type DocGuide } from "@/data/docs.ts";
 import { SERVICES } from "@/data/services.ts";
 import { BLOG_POSTS } from "@/data/blog.ts";
+import { SITE_NAME, SITE_URL } from "@/consts.ts";
 
 export function getStaticPaths() {
   return DOCS.map((doc) => ({
@@ -27,18 +28,81 @@ interface Props {
 }
 
 const { doc } = Astro.props;
-const relatedService = SERVICES.find((service) => service.slug === doc.relatedService);
-const relatedBlogs = BLOG_POSTS.filter((post) => doc.relatedBlogSlugs.includes(post.slug));
-const otherDocs = DOCS.filter((item) => item.slug !== doc.slug).slice(0, 3);
+const relatedService = SERVICES.find(
+  (service) => service.slug === doc.relatedService,
+);
+const relatedBlogs = BLOG_POSTS.filter((post) =>
+  doc.relatedBlogSlugs.includes(post.slug),
+);
+const docsBySlug = new Map(DOCS.map((item) => [item.slug, item]));
+const configuredDocs = doc.relatedGuides
+  .map((slug) => docsBySlug.get(slug))
+  .filter((item): item is DocGuide => Boolean(item));
+const fallbackDocs = DOCS.filter(
+  (item) =>
+    item.slug !== doc.slug &&
+    item.category === doc.category &&
+    !configuredDocs.some((configured) => configured.slug === item.slug),
+);
+const otherDocs = [...configuredDocs, ...fallbackDocs].slice(0, 3);
+
+const articleSchema = {
+  "@type": "Article",
+  headline: doc.title,
+  description: doc.metaDescription,
+  datePublished: doc.publishedDate,
+  dateModified: doc.publishedDate,
+  mainEntityOfPage: `${SITE_URL}/docs/${doc.slug}`,
+  author: {
+    "@type": "Person",
+    name: "Nikolas Gannon",
+    url: `${SITE_URL}/about`,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Docs and guides",
+      item: `${SITE_URL}/docs`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: doc.title,
+      item: `${SITE_URL}/docs/${doc.slug}`,
+    },
+  ],
+};
+
+const guideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [articleSchema, breadcrumbSchema],
+};
 ---
 
-<Layout title={doc.title} description={doc.summary}>
+<Layout title={doc.seoTitle} description={doc.metaDescription}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(guideSchema)}
+  />
+
   <!-- Guide header -->
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
       <ButtonWrapper class="margin-bottom-4">
-        <Button element="link" href="/blog#planning-guides" variant="link">
-          &larr; Back to guides and articles
+        <Button element="link" href="/docs" variant="link">
+          &larr; Back to docs and guides
         </Button>
       </ButtonWrapper>
       <Eyebrow variant="tag">{doc.categoryLabel}</Eyebrow>
@@ -59,54 +123,74 @@ const otherDocs = DOCS.filter((item) => item.slug !== doc.slug).slice(0, 3);
         <Paragraph>{doc.summary}</Paragraph>
       </div>
 
-      {doc.sections.map((section) => (
-        <div class="article-section-block">
-          <Heading tag="h2" variant="h2">{section.heading}</Heading>
-          <Paragraph>{section.content}</Paragraph>
+      {
+        doc.sections.map((section) => (
+          <div class="article-section-block">
+            <Heading tag="h2" variant="h2">
+              {section.heading}
+            </Heading>
+            <Paragraph>{section.content}</Paragraph>
 
-          {section.subsections?.map((subsection) => (
-            <div>
-              <Heading tag="h3" variant="h4">{subsection.title}</Heading>
-              <Paragraph>{subsection.body}</Paragraph>
-            </div>
-          ))}
-        </div>
-      ))}
+            {section.subsections?.map((subsection) => (
+              <div>
+                <Heading tag="h3" variant="h4">
+                  {subsection.title}
+                </Heading>
+                <Paragraph>{subsection.body}</Paragraph>
+              </div>
+            ))}
+          </div>
+        ))
+      }
 
       <div class="article-conclusion-block">
         <Heading tag="h2" variant="h3">Key points</Heading>
         <ul class="article-list">
           {doc.keyTakeaways.map((takeaway) => <li>{takeaway}</li>)}
         </ul>
-        {relatedService && (
-          <ButtonWrapper marginTop="4">
-            <Button element="link" href={`/services/${relatedService.slug}`} variant="link">
-              View {relatedService.title}
-            </Button>
-          </ButtonWrapper>
-        )}
+        {
+          relatedService && (
+            <ButtonWrapper marginTop="4">
+              <Button
+                element="link"
+                href={`/services/${relatedService.slug}`}
+                variant="link"
+              >
+                View {relatedService.title}
+              </Button>
+            </ButtonWrapper>
+          )
+        }
       </div>
     </ContentArticle>
   </Section>
 
   <!-- Related articles -->
-  {relatedBlogs.length > 0 && (
-    <Section paddingTop="medium" paddingBottom="medium" theme="dark">
-      <ContentWrapper variant="auto-width">
-        <div>
-          <Eyebrow variant="tag">RELATED ARTICLES</Eyebrow>
-          <Heading tag="h2" variant="h3">Continue reading</Heading>
-        </div>
-        <ButtonWrapper slot="column2">
-          <Button element="link" href="/blog" variant="link">All guides and articles</Button>
-        </ButtonWrapper>
-      </ContentWrapper>
+  {
+    relatedBlogs.length > 0 && (
+      <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+        <ContentWrapper variant="auto-width">
+          <div>
+            <Eyebrow variant="tag">RELATED ARTICLES</Eyebrow>
+            <Heading tag="h2" variant="h3">
+              Continue reading
+            </Heading>
+          </div>
+          <ButtonWrapper slot="column2">
+            <Button element="link" href="/blog" variant="link">
+              All guides and articles
+            </Button>
+          </ButtonWrapper>
+        </ContentWrapper>
 
-      <Grid small={1} large={2}>
-        {relatedBlogs.map((post) => <BlogPostCard post={post} />)}
-      </Grid>
-    </Section>
-  )}
+        <Grid small={1} large={2}>
+          {relatedBlogs.map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </Grid>
+      </Section>
+    )
+  }
 
   <!-- More guides -->
   <Section paddingTop="medium" paddingBottom="medium">
@@ -116,20 +200,22 @@ const otherDocs = DOCS.filter((item) => item.slug !== doc.slug).slice(0, 3);
         <Heading tag="h2" variant="h3">More planning guidance</Heading>
       </div>
       <ButtonWrapper slot="column2">
-        <Button element="link" href="/blog#planning-guides" variant="link">All guides</Button>
+        <Button element="link" href="/docs" variant="link">All guides</Button>
       </ButtonWrapper>
     </ContentWrapper>
 
     <Grid small={1} large={3}>
-      {otherDocs.map((item) => (
-        <Card
-          eyebrow={item.categoryLabel}
-          heading={item.title}
-          text={item.summary}
-          buttonHref={`/docs/${item.slug}`}
-          buttonLabel="Read guide"
-        />
-      ))}
+      {
+        otherDocs.map((item) => (
+          <Card
+            eyebrow={item.categoryLabel}
+            heading={item.title}
+            text={item.summary}
+            buttonHref={`/docs/${item.slug}`}
+            buttonLabel="Read guide"
+          />
+        ))
+      }
     </Grid>
   </Section>
 
@@ -137,9 +223,12 @@ const otherDocs = DOCS.filter((item) => item.slug !== doc.slug).slice(0, 3);
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">START A PROJECT</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Planning an event in Sydney?</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Planning an event in Sydney?</Heading
+      >
       <Paragraph maxWidth={34}>
-        Send the date, venue and run sheet. We will reply with the questions needed to scope coverage.
+        Send the date, venue and run sheet. We will reply with the questions
+        needed to scope coverage.
       </Paragraph>
       <ButtonWrapper marginTop="4">
         <Button element="link" href="/contact">Send a brief</Button>

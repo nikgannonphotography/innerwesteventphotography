@@ -64,7 +64,7 @@ const { render = true } = Astro.props;
           <div class="footer_col">
             <p class="footer_heading">GUIDES & ARTICLES</p>
             <ul class="footer_nav_list">
-              {DOCS.map((d) => (
+              {DOCS.slice(0, 5).map((d) => (
                 <li>
                   <a class="footer_link" href={`/docs/${d.slug}`}>
                     {d.title}
@@ -72,8 +72,8 @@ const { render = true } = Astro.props;
                 </li>
               ))}
               <li>
-                <a class="footer_link footer_link_all" href="/blog#planning-guides">
-                  All guides and articles
+                <a class="footer_link footer_link_all" href="/docs">
+                  All docs and guides
                 </a>
               </li>
             </ul>
