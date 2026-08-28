@@ -31,4 +31,9 @@ for (const route of [
   assertRoute(route);
 }
 
+const home = readPage("/");
+assert.match(home, /class="[^"]*home-hero/);
+assert.match(home, /class="[^"]*home-hero_media/);
+assert.match(home, /fetchpriority="high"/i);
+
 console.log("Static route baseline passed");

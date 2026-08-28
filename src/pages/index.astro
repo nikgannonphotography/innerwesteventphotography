@@ -24,30 +24,36 @@ const selectedWork = getFeaturedGalleries().slice(0, 4);
 const featuredArticles = BLOG_POSTS.slice(0, 3);
 ---
 
-<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production.">
+<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production." overlap={true}>
   <!-- Hero -->
-  <Section id="hero" paddingTop="none" paddingBottom="none" theme="dark" gap="0">
-    <ContentWrapper variant="breakout">
-      <div>
-        <Eyebrow variant="tag">SYDNEY EVENT PHOTOGRAPHY</Eyebrow>
-        <Heading variant="h1" maxWidth={20} tag="h1">Event photography coverage built around your brief</Heading>
-        <Paragraph variant="large" maxWidth={34}>
-          Clear, documentary coverage for conferences, galas, campaigns, community events and workplace teams across Sydney.
-        </Paragraph>
-        <ButtonWrapper marginTop="5">
-          <Button element="link" href="/contact">Send a brief</Button>
-          <Button element="link" href="#work" variant="link">View selected work</Button>
-        </ButtonWrapper>
-      </div>
-
-      <Img
-        slot="column2"
-        src={selectedWork[0]?.posterImage}
-        alt="Corporate event photography in Sydney"
-        loading="eager"
-        fetchPriority="high"
-        class="object-fit-cover"
-      />
+  <Section
+    id="hero"
+    class="home-hero"
+    containerClass="home-hero_content"
+    paddingTop="navoverlap"
+    paddingBottom="even"
+    theme="dark"
+    fullHeight={true}
+  >
+    <Img
+      slot="background"
+      src={selectedWork[0]?.posterImage}
+      alt=""
+      loading="eager"
+      fetchPriority="high"
+      class="home-hero_media object-fit-cover"
+    />
+    <div slot="background" class="home-hero_scrim"></div>
+    <ContentWrapper class="home-hero_copy">
+      <Eyebrow variant="tag">SYDNEY EVENT PHOTOGRAPHY</Eyebrow>
+      <Heading variant="h1" maxWidth={20} tag="h1">Event photography coverage built around your brief</Heading>
+      <Paragraph variant="large" maxWidth={34}>
+        Clear, documentary coverage for conferences, galas, campaigns, community events and workplace teams across Sydney.
+      </Paragraph>
+      <ButtonWrapper marginTop="5">
+        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="#work" variant="link">View selected work</Button>
+      </ButtonWrapper>
     </ContentWrapper>
   </Section>
 
@@ -219,3 +225,56 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     </ContentWrapper>
   </Section>
 </Layout>
+
+<style is:global>
+  @layer components {
+    .nav_wrap.overlap {
+      background-color: rgb(31 29 30 / 88%);
+      color: var(--light-100);
+      border-bottom-color: rgb(255 255 255 / 18%);
+    }
+
+    .nav_wrap.overlap .nav_logo_img {
+      filter: brightness(0) invert(1);
+    }
+
+    .nav_wrap.overlap .nav_link {
+      color: rgb(255 255 255 / 72%);
+
+      &[aria-current="page"],
+      &:hover {
+        color: var(--light-100);
+      }
+    }
+
+    .home-hero {
+      isolation: isolate;
+      justify-content: flex-end;
+      overflow: clip;
+    }
+
+    .home-hero_media {
+      z-index: -2;
+      object-position: center 42%;
+    }
+
+    .home-hero_scrim {
+      z-index: -1;
+      background-color: rgb(31 29 30 / 58%);
+    }
+
+    .home-hero_content {
+      justify-content: flex-end;
+    }
+
+    .home-hero_copy {
+      max-width: 48rem;
+    }
+
+    @media (width < 48rem) {
+      .home-hero_media {
+        object-position: 58% center;
+      }
+    }
+  }
+</style>
