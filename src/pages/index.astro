@@ -1,41 +1,221 @@
 ---
 import Layout from "@/layouts/BaseLayout.astro";
 import Section from "@/components/Wrapper/Section.astro";
-import Heading from "@/components/Typography/Heading.astro";
-import Eyebrow from "@/components/Typography/Eyebrow.astro";
-import Img from "@/components/Media/Img.astro";
-import lumos_background from "@/assets/graphics/lumos-background.svg";
-import Icon from "@/components/Media/Icon.astro";
-import logo_icon from "@/assets/logo/logo-icon.svg";
 import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import BlogPostCard from "@/components/Item/BlogPostCard.astro";
+import LogoBar from "@/components/Item/LogoBar.astro";
+import Accordion from "@/components/Interactive/Accordion.astro";
+import AccordionItem from "@/components/Interactive/AccordionItem.astro";
+import Img from "@/components/Media/Img.astro";
+import { STUDIO_CONTACT } from "@/consts.ts";
+import { getFeaturedGalleries } from "@/data/galleries.ts";
+import { SERVICES } from "@/data/services.ts";
+import { BLOG_POSTS } from "@/data/blog.ts";
+import { LOCATIONS } from "@/data/locations.ts";
+
+const selectedWork = getFeaturedGalleries().slice(0, 4);
+const featuredArticles = BLOG_POSTS.slice(0, 3);
 ---
 
-<Layout theme="dark">
-  <Section
-    paddingBottom="even"
-    containerClass="flex-grow"
-    paddingTop="even"
-    class="flex-grow"
-    style="min-height: calc(100svh - var(--nav-height));"
-  >
-    <ContentWrapper
-      class="flex-grow theme-brand"
-      variant="card"
-      mediaOpacity={100}
-    >
-      <Icon src={logo_icon} variant="large" />
-      <Heading variant="display" tag="h1" class="margin-block-8"
-        >Style Guide</Heading
-      >
-      <Eyebrow variant="tag">v0.01</Eyebrow>
+<Layout title="Inner West Event Photography" description="Corporate event, conference, campaign and community photography across Sydney, with clear scoping, dependable delivery and experienced on-site production.">
+  <!-- Hero -->
+  <Section id="hero" paddingTop="none" paddingBottom="none" theme="dark" gap="0">
+    <ContentWrapper variant="breakout">
+      <div>
+        <Eyebrow variant="tag">SYDNEY EVENT PHOTOGRAPHY</Eyebrow>
+        <Heading variant="h1" maxWidth={20} tag="h1">Event photography coverage built around your brief</Heading>
+        <Paragraph variant="large" maxWidth={34}>
+          Clear, documentary coverage for conferences, galas, campaigns, community events and workplace teams across Sydney.
+        </Paragraph>
+        <ButtonWrapper marginTop="5">
+          <Button element="link" href="/contact">Send a brief</Button>
+          <Button element="link" href="#work" variant="link">View selected work</Button>
+        </ButtonWrapper>
+      </div>
+
       <Img
         slot="column2"
-        src={lumos_background}
-        width={1920}
-        height={1080}
+        src={selectedWork[0]?.posterImage}
+        alt="Corporate event photography in Sydney"
         loading="eager"
         fetchPriority="high"
+        class="object-fit-cover"
       />
+    </ContentWrapper>
+  </Section>
+
+  <!-- Selected work -->
+  <Section id="work" paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">SELECTED WORK</Eyebrow>
+        <Heading tag="h2" variant="h2">Galleries</Heading>
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/galleries" variant="link">View more</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      {
+        selectedWork.map((item) => (
+          <Card heading={item.title} eyebrow={item.categoryLabel} text={item.location} buttonHref={`/galleries/${item.slug}`} buttonLabel="View assignment" image={item.posterImage} imageAlt={item.title} variant="stacked" />
+        ))
+      }
+    </Grid>
+  </Section>
+
+  <!-- Proof and delivery -->
+  <Section id="proof" paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">PRODUCTION STANDARD</Eyebrow>
+        <Heading tag="h2" variant="h2">Our Approach</Heading>
+      </div>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      <div>
+        <Heading tag="h3" variant="h5">Clear delivery</Heading>
+        <Paragraph>Delivery timing and priority selects are scoped against your event schedule and communications deadlines.</Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Commercial usage</Heading>
+        <Paragraph>Usage requirements are documented in the proposal, including internal, media, sponsor and campaign needs.</Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Scalable coverage</Heading>
+        <Paragraph>Additional photographers or video specialists are scoped when concurrent rooms or larger programs require them.</Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Venue-ready</Heading>
+        <Paragraph>A current Certificate of Currency can be provided when your venue or production team requires it.</Paragraph>
+      </div>
+    </Grid>
+
+    <LogoBar theme="dark" label="Work trusted by" />
+  </Section>
+
+  <!-- Services -->
+  <Section id="services" paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">SERVICES</Eyebrow>
+        <Heading tag="h2" variant="h2">Photography Services</Heading>
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/services" variant="link">View more</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      {SERVICES.map((service) => (
+        <div class="flex-vertical-nowrap">
+          <Heading tag="h3" variant="h5">{service.title}</Heading>
+          <Paragraph>{service.tagline}</Paragraph>
+          <ButtonWrapper class="margin-top-auto">
+            <Button element="link" href={`/services/${service.slug}`} variant="link">
+              View service
+            </Button>
+          </ButtonWrapper>
+        </div>
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Sydney coverage -->
+  <Section id="coverage" paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">SYDNEY COVERAGE</Eyebrow>
+        <Heading tag="h2" variant="h2">Available across Greater Sydney</Heading>
+      </div>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      {LOCATIONS.map((location) => (
+        <div class="flex-vertical-nowrap">
+          <Heading tag="h3" variant="h5">{location.name}</Heading>
+          <Paragraph>{location.tagline}</Paragraph>
+          <ButtonWrapper class="margin-top-auto">
+            <Button element="link" href={`/locations/${location.slug}`} variant="link">View coverage</Button>
+          </ButtonWrapper>
+        </div>
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Articles -->
+  <Section id="articles" paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">LATEST ARTICLES</Eyebrow>
+        <Heading tag="h2" variant="h2">Guides &amp; Articles</Heading>
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/blog" variant="link">View more</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} large={3}>
+      {featuredArticles.map((post) => <BlogPostCard post={post} />)}
+    </Grid>
+  </Section>
+
+  <!-- FAQ -->
+  <Section id="faq" paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="sticky-content">
+      <div>
+        <Eyebrow variant="tag">BOOKING QUESTIONS</Eyebrow>
+        <Heading tag="h2" variant="h2">The practical details</Heading>
+        <Paragraph maxWidth={30}>
+          Four common questions before a corporate event photography brief is approved.
+        </Paragraph>
+      </div>
+
+      <Accordion slot="column2" openFirst={true}>
+        <AccordionItem heading="How quickly can priority images be delivered?">
+          <Paragraph>
+            Priority selects can be scoped around media, stakeholder and social deadlines. Full-gallery timing is confirmed in the proposal.
+          </Paragraph>
+        </AccordionItem>
+        <AccordionItem heading="What usage rights are included?">
+          <Paragraph>
+            Usage is agreed against the ways your organisation, media partners and sponsors need to use the images.
+          </Paragraph>
+        </AccordionItem>
+        <AccordionItem heading="Can you cover concurrent rooms or large programs?">
+          <Paragraph>
+            Yes. Additional photographers and specialists are scoped when the run sheet requires simultaneous coverage.
+          </Paragraph>
+        </AccordionItem>
+        <AccordionItem heading="Can you provide proof of insurance?">
+          <Paragraph>
+            Yes. A current Certificate of Currency can be supplied for venue and production approvals.
+          </Paragraph>
+        </AccordionItem>
+      </Accordion>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Contact -->
+  <Section id="contact" paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow variant="tag">START A PROJECT</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={22}>Send the date, venue and run sheet</Heading>
+      <Paragraph maxWidth={34}>
+        We will reply with the next questions needed to scope coverage. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a> or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
     </ContentWrapper>
   </Section>
 </Layout>

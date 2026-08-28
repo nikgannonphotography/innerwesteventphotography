@@ -1,0 +1,189 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { SERVICES } from "@/data/services.ts";
+---
+
+<Layout
+  title="Commercial & Event Photography Services | Inner West Event Photography"
+  description="Structured photography services for corporate conferences, not-for-profit forums, brand campaigns, and workplace portraits across Sydney."
+>
+  <!-- Header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow>SERVICES & COMMISSIONS</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}
+        >Commercial Photography Services</Heading
+      >
+      <Paragraph variant="large" maxWidth={36}>
+        Structured deliverables, transparent pricing, and disciplined on-site
+        execution for Sydney organisations and event teams.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Service Offerings Deep-Dive -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <div class="service-list">
+      {
+        SERVICES.map((s) => (
+          <div class="service-block">
+            <ContentWrapper variant="columns">
+              <div>
+                <Eyebrow variant="tag">SERVICE {s.number}</Eyebrow>
+                <Heading tag="h2" variant="h2">
+                  {s.title}
+                </Heading>
+                <Paragraph variant="large">{s.tagline}</Paragraph>
+                <Paragraph>{s.summary}</Paragraph>
+                <ButtonWrapper marginTop="4">
+                  <Button element="link" href={`/services/${s.slug}`}>
+                    View service details &rarr;
+                  </Button>
+                </ButtonWrapper>
+              </div>
+
+              <div slot="column2">
+                <Grid small={1}>
+                  <Card
+                    heading="Commissioned By"
+                    text={s.commissioners
+                      .map((c) => `<span class="meta_line">• ${c}</span>`)
+                      .join("")}
+                  />
+                  <Card
+                    heading="Key Business Uses"
+                    text={s.businessUses
+                      .map((b) => `<span class="meta_line">• ${b}</span>`)
+                      .join("")}
+                  />
+                  <Card
+                    heading="Standard Deliverables"
+                    text={s.deliverables
+                      .map((d) => `<span class="meta_line">• ${d}</span>`)
+                      .join("")}
+                  />
+                </Grid>
+              </div>
+            </ContentWrapper>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- Production Model Overview -->
+  <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper variant="columns">
+      <div>
+        <Eyebrow variant="tag">HOW WE WORK</Eyebrow>
+        <Heading tag="h2" variant="h2"
+          >Our Operating Model & Production Standard</Heading
+        >
+        <Paragraph>
+          We maintain absolute clarity on every assignment: who commissions the
+          work, what is photographed, where the imagery will be used, and how
+          delivery is handled.
+        </Paragraph>
+        <Paragraph>
+          Timing and delivery are agreed as part of the brief. Fast selects
+          (20–40 hero images) can be scoped when required for same-day PR or
+          morning press releases.
+        </Paragraph>
+        <ButtonWrapper marginTop="4">
+          <Button element="link" href="/docs/pricing-and-rates-guide"
+            >Read Rate Guide</Button
+          >
+          <Button
+            element="link"
+            href="/docs/event-briefing-template"
+            emphasis="secondary">Download Briefing Template</Button
+          >
+        </ButtonWrapper>
+      </div>
+
+      <div slot="column2">
+        <Grid small={1}>
+          <Card
+            heading="1. Briefing & Scoping"
+            text="Aligning on schedule, run-of-show, VIP lists, sponsor deliverables, and rapid turnaround needs."
+            theme="dark"
+          />
+          <Card
+            heading="2. On-Site Production"
+            text="Dual-card cameras, backup gear, quiet electronic shutters, and non-disruptive stage positioning."
+            theme="dark"
+          />
+          <Card
+            heading="3. Master Retouching"
+            text="Individual exposure balancing and colour grading delivered via private Australian-hosted digital portals."
+            theme="dark"
+          />
+        </Grid>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- CTA -->
+  <Section paddingTop="medium" paddingBottom="large">
+    <ContentWrapper centered={true}>
+      <Eyebrow>GET A QUOTE</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Request a Fixed-Scope Proposal</Heading
+      >
+      <Paragraph maxWidth={36}>
+        Tell us about your event date, venue, hours of coverage, and key
+        deliverables. We respond promptly with a clear proposal.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .service-block {
+      padding-bottom: var(--space-8);
+      border-bottom: var(--border-width) solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .service-block .layout.columns {
+      align-items: start;
+    }
+
+    .service-block .layout.columns > :first-child {
+      align-self: start;
+    }
+
+    .meta_line {
+      display: block;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+</style>

@@ -139,7 +139,7 @@
 /* Trim, clamp & cover */
 :is(.margin-trim, .heading, .text, .layout > *) {
   & > :first-child {
-    margin-top: 0;
+    margin-top: 0rem;
   }
   & > :last-child {
     margin-bottom: 0;

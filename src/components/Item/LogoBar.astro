@@ -1,0 +1,111 @@
+---
+interface Props {
+  theme?: "light" | "dark";
+  label?: string;
+}
+
+const { label = "FEATURED & SHARED BY" } = Astro.props;
+
+const logos = [
+  { name: "OECD", src: "/logos/featured/oecd.png" },
+  {
+    name: "Australian National University (ANU)",
+    src: "/logos/featured/anu.png",
+  },
+  { name: "BuzzFeed", src: "/logos/featured/buzzfeed.png" },
+  {
+    name: "Migrant Women Press",
+    src: "/logos/featured/migrant-women-press.png",
+  },
+  {
+    name: "Tungsten Automation",
+    src: "/logos/featured/tungsten-automation.svg",
+  },
+  { name: "Deepcut News", src: "/logos/featured/deepcut.png" },
+];
+---
+
+<div class="logobar_wrap">
+  {label && <p class="logobar_label">{label}</p>}
+  <div class="logobar_grid">
+    {
+      logos.map((logo) => (
+        <div class="logobar_item" title={logo.name}>
+          <img
+            src={logo.src}
+            alt={logo.name}
+            class="logobar_img"
+            loading="lazy"
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style is:global>
+  @layer components {
+    .logobar_wrap {
+      width: 100%;
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: var(--border-width) solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .logobar_label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .logobar_grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: var(--space-4);
+
+      @media (width >= 35rem) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (width >= 60rem) {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .logobar_item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-3) var(--space-4);
+      background-color: #ffffff;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      min-height: 4.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition:
+        transform var(--hover-duration) var(--hover-ease),
+        box-shadow var(--hover-duration) var(--hover-ease);
+
+      @media (hover: hover) {
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+      }
+    }
+
+    .logobar_img {
+      max-height: 2.25rem;
+      max-width: 100%;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+  }
+</style>

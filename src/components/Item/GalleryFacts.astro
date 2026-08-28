@@ -1,0 +1,51 @@
+---
+interface Props {
+  coverage: string;
+  location: string;
+  year: string;
+}
+
+const { coverage, location, year } = Astro.props;
+---
+
+<dl class="gallery-facts">
+  <div>
+    <dt>Coverage</dt>
+    <dd>{coverage}</dd>
+  </div>
+  <div>
+    <dt>Location</dt>
+    <dd>{location}</dd>
+  </div>
+  <div>
+    <dt>Year</dt>
+    <dd>{year}</dd>
+  </div>
+</dl>
+
+<style is:global>
+  @layer components {
+    .gallery-facts {
+      display: grid;
+      gap: var(--space-5);
+      margin: 0;
+    }
+
+    .gallery-facts > div {
+      padding-bottom: var(--space-4);
+      border-bottom: var(--border-width) solid var(--border);
+    }
+
+    .gallery-facts dt {
+      margin-bottom: var(--space-2);
+      color: var(--text-muted);
+      font-size: var(--text-small);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .gallery-facts dd {
+      margin: 0;
+    }
+  }
+</style>

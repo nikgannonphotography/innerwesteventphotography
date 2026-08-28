@@ -1,0 +1,111 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { LOCATIONS } from "@/data/locations.ts";
+---
+
+<Layout
+  title="Sydney Event Photography Coverage Hubs | Inner West Event Photography"
+  description="Event, conference, and commercial photography coverage across Sydney: Inner West, Sydney CBD, North Shore, and Greater Western Sydney."
+>
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow variant="tag">REGIONAL COVERAGE</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}>Documenting Events Across Sydney</Heading>
+      <Paragraph variant="large" maxWidth={36}>
+        From warehouse brand activations in Marrickville and fashion runways at Carriageworks to major international conventions at ICC Sydney, we provide disciplined coverage across every corner of Greater Sydney.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <Section paddingTop="none" paddingBottom="medium">
+    <div class="location-list">
+      {LOCATIONS.map((loc) => (
+        <div class="location-block">
+          <ContentWrapper variant="columns">
+            <div>
+              <Eyebrow variant="tag">COVERAGE REGION</Eyebrow>
+              <Heading tag="h2" variant="h2">{loc.name}</Heading>
+              <Paragraph variant="large">{loc.tagline}</Paragraph>
+              <Paragraph>{loc.description}</Paragraph>
+              <ButtonWrapper marginTop="4">
+                <Button element="link" href={`/locations/${loc.slug}`}>
+                  Explore {loc.name} Venues &rarr;
+                </Button>
+              </ButtonWrapper>
+            </div>
+
+            <div slot="column2">
+              <Grid small={1}>
+                <Card
+                  heading="Key Suburbs"
+                  text={loc.suburbs.map((s) => `<span class="meta_line">• ${s}</span>`).join("")}
+                />
+                <Card
+                  heading="Prominent Venues"
+                  text={loc.keyVenues.map((v) => `<span class="meta_line">• ${v}</span>`).join("")}
+                />
+                <Card
+                  heading="Common Event Types"
+                  text={loc.eventTypes.map((e) => `<span class="meta_line">• ${e}</span>`).join("")}
+                />
+              </Grid>
+            </div>
+          </ContentWrapper>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow variant="tag">BOOK YOUR VENUE</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Hosting an Event in Sydney?</Heading>
+      <Paragraph maxWidth={36}>
+        Let's discuss venue logistics, load-in timing, and shot priority lists.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .location-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .location-block {
+      padding-bottom: var(--space-8);
+      border-bottom: var(--border-width) solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .meta_line {
+      display: block;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+</style>

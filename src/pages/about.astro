@@ -1,0 +1,148 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import LogoBar from "@/components/Item/LogoBar.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { STUDIO_CONTACT } from "@/consts.ts";
+---
+
+<Layout
+  title="About the Studio & Founder | Inner West Event Photography"
+  description="Learn about Inner West Event Photography, led by Photographer & Creative Producer Nikolas Gannon. Commercial discipline, operating model, and background."
+>
+  <!-- Hero -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow>ABOUT THE STUDIO</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}>Commercial Discipline & Quiet Execution</Heading>
+      <Paragraph variant="large" maxWidth={38}>
+        Inner West Event Photography is a Sydney photography studio led by Photographer & Creative Producer <strong>Nikolas Gannon</strong>. We provide quiet, dependable photographic documentation for corporate conferences, not-for-profit organisations, brand activations, and campaigns.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Founder Background & Operating Model -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <ContentWrapper variant="columns">
+      <div>
+        <Eyebrow variant="tag">FOUNDER & LEAD</Eyebrow>
+        <Heading tag="h2" variant="h2">Nikolas Gannon</Heading>
+        <Paragraph variant="large">
+          Photographer & Creative Producer
+        </Paragraph>
+        <Paragraph>
+          Founder Nikolas Gannon brings a background in legal client services, telecommunications, and not-for-profit project delivery. That operational experience informs how the studio approaches briefs, schedules, corporate stakeholders, sensitive community participants, and disciplined client handovers.
+        </Paragraph>
+        <Paragraph>
+          Nik leads each commission as the sole accountable point of contact from initial scoping through to delivery. When a commercial assignment requires multi-room coverage, video specialists, or second operators, crew are assembled around the exact requirements of the job.
+        </Paragraph>
+        <ButtonWrapper marginTop="4">
+          <Button element="link" href="/contact">Discuss an Assignment</Button>
+          <Button element="link" href="/galleries" emphasis="secondary">View Portfolio</Button>
+        </ButtonWrapper>
+      </div>
+
+      <div slot="column2">
+        <Grid small={1}>
+          <Card
+            heading="Sole Accountable Contact"
+            text="The person you brief is the person who shoots, manages on-site crew, and oversees colour grading, ensuring zero translation loss between briefing and delivery."
+          />
+          <Card
+            heading="Legal & Operational Discipline"
+            text="Professional background in legal client services ensures absolute discretion with executive stakeholders, sensitive community members, and embargoed announcements."
+          />
+          <Card
+            heading="Technical Redundancy"
+            text="All assignments are photographed with full-frame dual-card camera bodies, backup gear on-site, and whisper-quiet electronic shutters for distraction-free stage coverage."
+          />
+        </Grid>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Proof & Experience -->
+  <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper>
+      <Eyebrow variant="tag">TRACK RECORD & REACH</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={26}>
+        14M+ Global Views & 53K+ Active Downloads
+      </Heading>
+      <Paragraph maxWidth={38}>
+        High-visibility documentation and extensive production experience with leading Australian institutions, non-profits, and media outlets.
+      </Paragraph>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      <Card
+        heading="14M+ Views / 53K+ Downloads"
+        text="Documentary and commercial imagery featured globally across OECD, Australian National University (ANU), BuzzFeed, and Migrant Women Press, with over 53,000+ active downloads."
+        theme="dark"
+      />
+      <Card
+        heading="Sony Foundation"
+        text="Multi-venue event coverage and live concert documentation for Wharf4Ward youth cancer fundraisers."
+        theme="dark"
+      />
+      <Card
+        heading="TEDx Macquarie"
+        text="Full-day speaker keynotes, backstage prep, and stage coverage to strict global TEDx brand guidelines."
+        theme="dark"
+      />
+      <Card
+        heading="Public Liability Insurance"
+        text="Comprehensive Public Liability Insurance meeting the mandatory contractor compliance standards for ICC Sydney, hotel ballrooms, and corporate venues."
+        theme="dark"
+      />
+    </Grid>
+
+    <LogoBar theme="dark" label="FEATURED & LICENSED GLOBALLY BY" />
+  </Section>
+
+  <!-- Production Principles -->
+  <Section paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper>
+      <Eyebrow variant="tag">PRODUCTION STANDARDS</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Our Studio Commitments</Heading>
+    </ContentWrapper>
+
+    <Grid small={1} medium={3}>
+      <Card
+        heading="1. Honest Positioning"
+        text="We never pretend to be a massive agency. We offer one accountable lead with top-tier collaborator crew assembled strictly when the brief requires it."
+      />
+      <Card
+        heading="2. Transparent Agreements"
+        text="Timing, licensing rights, fast PR selects, and deliverables are clearly defined in writing before call time. No surprise overtime bills or hidden licence fees."
+      />
+      <Card
+        heading="3. Australian-Hosted Galleries"
+        text="Delivered via secure, private digital portals with unlimited high-resolution downloads, mobile access, and zero compression degradation."
+      />
+    </Grid>
+  </Section>
+
+  <!-- Contact CTA -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow variant="tag">START A CONVERSATION</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Let's Discuss Your Upcoming Brief</Heading>
+      <Paragraph maxWidth={36}>
+        Whether planning a major industry conference or a series of workplace environmental portraits, we're ready to help.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Inquire Now</Button>
+        <Button element="link" href={`tel:${STUDIO_CONTACT.phoneRaw}`} emphasis="secondary">
+          Call {STUDIO_CONTACT.phone}
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>

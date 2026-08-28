@@ -1,0 +1,134 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import BlogPostCard from "@/components/Item/BlogPostCard.astro";
+import Card from "@/components/Item/Card.astro";
+import Img from "@/components/Media/Img.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { BLOG_POSTS, getFeaturedBlogPosts } from "@/data/blog.ts";
+import { DOCS } from "@/data/docs.ts";
+
+const featuredPost = getFeaturedBlogPosts()[0] || BLOG_POSTS[0];
+const otherPosts = BLOG_POSTS.filter((p) => p.slug !== featuredPost.slug);
+---
+
+<Layout
+  title="Event Photography Guides and Articles"
+  description="Straightforward event photography guidance on pricing, briefing, delivery, venues and production across Sydney."
+>
+  <!-- Header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow>GUIDES & ARTICLES</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}>Sydney Event Photography Guides</Heading>
+      <Paragraph variant="large" maxWidth={36}>
+        Straightforward pricing, venue, briefing and delivery guidance for event planners, marketing teams and producers.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Featured Spotlight Article -->
+  {featuredPost && (
+    <Section paddingTop="none" paddingBottom="medium">
+      <ContentWrapper variant="columns">
+        <div>
+          <Eyebrow variant="tag">FEATURED GUIDE · {featuredPost.categoryLabel}</Eyebrow>
+          <Heading tag="h2" variant="h2">{featuredPost.title}</Heading>
+          <Paragraph variant="large">{featuredPost.summary}</Paragraph>
+          <div class="post-meta-line">
+            <span>By {featuredPost.author}</span>
+            <span>•</span>
+            <span>{featuredPost.date}</span>
+            <span>•</span>
+            <span>{featuredPost.readTime}</span>
+          </div>
+          <ButtonWrapper marginTop="4">
+            <Button element="link" href={`/blog/${featuredPost.slug}`}>
+              Read article
+            </Button>
+          </ButtonWrapper>
+        </div>
+
+        <div slot="column2">
+          <Img
+            src={featuredPost.heroImage}
+            alt={featuredPost.title}
+            class="object-fit-cover"
+          />
+        </div>
+      </ContentWrapper>
+    </Section>
+  )}
+
+  <!-- All Articles Grid -->
+  <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper>
+      <Eyebrow variant="tag">LATEST GUIDES</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>All articles</Heading>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={3}>
+      {otherPosts.map((post) => (
+        <BlogPostCard post={post} />
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Planning guides -->
+  <Section id="planning-guides" paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper>
+      <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Briefing, pricing and delivery</Heading>
+      <Paragraph maxWidth={34}>
+        Practical reference material for teams preparing an event photography brief.
+      </Paragraph>
+    </ContentWrapper>
+
+    <Grid small={1} large={3}>
+      {DOCS.map((doc) => (
+        <Card
+          eyebrow={`${doc.categoryLabel} · ${doc.readTime}`}
+          heading={doc.title}
+          text={doc.summary}
+          buttonHref={`/docs/${doc.slug}`}
+          buttonLabel="Read guide"
+        />
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Contact -->
+  <Section paddingTop="medium" paddingBottom="large">
+    <ContentWrapper centered={true}>
+      <Eyebrow>START A PROJECT</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Planning an event in Sydney?</Heading>
+      <Paragraph maxWidth={36}>
+        Send the date, venue and run sheet. We will reply with the questions needed to scope coverage.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .post-meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--text-2);
+      font-size: var(--text-small);
+      font-weight: 500;
+      margin-top: var(--space-2);
+    }
+  }
+</style>

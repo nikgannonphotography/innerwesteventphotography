@@ -1,7 +1,8 @@
 ---
-import Icon from "@/components/Media/Icon.astro";
-import logo from "@/assets/logo/logo.svg";
-import { SITE_NAME } from "@/consts.ts";
+import { SITE_NAME, SITE_TAGLINE, STUDIO_CONTACT } from "@/consts.ts";
+import { SERVICES } from "@/data/services.ts";
+import { DOCS } from "@/data/docs.ts";
+import { LOCATIONS } from "@/data/locations.ts";
 
 interface Props {
   /** Set to `false` to skip rendering this component and its children. */
@@ -15,30 +16,106 @@ const { render = true } = Astro.props;
   render && (
     <footer class="footer_wrap">
       <div class="footer_inner">
-        <div class="footer_top">
-          <a class="footer_logo" href="/" aria-label={SITE_NAME}>
-            <Icon src={logo} variant="full-width" />
-          </a>
-          <nav aria-label="Footer">
-            <ul class="footer_links">
+        <div class="footer_grid">
+          <!-- Brand -->
+          <div class="footer_col">
+            <a class="footer_logo" href="/" aria-label={SITE_NAME}>
+              <img
+                src="/logos/IWEP - Desktop Website (160 x 40px).png"
+                alt={SITE_NAME}
+                class="footer_logo_img"
+                width="160"
+                height="40"
+              />
+            </a>
+            <p class="footer_desc text-style-small">
+              {SITE_TAGLINE}
+            </p>
+            <p class="footer_subdesc text-style-small">
+              Corporate event, conference, campaign and community photography across Sydney.
+            </p>
+            <div class="footer_abn text-style-small">
+              <a class="footer_link" href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a>
+              <a class="footer_link" href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>
+              <span>ABN {STUDIO_CONTACT.abn}</span>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="footer_col">
+            <p class="footer_heading">SERVICES</p>
+            <ul class="footer_nav_list">
+              {SERVICES.map((s) => (
+                <li>
+                  <a class="footer_link" href={`/services/${s.slug}`}>
+                    {s.title}
+                  </a>
+                </li>
+              ))}
               <li>
-                <a class="footer_link" href="/">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a class="footer_link" href="/example-components">
-                  Example Components
+                <a class="footer_link footer_link_all" href="/services">
+                  All services
                 </a>
               </li>
             </ul>
-          </nav>
+          </div>
+
+          <!-- Resources -->
+          <div class="footer_col">
+            <p class="footer_heading">GUIDES & ARTICLES</p>
+            <ul class="footer_nav_list">
+              {DOCS.map((d) => (
+                <li>
+                  <a class="footer_link" href={`/docs/${d.slug}`}>
+                    {d.title}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a class="footer_link footer_link_all" href="/blog#planning-guides">
+                  All guides and articles
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Explore -->
+          <div class="footer_col">
+            <p class="footer_heading">EXPLORE</p>
+            <ul class="footer_nav_list">
+              <li>
+                <a class="footer_link" href="/galleries">Selected work</a>
+              </li>
+              <li>
+                <a class="footer_link" href="/locations">Sydney coverage</a>
+              </li>
+              <li>
+                <a class="footer_link" href="/blog">Articles</a>
+              </li>
+              <li>
+                <a class="footer_link" href="/about">About IWEP</a>
+              </li>
+              <li>
+                <a class="footer_link" href="/contact">Send a brief</a>
+              </li>
+              {LOCATIONS.map((loc) => (
+                <li><a class="footer_link" href={`/locations/${loc.slug}`}>{loc.name}</a></li>
+              ))}
+            </ul>
+          </div>
         </div>
+
         <div class="footer_bottom">
           <p class="footer_copyright text-style-small">
-            &copy; <span id="year">{new Date().getFullYear()}</span>&#160;
-            {SITE_NAME}
+            &copy; <span id="year">{new Date().getFullYear()}</span> {SITE_NAME}. All Rights Reserved. · Sydney, NSW, Australia
           </p>
+          <div class="footer_bottom_links text-style-small">
+            <a class="footer_link" href="/docs/licensing-and-commercial-rights">Licensing Rights</a>
+            <span>•</span>
+            <a class="footer_link" href="/docs/pricing-and-rates-guide">Rate Structure</a>
+            <span>•</span>
+            <a class="footer_link" href="/contact">Book Coverage</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -47,7 +124,6 @@ const { render = true } = Astro.props;
 
 <script>
   const year = document.querySelector<HTMLSpanElement>("#year");
-
   if (year) {
     year.textContent = new Date().getFullYear().toString();
   }
@@ -58,7 +134,7 @@ const { render = true } = Astro.props;
     .footer_wrap {
       display: flex;
       justify-content: center;
-      padding-block: var(--section-space-small);
+      padding-block: var(--section-space-medium);
       padding-inline: var(--site-margin);
       background-color: var(--background);
       color: var(--text);
@@ -70,42 +146,100 @@ const { render = true } = Astro.props;
       max-width: var(--max-width-main);
       display: flex;
       flex-direction: column;
-      gap: var(--space-6);
+      gap: var(--space-7);
     }
 
-    .footer_top {
+    .footer_grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6) var(--space-5);
+
+      @media (width >= 40rem) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (width >= 64rem) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .footer_col {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4) var(--space-6);
+      flex-direction: column;
+      gap: var(--space-3);
     }
 
     .footer_logo {
-      display: block;
-      width: 7.5rem;
-      max-width: 100%;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
       transition: opacity var(--hover-duration) var(--hover-ease);
+
       @media (hover: hover) {
         &:hover {
-          opacity: 0.6;
+          opacity: 0.75;
         }
       }
     }
 
-    .footer_links {
+    .footer_logo_img {
+      height: 2.25rem;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    [class*="theme-dark"] .footer_logo_img,
+    html.theme-dark .footer_logo_img {
+      filter: brightness(0) invert(1);
+    }
+
+    .footer_desc {
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.45;
+      max-width: 28ch;
+    }
+
+    .footer_subdesc {
+      color: var(--text-2);
+      line-height: 1.45;
+      max-width: 32ch;
+    }
+
+    .footer_abn {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-4);
-      font-size: var(--text-small);
-      font-weight: var(--primary-medium);
+      flex-direction: column;
+      gap: 0.25rem;
+      color: var(--text-2);
+      font-size: 0.75rem;
+    }
+
+    .footer_heading {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--heading-accent);
+      margin-bottom: var(--space-1);
+    }
+
+    .footer_nav_list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
     }
 
     .footer_link {
+      font-size: var(--text-small);
       color: var(--text-2);
       text-decoration: none;
+      line-height: 1.4;
       transition: color var(--hover-duration) var(--hover-ease);
+
       @media (hover: hover) {
         &:hover {
           color: var(--text);
@@ -113,12 +247,29 @@ const { render = true } = Astro.props;
       }
     }
 
+    .footer_link_all {
+      font-weight: 600;
+      color: var(--heading-accent);
+    }
+
     .footer_bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
       padding-top: var(--space-4);
       border-top: var(--border-width) solid var(--border);
     }
 
     .footer_copyright {
+      color: var(--text-2);
+    }
+
+    .footer_bottom_links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
       color: var(--text-2);
     }
   }

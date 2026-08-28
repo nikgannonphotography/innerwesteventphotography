@@ -1,0 +1,21 @@
+---
+import Card from "@/components/Item/Card.astro";
+import type { BlogPost } from "@/data/blog.ts";
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<Card
+  eyebrow={`${post.categoryLabel} · ${post.readTime}`}
+  heading={post.title}
+  text={post.summary}
+  buttonHref={`/blog/${post.slug}`}
+  buttonLabel="Read article"
+  image={post.heroImage}
+  imageAlt={post.title}
+  variant="stacked"
+/>

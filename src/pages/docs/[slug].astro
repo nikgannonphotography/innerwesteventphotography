@@ -1,0 +1,173 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import ContentArticle from "@/components/Content/ContentArticle.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import BlogPostCard from "@/components/Item/BlogPostCard.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { DOCS, type DocGuide } from "@/data/docs.ts";
+import { SERVICES } from "@/data/services.ts";
+import { BLOG_POSTS } from "@/data/blog.ts";
+
+export function getStaticPaths() {
+  return DOCS.map((doc) => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+interface Props {
+  doc: DocGuide;
+}
+
+const { doc } = Astro.props;
+const relatedService = SERVICES.find((service) => service.slug === doc.relatedService);
+const relatedBlogs = BLOG_POSTS.filter((post) => doc.relatedBlogSlugs.includes(post.slug));
+const otherDocs = DOCS.filter((item) => item.slug !== doc.slug).slice(0, 3);
+---
+
+<Layout title={doc.title} description={doc.summary}>
+  <!-- Guide header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <ButtonWrapper class="margin-bottom-4">
+        <Button element="link" href="/blog#planning-guides" variant="link">
+          &larr; Back to guides and articles
+        </Button>
+      </ButtonWrapper>
+      <Eyebrow variant="tag">{doc.categoryLabel}</Eyebrow>
+      <Heading tag="h1" variant="h2" maxWidth={26}>{doc.title}</Heading>
+      <div class="article-meta-header">
+        <span>Updated {doc.lastUpdated}</span>
+        <span class="meta-separator">•</span>
+        <span>{doc.readTime}</span>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Guide body -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <ContentArticle>
+      <div class="article-intro-block">
+        <Paragraph variant="large">{doc.subtitle}</Paragraph>
+        <Paragraph>{doc.summary}</Paragraph>
+      </div>
+
+      {doc.sections.map((section) => (
+        <div class="article-section-block">
+          <Heading tag="h2" variant="h2">{section.heading}</Heading>
+          <Paragraph>{section.content}</Paragraph>
+
+          {section.subsections?.map((subsection) => (
+            <div>
+              <Heading tag="h3" variant="h4">{subsection.title}</Heading>
+              <Paragraph>{subsection.body}</Paragraph>
+            </div>
+          ))}
+        </div>
+      ))}
+
+      <div class="article-conclusion-block">
+        <Heading tag="h2" variant="h3">Key points</Heading>
+        <ul class="article-list">
+          {doc.keyTakeaways.map((takeaway) => <li>{takeaway}</li>)}
+        </ul>
+        {relatedService && (
+          <ButtonWrapper marginTop="4">
+            <Button element="link" href={`/services/${relatedService.slug}`} variant="link">
+              View {relatedService.title}
+            </Button>
+          </ButtonWrapper>
+        )}
+      </div>
+    </ContentArticle>
+  </Section>
+
+  <!-- Related articles -->
+  {relatedBlogs.length > 0 && (
+    <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+      <ContentWrapper variant="auto-width">
+        <div>
+          <Eyebrow variant="tag">RELATED ARTICLES</Eyebrow>
+          <Heading tag="h2" variant="h3">Continue reading</Heading>
+        </div>
+        <ButtonWrapper slot="column2">
+          <Button element="link" href="/blog" variant="link">All guides and articles</Button>
+        </ButtonWrapper>
+      </ContentWrapper>
+
+      <Grid small={1} large={2}>
+        {relatedBlogs.map((post) => <BlogPostCard post={post} />)}
+      </Grid>
+    </Section>
+  )}
+
+  <!-- More guides -->
+  <Section paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">MORE GUIDES</Eyebrow>
+        <Heading tag="h2" variant="h3">More planning guidance</Heading>
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/blog#planning-guides" variant="link">All guides</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} large={3}>
+      {otherDocs.map((item) => (
+        <Card
+          eyebrow={item.categoryLabel}
+          heading={item.title}
+          text={item.summary}
+          buttonHref={`/docs/${item.slug}`}
+          buttonLabel="Read guide"
+        />
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Contact -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow variant="tag">START A PROJECT</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Planning an event in Sydney?</Heading>
+      <Paragraph maxWidth={34}>
+        Send the date, venue and run sheet. We will reply with the questions needed to scope coverage.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .article-meta-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: var(--space-4);
+    }
+
+    .meta-separator {
+      color: var(--border);
+    }
+
+    @media (width < 40rem) {
+      .meta-separator {
+        display: none;
+      }
+    }
+  }
+</style>

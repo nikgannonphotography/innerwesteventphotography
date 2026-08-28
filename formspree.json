@@ -1,0 +1,55 @@
+{
+  "forms": {
+    "projectInquiry": {
+      "name": "IWEP Project Inquiry",
+      "actions": [
+        {
+          "type": "email",
+          "to": "info@innerwesteventphotography.com.au"
+        }
+      ],
+      "fields": {
+        "fullName": {
+          "type": "text",
+          "required": true
+        },
+        "organisation": {
+          "type": "text",
+          "required": true
+        },
+        "email": {
+          "type": "email",
+          "required": true
+        },
+        "phone": {
+          "type": "text",
+          "required": true
+        },
+        "eventType": {
+          "type": "text",
+          "required": true
+        },
+        "eventDate": {
+          "type": "text",
+          "required": true
+        },
+        "venue": {
+          "type": "text",
+          "required": true
+        },
+        "coverageHours": {
+          "type": "text",
+          "required": true
+        },
+        "turnaround": {
+          "type": "text",
+          "required": true
+        },
+        "message": {
+          "type": "text",
+          "required": true
+        }
+      }
+    }
+  }
+}

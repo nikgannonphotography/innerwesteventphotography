@@ -1,0 +1,125 @@
+---
+import Img from "@/components/Media/Img.astro";
+import type { GalleryImage } from "@/data/galleries.ts";
+
+interface Props {
+  images: Array<string | GalleryImage>;
+  title: string;
+}
+
+const { images, title } = Astro.props;
+
+const normalized = images.map((image, index) =>
+  typeof image === "string"
+    ? {
+        src: image,
+        alt: `${title}, photograph ${index + 1}`,
+        orientation: "landscape" as const,
+        span: undefined,
+        width: undefined,
+        height: undefined,
+      }
+    : image,
+);
+
+const hasCustomLayout = normalized.some((image) => image.span);
+const remainder = normalized.length % 3;
+const balanceClass =
+  !hasCustomLayout && remainder === 1
+    ? "balance-four"
+    : !hasCustomLayout && remainder === 2
+      ? "balance-two"
+      : undefined;
+---
+
+<div
+  class:list={[
+    "content-gallery",
+    hasCustomLayout && "custom-layout",
+    balanceClass,
+  ]}
+  role="region"
+  aria-label={`${title} photographs`}
+>
+  {
+    normalized.map((image, index) => (
+      <figure
+        class:list={[
+          "content-gallery_item",
+          image.orientation,
+          image.span && `span-${image.span}`,
+        ]}
+      >
+        <Img
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchPriority={index === 0 ? "high" : "auto"}
+        />
+      </figure>
+    ))
+  }
+</div>
+
+<style is:global>
+  @layer components {
+    .content-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--site-gutter);
+      width: 100%;
+      margin-top: var(--space-6);
+    }
+
+    .content-gallery_item {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      margin: 0;
+      overflow: hidden;
+      border-radius: var(--radius-main);
+      background: var(--background-2);
+    }
+
+    .content-gallery_item.portrait {
+      aspect-ratio: 2 / 3;
+    }
+
+    .content-gallery_item .image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (width >= 48rem) {
+      .content-gallery {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      .content-gallery_item {
+        grid-column: span 4;
+      }
+
+      .content-gallery.balance-four
+        > .content-gallery_item:nth-last-child(-n + 4) {
+        grid-column: span 3;
+      }
+
+      .content-gallery.balance-two
+        > .content-gallery_item:nth-last-child(-n + 2) {
+        grid-column: span 6;
+      }
+
+      .content-gallery.custom-layout > .content-gallery_item.span-full {
+        grid-column: 1 / -1;
+      }
+
+      .content-gallery.custom-layout > .content-gallery_item.span-half {
+        grid-column: span 6;
+      }
+    }
+  }
+</style>

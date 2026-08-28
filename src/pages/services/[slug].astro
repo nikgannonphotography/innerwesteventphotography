@@ -1,0 +1,202 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { SERVICES, type ServicePackage } from "@/data/services.ts";
+import { GALLERIES } from "@/data/galleries.ts";
+
+export function getStaticPaths() {
+  return SERVICES.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServicePackage;
+}
+
+const { service } = Astro.props;
+
+// Related case studies
+const matchedGalleries = GALLERIES.filter((g) =>
+  service.relatedGallerySlugs.includes(g.slug)
+);
+---
+
+<Layout
+  title={`${service.title} | Services | Inner West Event Photography`}
+  description={service.tagline}
+>
+  <!-- Hero -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <ButtonWrapper class="margin-bottom-4">
+        <Button element="link" href="/services" variant="link">
+          &larr; Back to All Services
+        </Button>
+      </ButtonWrapper>
+      <Eyebrow variant="tag">SERVICE {service.number} SPECIFICATION</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}>{service.title}</Heading>
+      <Paragraph variant="large" maxWidth={38}>{service.tagline}</Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="/docs/pricing-and-rates-guide" variant="link">
+          View Pricing Guide
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Detailed Scope Grid -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <Grid small={1} medium={3}>
+      <Card
+        heading="Who Engages This Service"
+        text={service.commissioners.map((c) => `<span class="meta_line">• ${c}</span>`).join("")}
+      />
+      <Card
+        heading="What is Photographed"
+        text={service.subjects.map((s) => `<span class="meta_line">• ${s}</span>`).join("")}
+      />
+      <Card
+        heading="Intended Business Uses"
+        text={service.businessUses.map((b) => `<span class="meta_line">• ${b}</span>`).join("")}
+      />
+    </Grid>
+  </Section>
+
+  <!-- Production Workflow -->
+  <Section paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper>
+      <Eyebrow variant="tag">PRODUCTION PROCESS</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>How We Handle the Assignment</Heading>
+      <Paragraph maxWidth={36}>
+        Every shoot is managed with rigorous discipline, clear staging milestones, and dependable delivery handovers.
+      </Paragraph>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2}>
+      {service.productionStages.map((stage) => (
+        <Card
+          heading={stage.stage}
+          text={stage.detail}
+          theme="dark"
+        />
+      ))}
+    </Grid>
+  </Section>
+
+  <!-- Deliverables & Turnaround -->
+  <Section paddingTop="medium" paddingBottom="medium">
+    <ContentWrapper variant="columns">
+      <div>
+        <Eyebrow variant="tag">ASSET HANDOVER</Eyebrow>
+        <Heading tag="h2" variant="h2">Standard Inclusions & Licensing</Heading>
+        <Paragraph>
+          All corporate and commercial commissions are delivered via private, Australian-hosted digital galleries with full commercial usage rights included in perpetuity.
+        </Paragraph>
+        <ul class="deliverables-list">
+          {service.deliverables.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div slot="column2">
+        <Grid small={1}>
+          <Card
+            heading="Standard Turnaround"
+            text={service.turnaroundStandard}
+          />
+          <Card
+            heading="Fast PR Delivery"
+            text={service.turnaroundFast}
+          />
+          <Card
+            heading="Technical Redundancy"
+            text="Full-frame dual-card cameras writing simultaneously, spare bodies on-site, and whisper-quiet electronic shutters."
+          />
+        </Grid>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Related Case Studies -->
+  {matchedGalleries.length > 0 && (
+    <Section paddingTop="medium" paddingBottom="medium">
+      <ContentWrapper variant="auto-width">
+        <div>
+          <Eyebrow variant="tag">SELECTED COMMISSIONS</Eyebrow>
+          <Heading tag="h2" variant="h3">Related Case Studies</Heading>
+        </div>
+        <ButtonWrapper slot="column2">
+          <Button element="link" href="/galleries" emphasis="secondary">
+            View All Assignments &rarr;
+          </Button>
+        </ButtonWrapper>
+      </ContentWrapper>
+
+      <Grid small={1} medium={3}>
+        {matchedGalleries.map((item) => (
+          <Card
+            heading={item.title}
+            text={`${item.subtitle} (${item.year})`}
+            buttonHref={`/galleries/${item.slug}`}
+            buttonLabel="View Case Study"
+            image={item.posterImage}
+            variant="stacked"
+          />
+        ))}
+      </Grid>
+    </Section>
+  )}
+
+  <!-- Booking CTA -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper centered={true}>
+      <Eyebrow variant="tag">DISCUSS YOUR EVENT</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Ready to Book or Discuss a Brief?</Heading>
+      <Paragraph maxWidth={36}>
+        Get in touch with your event date and venue details for a clear, fixed-rate proposal.
+      </Paragraph>
+      <ButtonWrapper marginTop="4">
+        <Button element="link" href="/contact">Send a brief</Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .meta_line {
+      display: block;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .deliverables-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-left: var(--space-4);
+      margin-top: var(--space-4);
+      color: var(--text);
+
+      li {
+        line-height: 1.5;
+      }
+    }
+  }
+</style>

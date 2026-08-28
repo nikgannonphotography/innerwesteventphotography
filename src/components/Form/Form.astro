@@ -9,6 +9,10 @@ interface Props extends HTMLAttributes<"form"> {
   name?: string;
   /** Where it posts. Left unset, it sends nothing and reports success. */
   action?: string;
+  /** Formspree CLI project ID. Used with `formId` by the browser client. */
+  projectId?: string;
+  /** Formspree CLI form key. Used with `projectId` by the browser client. */
+  formId?: string;
   /** Shown in place of the fields once it has sent. */
   successMessage?: string;
   /** Shown beneath the fields when it could not send. */
@@ -19,7 +23,9 @@ const {
   render = true,
   name,
   action,
-  successMessage = "Thanks — we will be in touch.",
+  projectId,
+  formId,
+  successMessage = "Thanks. We will be in touch.",
   errorMessage = "That did not send. Please try again.",
   method = "post",
   class: className,
@@ -35,6 +41,8 @@ const content = await slotContent(Astro.slots);
       class:list={["form_wrap", className]}
       data-state="idle"
       data-endpoint={action}
+      data-formspree-project={projectId}
+      data-formspree-form={formId}
     >
       <form
         class="form_fields"
@@ -57,9 +65,43 @@ const content = await slotContent(Astro.slots);
 }
 
 <script>
+  import { createClient, isSubmissionError } from "@formspree/core";
+
   for (const form of document.querySelectorAll<HTMLElement>(".form_wrap")) {
     const fields = form.querySelector<HTMLFormElement>(".form_fields");
     if (!fields) continue;
+
+    const projectId = form.dataset.formspreeProject;
+    const formId = form.dataset.formspreeForm;
+
+    if (projectId && formId) {
+      const client = createClient({ project: projectId });
+      const submit = fields.querySelector<HTMLButtonElement | HTMLInputElement>(
+        'button:not([type]), button[type="submit"], input[type="submit"]',
+      );
+
+      fields.addEventListener("submit", async (event) => {
+        if (!fields.checkValidity()) return;
+
+        event.preventDefault();
+        form.dataset.state = "sending";
+        if (submit) submit.disabled = true;
+
+        try {
+          const answer = await client.submitForm(formId, new FormData(fields), {
+            clientName: "iwep-website",
+          });
+          if (isSubmissionError(answer)) throw new Error("Submission failed");
+
+          form.dataset.state = "sent";
+          fields.reset();
+        } catch {
+          form.dataset.state = "failed";
+          if (submit) submit.disabled = false;
+        }
+      });
+      continue;
+    }
 
     const submit = fields.querySelector<HTMLButtonElement | HTMLInputElement>(
       'button:not([type]), button[type="submit"], input[type="submit"]',
@@ -75,14 +117,15 @@ const content = await slotContent(Astro.slots);
       if (submit) submit.disabled = true;
 
       try {
-        if (endpoint) {
-          const answer = await fetch(endpoint, {
-            method: fields.method || "post",
-            body: new FormData(fields),
-            headers: { Accept: "application/json" },
-          });
-          if (!answer.ok) throw new Error(String(answer.status));
-        }
+        if (!endpoint) throw new Error("Missing form endpoint");
+
+        const answer = await fetch(endpoint, {
+          method: fields.method || "post",
+          body: new FormData(fields),
+          headers: { Accept: "application/json" },
+        });
+        if (!answer.ok) throw new Error(String(answer.status));
+
         form.dataset.state = "sent";
         fields.reset();
       } catch {

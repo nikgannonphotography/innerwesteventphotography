@@ -1,7 +1,5 @@
 ---
-import Icon from "@/components/Media/Icon.astro";
 import NavLink from "@/components/Global/NavLink.astro";
-import logo from "@/assets/logo/logo.svg";
 import { SITE_NAME } from "@/consts.ts";
 
 interface Props {
@@ -23,7 +21,13 @@ const { render = true, overlap = false } = Astro.props;
     <header class:list={["nav_wrap", overlap && "overlap"]}>
       <div class="nav_inner">
         <a class="nav_logo" href="/" aria-label={SITE_NAME}>
-          <Icon src={logo} variant="full-width" />
+          <img
+            src="/logos/IWEP - Desktop Website (160 x 40px).png"
+            alt={SITE_NAME}
+            class="nav_logo_img"
+            width="160"
+            height="40"
+          />
         </a>
         <button
           class="nav_toggle"
@@ -38,7 +42,11 @@ const { render = true, overlap = false } = Astro.props;
           <div class="nav_menu_inner">
             <ul class="nav_links">
               <NavLink href="/">Home</NavLink>
-              <NavLink href="/example-components">Example Components</NavLink>
+              <NavLink href="/galleries">Galleries</NavLink>
+              <NavLink href="/services">Services</NavLink>
+              <NavLink href="/blog">Guides & Articles</NavLink>
+              <NavLink href="/about">About</NavLink>
+              <NavLink href="/contact">Contact</NavLink>
             </ul>
           </div>
         </nav>
@@ -139,13 +147,25 @@ const { render = true, overlap = false } = Astro.props;
     .nav_logo {
       display: flex;
       align-items: center;
-      width: 6.5rem;
+      text-decoration: none;
       transition: opacity var(--hover-duration) var(--hover-ease);
       @media (hover: hover) {
         &:hover {
-          opacity: 0.6;
+          opacity: 0.75;
         }
       }
+    }
+
+    .nav_logo_img {
+      height: 2.25rem;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    [class*="theme-dark"] .nav_logo_img,
+    html.theme-dark .nav_logo_img {
+      filter: brightness(0) invert(1);
     }
 
     .nav_toggle {

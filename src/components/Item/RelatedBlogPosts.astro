@@ -1,0 +1,61 @@
+---
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import BlogPostCard from "@/components/Item/BlogPostCard.astro";
+import { BLOG_POSTS } from "@/data/blog.ts";
+
+interface Props {
+  currentSlug: string;
+  count?: number;
+}
+
+const { currentSlug, count = 3 } = Astro.props;
+
+const currentPost = BLOG_POSTS.find((post) => post.slug === currentSlug);
+const otherPosts = BLOG_POSTS.filter((p) => p.slug !== currentSlug);
+const relatedPosts = [...otherPosts]
+  .sort((a, b) => {
+    const aMatches = a.category === currentPost?.category ? 1 : 0;
+    const bMatches = b.category === currentPost?.category ? 1 : 0;
+    return bMatches - aMatches;
+  })
+  .slice(0, count);
+---
+
+<div class="related_posts_wrap">
+  <ContentWrapper variant="auto-width">
+    <div>
+      <Eyebrow variant="tag">FURTHER READING</Eyebrow>
+      <Heading tag="h2" variant="h3">Related articles</Heading>
+    </div>
+    <ButtonWrapper slot="column2">
+      <Button element="link" href="/blog" emphasis="secondary">
+        All articles
+      </Button>
+    </ButtonWrapper>
+  </ContentWrapper>
+
+  <Grid small={1} medium={3}>
+    {relatedPosts.map((post) => (
+      <BlogPostCard post={post} />
+    ))}
+  </Grid>
+</div>
+
+<style is:global>
+  @layer components {
+    .related_posts_wrap {
+      width: 100%;
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
+      border-top: var(--border-width) solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+  }
+</style>

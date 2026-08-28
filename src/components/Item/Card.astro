@@ -191,7 +191,7 @@ if (import.meta.env.DEV && render) {
       width: 100%;
       flex: none;
       border-radius: inherit;
-      overflow: clip;
+      overflow: hidden;
 
       .stacked > & {
         aspect-ratio: var(--_visual-ratio);
@@ -204,18 +204,14 @@ if (import.meta.env.DEV && render) {
         pointer-events: none;
       }
 
-      > :is(.image, .video) {
+      > :is(.image, .video, img, picture) {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        display: block;
       }
-    }
-
-    /* Media fills its box, be that the whole card or the band across its top.
-       The component layer puts this above the `height: auto` every image and
-       video starts from. */
-    .card_visual > :is(.image, .video) {
-      width: 100%;
-      height: 100%;
     }
 
     /* Buttons closing a card sit on its floor, however tall the row around it

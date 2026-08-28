@@ -1,6 +1,6 @@
 ---
 import { Font } from "astro:assets";
-import { SITE_NAME, SITE_DESCRIPTION } from "@/consts.ts";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, STUDIO_CONTACT } from "@/consts.ts";
 import { isNoindexRoute } from "@/utils/seo.ts";
 import type { SeoProps } from "@/types.ts";
 
@@ -16,9 +16,44 @@ const {
 
 const isNoindex = noindex ?? isNoindexRoute(Astro.url.pathname);
 
-const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const pageTitle = title
+  ? title.includes(SITE_NAME)
+    ? title
+    : `${title} | ${SITE_NAME}`
+  : SITE_NAME;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "PhotographyBusiness",
+  name: SITE_NAME,
+  alternateName: "IWEP",
+  description:
+    "Sydney event, conference, not-for-profit, campaign and workplace photography studio.",
+  url: SITE_URL,
+  telephone: STUDIO_CONTACT.phoneRaw,
+  email: STUDIO_CONTACT.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sydney",
+    addressRegion: "NSW",
+    addressCountry: "AU",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "-33.8688",
+    longitude: "151.2093",
+  },
+  areaServed: [
+    "Sydney",
+    "Inner West",
+    "Sydney CBD",
+    "North Shore",
+    "Greater Western Sydney",
+  ],
+  priceRange: "$$",
+};
 ---
 
 <meta charset="utf-8" />
@@ -47,3 +82,5 @@ const socialImage = new URL(image, Astro.site);
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />

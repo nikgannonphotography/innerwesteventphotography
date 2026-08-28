@@ -1,0 +1,213 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import Form from "@/components/Form/Form.astro";
+import Fieldset from "@/components/Form/Fieldset.astro";
+import Input from "@/components/Form/Input.astro";
+import Select from "@/components/Form/Select.astro";
+import Choice from "@/components/Form/Choice.astro";
+import Textarea from "@/components/Form/Textarea.astro";
+import { STUDIO_CONTACT } from "@/consts.ts";
+---
+
+<Layout
+  title="Project Inquiry & Booking | Inner West Event Photography"
+  description="Contact Inner West Event Photography. Submit your event brief, run-of-show details, and date for a transparent fixed-rate proposal."
+>
+  <!-- Header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow>PROJECT INQUIRY</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}
+        >Tell Us About the Assignment</Heading
+      >
+      <Paragraph variant="large" maxWidth={38}>
+        Reach out with details about your upcoming corporate conference, charity
+        gala, brand activation, or workplace portrait session. We reply promptly
+        with a clear, fixed-rate proposal.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Form & Direct Contact Columns -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <ContentWrapper variant="columns">
+      <!-- Left: Form -->
+      <div>
+        <Form
+          name="project-inquiry"
+          action={STUDIO_CONTACT.formEndpoint}
+          projectId={STUDIO_CONTACT.formProjectId}
+          formId={STUDIO_CONTACT.formId}
+          successMessage="Thanks. Your brief has been sent."
+        >
+          <Fieldset legend="Your Contact Information" variant="columns">
+            <Input
+              name="fullName"
+              label="Full Name"
+              placeholder="e.g. Sarah Jenkins"
+              required
+            />
+            <Input
+              name="organisation"
+              label="Organisation / Company"
+              placeholder="e.g. Apex Media Group"
+              required
+            />
+            <Input
+              name="email"
+              variant="email"
+              label="Work Email"
+              placeholder="name@company.com.au"
+              required
+            />
+            <Input
+              name="phone"
+              variant="phone"
+              label="Mobile / Phone Number"
+              placeholder="+61 400 000 000"
+              required
+            />
+          </Fieldset>
+
+          <Fieldset legend="Event & Project Scope" variant="columns">
+            <Select
+              name="eventType"
+              label="Service / Event Category"
+              options={[
+                "Corporate Conference or Summit",
+                "Awards Gala or Annual Dinner",
+                "Not-For-Profit / Community Forum",
+                "Brand Launch or Commercial Activation",
+                "Staff Headshots & Workplace Portraits",
+                "Other Commercial Project",
+              ]}
+              required
+            />
+            <Input
+              name="eventDate"
+              variant="text"
+              label="Event Date(s) / Estimated Month"
+              placeholder="e.g. 15 November 2026"
+              required
+            />
+            <Input
+              name="venue"
+              label="Venue & Suburb"
+              placeholder="e.g. ICC Sydney, Darling Harbour"
+              required
+            />
+            <Select
+              name="coverageHours"
+              label="Estimated Hours of Coverage"
+              options={[
+                "Half-Day (Up to 4 hours)",
+                "Full-Day (Up to 8 hours)",
+                "Multi-Day Summit (2–4 days)",
+                "Custom / Unsure",
+              ]}
+              required
+            />
+          </Fieldset>
+
+          <Fieldset
+            legend="Turnaround Requirements"
+            variant="inline"
+            legendStyle="label"
+          >
+            <Choice
+              type="radio"
+              name="turnaround"
+              label="Standard Master Delivery (3–5 business days)"
+              value="standard"
+              checked={true}
+            />
+            <Choice
+              type="radio"
+              name="turnaround"
+              label="Fast PR Selects Required (2–12 hours for media/social)"
+              value="fast-pr"
+            />
+          </Fieldset>
+
+          <Fieldset legend="Brief Details & Run of Show">
+            <Textarea
+              name="message"
+              label="Project Scope, Run-of-Show Notes, or Specific Shot Requirements"
+              placeholder="Tell us about key speakers, sponsor obligations, VIPs, or specific deliverables needed..."
+              minLines={4}
+              required
+            />
+          </Fieldset>
+
+          <ButtonWrapper marginTop="4">
+            <Button type="submit">Submit Project Brief &rarr;</Button>
+          </ButtonWrapper>
+        </Form>
+      </div>
+
+      <!-- Right: Direct Studio Info & Operational Standards -->
+      <div slot="column2">
+        <Grid small={1}>
+          <Card
+            heading="Direct Contact"
+            text={`Email: ${STUDIO_CONTACT.email}\nPhone: ${STUDIO_CONTACT.phone}\nWhatsApp: +61 437 700 749\nABN: ${STUDIO_CONTACT.abn}`}
+          />
+          <Card
+            heading="Before You Send"
+            text={`Include the event date, venue, run sheet and delivery deadline. Completed briefs can be emailed to ${STUDIO_CONTACT.email}. A current Certificate of Currency can be provided for venue approval.`}
+          />
+        </Grid>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Helpful Guides for Planning -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">HELPFUL RESOURCES</Eyebrow>
+        <Heading tag="h2" variant="h3"
+          >Need Help Structuring Your Brief?</Heading
+        >
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/blog#planning-guides" variant="link">
+          All guides and articles
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} medium={3}>
+      <Card
+        heading="Briefing Template"
+        text="Use the four-part shot priority checklist for corporate events."
+        buttonHref="/docs/event-briefing-template"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+      <Card
+        heading="Sydney Pricing Guide"
+        text="Review common day-rate, half-day and licensing structures."
+        buttonHref="/docs/pricing-and-rates-guide"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+      <Card
+        heading="Delivery Specifications"
+        text="Understand file formats, 300 DPI print masters, and private client portals."
+        buttonHref="/docs/turnaround-and-delivery-specs"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+    </Grid>
+  </Section>
+</Layout>
