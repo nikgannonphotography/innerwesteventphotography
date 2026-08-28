@@ -42,6 +42,16 @@ export const STUDIO_CONTACT = {
 };
 
 /**
+ * Optional HubSpot Form & CRM Integration.
+ * Fill in your HubSpot Portal ID and Form ID to switch to or embed HubSpot forms.
+ */
+export const HUBSPOT_CONFIG = {
+  portalId: "",
+  formId: "",
+  region: "na1", // na1, eu1, or au1
+};
+
+/**
  * Routes kept out of search results. Each is excluded from the sitemap and
  * served with a `robots: noindex, nofollow` tag, so the two can't disagree.
  *

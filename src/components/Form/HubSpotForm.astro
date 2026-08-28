@@ -1,0 +1,49 @@
+---
+interface Props {
+  portalId?: string;
+  formId?: string;
+  region?: string;
+  target?: string;
+}
+
+const {
+  portalId = "",
+  formId = "",
+  region = "na1",
+  target = "#hubspot-form-container",
+} = Astro.props;
+---
+
+<div id="hubspot-form-container" class="hubspot-form-wrap" data-portal-id={portalId} data-form-id={formId} data-region={region}>
+  {portalId && formId ? (
+    <div class="hubspot-form-inner"></div>
+  ) : (
+    <div class="hubspot-placeholder">
+      <!-- Fallback when HubSpot ID is not yet entered -->
+    </div>
+  )}
+</div>
+
+{portalId && formId && (
+  <script is:inline src="https://js.hsforms.net/forms/embed/v2.js"></script>
+  <script is:inline define:vars={{ portalId, formId, region, target }}>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          region: region,
+          portalId: portalId,
+          formId: formId,
+          target: target,
+        });
+      }
+    });
+  </script>
+)}
+
+<style is:global>
+  @layer components {
+    .hubspot-form-wrap {
+      width: 100%;
+    }
+  }
+</style>

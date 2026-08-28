@@ -20,19 +20,17 @@ import { STUDIO_CONTACT } from "@/consts.ts";
 
 <Layout
   title="Project Inquiry & Booking | Inner West Event Photography"
-  description="Contact Inner West Event Photography. Submit your event brief, run-of-show details, and date for a transparent fixed-rate proposal."
+  description="Contact Inner West Event Photography. Submit your event brief, schedule, run sheet or project scope for a clear, fixed-rate proposal."
 >
   <!-- Header -->
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
-      <Eyebrow>PROJECT INQUIRY</Eyebrow>
+      <Eyebrow>PROJECT INQUIRY & BRIEF INTAKE</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={26}
-        >Tell Us About the Assignment</Heading
+        >Tell Us About Your Event or Project</Heading
       >
       <Paragraph variant="large" maxWidth={38}>
-        Reach out with details about your upcoming corporate conference, charity
-        gala, brand activation, or workplace portrait session. We reply promptly
-        with a clear, fixed-rate proposal.
+        Whether you have a confirmed run sheet, an outline schedule, or are just exploring dates and venue availability, share your details below. We reply promptly with a transparent, fixed-rate proposal.
       </Paragraph>
     </ContentWrapper>
   </Section>
@@ -47,9 +45,10 @@ import { STUDIO_CONTACT } from "@/consts.ts";
           action={STUDIO_CONTACT.formEndpoint}
           projectId={STUDIO_CONTACT.formProjectId}
           formId={STUDIO_CONTACT.formId}
-          successMessage="Thanks. Your brief has been sent."
+          enctype="multipart/form-data"
+          successMessage="Thanks. Your project brief has been received. We will review your requirements and respond within 24 hours."
         >
-          <Fieldset legend="Your Contact Information" variant="columns">
+          <Fieldset legend="1. Contact Information" variant="columns">
             <Input
               name="fullName"
               label="Full Name"
@@ -78,7 +77,7 @@ import { STUDIO_CONTACT } from "@/consts.ts";
             />
           </Fieldset>
 
-          <Fieldset legend="Event & Project Scope" variant="columns">
+          <Fieldset legend="2. Event Scope & Timing" variant="columns">
             <Select
               name="eventType"
               label="Service / Event Category"
@@ -96,30 +95,31 @@ import { STUDIO_CONTACT } from "@/consts.ts";
               name="eventDate"
               variant="text"
               label="Event Date(s) / Estimated Month"
-              placeholder="e.g. 15 November 2026"
+              placeholder="e.g. 15 November 2026 or Spring 2026"
               required
             />
             <Input
               name="venue"
-              label="Venue & Suburb"
-              placeholder="e.g. ICC Sydney, Darling Harbour"
+              label="Venue & Suburb (or Multiple Venues)"
+              placeholder="e.g. ICC Sydney, Darling Harbour (or TBC)"
               required
             />
             <Select
               name="coverageHours"
               label="Estimated Hours of Coverage"
               options={[
+                "Short Assignment (Up to 2 hours)",
                 "Half-Day (Up to 4 hours)",
                 "Full-Day (Up to 8 hours)",
                 "Multi-Day Summit (2–4 days)",
-                "Custom / Unsure",
+                "Custom / Flexible Schedule",
               ]}
               required
             />
           </Fieldset>
 
           <Fieldset
-            legend="Turnaround Requirements"
+            legend="3. Delivery & Turnaround Speed"
             variant="inline"
             legendStyle="label"
           >
@@ -133,18 +133,28 @@ import { STUDIO_CONTACT } from "@/consts.ts";
             <Choice
               type="radio"
               name="turnaround"
-              label="Fast PR Selects Required (2–12 hours for media/social)"
+              label="Fast PR Selects Required (4–12 hours for press/social)"
               value="fast-pr"
             />
           </Fieldset>
 
-          <Fieldset legend="Brief Details & Run of Show">
+          <Fieldset legend="4. Share Schedule, Run Sheet, or Project Scope">
+            <Input
+              name="runSheetFile"
+              variant="file"
+              label="Attach Run Sheet, Schedule, or Brief (Optional: PDF, DOCX, XLSX, PNG, JPG)"
+            />
+            <Input
+              name="runSheetLink"
+              variant="url"
+              label="Or Share Document Link (Optional: Google Drive, Dropbox, Notion, SharePoint)"
+              placeholder="https://docs.google.com/..."
+            />
             <Textarea
               name="message"
-              label="Project Scope, Run-of-Show Notes, or Specific Shot Requirements"
-              placeholder="Tell us about key speakers, sponsor obligations, VIPs, or specific deliverables needed..."
+              label="Event Details, Key Timings, VIPs, or Specific Requirements"
+              placeholder="Tell us about your event format, key speakers, sponsor obligations, shot list priorities, or any questions..."
               minLines={4}
-              required
             />
           </Fieldset>
 
@@ -158,12 +168,18 @@ import { STUDIO_CONTACT } from "@/consts.ts";
       <div slot="column2">
         <Grid small={1}>
           <Card
-            heading="Direct Contact"
-            text={`Email: ${STUDIO_CONTACT.email}\nPhone: ${STUDIO_CONTACT.phone}\nWhatsApp: +61 437 700 749\nABN: ${STUDIO_CONTACT.abn}`}
+            heading="Direct Fast-Track Contact"
+            text={`Email: ${STUDIO_CONTACT.email}\nPhone: ${STUDIO_CONTACT.phone}\nWhatsApp: ${STUDIO_CONTACT.whatsappUrl}\nABN: ${STUDIO_CONTACT.abn}`}
           />
           <Card
-            heading="Before You Send"
-            text={`Include the event date, venue, run sheet and delivery deadline. Completed briefs can be emailed to ${STUDIO_CONTACT.email}. A current Certificate of Currency can be provided for venue approval.`}
+            heading="Flexible Intake Options"
+            text={`• Have a finished run sheet? Attach it above or share a document link.\n• Working to a budget? Let us know your target tier and we will tailor coverage.\n• $20M Public Liability Certificate of Currency provided for all Sydney venues upon booking.`}
+          />
+          <Card
+            heading="Download Briefing Template"
+            text="Need a ready-made structure for your internal team? Use our free 4-part priority briefing framework."
+            buttonHref="/docs/event-briefing-template"
+            buttonLabel="View Template (DOC-01)"
           />
         </Grid>
       </div>
