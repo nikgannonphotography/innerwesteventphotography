@@ -25,35 +25,82 @@ const pageTitle = title
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/about#nikolas-gannon`,
+  name: STUDIO_CONTACT.founder,
+  givenName: "Nikolas",
+  familyName: "Gannon",
+  jobTitle: STUDIO_CONTACT.title,
+  worksFor: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+  url: `${SITE_URL}/about`,
+  image: `${SITE_URL}/logos/Square%20Profile%20pic%20IG-FB-LI-X%20-%201080x1080/Square%20Profile%20pic%20IG-FB-LI-X%20-%201080x1080.png`,
+  sameAs: [
+    STUDIO_CONTACT.linkedinUrl,
+    STUDIO_CONTACT.instagramUrl,
+    STUDIO_CONTACT.unsplashUrl,
+    "https://nikolasgannon.com.au",
+  ],
+  knowsAbout: [
+    "Commercial Event Photography",
+    "Corporate Conference Photography",
+    "Not-For-Profit & Charity Gala Photography",
+    "Brand Activation & Experiential Media",
+    "Documentary Visual Production",
+  ],
+};
+
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["PhotographyBusiness", "LocalBusiness"],
+  "@id": `${SITE_URL}/#business`,
   name: SITE_NAME,
+  legalName: "Inner West Event Photography",
   alternateName: [
     "IWEP",
     "Inner West Event Photography Sydney",
     "Nikolas Gannon Photography",
   ],
   description:
-    "Sydney event, corporate conference, not-for-profit gala, brand activation, and workplace headshot photography studio.",
+    "Sydney event, corporate conference, not-for-profit gala, brand activation, and workplace headshot photography studio led by Nikolas Gannon.",
   url: SITE_URL,
   logo: `${SITE_URL}/logos/Master%20Logo%20-%205000x5000/Master%20Logo%20-%205000x5000.png`,
   image: `${SITE_URL}/og-image.jpg`,
   telephone: STUDIO_CONTACT.phoneRaw,
   email: STUDIO_CONTACT.email,
+  vatID: STUDIO_CONTACT.abn,
+  taxID: STUDIO_CONTACT.abn,
   founder: {
     "@type": "Person",
+    "@id": `${SITE_URL}/about#nikolas-gannon`,
     name: STUDIO_CONTACT.founder,
     jobTitle: STUDIO_CONTACT.title,
     sameAs: [
       STUDIO_CONTACT.linkedinUrl,
       STUDIO_CONTACT.instagramUrl,
+      STUDIO_CONTACT.unsplashUrl,
+      "https://nikolasgannon.com.au",
     ],
   },
+  employee: [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#nikolas-gannon`,
+      name: STUDIO_CONTACT.founder,
+      jobTitle: STUDIO_CONTACT.title,
+    },
+  ],
   sameAs: [
     STUDIO_CONTACT.linkedinUrl,
     STUDIO_CONTACT.instagramUrl,
-    "https://innerwesteventphotography.com.au",
+    STUDIO_CONTACT.unsplashUrl,
+    "https://nikolasgannon.com.au",
+    SITE_URL,
   ],
   address: {
     "@type": "PostalAddress",
@@ -136,7 +183,7 @@ const websiteSchema = {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
 
-<meta name="keywords" content="Sydney event photography, corporate event photographer Sydney, conference photography Sydney, not for profit photographer Sydney, Sydney charity gala photography, Inner West event photography, commercial photography Sydney, corporate headshots Sydney" />
+<meta name="keywords" content="Nikolas Gannon, Nikolas Gannon photographer, Nik Gannon photography, Nikolas Gannon Sydney, Inner West Event Photography Nikolas Gannon, Sydney event photography, corporate event photographer Sydney, conference photography Sydney, not for profit photographer Sydney, Sydney charity gala photography, Inner West event photography, commercial photography Sydney, corporate headshots Sydney" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=2" />
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=2" />
@@ -150,5 +197,6 @@ const websiteSchema = {
 <link rel="icon" href="/favicon.ico?v=2" />
 <meta name="generator" content={Astro.generator} />
 
+<script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
 <script type="application/ld+json" is:inline set:html={JSON.stringify(localBusinessSchema)} />
 <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
