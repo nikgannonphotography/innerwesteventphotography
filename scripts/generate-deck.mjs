@@ -50,7 +50,7 @@ const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inner West Event Photography — Capability Deck</title>
+  <title>Inner West Event Photography — Sydney</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -108,9 +108,9 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .brand-mark {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #ffffff;
       display: flex;
@@ -129,10 +129,8 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .slide-num {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
       color: #777777;
     }
 
@@ -147,9 +145,8 @@ const htmlContent = `<!DOCTYPE html>
       align-items: center;
       border-top: 1px solid #222222;
       padding-top: 24px;
-      font-size: 13px;
+      font-size: 14px;
       color: #777777;
-      letter-spacing: 0.04em;
     }
 
     .slide.light .bottom-bar {
@@ -175,7 +172,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     p.lead {
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 400;
       line-height: 1.5;
       color: #cccccc;
@@ -188,7 +185,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     p.body-text {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 400;
       line-height: 1.65;
       color: #aaaaaa;
@@ -244,7 +241,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .card-text {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 400;
       line-height: 1.55;
       color: #999999;
@@ -295,12 +292,12 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .specs-table th {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #777777;
-      padding: 16px 20px;
+      padding: 18px 20px;
       border-bottom: 1px solid #333333;
     }
 
@@ -310,7 +307,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .specs-table td {
-      font-size: 16px;
+      font-size: 17px;
       padding: 24px 20px;
       border-bottom: 1px solid #202020;
       color: #cccccc;
@@ -341,12 +338,12 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <h1>Commercial Discipline.<br/>Quiet Execution.</h1>
+        <h1>Good photos.<br/>Zero fuss.</h1>
         <p class="lead">
-          Quiet, reliable photography for corporate conferences, charity galas, brand launches, and workplace portraits across Sydney.
+          Quiet, reliable photography for corporate conferences, charity galas, brand launches, and celebrations across Sydney.
         </p>
         <p class="body-text" style="color: #777777; margin-top: 40px; font-size: 16px;">
-          Sydney CBD &bull; Inner West &bull; Sub-12h PR delivery &bull; $10M public liability
+          Sydney CBD &bull; Inner West &bull; Next-morning delivery &bull; $10M public liability
         </p>
       </div>
       <div class="img-box" style="height: 600px;">
@@ -371,27 +368,27 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; margin: 20px 0;">
-      <h2>Direct experience on the floor and behind the brief.</h2>
+      <h2>Hi, I'm Nik.</h2>
       <p class="lead" style="max-width: 1000px; margin-bottom: 40px;">
-        Led by Nikolas Gannon, former Client Engagement Director at social-impact agency We Are World Change. We understand run sheets, sponsor commitments, and the need for zero fuss on the day.
+        I run Inner West Event Photography. Before doing this full-time, I was Client Engagement Director at social-impact agency We Are World Change. That means I know how events actually run: the tight schedules, the sponsor commitments, and why you need someone who just gets on with the job.
       </p>
 
       <div class="content-columns-4">
         <div class="card">
           <div class="metric-num">14M+</div>
-          <div class="card-text">Views on Unsplash with work published across OECD, ANU, and media platforms.</div>
+          <div class="card-text">Views on Unsplash with photos published globally across the OECD, ANU, and media platforms.</div>
         </div>
         <div class="card">
           <div class="metric-num">&lt;12h</div>
-          <div class="card-text">Morning-after highlight selects delivered for urgent press releases and social media.</div>
+          <div class="card-text">Morning-after highlight selects delivered so you can post while people are still talking about it.</div>
         </div>
         <div class="card">
           <div class="metric-num">$10M</div>
-          <div class="card-text">Certificate of currency issued directly to your venue or risk management team.</div>
+          <div class="card-text">Full public liability insurance ready to send straight to your venue or management team.</div>
         </div>
         <div class="card">
           <div class="metric-num" style="font-size: 32px; margin-bottom: 24px;">Fixed rates</div>
-          <div class="card-text">Single upfront price including retouched master files and full commercial rights.</div>
+          <div class="card-text">One upfront price with no surprise overtime bills or extra download charges.</div>
         </div>
       </div>
     </div>
@@ -414,15 +411,15 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <h2>Conferences, Summits & Awards Galas</h2>
+        <h2>Conferences & Corporate Events</h2>
         <p class="body-text">
-          Full coverage for multi-day conventions, leadership summits, and awards evenings at venues like ICC Sydney, Doltone House, and Crown Sydney.
+          From multi-day conventions at ICC Sydney to leadership summits, breakfast panels, and awards evenings at Doltone House and Crown Sydney.
         </p>
         <p class="body-text">
-          We shoot silently using electronic shutters so speakers and delegates are never distracted. Every assignment covers stage keynotes, candid crowd moments, sponsor booths, and dinner proceedings.
+          We shoot silently using electronic shutters so speakers and delegates are never distracted. We cover keynotes, candid crowd moments, sponsor booths, and evening proceedings.
         </p>
         <p class="body-text">
-          A dedicated highlight pack is delivered by 8:00 AM the next morning for your morning-after press release and social feeds.
+          You get a dedicated highlight pack by 8:00 AM the next morning for your morning-after press release and social feeds.
         </p>
       </div>
       <div class="img-grid-2">
@@ -432,7 +429,7 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="bottom-bar">
-      <span>Corporate Conferences & Keynote Stages</span>
+      <span>Conferences, Summits & Keynote Stages</span>
       <span>ICC Sydney & Greater Sydney Venues</span>
     </div>
   </div>
@@ -453,21 +450,21 @@ const htmlContent = `<!DOCTYPE html>
         <div class="img-box"><img src="${imgStJude1}" alt="Order of Australia St Jude" /></div>
       </div>
       <div>
-        <h2>Fundraisers, Galas & Community Forums</h2>
+        <h2>Charity Galas & Fundraisers</h2>
         <p class="body-text">
-          Respectful, low-profile coverage for charity galas, major donor dinners, live auctions, and civic assemblies.
+          Respectful, low-profile coverage for charity galas, major donor dinners, live auctions, and community forums.
         </p>
         <p class="body-text">
-          We bring deep sector experience from working with Sony Foundation (Wharf4Ward), batyr, World Vision, and The School of St Jude. We understand cultural protocols, VIP dignity, and consent dynamics.
+          We’ve worked with the Sony Foundation on Wharf4Ward, batyr, World Vision, and The School of St Jude. We know how to capture live auctions and big emotional moments without being in the way.
         </p>
         <p class="body-text">
-          Images are catalogued specifically for annual impact reports, donor updates, and future grant applications.
+          Photos are delivered organised and ready for donor updates, annual impact reports, and next year's campaign materials.
         </p>
       </div>
     </div>
 
     <div class="bottom-bar">
-      <span>Not-For-Profit & Philanthropic Storytelling</span>
+      <span>Charities, Foundations & Community Events</span>
       <span>Sydney NSW</span>
     </div>
   </div>
@@ -484,15 +481,15 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <h2>Product Launches, Pop-Ups & Lookbooks</h2>
+        <h2>Brand Launches & Activations</h2>
         <p class="body-text">
-          Clean, brand-aligned imagery for product launches, pop-up activations, retail installations, and commercial lookbooks.
+          Clean, punchy imagery for product launches, pop-up activations, retail installations, and commercial lookbooks.
         </p>
         <p class="body-text">
-          On discussion, we can organise daylight studio hire in the Inner West and Surry Hills, cyclorama spaces in Alexandria, high-end Profoto lighting packages, on-set wireless tethering, and hair and makeup teams.
+          Need a daylight studio in Marrickville or Surry Hills, a cyclorama in Alexandria, specialized Profoto lighting, or a hair and makeup team? We can organise all of it upon discussion.
         </p>
         <p class="body-text">
-          We also provide live photo drops during the event so your marketing team can publish in real time.
+          We also provide live photo drops during the event so your marketing team can publish straight to socials.
         </p>
       </div>
       <div class="img-grid-2">
@@ -519,15 +516,15 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <h2>Team Headshots & Workplace Portraits</h2>
+        <h2>Team Headshots & Workplace Photos</h2>
         <p class="body-text">
           Natural corporate portraits and team photography taken on-location at your office or annual conference.
         </p>
         <p class="body-text">
-          We bring a compact mobile studio with soft lighting to your workplace with minimal disruption to staff. Team members view and choose their preferred shot on a laptop screen immediately.
+          No awkward forced smiles or stiff grey backdrops. We set up a compact mobile studio with soft lighting right at your workplace with minimal disruption to staff.
         </p>
         <p class="body-text">
-          Each person receives individually retouched high-res and web files delivered through an organised corporate portal for your HR and marketing teams.
+          Team members view and choose their favourite shot on a laptop right away. You get retouched high-res files delivered in an easy folder for HR and marketing.
         </p>
       </div>
       <div class="img-box" style="height: 600px;">
@@ -557,22 +554,22 @@ const htmlContent = `<!DOCTYPE html>
         <div class="img-box"><img src="${imgBirthday1}" alt="Anna Birthday Celebration" /></div>
       </div>
       <div>
-        <h2>Milestone Birthdays, Engagements & Weddings</h2>
+        <h2>Birthdays, Engagements & Weddings</h2>
         <p class="body-text">
-          Candid documentary photography for landmark birthdays (21st, 30th, 40th, 50th, 80th), waterfront engagements, and intimate weddings.
+          Candid documentary photography for milestone birthdays (21st, 30th, 40th, 50th, 80th), waterfront engagements, and intimate weddings.
         </p>
         <p class="body-text">
-          No stiff posing or forced smiling. We focus on natural moments, genuine laughs, hugs, and great speeches.
+          No posing for two hours while your drink gets warm. Just candid, natural photos of the people you love laughing, hugging, and giving speeches.
         </p>
         <p class="body-text">
-          You receive a 24–48 hour sneak peek pack, followed by a private gallery where guests can download full-resolution photos directly with zero watermarks or extra download fees.
+          You receive a 24–48 hour sneak peek pack, followed by a private link where all your guests can download full-resolution photos directly for free.
         </p>
       </div>
     </div>
 
     <div class="bottom-bar">
-      <span>Private Events & Celebrations</span>
-      <span>Unrestricted Personal Printing Rights</span>
+      <span>Private Celebrations & Milestone Events</span>
+      <span>Free High-Res Downloads for Guests</span>
     </div>
   </div>
 
@@ -587,9 +584,9 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <h2>Clear timelines and reliable delivery.</h2>
-      <p class="lead" style="font-size: 18px; margin-bottom: 24px;">
-        Every shoot includes dual-card raw backup on the day and calibrated color editing.
+      <h2>How delivery works.</h2>
+      <p class="lead" style="font-size: 19px; margin-bottom: 24px;">
+        Straightforward turnaround with no hidden catches or surprise invoices.
       </p>
 
       <table class="specs-table">
@@ -603,30 +600,30 @@ const htmlContent = `<!DOCTYPE html>
         <tbody>
           <tr>
             <td><strong>Turnaround Time</strong></td>
-            <td>3–5 business days for full edited gallery</td>
-            <td><strong>2–12 hours</strong> for morning-after press highlights</td>
+            <td>3–5 business days for the full edited gallery</td>
+            <td><strong>Under 12 hours</strong> for morning-after press highlights</td>
           </tr>
           <tr>
             <td><strong>File Formats</strong></td>
             <td>Full-res 300 DPI print files + web-ready formats</td>
-            <td>Pre-cropped files for social media and press</td>
+            <td>Pre-cropped files ready for social media and press</td>
           </tr>
           <tr>
-            <td><strong>Licensing</strong></td>
-            <td>Full commercial marketing and PR rights</td>
+            <td><strong>Usage Rights</strong></td>
+            <td>Full commercial marketing and PR rights included</td>
             <td>Unrestricted media distribution rights</td>
           </tr>
           <tr>
             <td><strong>Delivery Method</strong></td>
-            <td>Private Australian cloud gallery with unlimited downloads</td>
-            <td>Direct Dropbox / Google Drive press links</td>
+            <td>Private cloud gallery with unlimited downloads</td>
+            <td>Direct Dropbox / Google Drive press links for your team</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="bottom-bar">
-      <span>Calibrated Rec.709 & Adobe RGB Color</span>
+      <span>Dual memory card backup on every shoot</span>
       <span>Sydney NSW</span>
     </div>
   </div>
@@ -642,9 +639,9 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <h2>Covering all of Greater Sydney.</h2>
-      <p class="lead" style="font-size: 18px; margin-bottom: 32px;">
-        Based in the Inner West with regular on-site work across Sydney's major convention centres and event spaces.
+      <h2>Where we work.</h2>
+      <p class="lead" style="font-size: 19px; margin-bottom: 32px;">
+        Based in Ashfield in the Inner West, covering all of Greater Sydney.
       </p>
 
       <div class="content-columns-4">
@@ -680,7 +677,7 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="bottom-bar">
-      <span>Travel included across Greater Sydney metro</span>
+      <span>Travel included across Greater Sydney</span>
       <span>Base: Ashfield NSW 2131</span>
     </div>
   </div>
@@ -697,13 +694,13 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <h2>Let's discuss your event.</h2>
+        <h2>Let's chat about your event.</h2>
         <p class="lead" style="font-size: 20px; margin-bottom: 28px;">
-          Send through your event date, venue, and run sheet. We will provide a simple, fixed quote within 24 hours.
+          Send through your date, venue, and a rough idea of the schedule. I'll get a clear, fixed quote back to you within 24 hours.
         </p>
 
         <div style="background: #ffffff; border: 1px solid #e0ded9; padding: 28px; margin-bottom: 24px;">
-          <div style="font-size: 17px; line-height: 1.9; color: #222222;">
+          <div style="font-size: 18px; line-height: 1.9; color: #222222;">
             <div><strong>Nikolas Gannon</strong> • Photographer & Creative Producer</div>
             <div><strong>Phone</strong>: 0437 700 749 (+61 437 700 749)</div>
             <div><strong>Email</strong>: info@innerwesteventphotography.com.au</div>
@@ -712,9 +709,9 @@ const htmlContent = `<!DOCTYPE html>
           </div>
         </div>
 
-        <div style="font-size: 14px; line-height: 1.6; color: #666666;">
+        <div style="font-size: 15px; line-height: 1.6; color: #666666;">
           ✓ $10,000,000 public liability certificate issued on booking<br/>
-          ✓ Fixed upfront rate with zero surprise add-ons<br/>
+          ✓ Fixed upfront rate with zero surprise invoices<br/>
           ✓ High-resolution retouched master files included
         </div>
       </div>
@@ -735,17 +732,22 @@ const htmlContent = `<!DOCTYPE html>
 const htmlPath = path.join(__dirname, 'deck.html');
 fs.writeFileSync(htmlPath, htmlContent);
 
-const outputPdfDesktop = '/Users/admin/Desktop/Inner_West_Event_Photography_Capability_Deck.pdf';
-const outputPdfPublic = path.join(publicDir, 'Inner_West_Event_Photography_Capability_Deck.pdf');
+const outputPdfNamed = '/Users/admin/Desktop/Inner_West_Event_Photography.pdf';
+const outputPdfCapability = '/Users/admin/Desktop/Inner_West_Event_Photography_Capability_Deck.pdf';
+const outputPdfPublic = path.join(publicDir, 'Inner_West_Event_Photography.pdf');
 
 const chromeBinary = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const cmd = `"${chromeBinary}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${outputPdfDesktop}" "file://${htmlPath}"`;
+const cmd = `"${chromeBinary}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${outputPdfNamed}" "file://${htmlPath}"`;
 
-console.log('Rendering stripped, zero-slop lightweight PDF...');
+console.log('Rendering human, conversational, chilled-out PDF...');
 try {
   execSync(cmd);
-  fs.copyFileSync(outputPdfDesktop, outputPdfPublic);
-  console.log('Done! Rendered pure minimal PDF.');
+  fs.copyFileSync(outputPdfNamed, outputPdfCapability);
+  fs.copyFileSync(outputPdfNamed, outputPdfPublic);
+  console.log('Done! Generated:');
+  console.log('1.', outputPdfNamed);
+  console.log('2.', outputPdfCapability);
+  console.log('3.', outputPdfPublic);
 } catch (err) {
   console.error('Error rendering PDF:', err);
 }
