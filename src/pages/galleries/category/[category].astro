@@ -108,21 +108,6 @@ const collectionSchema = {
       <Paragraph maxWidth={36}>
         {category.description}
       </Paragraph>
-
-      <!-- Category Filter Tabs -->
-      <div class="category_nav_wrapper margin-top-4">
-        <a href="/galleries" class="category_pill">
-          All Case Studies
-        </a>
-        {GALLERY_CATEGORIES.map((cat) => (
-          <a
-            href={`/galleries/category/${cat.slug}`}
-            class:list={["category_pill", cat.slug === category.slug && "is-active"]}
-          >
-            {cat.shortName}
-          </a>
-        ))}
-      </div>
     </ContentWrapper>
   </Section>
 
@@ -233,33 +218,6 @@ const collectionSchema = {
 
 <style is:global>
   @layer components {
-    .category_nav_wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-    .category_pill {
-      display: inline-block;
-      padding: var(--space-1) var(--space-3);
-      font-size: var(--font-size-small);
-      font-weight: 500;
-      color: var(--text);
-      background-color: var(--surface-1);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-full, 9999px);
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .category_pill:hover {
-      border-color: var(--text);
-      background-color: var(--surface-2);
-    }
-    .category_pill.is-active {
-      background-color: var(--text);
-      color: var(--background);
-      border-color: var(--text);
-    }
     .service_highlight_card {
       padding: var(--space-4);
       background-color: var(--surface-1);

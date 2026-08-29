@@ -9,7 +9,7 @@ import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
-import { GALLERIES, GALLERY_CATEGORIES } from "@/data/galleries.ts";
+import { GALLERIES } from "@/data/galleries.ts";
 
 const featuredGallery =
   GALLERIES.find((gallery) => gallery.slug === "sony-foundation-wharf4ward") ??
@@ -30,21 +30,6 @@ const remainingGalleries = GALLERIES.filter(
       <Paragraph variant="large" maxWidth={36}>
         Corporate, not-for-profit, fashion, weddings, celebrations, concerts, and sports photography across Sydney.
       </Paragraph>
-
-      <!-- Category Filter Tabs -->
-      <div class="category_nav_wrapper margin-top-4">
-        <a href="/galleries" class="category_pill is-active">
-          All Case Studies
-        </a>
-        {GALLERY_CATEGORIES.map((cat) => (
-          <a
-            href={`/galleries/category/${cat.slug}`}
-            class="category_pill"
-          >
-            {cat.shortName}
-          </a>
-        ))}
-      </div>
     </ContentWrapper>
   </Section>
 
@@ -87,35 +72,3 @@ const remainingGalleries = GALLERIES.filter(
     </ContentWrapper>
   </Section>
 </Layout>
-
-<style is:global>
-  @layer components {
-    .category_nav_wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-    .category_pill {
-      display: inline-block;
-      padding: var(--space-1) var(--space-3);
-      font-size: var(--font-size-small);
-      font-weight: 500;
-      color: var(--text);
-      background-color: var(--surface-1);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-full, 9999px);
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .category_pill:hover {
-      border-color: var(--text);
-      background-color: var(--surface-2);
-    }
-    .category_pill.is-active {
-      background-color: var(--text);
-      color: var(--background);
-      border-color: var(--text);
-    }
-  }
-</style>
