@@ -915,6 +915,132 @@ export const DOCS: DocGuide[] = [
       "turnaround-and-delivery-specs",
     ],
   },
+  {
+    slug: "private-celebration-and-milestone-photography-guide",
+    number: "DOC-12",
+    title: "Milestone Birthdays & Private Celebrations: Sydney Photography Planning Guide",
+    subtitle:
+      "A complete planning guide for capturing milestone birthdays, family reunions, and private celebrations across Sydney.",
+    category: "briefing",
+    categoryLabel: "Celebrations Guide",
+    lastUpdated: "August 2026",
+    readTime: "5 min read",
+    summary:
+      "How to plan photography for milestone birthdays (30th, 40th, 50th, 80th) and private family celebrations with candid documentary coverage, key toast timing, and group portrait coordination.",
+    searchIntent: "planning",
+    seoTitle: "Milestone Birthday & Private Event Photography Guide Sydney",
+    metaDescription:
+      "Step-by-step guide for planning photography for milestone birthdays, family celebrations, and private parties in Sydney. Shot list priorities and guest coordination.",
+    publishedDate: "2026-08-28",
+    sections: [
+      {
+        heading: "1. Prioritising Candid Moments Over Stiff Posing",
+        content:
+          "Great private celebration photography captures the genuine energy of the room — hearty laughter, spontaneous embraces, and authentic conversations. Rather than pulling guests away from conversations for endless posed shots, we work unobtrusively around the venue.",
+        subsections: [
+          {
+            title: "Guest Arrivals & Atmosphere",
+            body: "Documenting guests arriving, greeting the host, and experiencing the styled venue atmosphere during the first 30–45 minutes.",
+          },
+          {
+            title: "Speeches, Toasts & Cake Cutting",
+            body: "Capturing emotional reactions from the crowd, the speaker's key delivery, and the genuine reactions of the person being celebrated.",
+          },
+        ],
+      },
+      {
+        heading: "2. Structuring Family & VIP Group Portraits",
+        content:
+          "Group portraits are best completed early in the event before dinner or formal speeches. Having a short nominated list of key family combinations (immediate family, grandparents, close friend circles) ensures group photos are finished in 15 minutes flat without disrupting the party.",
+      },
+      {
+        heading: "3. Fast Sneak Peeks & Guest Gallery Downloads",
+        content:
+          "Guests love reliving the celebration right away. We deliver a curated highlight sneak peek pack within 24–48 hours, followed by a private Australian-hosted online gallery where all your guests can download their favourite high-res photos freely with zero watermarks.",
+      },
+    ],
+    keyTakeaways: [
+      "Keep formal group portrait lists focused and schedule them early in the event.",
+      "Document authentic speech reactions and ambient room energy.",
+      "Enjoy private password-protected galleries with unlimited guest downloads.",
+      "Fast 24–48 hour sneak peek highlights for social sharing.",
+    ],
+    relatedService: "private-events-milestones-celebrations",
+    relatedBlogSlugs: [
+      "top-event-venues-inner-west-sydney",
+      "live-event-photo-delivery-for-press-social",
+    ],
+    relatedLocations: ["inner-west", "sydney-cbd", "north-shore"],
+    relatedGalleries: ["annas-birthday", "george-and-adrianas-engagement"],
+    relatedGuides: [
+      "event-briefing-template",
+      "turnaround-and-delivery-specs",
+      "pricing-and-rates-guide",
+    ],
+  },
+  {
+    slug: "intimate-sydney-wedding-engagement-photography-guide",
+    number: "DOC-13",
+    title: "Intimate Sydney Weddings & Engagements: Documentary Planning Guide",
+    subtitle:
+      "A modern, relaxed approach to documenting boutique Sydney weddings, foreshore engagements, and intimate vows.",
+    category: "briefing",
+    categoryLabel: "Wedding & Engagement Guide",
+    lastUpdated: "August 2026",
+    readTime: "6 min read",
+    summary:
+      "How to plan documentary wedding and engagement photography for Sydney foreshore venues, historic Inner West spaces, and private celebrations without rigid production stress.",
+    searchIntent: "planning",
+    seoTitle: "Intimate Sydney Wedding & Engagement Photography Guide",
+    metaDescription:
+      "Planning guide for intimate weddings and engagement celebrations in Sydney. Documentary storytelling, golden hour timing, and relaxed foreshore portraits.",
+    publishedDate: "2026-08-28",
+    sections: [
+      {
+        heading: "1. The Documentary Philosophy for Intimate Celebrations",
+        content:
+          "Modern couples are steering away from rigid, choreographed photo shoots in favour of relaxed, documentary storytelling. Our approach focuses on the natural narrative of your day — the quiet anticipation, genuine laughter with friends, and the raw emotion of vows.",
+        subsections: [
+          {
+            title: "Foreshore & Waterfront Timing",
+            body: "Planning couple portraits around golden hour light across Sydney Harbour, Balmain foreshore, or coastal lookouts.",
+          },
+          {
+            title: "Receptions & Long Lunches",
+            body: "Capturing tablescape styling, shared feasts, emotional toasts, and ambient party atmosphere without intrusive equipment.",
+          },
+        ],
+      },
+      {
+        heading: "2. Streamlined Logistics & Timeline Scoping",
+        content:
+          "Whether you need 4 hours of coverage for an intimate ceremony and cocktail reception or full evening documentation, we work with you to create a simple timeline that protects your time with guests.",
+      },
+      {
+        heading: "3. Archival Handover & Full Digital Rights",
+        content:
+          "All master files are delivered in both full 300 DPI resolution for archival fine-art printing and web-optimised formats for instant digital sharing. You receive full personal printing rights with zero restriction on where you print your memories.",
+      },
+    ],
+    keyTakeaways: [
+      "Focus on candid connection, emotional speeches, and atmospheric styling.",
+      "Take advantage of Sydney's distinctive harbour and heritage architecture for brief relaxed portraits.",
+      "Direct digital guest downloads and high-resolution fine-art printing files included.",
+      "Clear, upfront fixed rates with zero hidden per-image upgrade fees.",
+    ],
+    relatedService: "private-events-milestones-celebrations",
+    relatedBlogSlugs: [
+      "top-event-venues-inner-west-sydney",
+      "hiring-freelance-event-photographers-sydney-checklist",
+    ],
+    relatedLocations: ["sydney-cbd", "inner-west", "north-shore"],
+    relatedGalleries: ["george-and-adrianas-engagement", "annas-birthday"],
+    relatedGuides: [
+      "event-briefing-template",
+      "sydney-venue-lighting-guide",
+      "pricing-and-rates-guide",
+    ],
+  },
 ];
 
 export function getDocBySlug(slug: string): DocGuide | undefined {

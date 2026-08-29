@@ -282,6 +282,73 @@ export const SERVICES: ServicePackage[] = [
     ],
     relatedDocSlugs: ["turnaround-and-delivery-specs"],
   },
+  {
+    slug: "private-events-milestones-celebrations",
+    number: "05",
+    title: "Private Events, Weddings & Milestones",
+    subtitle: "Intimate Weddings, Engagements, Birthdays & Celebrations",
+    tagline:
+      "Unobtrusive, documentary-style photography for intimate weddings, milestone birthdays, engagements, and private family celebrations across Sydney.",
+    summary:
+      "We bring the same quiet, disciplined documentary eye used for commercial events to intimate private milestones. From waterfront engagement celebrations and boutique weddings to milestone birthdays and family gatherings, we capture candid emotion, genuine warmth, and key memories without stiff posing.",
+    commissioners: [
+      "Couples planning intimate Sydney weddings & engagements",
+      "Families celebrating milestone birthdays (30th, 40th, 50th, 70th, 80th)",
+      "Private celebration hosts & party planners",
+      "Milestone anniversary & family reunion committees",
+    ],
+    subjects: [
+      "Candid guest interactions, authentic laughter & atmosphere",
+      "Key ceremony moments, speeches & celebratory toasts",
+      "Environmental couple & family group portraits",
+      "Venue styling, tablescapes, lighting & event details",
+      "Multi-generational family gatherings",
+    ],
+    businessUses: [
+      "Private Australian-hosted digital gallery for guest sharing",
+      "High-resolution archival print collections & bespoke albums",
+      "Thank-you announcements & social milestone posts",
+      "Permanent family photographic archives",
+    ],
+    productionStages: [
+      {
+        stage: "1. Celebration Flow & VIP Alignment",
+        detail:
+          "Reviewing speech timings, key family members, and specific group portrait requests.",
+      },
+      {
+        stage: "2. Candid Documentary Coverage",
+        detail:
+          "Quiet, natural photography that lets you and your guests enjoy the event without interference.",
+      },
+      {
+        stage: "3. Fast Highlight Sneak Peek",
+        detail:
+          "Curated highlight collection delivered within 24–48 hours for immediate sharing with friends and family.",
+      },
+      {
+        stage: "4. Master Retouched Gallery",
+        detail:
+          "Complete individually colour-graded high-resolution collection ready for full-quality printing and download.",
+      },
+    ],
+    deliverables: [
+      "Private password-protected digital gallery with unlimited full-res guest downloads",
+      "Highlight sneak peek pack delivered within 24–48 hours",
+      "Full set of print-ready 300 DPI master files and web-optimised files",
+      "Full personal printing and sharing rights with zero watermarks",
+    ],
+    turnaroundStandard: "3–5 business days for complete master gallery",
+    turnaroundFast: "24–48 hours for highlight sneak peek",
+    relatedGallerySlugs: [
+      "george-and-adrianas-engagement",
+      "annas-birthday",
+    ],
+    relatedDocSlugs: [
+      "turnaround-and-delivery-specs",
+      "pricing-and-rates-guide",
+    ],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePackage | undefined {

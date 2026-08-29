@@ -691,10 +691,105 @@ export const GALLERY_PAGE_LINKS: Record<
   "laundry-lane": { service: "corporate-events-conferences" },
 };
 
+export interface GalleryCategoryMeta {
+  slug: string;
+  name: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  seoTitle: string;
+  metaDescription: string;
+  matchedServiceSlug: string;
+  filterCategories: string[];
+}
+
+export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
+  {
+    slug: "corporate",
+    name: "Corporate Conferences, Summits & Galas",
+    shortName: "Corporate & Summits",
+    tagline:
+      "High-impact documentary photography for corporate conferences, executive summits, and awards galas across Sydney.",
+    description:
+      "Disciplined photographic coverage for keynote addresses, executive panel discussions, sponsor exhibition activations, and corporate dinners at premier venues including ICC Sydney, Barangaroo, and the CBD.",
+    seoTitle: "Corporate Event Photography Sydney | Conference & Summit Case Studies",
+    metaDescription:
+      "Explore Sydney corporate event and conference photography case studies. Stage keynote coverage, sponsor activations, executive summits, and awards galas.",
+    matchedServiceSlug: "corporate-events-conferences",
+    filterCategories: ["corporate"],
+  },
+  {
+    slug: "not-for-profit",
+    name: "Not-For-Profit & Charity Galas",
+    shortName: "Not-For-Profit & Community",
+    tagline:
+      "Respectful, mission-driven documentary storytelling for major Australian non-profits, foundations, and civic forums.",
+    description:
+      "Authentic documentation for flagship charity fundraisers, community assemblies, advocacy summits, and cultural festivals across Sydney and nationwide.",
+    seoTitle: "Not-For-Profit & Charity Gala Photography Sydney | Case Studies",
+    metaDescription:
+      "Documentary photography for Sydney charity galas, philanthropic foundations, and community forums. Proven track record with Sony Foundation, batyr, and Order of Australia.",
+    matchedServiceSlug: "not-for-profit-community",
+    filterCategories: ["not-for-profit"],
+  },
+  {
+    slug: "celebrations-milestones",
+    name: "Private Celebrations, Birthdays & Weddings",
+    shortName: "Celebrations & Weddings",
+    tagline:
+      "Unobtrusive documentary coverage for milestone birthdays, intimate weddings, and family gatherings across Sydney.",
+    description:
+      "Capturing candid warmth, genuine guest emotions, speeches, and styling for milestone celebrations, foreshore engagements, and private events with zero stiff posing.",
+    seoTitle: "Sydney Private Event, Birthday & Intimate Wedding Photography",
+    metaDescription:
+      "Candid documentary photography for milestone birthdays (21st, 30th, 40th, 50th, 80th), private parties, foreshore engagements, and boutique weddings across Sydney.",
+    matchedServiceSlug: "private-events-milestones-celebrations",
+    filterCategories: ["celebrations-milestone", "weddings-engagements"],
+  },
+  {
+    slug: "fashion-campaigns",
+    name: "Fashion Campaigns & Brand Activations",
+    shortName: "Fashion & Activations",
+    tagline:
+      "Clean, publication-ready visual assets for fashion runways, lookbooks, and commercial brand launches.",
+    description:
+      "High-energy runway documentation, studio editorial productions, and commercial pop-ups designed for marketing lookbooks, PR distribution, and social advertising.",
+    seoTitle: "Sydney Fashion & Brand Activation Photography | Case Studies",
+    metaDescription:
+      "Visual documentation for Australian Fashion Week, commercial brand pop-ups, and studio fashion campaigns in Sydney.",
+    matchedServiceSlug: "brand-campaigns-activations",
+    filterCategories: ["fashion-editorial"],
+  },
+  {
+    slug: "sports-concerts",
+    name: "Concerts, Sports & Stadium Events",
+    shortName: "Sports & Concerts",
+    tagline:
+      "High-speed, decisive action photography for national stadium finals and live music concerts.",
+    description:
+      "Covering high-intensity sporting matches at ANZ Stadium and live concert performances with high-speed telephoto optics and stage precision.",
+    seoTitle: "Sydney Concert & Sports Event Photography | Case Studies",
+    metaDescription:
+      "High-speed documentary photography for major stadium grand finals and live concert performances in Sydney.",
+    matchedServiceSlug: "corporate-events-conferences",
+    filterCategories: ["sports", "concerts"],
+  },
+];
+
 export function getFeaturedGalleries(): GalleryProject[] {
   return GALLERIES.filter((g) => g.featured);
 }
 
 export function getGalleryBySlug(slug: string): GalleryProject | undefined {
   return GALLERIES.find((g) => g.slug === slug);
+}
+
+export function getCategoryBySlug(slug: string): GalleryCategoryMeta | undefined {
+  return GALLERY_CATEGORIES.find((c) => c.slug === slug);
+}
+
+export function getGalleriesByCategorySlug(categorySlug: string): GalleryProject[] {
+  const cat = getCategoryBySlug(categorySlug);
+  if (!cat) return [];
+  return GALLERIES.filter((g) => cat.filterCategories.includes(g.category));
 }
