@@ -39,7 +39,6 @@ const imgFashion2 = getOptimizedBase64('galleries/australian-fashion-week-2026/a
 const imgWharf1 = getOptimizedBase64('galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-1.webp', 1000, 80);
 const imgWharf3 = getOptimizedBase64('galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-3.webp', 1200, 80);
 const imgTedx1 = getOptimizedBase64('galleries/tedx-macquarie-uni/tedx-macquarie-uni-01.webp', 1000, 80);
-const imgTedx2 = getOptimizedBase64('galleries/tedx-macquarie-uni/tedx-macquarie-uni-02.webp', 1000, 80);
 const imgRoyalle1 = getOptimizedBase64('galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00001.webp', 1000, 80);
 const imgStJude1 = getOptimizedBase64('galleries/order-of-australia-the-school-of-st-jude/order-of-australia-the-school-of-st-jude-01.webp', 1000, 80);
 const imgEngagement1 = getOptimizedBase64('galleries/george-and-adrianas-engagement/george-and-adrianas-engagement-01.webp', 1000, 80);
@@ -159,34 +158,20 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     /* Typography */
-    .eyebrow {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #888888;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .slide.light .eyebrow {
-      color: #777777;
-    }
-
     h1 {
-      font-size: 64px;
+      font-size: 68px;
       font-weight: 800;
       line-height: 1.08;
       letter-spacing: -0.03em;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     h2 {
-      font-size: 46px;
+      font-size: 50px;
       font-weight: 700;
-      line-height: 1.14;
+      line-height: 1.12;
       letter-spacing: -0.02em;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     p.lead {
@@ -195,7 +180,7 @@ const htmlContent = `<!DOCTYPE html>
       line-height: 1.5;
       color: #cccccc;
       max-width: 820px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .slide.light p.lead {
@@ -203,12 +188,12 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     p.body-text {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #aaaaaa;
       max-width: 780px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .slide.light p.body-text {
@@ -235,7 +220,7 @@ const htmlContent = `<!DOCTYPE html>
     .card {
       background: #141414;
       border: 1px solid #222222;
-      padding: 32px;
+      padding: 36px 30px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -247,11 +232,11 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .metric-num {
-      font-size: 44px;
+      font-size: 46px;
       font-weight: 800;
       letter-spacing: -0.03em;
       color: #ffffff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .slide.light .metric-num {
@@ -261,7 +246,7 @@ const htmlContent = `<!DOCTYPE html>
     .card-text {
       font-size: 15px;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.55;
       color: #999999;
     }
 
@@ -326,7 +311,7 @@ const htmlContent = `<!DOCTYPE html>
 
     .specs-table td {
       font-size: 16px;
-      padding: 22px 20px;
+      padding: 24px 20px;
       border-bottom: 1px solid #202020;
       color: #cccccc;
       line-height: 1.45;
@@ -339,24 +324,6 @@ const htmlContent = `<!DOCTYPE html>
 
     .specs-table tr:last-child td {
       border-bottom: none;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid #333333;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: #cccccc;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
-
-    .slide.light .badge {
-      border-color: #d6d2c7;
-      color: #333333;
-      background: #f0ebe1;
     }
   </style>
 </head>
@@ -374,17 +341,13 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <span class="eyebrow">Sydney Commercial & Event Studio</span>
         <h1>Commercial Discipline.<br/>Quiet Execution.</h1>
         <p class="lead">
           Quiet, reliable photography for corporate conferences, charity galas, brand launches, and workplace portraits across Sydney.
         </p>
-        <div style="margin-top: 32px;">
-          <span class="badge">Sydney CBD & Inner West</span>
-          <span class="badge">Sub-12h PR delivery</span>
-          <span class="badge">$10M Public Liability</span>
-          <span class="badge">Studio & gear hire scoping</span>
-        </div>
+        <p class="body-text" style="color: #777777; margin-top: 40px; font-size: 16px;">
+          Sydney CBD &bull; Inner West &bull; Sub-12h PR delivery &bull; $10M public liability
+        </p>
       </div>
       <div class="img-box" style="height: 600px;">
         <img src="${imgFashion1}" alt="Australian Fashion Week by Nikolas Gannon" />
@@ -408,7 +371,6 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; margin: 20px 0;">
-      <span class="eyebrow">About the Studio</span>
       <h2>Direct experience on the floor and behind the brief.</h2>
       <p class="lead" style="max-width: 1000px; margin-bottom: 40px;">
         Led by Nikolas Gannon, former client engagement director at social-impact agency We Are World Change. We understand run sheets, sponsor commitments, and the need for zero fuss on the day.
@@ -417,7 +379,7 @@ const htmlContent = `<!DOCTYPE html>
       <div class="content-columns-4">
         <div class="card">
           <div class="metric-num">14M+</div>
-          <div class="card-text">Views on Unsplash with work published globally across OECD, ANU, and media platforms.</div>
+          <div class="card-text">Views on Unsplash with work published across OECD, ANU, and media platforms.</div>
         </div>
         <div class="card">
           <div class="metric-num">&lt;12h</div>
@@ -425,11 +387,10 @@ const htmlContent = `<!DOCTYPE html>
         </div>
         <div class="card">
           <div class="metric-num">$10M</div>
-          <div class="card-title" style="font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111;">Public Liability</div>
           <div class="card-text">Certificate of currency issued directly to your venue or risk management team.</div>
         </div>
         <div class="card">
-          <div class="metric-num" style="font-size: 32px; margin-bottom: 22px;">Fixed quotes</div>
+          <div class="metric-num" style="font-size: 32px; margin-bottom: 24px;">Fixed rates</div>
           <div class="card-text">Single upfront price including retouched master files and full commercial rights.</div>
         </div>
       </div>
@@ -453,7 +414,6 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <span class="eyebrow">Corporate Events</span>
         <h2>Conferences, Summits & Awards Galas</h2>
         <p class="body-text">
           Full coverage for multi-day conventions, leadership summits, and awards evenings at venues like ICC Sydney, Doltone House, and Crown Sydney.
@@ -493,7 +453,6 @@ const htmlContent = `<!DOCTYPE html>
         <div class="img-box"><img src="${imgStJude1}" alt="Order of Australia St Jude" /></div>
       </div>
       <div>
-        <span class="eyebrow">Not-For-Profit & Community</span>
         <h2>Fundraisers, Galas & Community Forums</h2>
         <p class="body-text">
           Respectful, low-profile coverage for charity galas, major donor dinners, live auctions, and civic assemblies.
@@ -525,7 +484,6 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <span class="eyebrow">Brand Campaigns</span>
         <h2>Product Launches, Pop-Ups & Lookbooks</h2>
         <p class="body-text">
           Clean, brand-aligned imagery for product launches, pop-up activations, retail installations, and commercial lookbooks.
@@ -561,8 +519,7 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <span class="eyebrow">Workplace Portraits</span>
-        <h2>Team Headshots & Environmental Portraits</h2>
+        <h2>Team Headshots & Workplace Portraits</h2>
         <p class="body-text">
           Natural corporate portraits and team photography taken on-location at your office or annual conference.
         </p>
@@ -600,7 +557,6 @@ const htmlContent = `<!DOCTYPE html>
         <div class="img-box"><img src="${imgBirthday1}" alt="Anna Birthday Celebration" /></div>
       </div>
       <div>
-        <span class="eyebrow">Private Celebrations</span>
         <h2>Milestone Birthdays, Engagements & Weddings</h2>
         <p class="body-text">
           Candid documentary photography for landmark birthdays (21st, 30th, 40th, 50th, 80th), waterfront engagements, and intimate weddings.
@@ -631,7 +587,6 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <span class="eyebrow">Turnaround & Standards</span>
       <h2>Clear timelines and reliable delivery.</h2>
       <p class="lead" style="font-size: 18px; margin-bottom: 24px;">
         Every shoot includes dual-card raw backup on the day and calibrated color editing.
@@ -687,7 +642,6 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <span class="eyebrow">Sydney Footprint</span>
       <h2>Covering all of Greater Sydney.</h2>
       <p class="lead" style="font-size: 18px; margin-bottom: 32px;">
         Based in the Inner West with regular on-site work across Sydney's major convention centres and event spaces.
@@ -695,28 +649,28 @@ const htmlContent = `<!DOCTYPE html>
 
       <div class="content-columns-4">
         <div class="card">
-          <div style="font-size: 18px; font-weight: 700; color: #ffb162; margin-bottom: 12px;">Inner West</div>
+          <div style="font-size: 20px; font-weight: 700; color: #ffb162; margin-bottom: 14px;">Inner West</div>
           <div class="card-text">
             Ashfield, Newtown, Balmain, Rozelle, Leichhardt, Camperdown, Stanmore.<br/><br/>
             Carriageworks, The Eveleigh, Factory Theatre, Camperdown Commons.
           </div>
         </div>
         <div class="card">
-          <div style="font-size: 18px; font-weight: 700; color: #ffb162; margin-bottom: 12px;">Sydney CBD & East</div>
+          <div style="font-size: 20px; font-weight: 700; color: #ffb162; margin-bottom: 14px;">Sydney CBD & East</div>
           <div class="card-text">
             City, Barangaroo, Circular Quay, Darling Harbour, Surry Hills.<br/><br/>
             ICC Sydney, Crown Sydney, Doltone House, MCA, Opera House.
           </div>
         </div>
         <div class="card">
-          <div style="font-size: 18px; font-weight: 700; color: #ffb162; margin-bottom: 12px;">North Shore</div>
+          <div style="font-size: 20px; font-weight: 700; color: #ffb162; margin-bottom: 14px;">North Shore</div>
           <div class="card-text">
             North Sydney, Chatswood, Macquarie Park, St Leonards, Manly.<br/><br/>
             Macquarie Uni Incubator, The Concourse, Taronga Event Centre, Q Station.
           </div>
         </div>
         <div class="card">
-          <div style="font-size: 18px; font-weight: 700; color: #ffb162; margin-bottom: 12px;">Western Sydney</div>
+          <div style="font-size: 20px; font-weight: 700; color: #ffb162; margin-bottom: 14px;">Western Sydney</div>
           <div class="card-text">
             Parramatta, Olympic Park, Alexandria, Rosebery, Ryde.<br/><br/>
             CommBank Stadium, Accor Stadium, PHIVE Parramatta, The Grounds.
@@ -743,7 +697,6 @@ const htmlContent = `<!DOCTYPE html>
 
     <div class="content-split">
       <div>
-        <span class="eyebrow">Next Steps</span>
         <h2>Let's discuss your event.</h2>
         <p class="lead" style="font-size: 20px; margin-bottom: 28px;">
           Send through your event date, venue, and run sheet. We will provide a simple, fixed quote within 24 hours.
@@ -788,11 +741,11 @@ const outputPdfPublic = path.join(publicDir, 'Inner_West_Event_Photography_Capab
 const chromeBinary = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const cmd = `"${chromeBinary}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${outputPdfDesktop}" "file://${htmlPath}"`;
 
-console.log('Rendering compressed, lightweight PDF...');
+console.log('Rendering stripped, zero-slop lightweight PDF...');
 try {
   execSync(cmd);
   fs.copyFileSync(outputPdfDesktop, outputPdfPublic);
-  console.log('Done!');
+  console.log('Done! Rendered pure minimal PDF.');
 } catch (err) {
   console.error('Error rendering PDF:', err);
 }
