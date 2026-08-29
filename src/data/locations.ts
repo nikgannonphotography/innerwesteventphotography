@@ -31,6 +31,7 @@ export const LOCATIONS: LocationHub[] = [
       "Glebe",
       "Summer Hill",
       "Ashfield",
+      "Ashbury",
       "Haberfield",
       "Lilyfield",
       "Birchgrove"
