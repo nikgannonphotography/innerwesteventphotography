@@ -1041,6 +1041,72 @@ export const DOCS: DocGuide[] = [
       "pricing-and-rates-guide",
     ],
   },
+  {
+    slug: "sydney-studio-hire-and-production-equipment-guide",
+    number: "DOC-14",
+    title: "Sydney Studio Hire, Equipment Packages & Production Scoping Guide",
+    subtitle:
+      "How to scope daylight photography studios, cyclorama spaces, specialized camera/lighting packages, and crew coordination across Sydney.",
+    category: "venues",
+    categoryLabel: "Studio & Production Guide",
+    lastUpdated: "August 2026",
+    readTime: "7 min read",
+    summary:
+      "A complete commercial production guide covering photography studio hire in Sydney (Inner West, Alexandria, Surry Hills), high-end continuous and strobe lighting packages, multi-camera crews, and hair/makeup styling coordination upon discussion.",
+    searchIntent: "venue",
+    seoTitle: "Sydney Photography Studio Hire & Production Equipment Guide",
+    metaDescription:
+      "Scoping guide for commercial photography studio hire, cyclorama rental, specialized lighting gear packages, and production crew in Sydney. Inner West, Alexandria & Surry Hills.",
+    publishedDate: "2026-08-28",
+    sections: [
+      {
+        heading: "1. Daylight vs Cyclorama Studio Hire in Sydney",
+        content:
+          "Depending on whether your campaign requires soft natural daylight or high-contrast commercial isolation, we help scope and coordinate the right studio space across Sydney's primary creative hubs (Marrickville, Alexandria, Waterloo, Surry Hills).",
+        subsections: [
+          {
+            title: "Daylight Studios (Inner West & Surry Hills)",
+            body: "Ideal for lifestyle lookbooks, brand activations, and natural executive portraits featuring high ceilings, timber floors, and expansive north/east facing industrial windows.",
+          },
+          {
+            title: "Cyclorama (Cyc Wall) Studios (Alexandria & Waterloo)",
+            body: "Essential for pure seamless commercial product shoots, fashion campaigns, and multi-talent group staging requiring full lighting control and floor-to-ceiling infinity curves.",
+          },
+        ],
+      },
+      {
+        heading: "2. Specialized Gear & Lighting Hire Coordination",
+        content:
+          "For high-spec commercial productions, we coordinate complete technical gear packages including Profoto / Broncolor high-speed studio strobes, continuous cinema lighting (Aputure / Nanlite), high-resolution medium format systems, and on-set wireless tethering stations with calibrated color monitors.",
+      },
+      {
+        heading: "3. Crew Coordination: Digi-Techs, Assistants & HMUA",
+        content:
+          "Large commercial shoots require dedicated on-set support. Upon discussion, we coordinate experienced digital operators (digi-ops for real-time asset tagging and backup), second shooters, camera assistants, and professional Hair & Makeup Artists (HMUA) tailored to your brand brief.",
+      },
+    ],
+    keyTakeaways: [
+      "We facilitate end-to-end studio hire across top Inner West and South Sydney production spaces.",
+      "Custom specialized lighting and cinema gear packages sourced for demanding commercial briefs.",
+      "On-set digital operators and HMUA styling teams available upon discussion.",
+      "Transparent line-item studio and equipment rates integrated into one clear proposal.",
+    ],
+    relatedService: "brand-campaigns-activations",
+    relatedBlogSlugs: [
+      "hiring-freelance-event-photographers-sydney-checklist",
+      "how-to-write-an-event-photography-brief",
+    ],
+    relatedLocations: ["inner-west", "sydney-cbd"],
+    relatedGalleries: [
+      "australian-fashion-week-2026",
+      "royalle-modelling-x-leather-on-me-xteds-cameras",
+    ],
+    relatedGuides: [
+      "event-briefing-template",
+      "turnaround-and-delivery-specs",
+      "pricing-and-rates-guide",
+    ],
+  },
 ];
 
 export function getDocBySlug(slug: string): DocGuide | undefined {

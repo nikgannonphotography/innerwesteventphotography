@@ -72,6 +72,7 @@ export const SERVICES: ServicePackage[] = [
     deliverables: [
       "Private Australian-hosted digital gallery with unlimited high-res downloads",
       "Full commercial usage licence for all internal/marketing and PR channels",
+      "Multi-camera crews and specialized telephoto/stage gear hire upon discussion",
       "High-resolution print files and web-optimised formats",
       "Fast morning-after PR highlight pack (on request)",
     ],
@@ -161,7 +162,7 @@ export const SERVICES: ServicePackage[] = [
     tagline:
       "Clean, brand-aligned visual documentation of product launches, commercial activations, experiential marketing, and pop-up events.",
     summary:
-      "We produce clean, publication-ready imagery for commercial brand launches, pop-up activations, and ongoing marketing campaigns. Every shoot is built around specific creative requirements, sponsor brand guidelines, and quick turnaround for marketing teams.",
+      "We produce clean, publication-ready imagery for commercial brand launches, pop-up activations, studio lookbooks, and ongoing marketing campaigns. Every production is built around specific creative guidelines and rapid marketing delivery. Upon discussion, we coordinate daylight studio hire across Sydney (Inner West, Alexandria, Surry Hills), bespoke cyclorama spaces, specialized high-end cinema/lighting gear packages, on-set digital operators (digi-techs), and professional hair & makeup styling.",
     commissioners: [
       "Brand marketing teams & creative agencies",
       "PR agencies & experiential production companies",
@@ -184,12 +185,12 @@ export const SERVICES: ServicePackage[] = [
       {
         stage: "1. Creative Brief & Moodboard Review",
         detail:
-          "Reviewing brand guidelines, visual palette, and required hero formats.",
+          "Reviewing brand guidelines, visual palette, required hero formats, and studio/equipment hire requirements.",
       },
       {
         stage: "2. Commercial Execution",
         detail:
-          "Precision lighting and disciplined compositional framing on-site.",
+          "Precision lighting and disciplined compositional framing on-location or in-studio.",
       },
       {
         stage: "3. Same-Day Social Drops",
@@ -204,6 +205,8 @@ export const SERVICES: ServicePackage[] = [
     ],
     deliverables: [
       "Full commercial advertising and multi-channel marketing licence",
+      "Sydney daylight studio hire & cyclorama space coordination (upon discussion)",
+      "High-end lighting, grip, and specialized camera package hire scoping",
       "Rapid turnaround digital selects within 12–24 hours",
       "High-resolution master files and web-ready formats",
       "Vertical and horizontal crops formatted for digital campaigns",
@@ -228,7 +231,7 @@ export const SERVICES: ServicePackage[] = [
     tagline:
       "Professional environmental portraits, team photography, and executive headshots on-location at your Sydney office or event.",
     summary:
-      "We create natural corporate portraits and team imagery that convey confidence and approachability. Whether setting up a pop-up headshot studio at your annual conference or shooting executive portraits in your Sydney workplace, we work quickly with minimal interruption to business operations.",
+      "We create natural corporate portraits and team imagery that convey confidence and approachability. Whether setting up a mobile pop-up studio at your office or coordinating external photography studio hire in Sydney, we work quickly with minimal interruption to business operations.",
     commissioners: [
       "People and Culture / HR leads",
       "Corporate communications and marketing teams",
@@ -270,6 +273,8 @@ export const SERVICES: ServicePackage[] = [
     ],
     deliverables: [
       "High-resolution and web-crop portraits for each person",
+      "Mobile pop-up studio setup on-site or external daylight studio hire coordination",
+      "Hair & makeup (HMUA) artist coordination available upon discussion",
       "Transparent or natural office backgrounds as specified",
       "Full digital and print corporate usage rights",
       "Centralised corporate portal for HR/admin teams",
