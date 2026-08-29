@@ -34,17 +34,13 @@ function getOptimizedBase64(relPath, maxWidth = 1600, quality = 82) {
 }
 
 const logoBase64 = getOptimizedBase64('logos/Master Logo - 5000x5000/Master Logo - 5000x5000.png', 400, 90);
-const imgFashion1 = getOptimizedBase64('galleries/australian-fashion-week-2026/australian-fashion-week-2026-01.webp', 1400, 80);
-const imgFashion2 = getOptimizedBase64('galleries/australian-fashion-week-2026/australian-fashion-week-2026-02.webp', 1000, 80);
-const imgWharf1 = getOptimizedBase64('galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-1.webp', 1000, 80);
-const imgWharf3 = getOptimizedBase64('galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-3.webp', 1200, 80);
-const imgTedx1 = getOptimizedBase64('galleries/tedx-macquarie-uni/tedx-macquarie-uni-01.webp', 1000, 80);
-const imgRoyalle1 = getOptimizedBase64('galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00001.webp', 1000, 80);
-const imgStJude1 = getOptimizedBase64('galleries/order-of-australia-the-school-of-st-jude/order-of-australia-the-school-of-st-jude-01.webp', 1000, 80);
-const imgEngagement1 = getOptimizedBase64('galleries/george-and-adrianas-engagement/george-and-adrianas-engagement-01.webp', 1000, 80);
-const imgBirthday1 = getOptimizedBase64('galleries/annas-birthday/annas-birthday-1.webp', 1000, 80);
-const imgSummit1 = getOptimizedBase64('galleries/echo-change-future-action-summit-2026/echo-change-future-action-summit-2026-01.webp', 1000, 80);
+const imgFashion1 = getOptimizedBase64('galleries/australian-fashion-week-2026/australian-fashion-week-2026-01.webp', 1200, 80);
+const imgTedx4 = getOptimizedBase64('galleries/tedx-macquarie-uni/tedx-macquarie-uni-04.webp', 1200, 80);
+const imgStJude1 = getOptimizedBase64('galleries/order-of-australia-the-school-of-st-jude/order-of-australia-the-school-of-st-jude-01.webp', 1200, 80);
+const imgRoyalle1 = getOptimizedBase64('galleries/royalle-modelling-x-leather-on-me-xteds-cameras/Nikolas-Gannon_AFW-Royalle-Teds_00001.webp', 1200, 80);
 const imgTungsten1 = getOptimizedBase64('galleries/tungsten-automation-summit-sydney/tungsten-automation-summit-sydney-1.webp', 1200, 80);
+const imgEngagement6 = getOptimizedBase64('galleries/george-and-adrianas-engagement/george-and-adrianas-engagement-06.webp', 1200, 80);
+const imgWharf3 = getOptimizedBase64('galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-3.webp', 1200, 80);
 
 const htmlContent = `<!DOCTYPE html>
 <html lang="en">
@@ -189,7 +185,7 @@ const htmlContent = `<!DOCTYPE html>
       font-weight: 400;
       line-height: 1.65;
       color: #aaaaaa;
-      max-width: 780px;
+      max-width: 820px;
       margin-bottom: 22px;
     }
 
@@ -200,11 +196,11 @@ const htmlContent = `<!DOCTYPE html>
     /* Grids & Containers */
     .content-split {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 70px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 80px;
       align-items: center;
       flex: 1;
-      margin: 30px 0;
+      margin: 20px 0;
     }
 
     .content-columns-4 {
@@ -251,36 +247,27 @@ const htmlContent = `<!DOCTYPE html>
       color: #666666;
     }
 
-    /* Images */
-    .img-box {
-      width: 100%;
-      height: 100%;
-      max-height: 660px;
+    /* 4:5 Vertical Hero Frame Rule */
+    .hero-4x5 {
+      width: 530px;
+      height: 662px;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
       border: 1px solid #222222;
       background: #161616;
+      justify-self: end;
     }
 
-    .slide.light .img-box {
+    .slide.light .hero-4x5 {
       border: 1px solid #e0ded9;
     }
 
-    .img-box img {
+    .hero-4x5 img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
       display: block;
-    }
-
-    .img-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      height: 640px;
-    }
-
-    .img-grid-2 .img-box {
-      height: 100%;
     }
 
     /* Specs Table */
@@ -346,7 +333,7 @@ const htmlContent = `<!DOCTYPE html>
           Sydney CBD &bull; Inner West &bull; Next-morning delivery &bull; $10M public liability
         </p>
       </div>
-      <div class="img-box" style="height: 600px;">
+      <div class="hero-4x5">
         <img src="${imgFashion1}" alt="Australian Fashion Week by Nikolas Gannon" />
       </div>
     </div>
@@ -422,9 +409,8 @@ const htmlContent = `<!DOCTYPE html>
           You get a dedicated highlight pack by 8:00 AM the next morning for your morning-after press release and social feeds.
         </p>
       </div>
-      <div class="img-grid-2">
-        <div class="img-box"><img src="${imgTedx1}" alt="TEDx Macquarie Uni Keynote" /></div>
-        <div class="img-box"><img src="${imgSummit1}" alt="Echo Change Future Action Summit" /></div>
+      <div class="hero-4x5">
+        <img src="${imgTedx4}" alt="TEDx Macquarie Uni Speaker" />
       </div>
     </div>
 
@@ -445,9 +431,8 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content-split">
-      <div class="img-grid-2">
-        <div class="img-box"><img src="${imgWharf1}" alt="Sony Foundation Wharf4Ward Gala" /></div>
-        <div class="img-box"><img src="${imgStJude1}" alt="Order of Australia St Jude" /></div>
+      <div class="hero-4x5" style="justify-self: start;">
+        <img src="${imgStJude1}" alt="Order of Australia St Jude" />
       </div>
       <div>
         <h2>Charity Galas & Fundraisers</h2>
@@ -492,9 +477,8 @@ const htmlContent = `<!DOCTYPE html>
           We also provide live photo drops during the event so your marketing team can publish straight to socials.
         </p>
       </div>
-      <div class="img-grid-2">
-        <div class="img-box"><img src="${imgRoyalle1}" alt="Australian Fashion Week Royalle x Teds Cameras" /></div>
-        <div class="img-box"><img src="${imgFashion2}" alt="Fashion Week Runway Details" /></div>
+      <div class="hero-4x5">
+        <img src="${imgRoyalle1}" alt="Australian Fashion Week Royalle x Teds Cameras" />
       </div>
     </div>
 
@@ -527,7 +511,7 @@ const htmlContent = `<!DOCTYPE html>
           Team members view and choose their favourite shot on a laptop right away. You get retouched high-res files delivered in an easy folder for HR and marketing.
         </p>
       </div>
-      <div class="img-box" style="height: 600px;">
+      <div class="hero-4x5">
         <img src="${imgTungsten1}" alt="Corporate Executive Portrait" />
       </div>
     </div>
@@ -549,9 +533,8 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <div class="content-split">
-      <div class="img-grid-2">
-        <div class="img-box"><img src="${imgEngagement1}" alt="George and Adriana Engagement" /></div>
-        <div class="img-box"><img src="${imgBirthday1}" alt="Anna Birthday Celebration" /></div>
+      <div class="hero-4x5" style="justify-self: start;">
+        <img src="${imgEngagement6}" alt="George and Adriana Engagement" />
       </div>
       <div>
         <h2>Birthdays, Engagements & Weddings</h2>
@@ -715,7 +698,7 @@ const htmlContent = `<!DOCTYPE html>
           ✓ High-resolution retouched master files included
         </div>
       </div>
-      <div class="img-box" style="height: 600px;">
+      <div class="hero-4x5">
         <img src="${imgWharf3}" alt="Sydney Event by Nikolas Gannon" />
       </div>
     </div>
@@ -739,15 +722,12 @@ const outputPdfPublic = path.join(publicDir, 'Inner_West_Event_Photography.pdf')
 const chromeBinary = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const cmd = `"${chromeBinary}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${outputPdfNamed}" "file://${htmlPath}"`;
 
-console.log('Rendering human, conversational, chilled-out PDF...');
+console.log('Rendering 4:5 vertical centered master PDF...');
 try {
   execSync(cmd);
   fs.copyFileSync(outputPdfNamed, outputPdfCapability);
   fs.copyFileSync(outputPdfNamed, outputPdfPublic);
-  console.log('Done! Generated:');
-  console.log('1.', outputPdfNamed);
-  console.log('2.', outputPdfCapability);
-  console.log('3.', outputPdfPublic);
+  console.log('Done!');
 } catch (err) {
   console.error('Error rendering PDF:', err);
 }
