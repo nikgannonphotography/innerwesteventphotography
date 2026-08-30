@@ -1089,7 +1089,7 @@ export const DOCS: DocGuide[] = [
       "We facilitate end-to-end studio hire across top Inner West and South Sydney production spaces.",
       "Custom specialized lighting and cinema gear packages sourced for demanding commercial briefs.",
       "On-set digital operators and HMUA styling teams available upon discussion.",
-      "Transparent line-item studio and equipment rates integrated into one clear proposal.",
+      "Transparent line-item studio and equipment rates integrated into one clear quote.",
     ],
     relatedService: "brand-campaigns-activations",
     relatedBlogSlugs: [

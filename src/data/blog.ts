@@ -356,7 +356,7 @@ export const BLOG_POSTS: BlogPost[] = [
             "4. Transparent Commercial Licensing: Are full commercial usage rights included in perpetuity without hidden renewal fees?",
             "5. Accountable Lead: Will the person quoting your project be the lead operator on-site?",
             "6. Low-Light Stage Capability: Does the portfolio demonstrate crisp results under theatrical lighting without harsh direct flash?",
-            "7. Fast Turnaround Commitments: Are agreed delivery dates stated in writing in the service proposal?"
+            "7. Fast Turnaround Commitments: Are agreed delivery dates stated in writing in the service quote?"
           ]
         }
       ],
