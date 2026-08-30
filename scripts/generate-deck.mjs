@@ -330,7 +330,7 @@ const htmlContent = `<!DOCTYPE html>
           Quiet, reliable photography for corporate conferences, charity galas, brand launches, and celebrations across Sydney.
         </p>
         <p class="body-text" style="color: #777777; margin-top: 40px; font-size: 16px;">
-          Sydney CBD &bull; Inner West &bull; Next-morning delivery &bull; $10M public liability
+          Sydney CBD &bull; Inner West &bull; Next-morning delivery &bull; Full commercial rights
         </p>
       </div>
       <div class="hero-4x5">
@@ -370,8 +370,8 @@ const htmlContent = `<!DOCTYPE html>
           <div class="card-text">Morning-after highlight selects delivered so you can post while people are still talking about it.</div>
         </div>
         <div class="card">
-          <div class="metric-num">$10M</div>
-          <div class="card-text">Full public liability insurance ready to send straight to your venue or management team.</div>
+          <div class="metric-num">100%</div>
+          <div class="card-text">Commercial usage rights included perpetually with zero ongoing renewal fees.</div>
         </div>
         <div class="card">
           <div class="metric-num" style="font-size: 32px; margin-bottom: 24px;">Fixed rates</div>
