@@ -26,9 +26,9 @@ export const SERVICES: ServicePackage[] = [
     title: "Corporate Events & Conferences",
     subtitle: "Conferences, Summits, Galas & Award Evenings",
     tagline:
-      "Comprehensive documentary coverage for industry summits, annual conferences, awards galas, and corporate dinners.",
+      "Photography for conferences, awards nights, charity galas and corporate dinners.",
     summary:
-      "We document large-scale corporate events with quiet execution, technical reliability, and clear stage visibility. One production lead manages scoping through delivery, with additional photographers available for multi-room coverage.",
+      "From speakers and presentations to guest conversations and group photos, we cover the people and details of your event.",
     commissioners: [
       "Corporate event management teams & producers",
       "Marketing and communications directors",
@@ -42,42 +42,40 @@ export const SERVICES: ServicePackage[] = [
       "VIP arrivals & award presentations",
     ],
     businessUses: [
-      "Annual reports & executive stakeholder reviews",
+      "Annual reports & internal updates",
       "Future event promotion & delegate marketing",
-      "Sponsor wrap-up decks & partner ROI reporting",
+      "Sponsor reports & partner updates",
       "Corporate LinkedIn & internal communications",
     ],
     productionStages: [
       {
-        stage: "1. Briefing & Run-of-Show Alignment",
+        stage: "1. Plan the Coverage",
         detail:
-          "Aligning on keynote timings, sponsor obligations, and priority shot hierarchies.",
+          "Share your schedule, key people and the photos you need.",
       },
       {
-        stage: "2. On-Site Production",
+        stage: "2. Photograph the Event",
         detail:
-          "Dual-card cameras, backup bodies, and silent shutters for quiet stage coverage.",
+          "Coverage follows the agreed schedule and photo list.",
       },
       {
-        stage: "3. Rapid Press Selects",
+        stage: "3. Select the Photos",
         detail:
-          "Curated hero images (20–40 frames) delivered within 2–12 hours for immediate PR.",
+          "Photos are reviewed and selected after the shoot.",
       },
       {
-        stage: "4. Master Retouching & Archival Delivery",
+        stage: "4. Edit and Deliver",
         detail:
-          "Individually colour-graded master gallery delivered in print & web formats.",
+          "Edited photos are delivered in the agreed formats.",
       },
     ],
     deliverables: [
-      "Private Australian-hosted digital gallery with unlimited high-res downloads",
-      "Full commercial usage licence for all internal/marketing and PR channels",
-      "Multi-camera crews and specialized telephoto/stage gear hire upon discussion",
+      "Online gallery to view and download your photos",
+      "Photo usage agreed in your quote",
       "High-resolution print files and web-optimised formats",
-      "Fast morning-after PR highlight pack (on request)",
     ],
-    turnaroundStandard: "3–5 business days for full master gallery",
-    turnaroundFast: "2–12 hours for PR/social highlight selects",
+    turnaroundStandard: "Delivery timing is agreed before booking.",
+    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
     relatedGallerySlugs: [
       "tedx-macquarie-uni",
       "echo-change-future-action-summit-2026",
@@ -93,11 +91,11 @@ export const SERVICES: ServicePackage[] = [
     slug: "not-for-profit-community",
     number: "02",
     title: "Not-For-Profit & Community Forums",
-    subtitle: "Philanthropic Galas, Community Festivals & Forums",
+    subtitle: "Charity Galas, Community Festivals & Forums",
     tagline:
-      "Respectful, disciplined photographic documentation for advocacy organisations, civic forums, and community festivals.",
+      "Photography for charity events, fundraisers, community festivals and forums.",
     summary:
-      "Drawing on extensive background in not-for-profit operations and community organisations, we provide culturally sensitive and disciplined photography for civic gatherings, forums, and charity fundraisers.",
+      "We photograph speakers, volunteers, supporters and guests, with experience across charity fundraisers and community events.",
     commissioners: [
       "Not-for-profit communications & program leads",
       "Advocacy & charitable foundations",
@@ -105,7 +103,7 @@ export const SERVICES: ServicePackage[] = [
       "Philanthropic trusts & civic institutions",
     ],
     subjects: [
-      "Philanthropic addresses & keynote speakers",
+      "Speeches & keynote speakers",
       "Community assemblies & cultural performances",
       "Volunteer teams & frontline participants",
       "Donor recognition & patron conversations",
@@ -113,37 +111,37 @@ export const SERVICES: ServicePackage[] = [
     businessUses: [
       "Impact reports, grant applications & donor updates",
       "Advocacy campaigns, community newsletters & web archives",
-      "Philanthropic wrap-up reporting & public community archives",
+      "Event reports & community archives",
     ],
     productionStages: [
       {
-        stage: "1. Stakeholder & Sensitivity Alignment",
+        stage: "1. Plan the Coverage",
         detail:
-          "Identifying VIPs, community sensitivities, and consent protocols.",
+          "Discuss key people, permissions and any sensitive situations.",
       },
       {
-        stage: "2. Participatory Documentation",
-        detail: "Quiet, non-intrusive coverage respecting cultural dynamics.",
+        stage: "2. Photograph the Event",
+        detail: "Photograph speakers, guests, volunteers and activities.",
       },
       {
-        stage: "3. Fast Stakeholder Selections",
+        stage: "3. Select the Photos",
         detail:
-          "Immediate highlight selects for donor wrap emails and social channels.",
+          "Choose photos that cover the people and activities at your event.",
       },
       {
-        stage: "4. Comprehensive Impact Archive",
+        stage: "4. Edit and Deliver",
         detail:
-          "Master digital assets catalogued for long-term grant applications.",
+          "Deliver edited photos for the uses agreed in your quote.",
       },
     ],
     deliverables: [
-      "Comprehensive digital image library organised by session/topic",
-      "Full non-profit and public communications usage licence",
-      "Print-ready assets for brochures, donor reports, and exhibition displays",
-      "Social media formats for immediate community updates",
+      "Edited event photos",
+      "Photo usage agreed in your quote",
+      "High-resolution photos for print",
+      "Web-sized photos for online updates",
     ],
-    turnaroundStandard: "3–5 business days for full impact library",
-    turnaroundFast: "Same-day or next-morning selects on request",
+    turnaroundStandard: "Delivery timing is agreed before booking.",
+    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
     relatedGallerySlugs: [
       "sony-foundation-wharf4ward",
       "order-of-australia-the-school-of-st-jude",
@@ -160,20 +158,20 @@ export const SERVICES: ServicePackage[] = [
     title: "Brand Campaigns & Activations",
     subtitle: "Product Launches, Pop-Ups & Brand Experiences",
     tagline:
-      "Clean, brand-aligned visual documentation of product launches, commercial activations, experiential marketing, and pop-up events.",
+      "Photography for product launches, brand events, pop-ups and campaigns.",
     summary:
-      "We produce clean, publication-ready imagery for commercial brand launches, pop-up activations, studio lookbooks, and ongoing marketing campaigns. Every production is built around specific creative guidelines and rapid marketing delivery. Upon discussion, we coordinate daylight studio hire across Sydney (Inner West, Alexandria, Surry Hills), bespoke cyclorama spaces, specialized high-end cinema/lighting gear packages, on-set digital operators (digi-techs), and professional hair & makeup styling.",
+      "We photograph your products, displays, guests and event. Share your brand guidelines and where you plan to use the photos.",
     commissioners: [
       "Brand marketing teams & creative agencies",
       "PR agencies & experiential production companies",
-      "Direct-to-consumer consumer brands & hospitality groups",
+      "Consumer brands & hospitality groups",
       "Event venue marketing managers",
     ],
     subjects: [
-      "Branded spatial architecture & product displays",
+      "Event spaces & product displays",
       "Consumer interaction & live experiences",
       "VIP guests & influencer appearances",
-      "Macro product details & bespoke installations",
+      "Product details & installations",
     ],
     businessUses: [
       "Social media campaigns & digital platform advertising",
@@ -183,36 +181,32 @@ export const SERVICES: ServicePackage[] = [
     ],
     productionStages: [
       {
-        stage: "1. Creative Brief & Moodboard Review",
+        stage: "1. Discuss the Brief",
         detail:
-          "Reviewing brand guidelines, visual palette, required hero formats, and studio/equipment hire requirements.",
+          "Review your brand guidelines, reference photos and intended uses.",
       },
       {
-        stage: "2. Commercial Execution",
+        stage: "2. Photograph the Event",
         detail:
-          "Precision lighting and disciplined compositional framing on-location or in-studio.",
+          "Photograph the products, people and details on your shot list.",
       },
       {
-        stage: "3. Same-Day Social Drops",
+        stage: "3. Select the Photos",
         detail:
-          "On-site Wi-Fi tethering to deliver selects to social managers.",
+          "Review the photos against your brief.",
       },
       {
-        stage: "4. Commercial Grade Handover",
+        stage: "4. Edit and Deliver",
         detail:
-          "High-resolution retouched assets ready for digital and print deployment.",
+          "Deliver edited photos in the agreed formats.",
       },
     ],
     deliverables: [
-      "Full commercial advertising and multi-channel marketing licence",
-      "Sydney daylight studio hire & cyclorama space coordination (upon discussion)",
-      "High-end lighting, grip, and specialized camera package hire scoping",
-      "Rapid turnaround digital selects within 12–24 hours",
-      "High-resolution master files and web-ready formats",
-      "Vertical and horizontal crops formatted for digital campaigns",
+      "Photo usage agreed in your quote",
+      "High-resolution and web-sized photos",
     ],
-    turnaroundStandard: "3–4 business days for master catalogue",
-    turnaroundFast: "2–6 hours for live social media distribution",
+    turnaroundStandard: "Delivery timing is agreed before booking.",
+    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
     relatedGallerySlugs: [
       "australian-fashion-week-2026",
       "royalle-modelling-x-leather-on-me-xteds-cameras",
@@ -227,11 +221,11 @@ export const SERVICES: ServicePackage[] = [
     slug: "workplace-portraits-headshots",
     number: "04",
     title: "Workplace Portraits & Headshots",
-    subtitle: "On-Site Executive & Team Image Libraries",
+    subtitle: "Staff Headshots & Team Photos",
     tagline:
-      "Professional environmental portraits, team photography, and executive headshots on-location at your Sydney office or event.",
+      "Staff portraits, team photos and headshots at your Sydney office or event.",
     summary:
-      "We create natural corporate portraits and team imagery that convey confidence and approachability. Whether setting up a mobile pop-up studio at your office or coordinating external photography studio hire in Sydney, we work quickly with minimal interruption to business operations.",
+      "We photograph individuals and teams for company websites, staff profiles and LinkedIn. Tell us how many people need photos and the look you have in mind.",
     commissioners: [
       "People and Culture / HR leads",
       "Corporate communications and marketing teams",
@@ -252,35 +246,32 @@ export const SERVICES: ServicePackage[] = [
     ],
     productionStages: [
       {
-        stage: "1. Schedule & Setup Coordination",
+        stage: "1. Plan the Session",
         detail:
-          "Establishing time slots per person to eliminate team downtime.",
+          "Agree on the location, number of people and time needed.",
       },
       {
-        stage: "2. Mobile Studio or Environmental Staging",
-        detail: "Setting up studio backdrops or soft natural office staging.",
+        stage: "2. Set Up",
+        detail: "Choose the background and lighting for your portraits.",
       },
       {
-        stage: "3. On-Screen Selection",
+        stage: "3. Photograph the Team",
         detail:
-          "Live tethered viewing so staff select their preferred shot immediately.",
+          "Photograph each person and any agreed group photos.",
       },
       {
-        stage: "4. Natural Retouching & Delivery",
+        stage: "4. Edit and Deliver",
         detail:
-          "Individual skin retouching preserving professional authenticity.",
+          "Confirm the editing needed and deliver the agreed files.",
       },
     ],
     deliverables: [
       "High-resolution and web-crop portraits for each person",
-      "Mobile pop-up studio setup on-site or external daylight studio hire coordination",
-      "Hair & makeup (HMUA) artist coordination available upon discussion",
-      "Transparent or natural office backgrounds as specified",
-      "Full digital and print corporate usage rights",
-      "Centralised corporate portal for HR/admin teams",
+      "Photo usage agreed in your quote",
+      "Online gallery to view and download your photos",
     ],
-    turnaroundStandard: "3–5 business days for retouched portrait library",
-    turnaroundFast: "24–48 hours for urgent executive onboarding",
+    turnaroundStandard: "Delivery timing is agreed before booking.",
+    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
     relatedGallerySlugs: [
       "global-impact-summit",
       "echo-change-future-action-summit-2026",
@@ -293,9 +284,9 @@ export const SERVICES: ServicePackage[] = [
     title: "Private Events, Weddings & Milestones",
     subtitle: "Intimate Weddings, Engagements, Birthdays & Celebrations",
     tagline:
-      "Unobtrusive, documentary-style photography for intimate weddings, milestone birthdays, engagements, and private family celebrations across Sydney.",
+      "Photography for birthdays, engagements, small weddings and family celebrations across Sydney.",
     summary:
-      "We bring the same quiet, disciplined documentary eye used for commercial events to intimate private milestones. From waterfront engagement celebrations and boutique weddings to milestone birthdays and family gatherings, we capture candid emotion, genuine warmth, and key memories without stiff posing.",
+      "Candid photos of your guests, alongside speeches, group photos and the details of your celebration.",
     commissioners: [
       "Couples planning intimate Sydney weddings & engagements",
       "Families celebrating milestone birthdays (30th, 40th, 50th, 70th, 80th)",
@@ -303,48 +294,47 @@ export const SERVICES: ServicePackage[] = [
       "Milestone anniversary & family reunion committees",
     ],
     subjects: [
-      "Candid guest interactions, authentic laughter & atmosphere",
+      "Candid photos of your guests",
       "Key ceremony moments, speeches & celebratory toasts",
-      "Environmental couple & family group portraits",
-      "Venue styling, tablescapes, lighting & event details",
+      "Couple & family group photos",
+      "Venue, table settings & event details",
       "Multi-generational family gatherings",
     ],
     businessUses: [
-      "Private Australian-hosted digital gallery for guest sharing",
-      "High-resolution archival print collections & bespoke albums",
+      "Photos to share with family and friends",
+      "Photos for prints and albums",
       "Thank-you announcements & social milestone posts",
       "Permanent family photographic archives",
     ],
     productionStages: [
       {
-        stage: "1. Celebration Flow & VIP Alignment",
+        stage: "1. Plan the Coverage",
         detail:
           "Reviewing speech timings, key family members, and specific group portrait requests.",
       },
       {
-        stage: "2. Candid Documentary Coverage",
+        stage: "2. Photograph the Celebration",
         detail:
-          "Quiet, natural photography that lets you and your guests enjoy the event without interference.",
+          "Candid guest photos, speeches and planned group photos.",
       },
       {
-        stage: "3. Fast Highlight Sneak Peek",
+        stage: "3. Select the Photos",
         detail:
-          "Curated highlight collection delivered within 24–48 hours for immediate sharing with friends and family.",
+          "Review the photos from your celebration.",
       },
       {
-        stage: "4. Master Retouched Gallery",
+        stage: "4. Edit and Deliver",
         detail:
-          "Complete individually colour-graded high-resolution collection ready for full-quality printing and download.",
+          "Deliver edited photos in the agreed formats.",
       },
     ],
     deliverables: [
-      "Private password-protected digital gallery with unlimited full-res guest downloads",
-      "Highlight sneak peek pack delivered within 24–48 hours",
-      "Full set of print-ready 300 DPI master files and web-optimised files",
-      "Full personal printing and sharing rights with zero watermarks",
+      "Online gallery to view and download your photos",
+      "High-resolution and web-sized photos",
+      "Personal printing and sharing terms agreed in your quote",
     ],
-    turnaroundStandard: "3–5 business days for complete master gallery",
-    turnaroundFast: "24–48 hours for highlight sneak peek",
+    turnaroundStandard: "Delivery timing is agreed before booking.",
+    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
     relatedGallerySlugs: [
       "george-and-adrianas-engagement",
       "annas-birthday",

@@ -67,7 +67,7 @@ export const GALLERIES: GalleryProject[] = [
     ],
     deliverables: [
       "High-resolution retouched master gallery",
-      "Media-optimised PR press kit selection within 12 hours",
+      "Photo selection for PR and media use",
       "Social media-ready aspect ratios for partner reporting",
     ],
     featured: true,
@@ -723,7 +723,7 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
     name: "Not-For-Profit & Charity Galas",
     shortName: "Not-For-Profit & Community",
     tagline:
-      "Respectful, mission-driven documentary storytelling for major Australian non-profits, foundations, and civic forums.",
+      "Photography for charities, not-for-profits and community events.",
     description:
       "Authentic documentation for flagship charity fundraisers, community assemblies, advocacy summits, and cultural festivals across Sydney and nationwide.",
     seoTitle: "Not-For-Profit & Charity Gala Photography Sydney | Case Studies",
@@ -737,9 +737,9 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
     name: "Private Celebrations, Birthdays & Weddings",
     shortName: "Celebrations & Weddings",
     tagline:
-      "Unobtrusive documentary coverage for milestone birthdays, intimate weddings, and family gatherings across Sydney.",
+      "Photography for birthdays, small weddings and family gatherings across Sydney.",
     description:
-      "Capturing candid warmth, genuine guest emotions, speeches, and styling for milestone celebrations, foreshore engagements, and private events with zero stiff posing.",
+      "Candid guest photos, speeches, group photos and event details at birthdays, engagements and private celebrations.",
     seoTitle: "Sydney Private Event, Birthday & Intimate Wedding Photography",
     metaDescription:
       "Candid documentary photography for milestone birthdays (21st, 30th, 40th, 50th, 80th), private parties, foreshore engagements, and boutique weddings across Sydney.",

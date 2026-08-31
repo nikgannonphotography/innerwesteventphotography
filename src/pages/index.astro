@@ -25,8 +25,8 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
 ---
 
 <Layout
-  title="Sydney Event Photography | Corporate Conferences, Summits & Galas"
-  description="Inner West Event Photography is a Sydney photography studio led by Nikolas Gannon. Quiet, dependable documentary coverage for corporate conferences, charity galas, brand activations, and workplace teams across Sydney."
+  title="Sydney Event Photographer | Inner West Event Photography"
+  description="Event photography across Sydney by Nikolas Gannon. Conferences, charity galas, brand launches, private celebrations and workplace portraits. Get in touch for a quote."
 >
   <!-- Hero -->
   <Section
@@ -49,12 +49,12 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <div slot="background" class="home-hero_scrim"></div>
     <ContentWrapper class="home-hero_copy">
       <Eyebrow variant="tag">Inner West Event Photography</Eyebrow>
-      <Heading variant="h1" maxWidth={22} tag="h1">Sydney Event Photography Built Around Your Brief</Heading>
+      <Heading variant="h1" maxWidth={22} tag="h1">Event Photography Across Sydney</Heading>
       <Paragraph variant="large" maxWidth={36}>
-        Documentary event, conference, gala, and workplace photography across Sydney.
+        Candid photography for corporate, community and private events, plus workplace portraits and headshots.
       </Paragraph>
       <ButtonWrapper marginTop="5">
-        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="/contact">Get a quote</Button>
         <Button element="link" href="#work" variant="link">View selected work</Button>
       </ButtonWrapper>
     </ContentWrapper>
@@ -85,7 +85,7 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
   <Section id="proof" paddingTop="medium" paddingBottom="medium" theme="dark">
     <ContentWrapper variant="auto-width">
       <div>
-        <Eyebrow variant="tag">PRODUCTION STANDARD</Eyebrow>
+        <Eyebrow variant="tag">HOW WE WORK</Eyebrow>
         <Heading tag="h2" variant="h2">Our Approach</Heading>
       </div>
     </ContentWrapper>
@@ -93,15 +93,15 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <Grid small={1} medium={2} large={4}>
       <div>
         <Heading tag="h3" variant="h5">Clear delivery</Heading>
-        <Paragraph>Delivery timing and priority selects are scoped against your event schedule and communications deadlines.</Paragraph>
+        <Paragraph>We agree on when you need the photos before you book.</Paragraph>
       </div>
       <div>
-        <Heading tag="h3" variant="h5">Commercial usage</Heading>
-        <Paragraph>Usage rights are included upfront in your quote, covering internal, media, sponsor, and social distribution.</Paragraph>
+        <Heading tag="h3" variant="h5">Using your photos</Heading>
+        <Paragraph>Tell us how you plan to use the photos so your quote covers the right usage.</Paragraph>
       </div>
       <div>
-        <Heading tag="h3" variant="h5">Scalable coverage</Heading>
-        <Paragraph>Additional photographers or video specialists are scoped when concurrent rooms or larger programs require them.</Paragraph>
+        <Heading tag="h3" variant="h5">Coverage that fits</Heading>
+        <Paragraph>We plan around your event times and the people and moments you want photographed.</Paragraph>
       </div>
       <div>
         <Heading tag="h3" variant="h5">Venue-ready</Heading>
@@ -185,24 +185,24 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
         <Eyebrow variant="tag">BOOKING QUESTIONS</Eyebrow>
         <Heading tag="h2" variant="h2">The practical details</Heading>
         <Paragraph maxWidth={30}>
-          Four common questions before a corporate event photography brief is approved.
+          A few things to know before booking a photographer.
         </Paragraph>
       </div>
 
       <Accordion slot="column2" openFirst={true}>
-        <AccordionItem heading="How quickly can priority images be delivered?">
+        <AccordionItem heading="When will I receive the photos?">
           <Paragraph>
-            Priority selects can be scoped around media, stakeholder and social deadlines. Full-gallery timing is confirmed in your upfront quote.
+            Delivery timing is agreed before booking. Let us know if you have a deadline for press, social media or another use.
           </Paragraph>
         </AccordionItem>
         <AccordionItem heading="What usage rights are included?">
           <Paragraph>
-            Usage is agreed against the ways your organisation, media partners and sponsors need to use the images.
+            Tell us where you plan to share or publish the photos. The agreed usage will be set out in your quote.
           </Paragraph>
         </AccordionItem>
-        <AccordionItem heading="Can you cover concurrent rooms or large programs?">
+        <AccordionItem heading="Do I need a detailed brief?">
           <Paragraph>
-            Yes. Additional photographers and specialists are scoped when the run sheet requires simultaneous coverage.
+            No. Start with your event date, location and what you need photographed. You can share a schedule or shot list if you have one.
           </Paragraph>
         </AccordionItem>
         <AccordionItem heading="Can you provide proof of insurance?">
@@ -217,14 +217,14 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
   <!-- Contact -->
   <Section id="contact" paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
-      <Eyebrow variant="tag">GET A FIXED QUOTE</Eyebrow>
+      <Eyebrow variant="tag">GET A QUOTE</Eyebrow>
       <Heading tag="h2" variant="h2" maxWidth={24}>Tell Us About Your Upcoming Event</Heading>
       <Paragraph maxWidth={36}>
-        Share your event date, venue, and schedule. We review your details and send through a clear, fixed quote within 24 hours. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a> or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>.
+        Tell us your event date, location and what you need photographed. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a> or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>.
       </Paragraph>
       <ButtonWrapper marginTop="4">
         <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/docs/event-briefing-template" emphasis="secondary">Download Briefing Template</Button>
+        <Button element="link" href="/docs/event-briefing-template" emphasis="secondary">View briefing guide</Button>
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

@@ -14,7 +14,7 @@ export const LOCATIONS: LocationHub[] = [
   {
     slug: "inner-west",
     name: "Inner West Sydney",
-    tagline: "Documentary event, cultural, and community photography throughout Sydney's creative Inner West.",
+    tagline: "Photography for events, community gatherings and celebrations in Sydney's Inner West.",
     suburbs: [
       "Marrickville",
       "Newtown",
@@ -47,7 +47,7 @@ export const LOCATIONS: LocationHub[] = [
       "Glebe Town Hall"
     ],
     description:
-      "Our home base and creative stomping ground. From warehouse brand activations in Marrickville and creative studio productions to community festivals, corporate gatherings, and cultural assemblies in Newtown, we provide grounded, disciplined photographic documentation across the Inner West.",
+      "Based in the Inner West, we photograph events in Marrickville, Newtown, Balmain and surrounding suburbs.",
     eventTypes: [
       "Brand launches & warehouse pop-ups",
       "Cultural street festivals & civic gatherings",
@@ -71,7 +71,7 @@ export const LOCATIONS: LocationHub[] = [
   {
     slug: "sydney-cbd",
     name: "Sydney CBD & Surrounds",
-    tagline: "High-level corporate conferences, galas, and executive summits in central Sydney and Darling Harbour.",
+    tagline: "Photography for conferences, galas and events in central Sydney and Darling Harbour.",
     suburbs: [
       "Sydney CBD",
       "Barangaroo",
@@ -105,7 +105,7 @@ export const LOCATIONS: LocationHub[] = [
       "The Fullerton Hotel Sydney",
       "Ivy Ballroom"
     ],
-    description: "Comprehensive photographic coverage across Sydney's central commercial, legal, and financial districts. Led by Photographer & Creative Producer Nikolas Gannon, we bring executive presence and disciplined stage execution to top-tier venues.",
+    description: "Event photography across the Sydney CBD, Barangaroo, Darling Harbour and surrounding suburbs.",
     eventTypes: [
       "Annual industry conferences & summits",
       "Charity galas & fundraising banquets",
@@ -157,7 +157,7 @@ export const LOCATIONS: LocationHub[] = [
       "Taronga Zoo Event Centre (The Gantry)",
       "Deckhouse Woolwich"
     ],
-    description: "Covering academic symposiums, corporate tech campuses in Macquarie Park, and waterside milestone celebrations across Sydney's North Shore, Northern Beaches, and Eastern Suburbs.",
+    description: "Photography for university events, workplaces and private celebrations across the North Shore, Northern Beaches and Eastern Suburbs.",
     eventTypes: [
       "University forums & TEDx events",
       "Technology partner symposiums",
@@ -208,7 +208,7 @@ export const LOCATIONS: LocationHub[] = [
       "The Grounds of Alexandria",
       "The William Inglis Hotel (Warwick Farm)"
     ],
-    description: "Experienced coverage across Western Sydney's rapidly growing commercial infrastructure, sports arenas, brand warehouses, and civic leadership summits.",
+    description: "Photography for events, sports, launches and community gatherings across Western and South Western Sydney.",
     eventTypes: [
       "National sports events & grand finals",
       "Regional leadership dialogues & policy summits",

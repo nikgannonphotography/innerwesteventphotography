@@ -40,36 +40,36 @@ export const BLOG_POSTS: BlogPost[] = [
     categoryLabel: "Pricing & Rates",
     date: "14 August 2026",
     isoDate: "2026-08-14",
-    readTime: "7 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/tedx-macquarie-uni.webp",
-    summary: "A transparent breakdown of Sydney commercial event photography rates, standard inclusions, overtime charges, and licensing models.",
+    summary: "What affects an event photography quote, and what to confirm about coverage, editing, delivery and usage.",
     featured: true,
     content: {
       intro: "Corporate event photography in Sydney may be priced by the hour, half day, full day or project. This guide explains the common structures, what may be included and what to confirm before approving a quote.",
       sections: [
         {
-          heading: "Standard Sydney Event Photography Rates",
+          heading: "What Affects Your Photography Quote",
           body: [
-            "Commercial event photographers in Sydney generally price by half-day (up to 4 hours) or full-day (up to 8 hours) blocks, with hourly rates typically reserved for short assignments (2-hour minimum).",
-            "The table below shows common pricing structures used for Sydney event photography:"
+            "The cost depends on the time needed, the event schedule, locations and the photos you want. Share what you know so we can quote for your event.",
+            "These are planning points, not fixed packages. Your quote will state the agreed hours and inclusions."
           ],
           tableData: {
-            headers: ["Coverage Tier", "Duration", "Typical Price Range (AUD)", "Standard Inclusions"],
+            headers: ["Event", "Schedule to Share", "What May Affect Cost", "What to Confirm"],
             rows: [
-              ["Short Assignment", "2 Hours", "$650 – $950", "1 Photographer, 80–120 retouched frames, standard web/PR licence"],
-              ["Half-Day Coverage", "Up to 4 Hours", "$1,200 – $1,800", "1 Photographer, 200–350 retouched frames, full commercial licence"],
-              ["Full-Day Conference", "Up to 8 Hours", "$2,200 – $3,400", "1 Lead Photographer, 400–700 frames, rapid PR highlight pack"],
-              ["Multi-Day Summit", "2–3 Days", "$4,000 – $7,500+", "Lead photographer, additional photographer option, daily highlights, full gallery"]
+              ["Short Event", "Start and finish times", "Location and required photos", "Coverage hours and editing"],
+              ["Half-Day Event", "Sessions and key moments", "Travel and changes of location", "Coverage, files and delivery"],
+              ["Full-Day Conference", "Run sheet and room locations", "Overlapping sessions and deadlines", "What can be covered and when photos arrive"],
+              ["Several Days", "A schedule for each day", "Venues, travel and delivery needs", "Scope and cost for the whole project"]
             ]
           }
         },
         {
           heading: "Key Cost Drivers to Consider in Your Brief",
           body: [
-            "1. Multi-Track & Concurrent Breakouts: When an event operates across 3 or more concurrent breakout rooms, a single photographer cannot cover all speakers. Factoring a second shooter ($150–$220/hr) is essential for full coverage.",
-            "2. Fast PR Turnaround: If your social media or media relations team requires hero selects on the night or early next morning, ensure this rapid turnaround is built into the agreement.",
-            "3. Commercial Usage Rights: Professional corporate assignments should include perpetual, royalty-free commercial usage for your company's marketing, PR, and annual reports without recurring renewal fees."
+            "Overlapping sessions need planning. One photographer cannot be in two rooms at once, so tell us which moments matter most and whether more coverage is needed.",
+            "If you need photos for a press or social media deadline, discuss the timing before booking so we can confirm what is possible.",
+            "Check the permitted uses, users and duration of your photo licence in the quote. Do not assume every use is included."
           ],
           callout: "Confirm that the photographer can provide a current Certificate of Currency when the venue requires it, and ask how images are backed up during the event."
         },
@@ -85,11 +85,11 @@ export const BLOG_POSTS: BlogPost[] = [
             },
             {
               q: "Are editing and colour grading included in the day rate?",
-              a: "Yes. All professional quotes from established studios include individual image culling, exposure balancing, colour grading, and delivery via digital portal."
+              a: "Check what editing is included in your quote. If you need detailed retouching or particular file versions, discuss these before booking."
             },
             {
               q: "What happens if our event runs over schedule?",
-              a: "Overtime is billed in 30 or 60-minute increments, agreed before call time. Standard overtime rates range from $150 to $250 per hour."
+              a: "Confirm how extra time will be handled before booking. Any extension depends on availability and the agreed cost."
             }
           ]
         }
@@ -107,39 +107,39 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "icc-sydney-event-photography-guide",
-    title: "Photographing at ICC Sydney: Production Guide for Event Managers",
+    title: "Planning Event Photography at ICC Sydney",
     seoTitle: "ICC Sydney Event Photography Guide | Darling Harbour Venue Tips",
     metaDescription: "Practical guide to photographing conferences, summits, and exhibitions at ICC Sydney in Darling Harbour. Loading dock logistics, lighting, and stage setup.",
     category: "venues",
     categoryLabel: "Venue Production",
     date: "02 August 2026",
     isoDate: "2026-08-02",
-    readTime: "6 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/echo-change-future-action-summit-2026.webp",
-    summary: "How to plan photography logistics at International Convention Centre Sydney, including room scale, low ambient lighting, and contractor induction.",
+    summary: "What to share with your photographer before an ICC Sydney event, including rooms, access, lighting and the schedule.",
     featured: true,
     content: {
-      intro: "As Australia's premier convention and exhibition centre, ICC Sydney hosts the country's largest corporate and trade events. Documenting assignments in this venue requires understanding its cavernous scale, specific AV lighting setups, and strict contractor protocols.",
+      intro: "For event photography at ICC Sydney in Darling Harbour, start with the room names and run sheet. This helps plan the route between sessions, where to photograph speakers and when there is time for group photos.",
       sections: [
         {
-          heading: "Navigating Scale: Grand Ballroom vs. Exhibition Halls",
+          heading: "Plan Photography Around Your Rooms",
           body: [
-            "ICC Sydney features distinct spaces requiring tailored photographic strategies:",
-            "• The Grand Ballroom: High ceilings and sophisticated stage rigging allow dramatic wide-angle room shots. Stage lighting can be high-contrast, requiring fast prime lenses (f/1.4–f/2.8) and quiet electronic shutters during addresses.",
-            "• Exhibition Centre: Spanning multiple levels, documenting tradeshow booths requires balanced fill lighting to manage overhead fluorescents and illuminated display screens.",
-            "• Pyrmont Theatres: Steeper raked seating demands elevated telephoto positioning from the central sound desk or side aisles to photograph speaker expressions without obstructing sightlines."
+            "Different spaces call for different coverage. Include the room names and floor plan in your brief.",
+            "• Grand Ballroom. List important stage moments and any tables or groups that need photos. Allow time for room photos before guests arrive if these matter to you.",
+            "• Exhibition halls. Identify the stands, displays and people you need photographed. Include any demonstrations or scheduled visits.",
+            "• Pyrmont Theatre. Agree suitable positions for photographing the stage and audience, keeping aisles and sightlines clear.",
+            "Use <a href='https://www.iccsydney.com/organisers/organiser-toolkit/floor-plans/'>ICC Sydney's floor plans</a> to identify each room and allow time to move between sessions."
           ]
         },
         {
-          heading: "Contractor Compliance & Venue Inductions",
+          heading: "Confirm Access and Lighting Before the Day",
           body: [
-            "ICC Sydney enforces strict venue safety standards. Before arriving on-site, event managers must ensure photographers:",
-            "• Provide a current Certificate of Currency that meets the venue's requirements.",
-            "• Have completed the ICC contractor induction portal if loading via the Darling Drive loading dock.",
-            "• Coordinate with in-house AV teams (Encore Event Technologies) to verify stage lighting white balance."
+            "Ask your event contact to confirm the arrival point, access passes, induction requirements and any insurance documents needed.",
+            "Share the lighting plan or put your photographer in touch with the event's AV contact. Let them know about dark presentations, screen content and any restrictions on flash.",
+            "Check the current <a href='https://www.iccsydney.com/organisers/organiser-toolkit/'>ICC Sydney organiser toolkit</a> for venue guidance and delivery information."
           ],
-          callout: "Pro tip: Brief your photographer to capture the exterior Darling Harbour forecourt and convention facade at twilight to anchor the visual scale of your event."
+          callout: "If you want photos outside in Darling Harbour, include time for them in the schedule."
         }
       ],
       conclusion: "Confirm access, lighting and stage positions before the event so the photographer can work without disrupting the program."
@@ -157,38 +157,37 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "how-to-write-an-event-photography-brief",
     title: "How to Write an Event Photography Brief (With Checklist)",
     seoTitle: "How to Write an Event Photography Brief | Checklist",
-    metaDescription: "Step-by-step guide to writing a clear, effective event photography brief. Avoid missed shots and align your photographer with sponsor priorities.",
+    metaDescription: "Write a simple event photography brief with dates, venues, key photos and delivery needs. Includes an editable Word template for larger projects.",
     category: "briefing",
     categoryLabel: "Briefing & Planning",
     date: "22 July 2026",
     isoDate: "2026-07-22",
-    readTime: "5 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/order-of-australia-the-school-of-st-jude.webp",
-    summary: "The four parts of a clear photography brief, covering VIPs, sponsors, timing and delivery.",
+    summary: "The details to share with your photographer, from the schedule to the photos you need most.",
     featured: false,
     content: {
-      intro: "A vague photography brief leads to missed coverage, unphotographed sponsors, and generic albums. A structured brief aligns expectations, establishes shot hierarchies, and gives your photographer the operational clarity needed on event day.",
+      intro: "A photography brief can be short. Tell us what is happening, where and when, and which photos matter most. An existing run sheet is fine, and anything undecided can stay as TBC.",
       sections: [
         {
           heading: "What to Include in an Event Brief",
           body: [
-            "An effective brief contains four core components:",
-            "1. Event Context & Run of Show: The complete timeline with precise stage times, keynote entrances, award presentations, and curtain calls.",
-            "2. Tiered Shot Hierarchy: Classifying shot requests into Tier 1 (Mandatory Keynotes/Awards), Tier 2 (Sponsor & Exhibition Activations), and Tier 3 (Ambient Networking & Room Energy).",
-            "3. Key Stakeholder Identification: Named VIP list with reference photos or titles so the photographer can proactively locate executives on the floor.",
-            "4. Technical & Turnaround Specifications: Required delivery deadlines (e.g. 20 hero selects by 10 PM for press distribution, master gallery by Friday)."
+            "Start with the dates, venues and requested photography hours. For larger projects, list each day separately and flag sessions happening at the same time in different places.",
+            "Add a short list of the photos you need. Include names, times and reference photos where useful.",
+            "Include a contact for planning and someone we can reach on the day. One person can cover both.",
+            "Tell us when you need the photos and how they will be used. Mention venue restrictions or anyone who should not be photographed."
           ]
         },
         {
-          heading: "Why Shot Hierarchies Matter",
+          heading: "Put the Most Important Photos First",
           body: [
-            "During live events, schedules shift. A tiered shot list ensures your photographer prioritises Tier 1 requirements even if stage timings shift unexpectedly.",
-            "This structure guarantees that sponsor obligations and board executive portraits are secured before general networking shots."
+            "Schedules can change. A short priority list helps your photographer understand what matters if two moments happen at once.",
+            "You do not need a detailed system. List the people, activities or details you most want photographed and add anything that would be useful to know."
           ]
         }
       ],
-      conclusion: "Taking 20 minutes to structure your brief ensures your photo library delivers high ROI across all marketing, donor, and corporate channels."
+      conclusion: "Use the editable Word brief if it helps, or send what you already have. We will confirm coverage, cost, delivery and usage before booking."
     },
     relatedGalleries: [
       "order-of-australia-the-school-of-st-jude",
@@ -201,43 +200,44 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "top-event-venues-inner-west-sydney",
-    title: "Top Event Venues in the Inner West for Corporate & Cultural Events",
-    seoTitle: "Top Event Venues Inner West Sydney | Industrial & Cultural Spaces",
-    metaDescription: "Explore the best event and conference venues across Sydney's Inner West: Carriageworks, Marrickville Town Hall, industrial warehouses, and community halls.",
+    title: "Inner West Event Venues and Photography Planning",
+    seoTitle: "Inner West Sydney Event Venues | Photography Planning Guide",
+    metaDescription: "Plan photography for events in and around Sydney's Inner West, including Carriageworks, Marrickville Town Hall and community venues.",
     category: "venues",
     categoryLabel: "Venues & Locations",
     date: "10 July 2026",
     isoDate: "2026-07-10",
-    readTime: "6 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/australian-fashion-week-2026.webp",
-    summary: "A photographer's guide to the unique architecture, lighting, and spatial characteristics of Inner West Sydney venues.",
+    summary: "What to consider when planning event photos in halls, warehouses and other local venues.",
     featured: false,
     content: {
-      intro: "Sydney's Inner West offers character-rich venues that stand apart from traditional CBD hotel ballrooms. From repurposed industrial rail yards to heritage municipal halls, these spaces provide distinct backdrops for product launches, cultural assemblies, and creative conferences.",
+      intro: "Events in and around Sydney's Inner West take place in town halls, warehouses, theatres and smaller community spaces. The room layout, available light and event schedule all affect how photography is planned.",
       sections: [
         {
           heading: "Carriageworks (Eveleigh)",
           body: [
-            "Australia's largest contemporary multi-arts centre features expansive 19th-century industrial architecture with soaring timber trusses, raw brickwork, and polished concrete floors.",
-            "Photographic Note: The vast scale of Bays 17–24 requires strong directional lighting and careful framing to maintain human intimacy against monumental heritage architecture."
+            "Carriageworks occupies the former Eveleigh Railway Workshops and offers several spaces for events. Share the specific bay or room you have booked, as the layout matters more than the venue name alone.",
+            "Discuss whether you want wide photos of the space, close photos of guests, or both. See <a href='https://carriageworks.com.au/venues/'>Carriageworks' venue information</a> for the available spaces."
           ]
         },
         {
           heading: "Marrickville Industrial Warehouses & Town Hall",
           body: [
-            "Marrickville's creative warehouse spaces are ideal for brand pop-ups and immersive activations. The historic Marrickville Town Hall offers grand classical proportions and wooden parquet flooring.",
-            "Photographic Note: Mixed ambient lighting from skylights and warm festoons requires colour-balanced fill flash to render skin tones accurately."
+            "For a warehouse event in Marrickville, share the address and any room or lighting plans. These spaces vary, so a few reference photos can help with planning.",
+            "Marrickville Town Hall is a heritage venue available for performances, community events and celebrations. Check <a href='https://www.innerwest.nsw.gov.au/town-halls-100-people/marrickville-town-hall'>the council's venue page</a> for current hire details and access information."
           ]
         },
         {
           heading: "Newtown & Balmain Heritage Spaces",
           body: [
-            "From historic theatre spaces in Newtown to waterfront venues in Balmain, these venues offer architectural warmth for milestone celebrations and community galas."
+            "For events in Newtown or Balmain, include the venue address, room name and any outdoor areas in your brief. Discuss a suitable place for group photos before the event, especially if space is limited.",
+            "If plans include outdoor photos, agree an indoor option in case the weather changes."
           ]
         }
       ],
-      conclusion: "Choosing an Inner West venue brings distinct Sydney character to your event. Ensure your photographer is experienced with industrial and heritage ambient light."
+      conclusion: "Once you have a venue in mind, share the date, location and what you need photographed. You do not need a finished event plan to start the conversation."
     },
     relatedGalleries: [
       "australian-fashion-week-2026",
@@ -250,32 +250,35 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "sydney-corporate-headshots-team-portraits-guide",
-    title: "Corporate Headshots & Team Portraits: Planning On-Site Sessions",
-    seoTitle: "Corporate Headshots & Workplace Portraits Sydney | Studio Guide",
-    metaDescription: "How to organise on-site corporate headshots for 10 to 200 staff, including mobile studio setup, scheduling and brand consistency.",
+    title: "Planning Corporate Headshots and Team Portraits",
+    seoTitle: "Corporate Headshots & Workplace Portraits Sydney | Planning Guide",
+    metaDescription: "Plan corporate headshots at your Sydney workplace. Confirm staff numbers, backgrounds, scheduling, editing and how the photos will be used.",
     category: "headshots",
     categoryLabel: "Workplace & Portraits",
     date: "28 June 2026",
     isoDate: "2026-08-28",
-    readTime: "5 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/tedx-macquarie-uni.webp",
-    summary: "Structuring workplace headshot days to minimise business downtime while delivering consistent, confident team portraits.",
+    summary: "How to plan staff photos around your workplace, schedule and the look you need.",
     featured: false,
     content: {
-      intro: "Coordinating executive headshots and team portraits across an organisation can feel daunting. With structured scheduling and professional on-site lighting, an entire office can be updated with minimal operational interruption.",
+      intro: "For corporate headshots at your Sydney workplace, start with the number of people, where the photos will be used and a date that suits the team. Share existing staff photos if the new ones need to match.",
       sections: [
         {
-          heading: "Studio Backdrop vs. Environmental Workplace Portraits",
+          heading: "Choose a Background",
           body: [
-            "• Studio Backdrop (White/Grey/Brand Colour): Keeps the visual treatment consistent across offices and future staff sessions.",
-            "• Environmental Office Staging: Uses your natural architectural workspace, boardroom, or city views as a soft-focus background. This creates dynamic workplace imagery ideal for leadership teams and marketing pages."
+            "• A plain background can help keep staff photos consistent. Discuss the colour, space and setup needed before booking.",
+            "• Your workplace can also provide the background, such as an office, meeting room or outdoor area. Send reference photos so we can discuss what suits the space.",
+            "If you need both individual headshots and group photos, include both in the brief. They need separate time in the schedule."
           ]
         },
         {
-          heading: "Scheduling for Peak Efficiency",
+          heading: "Plan the Session Times",
           body: [
-            "We recommend scheduling 5 to 10-minute slots per team member. Tethered live viewing on a monitor allows staff to review and select their preferred frame on the spot, eliminating lengthy post-shoot review cycles."
+            "Confirm how much time each person needs before sending calendar invitations. Allow for setup, breaks and anyone who may arrive late.",
+            "Choose one person to coordinate the staff list and let the photographer know about access needs or people who are nervous about having their photo taken.",
+            "Agree how photos will be selected, what editing is included and when the final files are needed. On-site selection or detailed retouching should be discussed rather than assumed."
           ]
         }
       ],
@@ -291,36 +294,37 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "live-event-photo-delivery-for-press-social",
-    title: "Fast PR & Social Media Photo Delivery: Live On-Site Workflows",
+    title: "Planning Event Photo Delivery for Press and Social Media",
     seoTitle: "Fast PR Photo Delivery for Live Events | Media Turnaround Guide",
-    metaDescription: "How rapid on-site photo delivery works for Sydney conferences, galas, and brand activations. Real-time Wi-Fi camera tethering and press turnaround.",
+    metaDescription: "Need Sydney event photos for a press or social media deadline? Plan the timing, photo selection, recipients and delivery requirements before booking.",
     category: "turnaround",
     categoryLabel: "Delivery & Turnaround",
     date: "15 June 2026",
     isoDate: "2026-06-15",
-    readTime: "4 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/sony-foundation-tones-and-i-at-wharf4ward.webp",
     summary: "How on-site transfer and editing can deliver selected images to media and social teams during an event.",
     featured: false,
     content: {
-      intro: "In modern corporate communications, waiting a week for event photos means missing the news cycle. Live on-site delivery ensures your PR team supplies trending LinkedIn feeds and morning press wires while interest is at its peak.",
+      intro: "If you need event photos for a press or social media deadline, discuss it before booking. Early delivery depends on the schedule and time available for selecting and editing photos.",
       sections: [
         {
-          heading: "How Fast PR Selects Work in Practice",
+          heading: "Plan Any Early Photo Delivery",
           body: [
-            "Using wireless camera transmission or quick intermission ingest, the lead photographer selects and colour-grades 15–30 hero frames on-site.",
-            "Keynote and award presentations are transmitted directly to your PR or social media manager via a dedicated cloud folder or private gallery within 2 to 12 hours of the session."
+            "Some events allow time to select and edit a small number of photos on site. This needs to be agreed with the photographer in advance.",
+            "Agree on the deadline, number of photos and who will receive them. A delivery method and schedule should be confirmed before the event."
           ]
         },
         {
-          heading: "What to Include in Your Rapid Delivery Request",
+          heading: "What to Include in Your Request",
           body: [
-            "Specify the exact recipients, preferred resolution (full-res for print press vs. 1080p for social), and target deadline in your initial brief."
+            "Include the deadline, who needs the photos and where they will be used. Share any file requirements from the publication or social media team.",
+            "Name the people or moments needed for the first selection. Confirm when the full gallery will follow, as an early selection is only part of the delivery."
           ]
         }
       ],
-      conclusion: "Rapid turnaround turns your event photography into an active PR engine rather than a retrospective archive."
+      conclusion: "A clear deadline helps your photographer confirm what is possible before you book."
     },
     relatedGalleries: [
       "sony-foundation-tones-and-i-at-wharf4ward",
@@ -332,31 +336,31 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "hiring-freelance-event-photographers-sydney-checklist",
-    title: "Hiring an Event Photographer in Sydney: Due Diligence Checklist",
-    seoTitle: "Hiring an Event Photographer Sydney | 7-Point Due Diligence Checklist",
-    metaDescription: "Essential 7-point checklist for hiring corporate and commercial event photographers in Sydney. Insurance, backup gear, copyright, and delivery terms.",
+    title: "Hiring an Event Photographer in Sydney",
+    seoTitle: "Hiring an Event Photographer Sydney | 7 Things to Check",
+    metaDescription: "Seven things to check before hiring a Sydney event photographer, including relevant work, coverage, backup plans, insurance, usage and delivery.",
     category: "operations",
     categoryLabel: "Operations & Standards",
     date: "01 June 2026",
     isoDate: "2026-06-01",
-    readTime: "5 min read",
+    readTime: "2 min read",
     author: "Nikolas Gannon",
     heroImage: "/galleries/posters/nrl-grand-final-2019.webp",
-    summary: "Protect your event from data loss, poor lighting execution, and legal ambiguities with this 7-point contractor checklist.",
+    summary: "Questions to help you choose a photographer and understand what is included.",
     featured: false,
     content: {
-      intro: "Hiring an event photographer involves more than checking an online portfolio. Corporate event managers need assurance of technical reliability, risk management, and commercial accountability.",
+      intro: "Start by looking at work from events similar to yours. Then check the practical details, including who will photograph the event, what is included and when you will receive the photos.",
       sections: [
         {
-          heading: "The 7-Point Due Diligence Checklist",
+          heading: "Seven Things to Check Before Booking",
           body: [
-            "1. Dual-Card Recording: Does the photographer shoot on cameras with dual memory card slots recording simultaneously? (Essential for preventing card corruption data loss).",
-            "2. Public Liability Insurance: Can the photographer provide a current Certificate of Currency that meets the venue's requirements?",
-            "3. On-Site Redundancy: Are backup camera bodies, flashes, and lenses carried in the event bag?",
-            "4. Transparent Commercial Licensing: Are full commercial usage rights included in perpetuity without hidden renewal fees?",
-            "5. Accountable Lead: Will the person quoting your project be the lead operator on-site?",
-            "6. Low-Light Stage Capability: Does the portfolio demonstrate crisp results under theatrical lighting without harsh direct flash?",
-            "7. Fast Turnaround Commitments: Are agreed delivery dates stated in writing in the service quote?"
+            "1. Relevant work. Can you see photos from similar events, including the lighting and group sizes you expect?",
+            "2. Insurance. Can the photographer provide the documents your venue requires?",
+            "3. Backup plans. How are photos backed up, and what happens if equipment fails?",
+            "4. Photo usage. Does the licence cover your intended uses, and are there time limits or additional fees?",
+            "5. Your photographer. Who will photograph the event, and who should you contact on the day?",
+            "6. Coverage and cost. Are the hours, locations, editing and any extra charges clear in the quote?",
+            "7. Delivery. Have you agreed when the photos will arrive and how you will receive them?"
           ]
         }
       ],

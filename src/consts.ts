@@ -3,14 +3,14 @@ export const SITE_NAME = "Inner West Event Photography";
 
 /** Tagline and concise positioning. */
 export const SITE_TAGLINE =
-  "Sydney event, conference, and documentary photography studio.";
+  "Event photography across Sydney.";
 
 /** Fallback meta description for pages that don't set their own. */
 export const SITE_DESCRIPTION =
-  "Inner West Event Photography provides quiet, dependable documentary coverage for corporate conferences, summits, charity galas, and workplace teams across Sydney.";
+  "Event photography across Sydney by Nikolas Gannon. Corporate events, charity galas, private celebrations and workplace portraits.";
 
 /** Canonical origin. Resolves canonical URLs, social images, and the sitemap. */
-export const SITE_URL = "https://innerwesteventphotography.com.au";
+export const SITE_URL = "https://www.innerwesteventphotography.com.au";
 
 /** BCP 47 locale tag used to format dates and numbers. */
 export const SITE_LOCALE = "en-AU";

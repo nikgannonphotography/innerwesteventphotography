@@ -53,7 +53,7 @@ const serviceSchema = {
   provider: {
     "@type": "PhotographyBusiness",
     name: "Inner West Event Photography",
-    url: "https://innerwesteventphotography.com.au",
+    url: "https://www.innerwesteventphotography.com.au",
   },
   areaServed: {
     "@type": "City",
@@ -80,19 +80,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://innerwesteventphotography.com.au",
+      item: "https://www.innerwesteventphotography.com.au",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Services",
-      item: "https://innerwesteventphotography.com.au/services",
+      item: "https://www.innerwesteventphotography.com.au/services",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: service.title,
-      item: `https://innerwesteventphotography.com.au/services/${service.slug}`,
+      item: `https://www.innerwesteventphotography.com.au/services/${service.slug}`,
     },
   ],
 };
@@ -100,7 +100,7 @@ const breadcrumbSchema = {
 
 <Layout
   title={`${service.title} Sydney | Inner West Event Photography`}
-  description={`${service.title} in Sydney. ${service.tagline} Clear scope, sub-12h PR delivery, and master retouched archives.`}
+  description={`${service.title} in Sydney. ${service.tagline} Get in touch for a quote.`}
 >
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
@@ -114,11 +114,11 @@ const breadcrumbSchema = {
           &larr; Back to All Services
         </Button>
       </ButtonWrapper>
-      <Eyebrow variant="tag">SERVICE {service.number} SPECIFICATION</Eyebrow>
+      <Eyebrow variant="tag">SERVICE {service.number}</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={26}>{service.title}</Heading>
       <Paragraph variant="large" maxWidth={38}>{service.tagline}</Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="/contact">Get a quote</Button>
         <Button element="link" href="/docs/pricing-and-rates-guide" variant="link">
           View Pricing Guide
         </Button>
@@ -130,15 +130,15 @@ const breadcrumbSchema = {
   <Section paddingTop="none" paddingBottom="medium">
     <Grid small={1} medium={3}>
       <Card
-        heading="Who Engages This Service"
+        heading="Who It Is For"
         text={service.commissioners.map((c) => `<span class="meta_line">• ${c}</span>`).join("")}
       />
       <Card
-        heading="What is Photographed"
+        heading="What We Photograph"
         text={service.subjects.map((s) => `<span class="meta_line">• ${s}</span>`).join("")}
       />
       <Card
-        heading="Intended Business Uses"
+        heading="How You Can Use the Photos"
         text={service.businessUses.map((b) => `<span class="meta_line">• ${b}</span>`).join("")}
       />
     </Grid>
@@ -147,10 +147,10 @@ const breadcrumbSchema = {
   <!-- Production Workflow -->
   <Section paddingTop="medium" paddingBottom="medium" theme="dark">
     <ContentWrapper>
-      <Eyebrow variant="tag">PRODUCTION PROCESS</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>How We Handle the Assignment</Heading>
+      <Eyebrow variant="tag">HOW WE WORK</Eyebrow>
+      <Heading tag="h2" variant="h2" maxWidth={24}>From Enquiry to Photos</Heading>
       <Paragraph maxWidth={36}>
-        Every shoot is managed with rigorous discipline, clear staging milestones, and dependable delivery handovers.
+        We agree on the coverage and delivery before you book.
       </Paragraph>
     </ContentWrapper>
 
@@ -169,10 +169,10 @@ const breadcrumbSchema = {
   <Section paddingTop="medium" paddingBottom="medium">
     <ContentWrapper variant="columns">
       <div>
-        <Eyebrow variant="tag">ASSET HANDOVER</Eyebrow>
-        <Heading tag="h2" variant="h2">Standard Inclusions & Licensing</Heading>
+        <Eyebrow variant="tag">YOUR PHOTOS</Eyebrow>
+        <Heading tag="h2" variant="h2">Photos & Usage</Heading>
         <Paragraph>
-          All corporate and commercial commissions are delivered via private, Australian-hosted digital galleries with full commercial usage rights included in perpetuity.
+          Your quote sets out the coverage, files, delivery timing and agreed photo usage.
         </Paragraph>
         <ul class="deliverables-list">
           {service.deliverables.map((item) => (
@@ -184,33 +184,33 @@ const breadcrumbSchema = {
       <div slot="column2">
         <Grid small={1}>
           <Card
-            heading="Standard Turnaround"
+            heading="Delivery Timing"
             text={service.turnaroundStandard}
           />
           <Card
-            heading="Fast PR Delivery"
+            heading="Have a Deadline?"
             text={service.turnaroundFast}
           />
           <Card
-            heading="Technical Redundancy"
-            text="Full-frame dual-card cameras writing simultaneously, spare bodies on-site, and whisper-quiet electronic shutters."
+            heading="Before You Book"
+            text="Share your schedule and any specific requirements so we can confirm what is included."
           />
         </Grid>
       </div>
     </ContentWrapper>
   </Section>
 
-  <!-- Related Case Studies -->
+  <!-- Event Galleries -->
   {matchedGalleries.length > 0 && (
     <Section paddingTop="medium" paddingBottom="medium">
       <ContentWrapper variant="auto-width">
         <div>
-          <Eyebrow variant="tag">SELECTED COMMISSIONS</Eyebrow>
-          <Heading tag="h2" variant="h3">Related Case Studies</Heading>
+          <Eyebrow variant="tag">SELECTED WORK</Eyebrow>
+          <Heading tag="h2" variant="h3">Event Galleries</Heading>
         </div>
         <ButtonWrapper slot="column2">
           <Button element="link" href="/galleries" emphasis="secondary">
-            View All Assignments &rarr;
+            View All Galleries &rarr;
           </Button>
         </ButtonWrapper>
       </ContentWrapper>
@@ -266,7 +266,7 @@ const breadcrumbSchema = {
       </div>
       <ButtonWrapper slot="column2">
         <Button element="link" href="/locations" emphasis="secondary">
-          All Coverage Hubs &rarr;
+          All Locations &rarr;
         </Button>
       </ButtonWrapper>
     </ContentWrapper>
@@ -287,14 +287,14 @@ const breadcrumbSchema = {
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">DISCUSS YOUR EVENT</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Ready to Scope {service.title}?</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}>Need a Photographer?</Heading>
       <Paragraph maxWidth={36}>
-        Get in touch with your event date and venue details for a clear, fixed quote.
+        Send your event date, location and photography needs for a quote.
       </Paragraph>
       <ButtonWrapper marginTop="4">
         <Button element="link" href="/contact">Request a Quote &rarr;</Button>
         <Button element="link" href="/docs/event-briefing-template" variant="link">
-          Download Briefing Template
+          View Briefing Guide
         </Button>
       </ButtonWrapper>
     </ContentWrapper>

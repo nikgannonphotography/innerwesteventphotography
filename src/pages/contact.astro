@@ -19,18 +19,18 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
 ---
 
 <Layout
-  title="Project Inquiry & Booking | Inner West Event Photography"
-  description="Contact Inner West Event Photography. Submit your event date, schedule, or brief for a fast, fixed quote."
+  title="Get an Event Photography Quote | Inner West Event Photography"
+  description="Need a photographer in Sydney? Share your event date, location and photography needs with Inner West Event Photography. Enquire online, by email or phone."
 >
   <!-- Header -->
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
-      <Eyebrow>PROJECT INQUIRY & BRIEF INTAKE</Eyebrow>
+      <Eyebrow>GET IN TOUCH</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={26}
         >Tell Us About Your Event or Project</Heading
       >
       <Paragraph variant="large" maxWidth={38}>
-        Whether you have a confirmed run sheet, an outline schedule, or are just exploring dates and venue availability, share your details below. We reply promptly with a clear, fixed quote.
+        Share what you know so far. You don't need a finished brief, and it's fine if your date or venue is still to be confirmed.
       </Paragraph>
     </ContentWrapper>
   </Section>
@@ -46,7 +46,7 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
           hubspotPortalId={HUBSPOT_CONFIG.portalId}
           hubspotFormId={HUBSPOT_CONFIG.formId}
           hubspotRegion={HUBSPOT_CONFIG.region}
-          successMessage="Thanks. Your project brief has been received. We will review your requirements and respond within 24 hours."
+          successMessage="Thanks for your enquiry. We'll be in touch to discuss your event."
         >
           <Fieldset legend="1. Contact Information" variant="columns">
             <Input
@@ -57,15 +57,14 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
             />
             <Input
               name="organisation"
-              label="Organisation / Company"
-              placeholder="e.g. Apex Media Group"
-              required
+              label="Organisation / Company (optional)"
+              placeholder="Leave blank for a private event"
             />
             <Input
               name="email"
               variant="email"
-              label="Work Email"
-              placeholder="name@company.com.au"
+              label="Email"
+              placeholder="you@example.com"
               required
             />
             <Input
@@ -77,10 +76,10 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
             />
           </Fieldset>
 
-          <Fieldset legend="2. Event Scope & Timing" variant="columns">
+          <Fieldset legend="2. Your Event" variant="columns">
             <Select
               name="eventType"
-              label="Service / Event Category"
+              label="Event Type"
               options={[
                 "Corporate Conference or Summit",
                 "Awards Gala or Annual Dinner",
@@ -89,15 +88,15 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
                 "Private Event / Birthday / Milestone Celebration",
                 "Intimate Wedding or Engagement",
                 "Staff Headshots & Workplace Portraits",
-                "Other Commercial Project",
+                "Other / Not Sure Yet",
               ]}
               required
             />
             <Input
               name="eventDate"
               variant="text"
-              label="Event Date(s) / Estimated Month"
-              placeholder="e.g. 15 November 2026 or Spring 2026"
+              label="Event Date or Estimated Month"
+              placeholder="e.g. 15 November, or not confirmed yet"
               required
             />
             <Input
@@ -113,49 +112,49 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
                 "Short Assignment (Up to 2 hours)",
                 "Half-Day (Up to 4 hours)",
                 "Full-Day (Up to 8 hours)",
-                "Multi-Day Summit (2–4 days)",
-                "Custom / Flexible Schedule",
+                "More Than One Day",
+                "Not Sure Yet",
               ]}
               required
             />
           </Fieldset>
 
           <Fieldset
-            legend="3. Delivery & Turnaround Speed"
+            legend="3. When You Need the Photos"
             variant="inline"
             legendStyle="label"
           >
             <Choice
               type="radio"
               name="turnaround"
-              label="Standard Master Delivery (3–5 business days)"
+              label="No specific deadline"
               value="standard"
               checked={true}
             />
             <Choice
               type="radio"
               name="turnaround"
-              label="Fast PR Selects Required (4–12 hours for press/social)"
+              label="I have a deadline to discuss"
               value="fast-pr"
             />
           </Fieldset>
 
-          <Fieldset legend="4. Share Schedule, Run Sheet, or Project Scope">
+          <Fieldset legend="4. Anything Else We Should Know?">
             <Input
               name="runSheetFile"
               variant="file"
-              label="Attach Run Sheet, Schedule, or Brief (Optional: PDF, DOCX, XLSX, PNG, JPG)"
+              label="Attach a Schedule or Brief (optional)"
             />
             <Input
               name="runSheetLink"
               variant="url"
-              label="Or Share Document Link (Optional: Google Drive, Dropbox, Notion, SharePoint)"
+              label="Or Share a Document Link (optional)"
               placeholder="https://docs.google.com/..."
             />
             <Textarea
               name="message"
-              label="Event Details, Key Timings, VIPs, or Specific Requirements"
-              placeholder="Tell us about your event format, key speakers, sponsor obligations, shot list priorities, or any questions..."
+              label="Event Details or Questions"
+              placeholder="What would you like photographed? Include any key moments, delivery deadline or questions."
               minLines={4}
             />
           </Fieldset>
@@ -170,7 +169,7 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
       <div slot="column2">
         <div class="contact-sidebar">
           <div class="sidebar-card">
-            <Heading tag="h3" variant="h5">Direct Fast-Track Contact</Heading>
+            <Heading tag="h3" variant="h5">Email or Call</Heading>
             <ul class="sidebar-contact-list">
               <li><span class="contact-label">Email:</span> <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a></li>
               <li><span class="contact-label">Phone:</span> <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a></li>
@@ -180,25 +179,25 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
           </div>
 
           <div class="sidebar-card">
-            <Heading tag="h3" variant="h5">Flexible Intake Options</Heading>
+            <Heading tag="h3" variant="h5">Not Sure What to Include?</Heading>
             <ul class="sidebar-bullet-list">
               <li>Have a finished run sheet? Attach it above or share a document link.</li>
-              <li>Working to a specific scope or budget? Let us know and we will tailor coverage.</li>
-              <li>Clear, fixed quotes returned within 24 hours.</li>
+              <li>Let us know your budget and what you need photographed.</li>
+              <li>Coverage, cost and delivery are agreed before booking.</li>
             </ul>
           </div>
 
           <div class="sidebar-card highlight-card">
-            <Heading tag="h3" variant="h5">Download Briefing Template</Heading>
+            <Heading tag="h3" variant="h5">Planning a Larger Project?</Heading>
             <Paragraph variant="small">
-              Need a ready-made structure for your internal team? Download our free 4-part priority briefing framework (PDF &amp; editable text format).
+              The Word brief is optional. Use it for extra dates, venues or photo priorities. You can request a quote without completing or attaching it.
             </Paragraph>
             <ButtonWrapper marginTop="3">
-              <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf" download="IWEP_Event_Photography_Briefing_Template.pdf">
-                Download Template (PDF) &darr;
+              <Button element="link" href="/downloads/IWEP_Event_Photography_Project_Brief.docx" download="IWEP_Event_Photography_Project_Brief.docx">
+                Download Brief (Word) &darr;
               </Button>
               <Button element="link" href="/docs/event-briefing-template" variant="link">
-                Read Online Guide (DOC-01)
+                Read the Guide
               </Button>
             </ButtonWrapper>
           </div>
@@ -213,7 +212,7 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
       <div>
         <Eyebrow variant="tag">HELPFUL RESOURCES</Eyebrow>
         <Heading tag="h2" variant="h3"
-          >Need Help Structuring Your Brief?</Heading
+          >Planning Your Event?</Heading
         >
       </div>
       <ButtonWrapper slot="column2">
@@ -226,21 +225,21 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
     <Grid small={1} medium={3}>
       <Card
         heading="Briefing Template"
-        text="Use the four-part shot priority checklist for corporate events."
+        text="A checklist of useful details to share with your photographer."
         buttonHref="/docs/event-briefing-template"
         buttonLabel="Read Guide"
         theme="dark"
       />
       <Card
         heading="Sydney Pricing Guide"
-        text="Review common day-rate, half-day and licensing structures."
+        text="What to consider when asking for a quote."
         buttonHref="/docs/pricing-and-rates-guide"
         buttonLabel="Read Guide"
         theme="dark"
       />
       <Card
-        heading="Delivery Specifications"
-        text="Understand file formats, 300 DPI print masters, and private client portals."
+        heading="Photo Delivery"
+        text="Planning when you need your photos and how you will use them."
         buttonHref="/docs/turnaround-and-delivery-specs"
         buttonLabel="Read Guide"
         theme="dark"

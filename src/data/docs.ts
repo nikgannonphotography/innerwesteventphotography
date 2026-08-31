@@ -32,69 +32,65 @@ export const DOCS: DocGuide[] = [
   {
     slug: "event-briefing-template",
     number: "DOC-01",
-    title: "The Professional Event Photography Briefing Template",
+    title: "Event Photography Project Brief",
     subtitle:
-      "A practical 4-tier briefing framework for corporate conferences, summits, and charity galas.",
+      "An editable Word brief for events across one or several days and venues.",
     category: "briefing",
-    categoryLabel: "Briefing Framework",
+    categoryLabel: "Briefing Checklist",
     lastUpdated: "August 2026",
-    readTime: "6 min read",
+    readTime: "2 min read",
     summary:
-      "How to structure an event photography brief that eliminates misunderstandings, aligns expectations with sponsors and executives, and ensures your photographer captures what matters most.",
+      "What to share with your photographer, including the schedule, important people and photos you need.",
     searchIntent: "planning",
     seoTitle: "Event Photography Briefing Template for Sydney Events",
     metaDescription:
-      "Use this event photography briefing template to organise priorities, run-sheet timings, stakeholders and delivery requirements for a Sydney event.",
+      "Download an editable Word event photography brief. Share dates, venues, contacts, photo priorities and delivery needs for your Sydney event.",
     publishedDate: "2026-08-28",
     sections: [
       {
-        heading: "1. The Four-Tier Shot Priority Framework",
+        heading: "1. Start With What You Know",
         content:
-          "During a fast-moving live event, schedules shift. Having a pre-established shot hierarchy ensures your photographer never compromises primary stakeholder assets when stage timings change.",
+          "Share the event name, dates, venues and what you need photographed. Leave anything undecided as TBC. You do not need a finished brief to ask for a quote.",
         subsections: [
           {
-            title: "Tier 1: Mandatory Keynotes, VIPs & Stage Handshakes",
-            body: "Must-capture requirements including keynote speaker entrances, award recipient handshakes, dignitary arrivals, and sponsor cheque handovers. Reference photos and exact stage times are essential.",
+            title: "Dates and Locations",
+            body: "For larger projects, list each day and venue separately. Include start and finish times where known, and flag sessions happening at the same time in different rooms.",
           },
           {
-            title: "Tier 2: Sponsor Integration & Partner Booths",
-            body: "Branded expo booths with active delegates, sponsored lanyards, stage backdrops, partner banners, and delegate gift bags required for sponsor ROI wrap-up reports.",
+            title: "Contacts",
+            body: "Include the person arranging the photography, someone we can reach on the day, and whoever approves the brief. These can all be the same person.",
           },
           {
-            title: "Tier 3: Delegate Energy & Room Scale",
-            body: "Wide architectural shots establishing room attendance, genuine attendee engagement during workshops, and dynamic crowd reactions.",
-          },
-          {
-            title: "Tier 4: Environmental Details & Atmosphere",
-            body: "Table settings, floral arrangements, catering presentation, ambient venue architecture, and cocktail mingling.",
+            title: "Photos You Need",
+            body: "Put the most important photos first. Add names, times or reference photos where useful. A short list is fine, and you can add rows in Word as the project grows.",
           },
         ],
       },
       {
-        heading: "2. Key Production Details to Include in Your Brief",
+        heading: "2. Share Any Deadlines or Restrictions",
         content:
-          "Provide the following baseline information when scoping your event coverage:",
+          "Tell us what matters for your project so we can confirm the work and cost before booking.",
         subsections: [
           {
-            title: "Run of Show & Schedule Milestones",
-            body: "Detail call times, speaker podium timings, lighting blackout periods, award sequences, and intermission durations.",
+            title: "Delivery and Use",
+            body: "Include when you need the photos, where they will be used and who needs to use them. If some photos are needed earlier, give the deadline so we can discuss what is possible.",
           },
           {
-            title: "On-Site Contact & Decision Maker",
-            body: "Name, mobile number, and radio channel of the lead event producer or communications lead who can make live staging calls.",
+            title: "Things to Know on the Day",
+            body: "Note venue access, photography restrictions, anyone who should not be photographed, and photos that cannot be shared yet.",
           },
           {
-            title: "Turnaround Deadlines & PR Protocols",
-            body: "Specify if next-morning press selects (20–40 images) or live social drops are needed, and confirm designated file transfer channels.",
+            title: "Send What You Already Have",
+            body: "An existing run sheet or brief is welcome. There is no need to repeat it in the template. Coverage, delivery, usage and any extra requests will be confirmed in the quote.",
           },
         ],
       },
     ],
     keyTakeaways: [
-      "Categorise shot lists into 4 distinct priority tiers.",
-      "Provide reference headshots for all Tier 1 VIPs and board executives.",
-      "Agree on expedited PR turnaround schedules before the event date.",
-      "Ensure venue load-in access and audio-visual contacts are provided.",
+      "Use the Word document if you need an editable brief.",
+      "List each day or venue and put your most important photos first.",
+      "Leave unknown details as TBC or send an existing run sheet.",
+      "Confirm coverage, cost, delivery and usage before booking.",
     ],
     relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
@@ -108,15 +104,15 @@ export const DOCS: DocGuide[] = [
   {
     slug: "pricing-and-rates-guide",
     number: "DOC-02",
-    title: "Sydney Event Photography Pricing & Rate Structures",
+    title: "Sydney Event Photography Pricing Guide",
     subtitle:
-      "A comprehensive guide to commercial photography rates, inclusions, and scoping models in Sydney.",
+      "What affects your event photography quote and what to confirm before booking.",
     category: "pricing",
     categoryLabel: "Commercial Rates",
     lastUpdated: "August 2026",
-    readTime: "8 min read",
+    readTime: "2 min read",
     summary:
-      "Understand commercial pricing structures across half-day, full-day, multi-day conferences, second shooters, and commercial licensing terms in the Sydney market.",
+      "Plan coverage for a short event, a full day or several days. Confirm the hours, editing, delivery and usage included in your quote.",
     searchIntent: "cost",
     seoTitle: "Sydney Event Photography Pricing and Rate Guide",
     metaDescription:
@@ -126,42 +122,42 @@ export const DOCS: DocGuide[] = [
       {
         heading: "1. How Sydney Event Photography is Priced",
         content:
-          "Commercial event photography is typically quoted on fixed half-day or full-day blocks rather than open-ended hourly fees, ensuring cost predictability.",
+          "Your quote depends on the time, locations and photos needed. The examples below are planning points, not fixed packages or guaranteed image counts.",
         subsections: [
           {
-            title: "Half-Day Coverage (Up to 4 Hours)",
-            body: "Ideal for evening awards galas, breakfast summits, product launches, or half-day seminars. Typically includes 200–350 fully colour-graded high-resolution master images.",
+            title: "Part of the Day",
+            body: "Share the start and finish times, venue and important moments. Confirm the coverage hours, editing and delivery in your quote.",
           },
           {
-            title: "Full-Day Coverage (Up to 8 Hours)",
-            body: "Standard for full-day corporate conferences, multi-session symposiums, and all-day festivals. Typically includes 400–700+ master images with optional same-day PR highlight pack.",
+            title: "A Full Day",
+            body: "Send the run sheet so we can plan the sessions and activities you need covered. Mention any room changes, breaks or photos needed before the full gallery.",
           },
           {
             title: "Multi-Day Conference Coverage",
-            body: "Discounted multi-day structures with dedicated overnight turnaround workflows, daily media selects, and multi-photographer team coordination.",
+            body: "List the schedule and venues for each day. We will discuss coverage and delivery needs before quoting for the project.",
           },
         ],
       },
       {
-        heading: "2. Second Shooters and Technical Scaling",
+        heading: "2. Overlapping Sessions and Delivery Deadlines",
         content:
-          "When an event exceeds 300 delegates or features concurrent breakout tracks, adding a second operator is critical to avoid missing simultaneous keynotes.",
+          "One photographer cannot be in two places at once. Flag overlapping sessions so we can agree priorities and discuss whether additional coverage is needed.",
         subsections: [
           {
-            title: "When is a Second Shooter Necessary?",
-            body: "Recommended for concurrent multi-room breakout sessions, large venues (e.g. ICC Sydney Grand Ballroom), or events requiring continuous stage coverage while roving awards tables.",
+            title: "Coverage in Different Rooms",
+            body: "Tell us which sessions need photos and whether any must be covered in full. Additional photographers are not included unless agreed in the quote.",
           },
           {
-            title: "Fast PR Turnaround Ingest",
-            body: "On-site editor or Wi-Fi tethering workflow to deliver hero frames within minutes of key addresses.",
+            title: "Photos Needed Earlier",
+            body: "Share the deadline and how many photos you need. Early delivery depends on the schedule and time available for editing, and must be agreed before booking.",
           },
         ],
       },
     ],
     keyTakeaways: [
-      "Half-day and full-day blocks provide transparent, fixed-scope budgeting.",
-      "Commercial usage rights in perpetuity should always be included in writing.",
-      "Multi-room breakouts require second shooter scoping.",
+      "Confirm coverage hours, editing and delivery in the quote.",
+      "Check the permitted uses and duration of your photo licence in writing.",
+      "Flag overlapping sessions and discuss any additional coverage needed.",
       "Confirm that the photographer can provide a current Certificate of Currency that meets the venue's requirements.",
     ],
     relatedService: "corporate-events-conferences",
@@ -181,17 +177,17 @@ export const DOCS: DocGuide[] = [
   {
     slug: "turnaround-and-delivery-specs",
     number: "DOC-03",
-    title: "Turnaround Times, File Formats & Delivery Specifications",
+    title: "Event Photo Delivery & File Formats",
     subtitle:
-      "Technical standards for image resolutions, colour profiles, client portals, and delivery timing.",
+      "Planning when you need your photos and which files to request.",
     category: "delivery",
-    categoryLabel: "Delivery Specifications",
+    categoryLabel: "Photo Delivery",
     lastUpdated: "August 2026",
     readTime: "5 min read",
     summary:
-      "Detailed breakdown of our delivery timelines, high-resolution master files, web-optimised formats, and secure Australian-hosted digital galleries.",
+      "How to plan photo delivery for print, websites and social media. Agree on timing, file formats and gallery access before booking.",
     searchIntent: "delivery",
-    seoTitle: "Event Photography Turnaround and Delivery Specifications",
+    seoTitle: "Event Photography Turnaround and Photo Delivery",
     metaDescription:
       "Plan event photography delivery for press, social, web and print, including priority selections, file formats, colour spaces and gallery handover.",
     publishedDate: "2026-08-28",
@@ -199,39 +195,39 @@ export const DOCS: DocGuide[] = [
       {
         heading: "1. Delivery Timelines",
         content:
-          "We provide structured delivery tiers tailored to marketing and PR deadlines:",
+          "Tell us your deadline before booking. Your quote will confirm the agreed delivery timing.",
         subsections: [
           {
-            title: "Fast PR Selects (2–12 Hours)",
-            body: "A curated batch of 20–40 hero images delivered on-site or by 9:00 AM next morning for urgent social media, press distribution, and executive LinkedIn updates.",
+            title: "Photos Needed for a Deadline",
+            body: "If you need some photos before the full gallery, list the deadline, recipients and intended use. Availability must be confirmed before booking.",
           },
           {
-            title: "Full Master Gallery (3–5 Business Days)",
-            body: "The complete retouched image suite, individually balanced for colour/exposure balance, delivered via private client portal.",
+            title: "Full Event Gallery",
+            body: "Confirm the delivery date, file formats and how you will receive the edited photos.",
           },
         ],
       },
       {
         heading: "2. File Formats & Colour Standards",
         content:
-          "Assets are delivered in dual formats to serve both large-format print publications and high-speed digital web platforms.",
+          "Tell your photographer whether the photos are for print, online use or both.",
         subsections: [
           {
             title: "High-Resolution Print Masters",
-            body: "Full-resolution 300 DPI JPEGs in Adobe RGB colour profile, suitable for annual reports, billboards, and exhibition displays.",
+            body: "Share any file requirements from your printer, including image dimensions and colour profile.",
           },
           {
             title: "Web-Optimised Digital Assets",
-            body: "Compressed 2048px (long edge) 72 DPI JPEGs in sRGB colour space, optimised for fast web loading, email newsletters, and social media.",
+            body: "Share the sizes needed for your website, email newsletter or social media.",
           },
         ],
       },
     ],
     keyTakeaways: [
-      "Fast PR selects delivered within 2–12 hours on request.",
-      "Full master galleries delivered within 3–5 business days.",
-      "Assets supplied in dual high-res (print) and web-optimised formats.",
-      "Hosted on high-speed private galleries with unlimited team downloads.",
+      "Confirm any early photo delivery before booking.",
+      "Agree on a delivery date for the full gallery.",
+      "Agree on the files needed for print and online use.",
+      "Confirm gallery access, downloads and how long photos will remain available.",
     ],
     relatedService: "brand-campaigns-activations",
     relatedBlogSlugs: [
@@ -269,15 +265,15 @@ export const DOCS: DocGuide[] = [
       {
         heading: "1. Standard Commercial Usage Licence",
         content:
-          "Under the Australian Copyright Act 1968, the photographer owns copyright in the images unless otherwise assigned in writing. All our commercial and event commissions include a comprehensive, perpetual usage licence.",
+          "Confirm copyright ownership and permitted photo use in your booking agreement. Our quote sets out the usage agreed for your shoot.",
         subsections: [
           {
             title: "What is Included in Your Licence",
-            body: "Perpetual, worldwide, royalty-free usage across your organisation's website, marketing collateral, PR press kits, internal communications, annual reports, and social media channels.",
+            body: "List where you plan to use the photos, including websites, advertising, press, reports and social media. Check which uses your agreement covers.",
           },
           {
             title: "Third-Party Sponsor & Vendor Rights",
-            body: "Sponsors and commercial partners attending your event may use imagery for post-event editorial and reporting when coordinated through your communications team.",
+            body: "If sponsors or partners need photos, include their intended uses when discussing the licence.",
           },
         ],
       },
@@ -288,20 +284,20 @@ export const DOCS: DocGuide[] = [
         subsections: [
           {
             title: "Ticketing Terms & Notice of Filming",
-            body: "We recommend including standard 'Notice of Photography & Filming' wording in attendee registration terms to ensure transparent consent.",
+            body: "Discuss how attendees will be informed about photography and how requests not to be photographed will be handled.",
           },
           {
             title: "Sensitive & Embargoed Material",
-            body: "We respect non-disclosure agreements (NDAs) and embargoes on unreleased products, financial disclosures, or sensitive community members.",
+            body: "Share any proposed non-disclosure agreement, embargo or sensitive content restrictions before booking so they can be reviewed.",
           },
         ],
       },
     ],
     keyTakeaways: [
-      "Full commercial usage rights in perpetuity included with every commission.",
-      "Zero recurring licensing renewal fees.",
+      "Photo usage is agreed for each booking.",
+      "Check the licence duration and any renewal fees.",
       "Clear guidelines for third-party sponsor distribution.",
-      "Full compliance with Australian privacy standards and NDAs.",
+      "Discuss privacy requirements and any proposed NDA before booking.",
     ],
     relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
@@ -340,7 +336,7 @@ export const DOCS: DocGuide[] = [
         subsections: [
           {
             title: "High-Contrast Stage Lighting & Theatrical Spots",
-            body: "Venues like ICC Sydney and university theatres use powerful spot beams with deep ambient shadows. We use high dynamic range full-frame sensors and fast prime lenses (f/1.4–f/2.8) to preserve skin tones without blowing highlights.",
+            body: "Stages can be much brighter than the surrounding room. Share the lighting plan and any restrictions on flash photography.",
           },
           {
             title: "Industrial & Repurposed Heritage Venues",
@@ -934,9 +930,9 @@ export const DOCS: DocGuide[] = [
     publishedDate: "2026-08-28",
     sections: [
       {
-        heading: "1. Prioritising Candid Moments Over Stiff Posing",
+        heading: "1. Candid Photos and Key Moments",
         content:
-          "Great private celebration photography captures the genuine energy of the room — hearty laughter, spontaneous embraces, and authentic conversations. Rather than pulling guests away from conversations for endless posed shots, we work unobtrusively around the venue.",
+          "Candid photos cover guests talking, laughing and enjoying the celebration. Allow time for any group photos you would also like.",
         subsections: [
           {
             title: "Guest Arrivals & Atmosphere",
@@ -951,19 +947,19 @@ export const DOCS: DocGuide[] = [
       {
         heading: "2. Structuring Family & VIP Group Portraits",
         content:
-          "Group portraits are best completed early in the event before dinner or formal speeches. Having a short nominated list of key family combinations (immediate family, grandparents, close friend circles) ensures group photos are finished in 15 minutes flat without disrupting the party.",
+          "Make a short list of family and friend groups you would like photographed. Agree on a time for those photos that fits your event.",
       },
       {
-        heading: "3. Fast Sneak Peeks & Guest Gallery Downloads",
+        heading: "3. Receiving and Sharing Your Photos",
         content:
-          "Guests love reliving the celebration right away. We deliver a curated highlight sneak peek pack within 24–48 hours, followed by a private Australian-hosted online gallery where all your guests can download their favourite high-res photos freely with zero watermarks.",
+          "Agree on delivery timing and how you will share photos with guests. Mention any early deadline before booking.",
       },
     ],
     keyTakeaways: [
       "Keep formal group portrait lists focused and schedule them early in the event.",
       "Document authentic speech reactions and ambient room energy.",
-      "Enjoy private password-protected galleries with unlimited guest downloads.",
-      "Fast 24–48 hour sneak peek highlights for social sharing.",
+      "Confirm how guests can access the photos.",
+      "Discuss any early delivery deadline before booking.",
     ],
     relatedService: "private-events-milestones-celebrations",
     relatedBlogSlugs: [
@@ -999,7 +995,7 @@ export const DOCS: DocGuide[] = [
       {
         heading: "1. The Documentary Philosophy for Intimate Celebrations",
         content:
-          "Modern couples are steering away from rigid, choreographed photo shoots in favour of relaxed, documentary storytelling. Our approach focuses on the natural narrative of your day — the quiet anticipation, genuine laughter with friends, and the raw emotion of vows.",
+          "Plan photography around the ceremony, speeches, candid guest photos and any couple or family portraits you would like.",
         subsections: [
           {
             title: "Foreshore & Waterfront Timing",
@@ -1019,14 +1015,14 @@ export const DOCS: DocGuide[] = [
       {
         heading: "3. Archival Handover & Full Digital Rights",
         content:
-          "All master files are delivered in both full 300 DPI resolution for archival fine-art printing and web-optimised formats for instant digital sharing. You receive full personal printing rights with zero restriction on where you print your memories.",
+          "Discuss the files you need for printing and sharing. Confirm the permitted uses and delivery details in your quote.",
       },
     ],
     keyTakeaways: [
       "Focus on candid connection, emotional speeches, and atmospheric styling.",
       "Take advantage of Sydney's distinctive harbour and heritage architecture for brief relaxed portraits.",
-      "Direct digital guest downloads and high-resolution fine-art printing files included.",
-      "Clear, upfront fixed rates with zero hidden per-image upgrade fees.",
+      "Confirm file formats and guest access before booking.",
+      "Check what is included in your quote and whether any extras cost more.",
     ],
     relatedService: "private-events-milestones-celebrations",
     relatedBlogSlugs: [
@@ -1044,25 +1040,25 @@ export const DOCS: DocGuide[] = [
   {
     slug: "sydney-studio-hire-and-production-equipment-guide",
     number: "DOC-14",
-    title: "Sydney Studio Hire, Equipment Packages & Production Scoping Guide",
+    title: "Planning a Sydney Studio Photography Shoot",
     subtitle:
-      "How to scope daylight photography studios, cyclorama spaces, specialized camera/lighting packages, and crew coordination across Sydney.",
+      "Questions to ask about studio space, equipment and people needed for a shoot.",
     category: "venues",
     categoryLabel: "Studio & Production Guide",
     lastUpdated: "August 2026",
     readTime: "7 min read",
     summary:
-      "A complete commercial production guide covering photography studio hire in Sydney (Inner West, Alexandria, Surry Hills), high-end continuous and strobe lighting packages, multi-camera crews, and hair/makeup styling coordination upon discussion.",
+      "A planning checklist for a studio shoot in Sydney. Studio, equipment and crew hire are separate services and are not included unless expressly agreed in your quote.",
     searchIntent: "venue",
     seoTitle: "Sydney Photography Studio Hire & Production Equipment Guide",
     metaDescription:
-      "Scoping guide for commercial photography studio hire, cyclorama rental, specialized lighting gear packages, and production crew in Sydney. Inner West, Alexandria & Surry Hills.",
+      "Planning a studio photography shoot in Sydney? Questions to ask about studio space, lighting, equipment, crew and separate hire costs.",
     publishedDate: "2026-08-28",
     sections: [
       {
         heading: "1. Daylight vs Cyclorama Studio Hire in Sydney",
         content:
-          "Depending on whether your campaign requires soft natural daylight or high-contrast commercial isolation, we help scope and coordinate the right studio space across Sydney's primary creative hubs (Marrickville, Alexandria, Waterloo, Surry Hills).",
+          "Discuss the photos you need before booking a space. Check light, backgrounds, access, hire hours and what the studio includes.",
         subsections: [
           {
             title: "Daylight Studios (Inner West & Surry Hills)",
@@ -1075,21 +1071,21 @@ export const DOCS: DocGuide[] = [
         ],
       },
       {
-        heading: "2. Specialized Gear & Lighting Hire Coordination",
+        heading: "2. Equipment and Lighting",
         content:
-          "For high-spec commercial productions, we coordinate complete technical gear packages including Profoto / Broncolor high-speed studio strobes, continuous cinema lighting (Aputure / Nanlite), high-resolution medium format systems, and on-set wireless tethering stations with calibrated color monitors.",
+          "Check what equipment the photographer and studio will supply. Any additional hire needs an agreed supplier, cost and person responsible for collection and return.",
       },
       {
-        heading: "3. Crew Coordination: Digi-Techs, Assistants & HMUA",
+        heading: "3. Who Is Needed on the Shoot?",
         content:
-          "Large commercial shoots require dedicated on-set support. Upon discussion, we coordinate experienced digital operators (digi-ops for real-time asset tagging and backup), second shooters, camera assistants, and professional Hair & Makeup Artists (HMUA) tailored to your brand brief.",
+          "If your shoot needs an assistant, stylist or hair and makeup artist, confirm who will book and pay for them. Do not assume these services are part of the photography booking.",
       },
     ],
     keyTakeaways: [
-      "We facilitate end-to-end studio hire across top Inner West and South Sydney production spaces.",
-      "Custom specialized lighting and cinema gear packages sourced for demanding commercial briefs.",
-      "On-set digital operators and HMUA styling teams available upon discussion.",
-      "Transparent line-item studio and equipment rates integrated into one clear quote.",
+      "Confirm the space suits the photos you need.",
+      "Check equipment inclusions and separate hire costs.",
+      "Agree who will arrange any additional people.",
+      "Only services expressly agreed in your quote are included.",
     ],
     relatedService: "brand-campaigns-activations",
     relatedBlogSlugs: [

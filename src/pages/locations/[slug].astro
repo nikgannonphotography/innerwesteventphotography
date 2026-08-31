@@ -70,19 +70,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://innerwesteventphotography.com.au",
+      item: "https://www.innerwesteventphotography.com.au",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Sydney Coverage Hubs",
-      item: "https://innerwesteventphotography.com.au/locations",
+      item: "https://www.innerwesteventphotography.com.au/locations",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: location.name,
-      item: `https://innerwesteventphotography.com.au/locations/${location.slug}`,
+      item: `https://www.innerwesteventphotography.com.au/locations/${location.slug}`,
     },
   ],
 };
@@ -90,7 +90,7 @@ const breadcrumbSchema = {
 
 <Layout
   title={`${location.name} Event Photography | Sydney Studio`}
-  description={`${location.name} event photography. ${location.description} Covering ${location.suburbs.slice(0, 5).join(", ")} and surrounding venues.`}
+  description={`${location.name} event photography by Nikolas Gannon. ${location.tagline}`}
 >
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(locationSchema)} />
@@ -102,17 +102,17 @@ const breadcrumbSchema = {
     <ContentWrapper>
       <ButtonWrapper class="margin-bottom-4">
         <Button element="link" href="/locations" variant="link">
-          &larr; Back to All Coverage Hubs
+          &larr; Back to All Locations
         </Button>
       </ButtonWrapper>
-      <Eyebrow variant="tag">REGIONAL COVERAGE HUB</Eyebrow>
+      <Eyebrow variant="tag">SYDNEY COVERAGE</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={26}>{location.name} Event Photography</Heading>
       <Paragraph variant="large" maxWidth={38}>{location.tagline}</Paragraph>
       <Paragraph maxWidth={38}>{location.description}</Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Send a brief</Button>
+        <Button element="link" href="/contact">Get a quote</Button>
         <Button element="link" href="/services" variant="link">
-          View Services & Rates
+          View Services
         </Button>
       </ButtonWrapper>
     </ContentWrapper>
@@ -141,22 +141,22 @@ const breadcrumbSchema = {
     <ContentWrapper variant="columns">
       <div>
         <Eyebrow variant="tag">LOCAL LOGISTICS</Eyebrow>
-        <Heading tag="h2" variant="h2">On-Site Execution & Venue Standards</Heading>
+        <Heading tag="h2" variant="h2">Planning Around Your Venue</Heading>
         <Paragraph>
-          Every venue has unique loading dock, induction, and stage lighting requirements. We handle all pre-event logistics to ensure seamless execution on the day.
+          Share your venue contact and any access or photography requirements before the event.
         </Paragraph>
       </div>
 
       <div slot="column2">
         <Grid small={1}>
           <Card
-            heading="Venue Induction & Loading"
-            text="Completed contractor safety inductions and coordinated loading dock access for smooth bump-in across all Sydney venues."
+            heading="Venue Access"
+            text="Let us know about access times, parking and any venue induction requirements."
             theme="dark"
           />
           <Card
-            heading="Fast PR & Master Delivery"
-            text="Sub-12-hour hero selects for media distribution followed by a complete retouched master archive in web and 300 DPI print formats."
+            heading="Photo Delivery"
+            text="Delivery timing and file formats are agreed before booking."
             theme="dark"
           />
         </Grid>
@@ -254,7 +254,7 @@ const breadcrumbSchema = {
       <ButtonWrapper marginTop="4">
         <Button element="link" href="/contact">Request a Quote &rarr;</Button>
         <Button element="link" href="/docs/event-briefing-template" variant="link">
-          Download Briefing Template
+          View Briefing Guide
         </Button>
       </ButtonWrapper>
     </ContentWrapper>
