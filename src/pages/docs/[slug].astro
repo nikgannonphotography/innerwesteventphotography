@@ -3,6 +3,7 @@ import Layout from "@/layouts/BaseLayout.astro";
 import Section from "@/components/Wrapper/Section.astro";
 import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
 import ContentArticle from "@/components/Content/ContentArticle.astro";
+import ContentArticleHeader from "@/components/Content/ContentArticleHeader.astro";
 import Eyebrow from "@/components/Typography/Eyebrow.astro";
 import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
@@ -102,22 +103,8 @@ const guideSchema = {
     set:html={JSON.stringify(guideSchema)}
   />
 
-  <!-- Guide header -->
-  <Section paddingTop="medium" paddingBottom="small">
-    <ContentWrapper>
-      <ButtonWrapper class="margin-bottom-4">
-        <Button element="link" href="/docs" variant="link">
-          &larr; Back to docs and guides
-        </Button>
-      </ButtonWrapper>
-      <Eyebrow variant="tag">{doc.categoryLabel}</Eyebrow>
-      <Heading tag="h1" variant="h2" maxWidth={26}>{doc.title}</Heading>
-      <div class="article-meta-header">
-        <span>Updated {doc.lastUpdated}</span>
-        <span class="meta-separator">•</span>
-        <span>{doc.readTime}</span>
-      </div>
-    </ContentWrapper>
+  <Section paddingTop="small" paddingBottom="none">
+    <ContentArticleHeader title={doc.title} category={doc.categoryLabel} backHref="/docs" backLabel="Back to docs and guides" metadata={[`Updated ${doc.lastUpdated}`, doc.readTime]} />
   </Section>
 
   <!-- Guide body -->
@@ -130,7 +117,7 @@ const guideSchema = {
 
       {doc.slug === "event-briefing-template" && (
         <div class="template-download-box">
-          <Heading tag="h3" variant="h5">Download the Project Brief</Heading>
+          <Heading tag="h2" variant="h3">Download the Project Brief</Heading>
           <Paragraph variant="small">
             This Word brief is optional and follows the website enquiry form. Add only the extra details you need. You can request a quote without completing it.
           </Paragraph>
@@ -154,7 +141,7 @@ const guideSchema = {
             <Paragraph>{section.content}</Paragraph>
 
             {section.subsections?.map((subsection) => (
-              <div>
+              <div class="article-subsection-block">
                 <Heading tag="h3" variant="h4">
                   {subsection.title}
                 </Heading>
@@ -184,8 +171,12 @@ const guideSchema = {
           )
         }
       </div>
+    </ContentArticle>
+  </Section>
 
-      <Grid small={1} medium={3}>
+  <Section paddingTop="small" paddingBottom="medium">
+    <Heading tag="h2" variant="h3">Related guides</Heading>
+      <Grid small={1} large={3}>
         {
           otherDocs.map((otherDoc) => (
             <Card
@@ -198,7 +189,6 @@ const guideSchema = {
           ))
         }
       </Grid>
-    </ContentArticle>
   </Section>
 
   <!-- Related articles -->
@@ -245,38 +235,3 @@ const guideSchema = {
     </ContentWrapper>
   </Section>
 </Layout>
-
-<style is:global>
-  @layer components {
-    .template-download-box {
-      background-color: var(--background-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-main);
-      padding: var(--space-6);
-      margin-block: var(--space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-
-    .article-meta-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-3);
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-top: var(--space-4);
-    }
-
-    .meta-separator {
-      color: var(--border);
-    }
-
-    @media (width < 40rem) {
-      .meta-separator {
-        display: none;
-      }
-    }
-  }
-</style>

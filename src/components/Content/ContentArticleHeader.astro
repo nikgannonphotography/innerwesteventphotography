@@ -1,0 +1,98 @@
+---
+import Heading from "@/components/Typography/Heading.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Button from "@/components/Button.astro";
+import Img from "@/components/Media/Img.astro";
+
+interface Props {
+  /** Set to `false` to skip rendering this component and its children. */
+  render?: boolean;
+  title: string;
+  category: string;
+  backHref: string;
+  backLabel: string;
+  metadata: string[];
+  image?: string;
+}
+const {
+  render = true,
+  title,
+  category,
+  backHref,
+  backLabel,
+  metadata,
+  image,
+} = Astro.props;
+---
+
+{
+  render && title && (
+    <header class="content-article-header_wrap">
+      <Button element="link" href={backHref} variant="link">
+        &larr; {backLabel}
+      </Button>
+      <Eyebrow>{category}</Eyebrow>
+      <Heading tag="h1" variant="h2">
+        {title}
+      </Heading>
+      <ul class="content-article-header_meta" aria-label="Article details">
+        {metadata.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      {image && (
+        <Img
+          src={image}
+          alt={title}
+          loading="eager"
+          class="content-article-header_image"
+        />
+      )}
+    </header>
+  )
+}
+<style is:global>
+  @layer components {
+    .content-article-header_wrap {
+      width: 100%;
+      max-width: 70ch;
+      margin-inline: auto;
+      padding-bottom: 2rem;
+      display: grid;
+      justify-items: start;
+      gap: 1rem;
+      font-size: 1.0625rem;
+    }
+    .content-article-header_wrap > * {
+      margin: 0;
+    }
+    .content-article-header_wrap > .button_wrap {
+      margin-bottom: 0.75rem;
+    }
+    .content-article-header_wrap .heading {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      font-weight: var(--primary-medium);
+      text-wrap: pretty;
+    }
+    .content-article-header_meta {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 1rem;
+      row-gap: 0.375rem;
+      list-style: none;
+      padding: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .content-article-header_image {
+      width: 100%;
+      height: auto;
+      max-height: 30rem;
+      object-fit: contain;
+      object-position: left center;
+      border-radius: 0;
+      margin-top: 1rem;
+    }
+  }
+</style>

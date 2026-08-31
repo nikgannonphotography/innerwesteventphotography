@@ -11,6 +11,7 @@ import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import RelatedBlogPosts from "@/components/Item/RelatedBlogPosts.astro";
 import ContentArticle from "@/components/Content/ContentArticle.astro";
+import ContentArticleHeader from "@/components/Content/ContentArticleHeader.astro";
 import {
   BLOG_POSTS,
   BLOG_SERVICE_LINKS,
@@ -75,12 +76,6 @@ function formatMarkdownText(raw: string): string {
   let text = raw.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   text = text.replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, "<em>$1</em>");
 
-  if (!text.includes("<strong>")) {
-    const colonMatch = text.match(/^([A-Z0-9][^:]{2,45}):\s+(.*)$/);
-    if (colonMatch) {
-      text = `<strong>${colonMatch[1]}:</strong> ${colonMatch[2]}`;
-    }
-  }
   return text;
 }
 
@@ -118,36 +113,8 @@ const articleSchema = {
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
 
-  <!-- Article header -->
-  <Section paddingTop="medium" paddingBottom="small">
-    <ContentWrapper>
-      <ButtonWrapper class="margin-bottom-4">
-        <Button element="link" href="/blog" variant="link">
-          &larr; Back to All Articles
-        </Button>
-      </ButtonWrapper>
-      <Eyebrow variant="tag">{post.categoryLabel}</Eyebrow>
-      <Heading tag="h1" variant="h2" maxWidth={26}>{post.title}</Heading>
-      <div class="article-meta-header">
-        <span>By <strong>{post.author}</strong></span>
-        <span class="meta-separator">•</span>
-        <span>{post.date}</span>
-        <span class="meta-separator">•</span>
-        <span>{post.readTime}</span>
-      </div>
-    </ContentWrapper>
-  </Section>
-
-  <!-- Article image -->
-  <Section paddingTop="none" paddingBottom="small">
-    <div class="article-hero-wrap">
-      <img
-        src={post.heroImage}
-        alt={post.title}
-        class="article-hero-img"
-        loading="eager"
-      />
-    </div>
+  <Section paddingTop="small" paddingBottom="none">
+    <ContentArticleHeader title={post.title} category={post.categoryLabel} backHref="/blog" backLabel="Back to all articles" metadata={[`By ${post.author}`, post.date, post.readTime]} image={post.heroImage} />
   </Section>
 
   <!-- Article body -->
@@ -186,25 +153,25 @@ const articleSchema = {
 
           {sec.callout && (
             <div class="article-callout">
-              <Paragraph><strong>Note:</strong> {sec.callout}</Paragraph>
+              <Paragraph>{sec.callout}</Paragraph>
             </div>
           )}
 
           {sec.tableData && (
-            <div class="article-table-wrap">
+            <div class="article-table-wrap" tabindex="0" role="region" aria-label={`${sec.heading} comparison table`}>
               <table class="article-table">
                 <thead>
                   <tr>
                     {sec.tableData.headers.map((h) => (
-                      <th>{h}</th>
+                      <th scope="col">{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {sec.tableData.rows.map((row) => (
                     <tr>
-                      {row.map((cell, cIdx) => (
-                        <td class={cIdx === 0 ? "font-bold" : ""}>{cell}</td>
+                      {row.map((cell) => (
+                        <td>{cell}</td>
                       ))}
                     </tr>
                   ))}
@@ -241,9 +208,11 @@ const articleSchema = {
           </ButtonWrapper>
         )}
       </div>
-
-      <RelatedBlogPosts currentSlug={post.slug} />
     </ContentArticle>
+  </Section>
+
+  <Section paddingTop="small" paddingBottom="medium">
+    <RelatedBlogPosts currentSlug={post.slug} />
   </Section>
 
   <!-- Contact -->
@@ -261,48 +230,3 @@ const articleSchema = {
     </ContentWrapper>
   </Section>
 </Layout>
-
-<style is:global>
-  @layer components {
-    .article-meta-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-3);
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-top: var(--space-4);
-    }
-
-    .meta-separator {
-      color: var(--border);
-    }
-
-    .article-hero-wrap {
-      width: 100%;
-      max-width: var(--max-width-main);
-      margin-inline: auto;
-      border-radius: var(--radius-main);
-      overflow: hidden;
-      aspect-ratio: 21 / 9;
-      background-color: var(--background-2);
-    }
-
-    .article-hero-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    @media (width < 40rem) {
-      .article-meta-header {
-        gap: var(--space-2) var(--space-3);
-      }
-
-      .meta-separator {
-        display: none;
-      }
-    }
-  }
-</style>

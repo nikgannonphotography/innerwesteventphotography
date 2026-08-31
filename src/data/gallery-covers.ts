@@ -37,3 +37,12 @@ export function getGalleryCover(
 ) {
   return GALLERY_COVERS[gallery.slug] ?? gallery.posterImage;
 }
+
+const GALLERY_COVER_POSITIONS: Record<string, string> = {
+  "australian-fashion-week-2026": "50% 20%",
+  "royalle-modelling-x-leather-on-me-xteds-cameras": "50% 20%",
+};
+
+export function getGalleryCoverPosition(gallery: Pick<GalleryProject, "slug">) {
+  return GALLERY_COVER_POSITIONS[gallery.slug] ?? "50% 50%";
+}

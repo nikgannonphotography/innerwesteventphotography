@@ -39,7 +39,7 @@ const relatedPosts = [...otherPosts]
     </ButtonWrapper>
   </ContentWrapper>
 
-  <Grid small={1} medium={3}>
+  <Grid small={1} large={3}>
     {relatedPosts.map((post) => (
       <BlogPostCard post={post} />
     ))}
@@ -50,8 +50,7 @@ const relatedPosts = [...otherPosts]
   @layer components {
     .related_posts_wrap {
       width: 100%;
-      margin-top: var(--space-8);
-      padding-top: var(--space-8);
+      padding-top: var(--space-6);
       border-top: var(--border-width) solid var(--border);
       display: flex;
       flex-direction: column;

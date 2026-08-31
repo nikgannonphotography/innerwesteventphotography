@@ -345,7 +345,7 @@ export const BLOG_POSTS: BlogPost[] = [
     isoDate: "2026-06-01",
     readTime: "2 min read",
     author: "Nikolas Gannon",
-    heroImage: "/galleries/posters/nrl-grand-final-2019.webp",
+    heroImage: "/galleries/global-impact-summit/09.webp",
     summary: "Questions to help you choose a photographer and understand what is included.",
     featured: false,
     content: {
@@ -367,8 +367,8 @@ export const BLOG_POSTS: BlogPost[] = [
       conclusion: "Checking these seven points will show whether the photographer is ready for the venue, schedule and delivery requirements."
     },
     relatedGalleries: [
-      "nrl-grand-final-2019",
-      "latrell-mitchell-daniel-tupou-2019"
+      "global-impact-summit",
+      "tedx-macquarie-uni"
     ],
     relatedDocSlugs: [
       "pricing-and-rates-guide",

@@ -7,7 +7,7 @@ import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
 import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
-import { getGalleryCover } from "@/data/gallery-covers";
+import { getGalleryCover, getGalleryCoverPosition } from "@/data/gallery-covers";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { GALLERIES } from "@/data/galleries.ts";
@@ -43,6 +43,7 @@ const remainingGalleries = GALLERIES.filter(
           title={featuredGallery.title}
           meta={`${featuredGallery.categoryLabel} · ${featuredGallery.location}`}
           image={getGalleryCover(featuredGallery)}
+          imagePosition={getGalleryCoverPosition(featuredGallery)}
           featured
         />
         <Grid small={1} large={3}>
@@ -53,6 +54,7 @@ const remainingGalleries = GALLERIES.filter(
                 title={item.title}
                 meta={`${item.categoryLabel} · ${item.location}`}
                 image={getGalleryCover(item)}
+              imagePosition={getGalleryCoverPosition(item)}
               />
             ))
           }

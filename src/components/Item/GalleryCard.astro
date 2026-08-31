@@ -9,6 +9,7 @@ interface Props extends HTMLAttributes<"a"> {
   title: string;
   meta: string;
   image: string;
+  imagePosition?: string;
   featured?: boolean;
 }
 
@@ -17,6 +18,7 @@ const {
   title,
   meta,
   image,
+  imagePosition = "50% 50%",
   featured = false,
   class: className,
   ...rest
@@ -31,6 +33,7 @@ const {
   <div class="gallery-card_visual">
     <Img
       src={image}
+      style={`object-position: ${imagePosition};`}
       alt=""
       width={1200}
       height={800}
@@ -58,7 +61,7 @@ const {
       position: relative;
       aspect-ratio: 3 / 2;
       overflow: hidden;
-      border-radius: 0;
+      border-radius: var(--radius-main);
       background: var(--background-2);
     }
 
@@ -67,7 +70,7 @@ const {
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 0;
     }
 

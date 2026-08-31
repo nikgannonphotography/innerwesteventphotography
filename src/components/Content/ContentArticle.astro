@@ -10,92 +10,111 @@ const { render = true, class: className, ...rest } = Astro.props;
 const content = await slotContent(Astro.slots);
 ---
 
-{render && content && (
-  <div class:list={["article-body-layout", className]} {...rest}>
-    <Fragment set:html={content} />
-  </div>
-)}
+{
+  render && content && (
+    <div class:list={["article-body-layout", className]} {...rest}>
+      <Fragment set:html={content} />
+    </div>
+  )
+}
 
 <style is:global>
   @layer components {
     .article-body-layout {
       width: 100%;
+      min-width: 0;
       max-width: 70ch;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
-      gap: var(--space-8);
+      gap: clamp(2.5rem, 5vw, 3.5rem);
       font-size: 1.0625rem;
-      line-height: 1.75;
+      line-height: 1.7;
       color: var(--text);
     }
-
-    .article-intro-block {
-      padding-bottom: var(--space-6);
-      border-bottom: var(--border-width) solid var(--border);
-      font-size: 1.1875rem;
-      line-height: 1.7;
+    .article-body-layout :is(h2, h3, h4, p, ul, ol) {
+      margin-block: 0;
     }
-
-    .article-section-block {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
+    .article-body-layout p {
+      font-size: inherit;
+      line-height: inherit;
     }
-
-    .article-section-block h2 {
-      margin-top: var(--space-4);
-      margin-bottom: var(--space-2);
-      line-height: 1.25;
-    }
-
-    .article-section-block h3 {
-      margin-top: var(--space-3);
-      margin-bottom: var(--space-1);
+    .article-body-layout :is(h2, h3, h4) {
+      font-weight: var(--primary-medium);
+      text-wrap: pretty;
       line-height: 1.3;
-      font-size: 1.25rem;
     }
-
-    .article-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      margin: var(--space-2) 0;
-      padding-left: 1.5em;
+    .article-body-layout h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
     }
-
-    .article-list li {
-      padding-left: var(--space-1);
-      line-height: 1.7;
+    .article-body-layout h3 {
+      font-size: clamp(1.25rem, 1.8vw, 1.5rem);
     }
-
-    .article-list li strong {
-      color: var(--text);
+    .article-body-layout h4 {
+      font-size: 1.125rem;
+    }
+    .article-body-layout :is(strong, b) {
       font-weight: 600;
     }
-
+    .article-body-layout
+      :is(
+        .article-section-block,
+        .article-subsection-block,
+        .article-intro-block,
+        .article-conclusion-block,
+        .template-download-box
+      )
+      > *
+      + * {
+      margin-top: 1rem;
+    }
+    .article-body-layout
+      .article-section-block
+      > :is(h3, h4, .article-subsection-block) {
+      margin-top: 2rem;
+    }
+    .article-body-layout .article-subsection-block > :is(h3, h4) + p {
+      margin-top: 0.625rem;
+    }
+    .article-intro-block {
+      padding-bottom: 2rem;
+      border-bottom: var(--border-width) solid var(--border);
+    }
+    .article-body-layout .article-intro-block > p:first-child {
+      font-size: 1.1875rem;
+      line-height: 1.65;
+    }
+    .article-list {
+      padding-left: 1.5em;
+    }
+    ol.article-list {
+      list-style-type: decimal;
+    }
+    ul.article-list {
+      list-style-type: disc;
+    }
+    .article-list li {
+      padding-left: 0.25rem;
+      line-height: 1.7;
+    }
+    .article-list li + li {
+      margin-top: 0.75rem;
+    }
     .article-callout {
-      padding: var(--space-5) var(--space-6);
+      padding: 1.25rem 1.5rem;
       background-color: var(--background-2);
-      border-left: 3px solid var(--brand-500);
-      border-radius: var(--radius-small);
-      margin-block: var(--space-4);
+      border-left: 0.1875rem solid currentColor;
     }
-
-    .article-callout p {
-      font-style: italic;
-      line-height: 1.6;
+    .article-body-layout
+      .article-section-block
+      > :is(.article-callout, .article-table-wrap, .article-faqs-wrap) {
+      margin-top: 1.5rem;
     }
-
     .article-table-wrap {
       width: 100%;
       overflow-x: auto;
-      scrollbar-gutter: stable;
-      margin-block: var(--space-5);
-      border-radius: var(--radius-small);
       border: var(--border-width) solid var(--border);
     }
-
     .article-table {
       width: 100%;
       min-width: 36rem;
@@ -103,42 +122,27 @@ const content = await slotContent(Astro.slots);
       font-size: 0.9375rem;
       text-align: left;
     }
-
-    .article-table th {
-      background-color: var(--background-2);
-      padding: var(--space-3) var(--space-4);
-      border-bottom: var(--border-width) solid var(--border);
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .article-table td {
-      padding: var(--space-3) var(--space-4);
+    .article-table :is(th, td) {
+      padding: 0.875rem 1rem;
       border-bottom: var(--border-width) solid var(--border);
       vertical-align: top;
       line-height: 1.5;
     }
-
+    .article-table th {
+      background-color: var(--background-2);
+      font-weight: 600;
+    }
     .article-table tr:last-child td {
       border-bottom: none;
     }
-
-    .article-table .font-bold {
-      font-weight: 600;
-    }
-
-    .article-faqs-wrap {
-      margin-top: var(--space-4);
-    }
-
     .article-conclusion-block {
-      padding-top: var(--space-6);
+      padding-top: 2rem;
       border-top: var(--border-width) solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      font-size: 1.125rem;
-      line-height: 1.7;
+    }
+    .template-download-box {
+      padding: 1.5rem;
+      border: var(--border-width) solid var(--border);
+      background-color: var(--background-2);
     }
   }
 </style>
