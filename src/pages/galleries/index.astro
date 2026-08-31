@@ -7,6 +7,7 @@ import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
 import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
+import { getGalleryCover } from "@/data/gallery-covers";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { GALLERIES } from "@/data/galleries.ts";
@@ -28,7 +29,8 @@ const remainingGalleries = GALLERIES.filter(
       <Eyebrow variant="tag">PORTFOLIO</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={20}>Selected Work</Heading>
       <Paragraph variant="large" maxWidth={36}>
-        Corporate, not-for-profit, fashion, weddings, celebrations, concerts, and sports photography across Sydney.
+        Corporate, not-for-profit, fashion, weddings, celebrations, concerts,
+        and sports photography across Sydney.
       </Paragraph>
     </ContentWrapper>
   </Section>
@@ -40,7 +42,7 @@ const remainingGalleries = GALLERIES.filter(
           href={`/galleries/${featuredGallery.slug}`}
           title={featuredGallery.title}
           meta={`${featuredGallery.categoryLabel} · ${featuredGallery.location}`}
-          image={featuredGallery.posterImage}
+          image={getGalleryCover(featuredGallery)}
           featured
         />
         <Grid small={1} large={3}>
@@ -50,7 +52,7 @@ const remainingGalleries = GALLERIES.filter(
                 href={`/galleries/${item.slug}`}
                 title={item.title}
                 meta={`${item.categoryLabel} · ${item.location}`}
-                image={item.posterImage}
+                image={getGalleryCover(item)}
               />
             ))
           }

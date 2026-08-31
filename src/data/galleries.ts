@@ -199,7 +199,9 @@ export const GALLERIES: GalleryProject[] = [
     ],
     featured: true,
     posterImage: "/galleries/posters/guy-jules-sebastian.webp",
-    images: numberedGalleryImages("guy-jules-sebastian", "", 10),
+    images: numberedGalleryImages("guy-jules-sebastian", "", 10).filter(
+      (src) => !src.endsWith("/06.webp"),
+    ),
   },
   {
     slug: "annas-birthday",

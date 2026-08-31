@@ -7,6 +7,7 @@ import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
 import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
+import { getGalleryCover } from "@/data/gallery-covers";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import {
@@ -123,7 +124,7 @@ const collectionSchema = {
               href={`/galleries/${item.slug}`}
               title={item.title}
               meta={`${item.categoryLabel} · ${item.location}`}
-              image={item.posterImage}
+              image={getGalleryCover(item)}
             />
           ))}
         </Grid>
