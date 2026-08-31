@@ -168,22 +168,41 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
 
       <!-- Right: Direct Studio Info & Operational Standards -->
       <div slot="column2">
-        <Grid small={1}>
-          <Card
-            heading="Direct Fast-Track Contact"
-            text={`Email: ${STUDIO_CONTACT.email}\nPhone: ${STUDIO_CONTACT.phone}\nWhatsApp: ${STUDIO_CONTACT.whatsappUrl}\nABN: ${STUDIO_CONTACT.abn}`}
-          />
-          <Card
-            heading="Flexible Intake Options"
-            text={`• Have a finished run sheet? Attach it above or share a document link.\n• Working to a specific scope or budget? Let us know and we will tailor coverage.\n• Transparent, fixed-rate quotes returned within 24 hours.`}
-          />
-          <Card
-            heading="Download Briefing Template"
-            text="Need a ready-made structure for your internal team? Use our free 4-part priority briefing framework."
-            buttonHref="/docs/event-briefing-template"
-            buttonLabel="View Template (DOC-01)"
-          />
-        </Grid>
+        <div class="contact-sidebar">
+          <div class="sidebar-card">
+            <Heading tag="h3" variant="h5">Direct Fast-Track Contact</Heading>
+            <ul class="sidebar-contact-list">
+              <li><span class="contact-label">Email:</span> <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a></li>
+              <li><span class="contact-label">Phone:</span> <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a></li>
+              <li><span class="contact-label">WhatsApp:</span> <a href={STUDIO_CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer">Chat on WhatsApp &rarr;</a></li>
+              <li><span class="contact-label">ABN:</span> {STUDIO_CONTACT.abn}</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <Heading tag="h3" variant="h5">Flexible Intake Options</Heading>
+            <ul class="sidebar-bullet-list">
+              <li>Have a finished run sheet? Attach it above or share a document link.</li>
+              <li>Working to a specific scope or budget? Let us know and we will tailor coverage.</li>
+              <li>Clear, fixed quotes returned within 24 hours.</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card highlight-card">
+            <Heading tag="h3" variant="h5">Download Briefing Template</Heading>
+            <Paragraph variant="small">
+              Need a ready-made structure for your internal team? Download our free 4-part priority briefing framework (PDF &amp; editable text format).
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf" download="IWEP_Event_Photography_Briefing_Template.pdf">
+                Download Template (PDF) &darr;
+              </Button>
+              <Button element="link" href="/docs/event-briefing-template" variant="link">
+                Read Online Guide (DOC-01)
+              </Button>
+            </ButtonWrapper>
+          </div>
+        </div>
       </div>
     </ContentWrapper>
   </Section>
@@ -229,3 +248,75 @@ import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
     </Grid>
   </Section>
 </Layout>
+
+<style is:global>
+  @layer components {
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .sidebar-card {
+      background-color: var(--background-2);
+      border-radius: var(--radius-main);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sidebar-card.highlight-card {
+      border: 1px solid var(--border);
+      background-color: var(--background);
+    }
+
+    .sidebar-contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+      color: var(--text);
+
+      li {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        line-height: 1.4;
+      }
+
+      .contact-label {
+        font-weight: 700;
+        min-width: 5rem;
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+        &:hover {
+          color: var(--heading-accent);
+        }
+      }
+    }
+
+    .sidebar-bullet-list {
+      list-style: disc;
+      padding-left: 1.25rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+      color: var(--text);
+
+      li {
+        line-height: 1.45;
+      }
+    }
+  }
+</style>

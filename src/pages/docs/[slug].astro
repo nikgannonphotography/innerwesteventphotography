@@ -128,6 +128,23 @@ const guideSchema = {
         <Paragraph>{doc.summary}</Paragraph>
       </div>
 
+      {doc.slug === "event-briefing-template" && (
+        <div class="template-download-box">
+          <Heading tag="h3" variant="h5">Download Briefing Template</Heading>
+          <Paragraph variant="small">
+            Download the ready-to-use 2-page PDF template or editable text format to structure your priorities, VIP lists, and schedule.
+          </Paragraph>
+          <ButtonWrapper marginTop="3">
+            <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf" download="IWEP_Event_Photography_Briefing_Template.pdf">
+              Download Template (PDF) &darr;
+            </Button>
+            <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.md" download="IWEP_Event_Photography_Briefing_Template.md" emphasis="secondary">
+              Download Markdown (.md) &darr;
+            </Button>
+          </ButtonWrapper>
+        </div>
+      )}
+
       {
         doc.sections.map((section) => (
           <div class="article-section-block">
@@ -161,12 +178,26 @@ const guideSchema = {
                 href={`/services/${relatedService.slug}`}
                 variant="link"
               >
-                View {relatedService.title}
+                View {relatedService.title} &rarr;
               </Button>
             </ButtonWrapper>
           )
         }
       </div>
+
+      <Grid small={1} medium={3}>
+        {
+          otherDocs.map((otherDoc) => (
+            <Card
+              heading={otherDoc.title}
+              eyebrow={otherDoc.categoryLabel}
+              text={otherDoc.subtitle}
+              buttonHref={`/docs/${otherDoc.slug}`}
+              buttonLabel="Read guide"
+            />
+          ))
+        }
+      </Grid>
     </ContentArticle>
   </Section>
 
@@ -197,33 +228,6 @@ const guideSchema = {
     )
   }
 
-  <!-- More guides -->
-  <Section paddingTop="medium" paddingBottom="medium">
-    <ContentWrapper variant="auto-width">
-      <div>
-        <Eyebrow variant="tag">MORE GUIDES</Eyebrow>
-        <Heading tag="h2" variant="h3">More planning guidance</Heading>
-      </div>
-      <ButtonWrapper slot="column2">
-        <Button element="link" href="/docs" variant="link">All guides</Button>
-      </ButtonWrapper>
-    </ContentWrapper>
-
-    <Grid small={1} large={3}>
-      {
-        otherDocs.map((item) => (
-          <Card
-            eyebrow={item.categoryLabel}
-            heading={item.title}
-            text={item.summary}
-            buttonHref={`/docs/${item.slug}`}
-            buttonLabel="Read guide"
-          />
-        ))
-      }
-    </Grid>
-  </Section>
-
   <!-- Contact -->
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
@@ -236,7 +240,7 @@ const guideSchema = {
       </Paragraph>
       <ButtonWrapper marginTop="4">
         <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/docs/event-briefing-template" emphasis="secondary">Download Briefing Template</Button>
+        <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf" download="IWEP_Event_Photography_Briefing_Template.pdf" emphasis="secondary">Download Briefing Template</Button>
       </ButtonWrapper>
     </ContentWrapper>
   </Section>
@@ -244,6 +248,17 @@ const guideSchema = {
 
 <style is:global>
   @layer components {
+    .template-download-box {
+      background-color: var(--background-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-main);
+      padding: var(--space-6);
+      margin-block: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
     .article-meta-header {
       display: flex;
       flex-wrap: wrap;

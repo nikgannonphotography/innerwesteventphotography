@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IWEP Event Photography Briefing Template (DOC-01)</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #111111;
+      background: #ffffff;
+      font-size: 12.5px;
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      page-break-after: always;
+      height: 272mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .page:last-child {
+      page-break-after: avoid;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #111111;
+      margin-bottom: 14px;
+    }
+    .logo-img {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+    }
+    .doc-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555555;
+      text-align: right;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #111111;
+      margin-bottom: 3px;
+    }
+    .subtitle {
+      font-size: 12.5px;
+      color: #555555;
+      margin-bottom: 12px;
+    }
+
+    /* Section Styling */
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #111111;
+      background: #f4f3ef;
+      padding: 4px 8px;
+      border-left: 3px solid #111111;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+
+    /* Form Fields Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      margin-bottom: 8px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px 10px;
+      margin-bottom: 8px;
+    }
+    .field-box {
+      border: 1px solid #dcd9d2;
+      border-radius: 3px;
+      padding: 5px 8px;
+      background: #faf9f6;
+    }
+    .field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #666666;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+    .field-line {
+      min-height: 16px;
+      font-size: 11.5px;
+      color: #222222;
+      border-bottom: 1px dashed #cccccc;
+    }
+
+    /* Checklist Table */
+    table.tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+    }
+    table.tier-table th {
+      background: #111111;
+      color: #ffffff;
+      text-align: left;
+      padding: 5px 8px;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.tier-table td {
+      border: 1px solid #e0ded8;
+      padding: 5px 8px;
+      vertical-align: top;
+    }
+    table.tier-table tr:nth-child(even) td {
+      background: #fbfbf9;
+    }
+    .badge-tier {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 2px 5px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      background: #222222;
+      color: #ffffff;
+    }
+    .badge-t1 { background: #d9381e; }
+    .badge-t2 { background: #d97706; }
+    .badge-t3 { background: #2563eb; }
+    .badge-t4 { background: #4b5563; }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 3px;
+      font-size: 11.5px;
+    }
+    .check-sq {
+      width: 11px;
+      height: 11px;
+      border: 1px solid #666666;
+      margin-right: 6px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #dcd9d2;
+      padding-top: 6px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1 ================= -->
+  <div class="page">
+    <div>
+      <div class="header">
+        <div>
+          <img src="data:image/png;base64,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" class="logo-img" alt="IWEP Logo" />
+        </div>
+        <div class="doc-tag">
+          FRAMEWORK: DOC-01<br/>
+          EVENT PHOTOGRAPHY BRIEFING TEMPLATE
+        </div>
+      </div>
+
+      <h1>Event Photography Briefing Template</h1>
+      <p class="subtitle">
+        Use this 4-tier briefing document to structure priorities, VIP call times, sponsor obligations, and delivery deadlines.
+      </p>
+
+      <div class="section-title">1. Event Overview & Schedule</div>
+      <div class="grid-2">
+        <div class="field-box">
+          <div class="field-label">Event / Project Name</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Organisation / Host</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="field-box">
+          <div class="field-label">Event Date(s)</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Coverage Start Time (Call Time)</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Coverage Finish Time (Wrap Time)</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-box">
+          <div class="field-label">Venue Name, Room & Stage (e.g. ICC Sydney, Grand Ballroom)</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Venue Address & Loading Dock Access Notes</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+
+      <div class="section-title">2. On-Site Contacts & Decision Makers</div>
+      <div class="grid-2">
+        <div class="field-box">
+          <div class="field-label">Lead Event Producer / Event Manager (Name & Mobile)</div>
+          <div class="field-line"></div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">On-Site PR / Media / Communications Lead (Name & Mobile)</div>
+          <div class="field-line"></div>
+        </div>
+      </div>
+
+      <div class="section-title">3. Turnaround Deadlines & Image Delivery</div>
+      <div class="grid-3">
+        <div class="field-box">
+          <div class="field-label">Standard Master Delivery</div>
+          <div class="checklist-item" style="margin-top: 3px;">
+            <div class="check-sq"></div> 3–5 Business Days (Full Gallery)
+          </div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Expedited PR Highlight Selects</div>
+          <div class="checklist-item" style="margin-top: 3px;">
+            <div class="check-sq"></div> Sub-12h (Next-Morning by 8:00 AM)
+          </div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Delivery Channel</div>
+          <div class="checklist-item" style="margin-top: 3px;">
+            <div class="check-sq"></div> Cloud Gallery + Direct ZIP Link
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">4. Four-Tier Shot Priority Checklist (Part 1)</div>
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Priority Tier</th>
+            <th style="width: 48%;">Shot Description & Key Elements</th>
+            <th style="width: 30%;">Specific Names / Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge-tier badge-t1">Tier 1: Mandatory</span><br/>
+              <small style="color: #666;">Zero Compromise</small>
+            </td>
+            <td>
+              <strong>Keynote Speakers, Dignitaries & Award Handshakes</strong>
+              <div class="checklist-item"><div class="check-sq"></div> Keynote address podium & stage wide</div>
+              <div class="checklist-item"><div class="check-sq"></div> Award winners with trophies / certificates</div>
+              <div class="checklist-item"><div class="check-sq"></div> VIP arrivals & ceremonial handshakes</div>
+              <div class="checklist-item"><div class="check-sq"></div> Official executive group photograph</div>
+            </td>
+            <td style="font-size: 10.5px; color: #555;">
+              List key VIPs:<br/>
+              1. ______________________<br/>
+              2. ______________________<br/>
+              3. ______________________
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge-tier badge-t2">Tier 2: Commercial</span><br/>
+              <small style="color: #666;">Sponsor Deliverables</small>
+            </td>
+            <td>
+              <strong>Sponsor Integration & Partner Activations</strong>
+              <div class="checklist-item"><div class="check-sq"></div> Branded expo booths with active delegates</div>
+              <div class="checklist-item"><div class="check-sq"></div> Sponsor banners, media walls & stage screens</div>
+              <div class="checklist-item"><div class="check-sq"></div> Branded merchandise, delegate lanyards & gifts</div>
+            </td>
+            <td style="font-size: 10.5px; color: #555;">
+              Key Sponsors to feature:<br/>
+              1. ______________________<br/>
+              2. ______________________
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>Inner West Event Photography • info@innerwesteventphotography.com.au • 0437 700 749</span>
+      <span>Page 1 of 2 • Framework DOC-01</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="page">
+    <div>
+      <div class="header">
+        <div>
+          <img src="data:image/png;base64,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" class="logo-img" alt="IWEP Logo" />
+        </div>
+        <div class="doc-tag">
+          FRAMEWORK: DOC-01<br/>
+          PAGE 2 • TECHNICAL & STAGING BRIEF
+        </div>
+      </div>
+
+      <div class="section-title">4. Four-Tier Shot Priority Checklist (Part 2)</div>
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Priority Tier</th>
+            <th style="width: 48%;">Shot Description & Key Elements</th>
+            <th style="width: 30%;">Notes / Room Locations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge-tier badge-t3">Tier 3: Audience</span><br/>
+              <small style="color: #666;">Delegate Energy</small>
+            </td>
+            <td>
+              <strong>Delegate Engagement & Room Scale</strong>
+              <div class="checklist-item"><div class="check-sq"></div> Wide architectural room shots showing full crowd</div>
+              <div class="checklist-item"><div class="check-sq"></div> Candid attendee reactions, laughter & note-taking</div>
+              <div class="checklist-item"><div class="check-sq"></div> Q&A interactions and roving mic moments</div>
+              <div class="checklist-item"><div class="check-sq"></div> Workshop breakouts & interactive panel tables</div>
+            </td>
+            <td style="font-size: 10.5px; color: #555;">
+              Session times:<br/>
+              • Morning Plenary: _______<br/>
+              • Breakouts: ____________<br/>
+              • Panel: ________________
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge-tier badge-t4">Tier 4: Detail</span><br/>
+              <small style="color: #666;">Atmosphere & Decor</small>
+            </td>
+            <td>
+              <strong>Venue Architecture, Food & Evening Details</strong>
+              <div class="checklist-item"><div class="check-sq"></div> Pre-event empty room, table setups & floral decor</div>
+              <div class="checklist-item"><div class="check-sq"></div> Catering presentation, canapés & bar service</div>
+              <div class="checklist-item"><div class="check-sq"></div> Networking drinks & cocktail hour mingling</div>
+            </td>
+            <td style="font-size: 10.5px; color: #555;">
+              Capture decor before guests enter (Time: ________)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-title">5. Technical, Lighting & Venue Production Notes</div>
+      <div class="grid-2">
+        <div class="field-box">
+          <div class="field-label">Stage Lighting Conditions</div>
+          <div class="checklist-item"><div class="check-sq"></div> Standard Daylight / Bright House Lights</div>
+          <div class="checklist-item"><div class="check-sq"></div> Theatrical Stage Wash / Coloured Spots</div>
+          <div class="checklist-item"><div class="check-sq"></div> Low-Light / Blackout Presentation Mode</div>
+        </div>
+        <div class="field-box">
+          <div class="field-label">Stage Audio & Shutter Protocols</div>
+          <div class="checklist-item"><div class="check-sq"></div> Silent Electronic Shutter Required (Yes)</div>
+          <div class="checklist-item"><div class="check-sq"></div> Flash Permitted during Keynotes (No / Yes)</div>
+          <div class="checklist-item"><div class="check-sq"></div> Flash Permitted during Awards / Drinks (Yes)</div>
+        </div>
+      </div>
+
+      <div class="section-title">6. Key Run of Show Milestones (Chronological Order)</div>
+      <div class="field-box" style="margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 11.5px;">
+          <tr style="border-bottom: 1px solid #e0ded8;">
+            <th style="width: 15%; text-align: left; padding: 3px;">Time</th>
+            <th style="width: 50%; text-align: left; padding: 3px;">Program Element / Milestone</th>
+            <th style="width: 35%; text-align: left; padding: 3px;">Key People / Action Required</th>
+          </tr>
+          <tr style="border-bottom: 1px dashed #dcd9d2;">
+            <td style="padding: 4px 3px;">08:00 AM</td>
+            <td>Photographer Call Time & Room Setup Check</td>
+            <td>Meet event lead, test stage lighting</td>
+          </tr>
+          <tr style="border-bottom: 1px dashed #dcd9d2;">
+            <td style="padding: 4px 3px;">08:30 AM</td>
+            <td>Delegate Registration & Morning Coffee</td>
+            <td>Candid registration, sponsor booths</td>
+          </tr>
+          <tr style="border-bottom: 1px dashed #dcd9d2;">
+            <td style="padding: 4px 3px;">09:00 AM</td>
+            <td>Official Welcome & Opening Keynote</td>
+            <td>Stage podium, wide room, speaker tight</td>
+          </tr>
+          <tr style="border-bottom: 1px dashed #dcd9d2;">
+            <td style="padding: 4px 3px;">12:30 PM</td>
+            <td>Networking Lunch & Sponsor Activations</td>
+            <td>Expo hall, branded delegate interactions</td>
+          </tr>
+          <tr style="border-bottom: 1px dashed #dcd9d2;">
+            <td style="padding: 4px 3px;">04:30 PM</td>
+            <td>Award Presentations & Closing Ceremony</td>
+            <td>Stage handshakes, trophy presentations</td>
+          </tr>
+          <tr>
+            <td style="padding: 4px 3px;">05:30 PM</td>
+            <td>Evening Drinks & Networking Wrap</td>
+            <td>Social mingling, executive groups</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section-title">7. Return Instructions & Studio Confirmation</div>
+      <div style="background: #faf9f6; border: 1px solid #dcd9d2; padding: 6px 10px; font-size: 10.5px; line-height: 1.5; color: #333;">
+        <strong>How to submit:</strong> Email this completed brief or your internal run sheet directly to <strong>info@innerwesteventphotography.com.au</strong>.<br/>
+        ✓ <strong>Standard Delivery:</strong> Full master gallery delivered within 3–5 business days.<br/>
+        ✓ <strong>Commercial Licensing:</strong> Perpetual commercial marketing, PR, and social media rights included.<br/>
+        ✓ <strong>Venue Compliance:</strong> $10,000,000 Public Liability Certificate of Currency issued upon booking confirmation.
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Inner West Event Photography • ABN 56 292 719 879 • Sydney NSW</span>
+      <span>Page 2 of 2 • Complete Briefing Template</span>
+    </div>
+  </div>
+
+</body>
+</html>
