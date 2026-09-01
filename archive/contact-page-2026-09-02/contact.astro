@@ -1,0 +1,321 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import Form from "@/components/Form/Form.astro";
+import Fieldset from "@/components/Form/Fieldset.astro";
+import Input from "@/components/Form/Input.astro";
+import Select from "@/components/Form/Select.astro";
+import Choice from "@/components/Form/Choice.astro";
+import Textarea from "@/components/Form/Textarea.astro";
+import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
+---
+
+<Layout
+  title="Get an Event Photography Quote | Inner West Event Photography"
+  description="Need a photographer in Sydney? Share your event date, location and photography needs with Inner West Event Photography. Enquire online, by email or phone."
+>
+  <!-- Header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow>GET IN TOUCH</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}
+        >Tell Us About Your Event or Project</Heading
+      >
+      <Paragraph variant="large" maxWidth={38}>
+        Share what you know so far. You don't need a finished brief, and it's fine if your date or venue is still to be confirmed.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Form & Direct Contact Columns -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <ContentWrapper variant="columns">
+      <!-- Left: Form -->
+      <div>
+        <Form
+          name="project-inquiry"
+          action={STUDIO_CONTACT.formEndpoint}
+          hubspotPortalId={HUBSPOT_CONFIG.portalId}
+          hubspotFormId={HUBSPOT_CONFIG.formId}
+          hubspotRegion={HUBSPOT_CONFIG.region}
+          successMessage="Thanks for your enquiry. We'll be in touch to discuss your event."
+        >
+          <Fieldset legend="1. Contact Information" variant="columns">
+            <Input
+              name="fullName"
+              label="Full Name"
+              placeholder="e.g. Sarah Jenkins"
+              required
+            />
+            <Input
+              name="organisation"
+              label="Organisation / Company (optional)"
+              placeholder="Leave blank for a private event"
+            />
+            <Input
+              name="email"
+              variant="email"
+              label="Email"
+              placeholder="you@example.com"
+              required
+            />
+            <Input
+              name="phone"
+              variant="phone"
+              label="Mobile / Phone Number"
+              placeholder="+61 400 000 000"
+              required
+            />
+          </Fieldset>
+
+          <Fieldset legend="2. Your Event" variant="columns">
+            <Select
+              name="eventType"
+              label="Event Type"
+              options={[
+                "Corporate Conference or Summit",
+                "Awards Gala or Annual Dinner",
+                "Not-For-Profit / Community Forum",
+                "Brand Launch or Commercial Activation",
+                "Private Event / Birthday / Milestone Celebration",
+                "Intimate Wedding or Engagement",
+                "Staff Headshots & Workplace Portraits",
+                "Other / Not Sure Yet",
+              ]}
+              required
+            />
+            <Input
+              name="eventDate"
+              variant="text"
+              label="Event Date or Estimated Month"
+              placeholder="e.g. 15 November, or not confirmed yet"
+              required
+            />
+            <Input
+              name="venue"
+              label="Venue & Suburb (or Multiple Venues)"
+              placeholder="e.g. ICC Sydney, Darling Harbour (or TBC)"
+              required
+            />
+            <Select
+              name="coverageHours"
+              label="Estimated Hours of Coverage"
+              options={[
+                "Short Assignment (Up to 2 hours)",
+                "Half-Day (Up to 4 hours)",
+                "Full-Day (Up to 8 hours)",
+                "More Than One Day",
+                "Not Sure Yet",
+              ]}
+              required
+            />
+          </Fieldset>
+
+          <Fieldset
+            legend="3. When You Need the Photos"
+            variant="inline"
+            legendStyle="label"
+          >
+            <Choice
+              type="radio"
+              name="turnaround"
+              label="No specific deadline"
+              value="standard"
+              checked={true}
+            />
+            <Choice
+              type="radio"
+              name="turnaround"
+              label="I have a deadline to discuss"
+              value="fast-pr"
+            />
+          </Fieldset>
+
+          <Fieldset legend="4. Anything Else We Should Know?">
+            <Input
+              name="runSheetFile"
+              variant="file"
+              label="Attach a Schedule or Brief (optional)"
+            />
+            <Input
+              name="runSheetLink"
+              variant="url"
+              label="Or Share a Document Link (optional)"
+              placeholder="https://docs.google.com/..."
+            />
+            <Textarea
+              name="message"
+              label="Event Details or Questions"
+              placeholder="What would you like photographed? Include any key moments, delivery deadline or questions."
+              minLines={4}
+            />
+          </Fieldset>
+
+          <ButtonWrapper marginTop="4">
+            <Button type="submit">Request a Quote &rarr;</Button>
+          </ButtonWrapper>
+        </Form>
+      </div>
+
+      <!-- Right: Direct Studio Info & Operational Standards -->
+      <div slot="column2">
+        <div class="contact-sidebar">
+          <div class="sidebar-card">
+            <Heading tag="h3" variant="h5">Email or Call</Heading>
+            <ul class="sidebar-contact-list">
+              <li><span class="contact-label">Email:</span> <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a></li>
+              <li><span class="contact-label">Phone:</span> <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a></li>
+              <li><span class="contact-label">WhatsApp:</span> <a href={STUDIO_CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer">Chat on WhatsApp &rarr;</a></li>
+              <li><span class="contact-label">ABN:</span> {STUDIO_CONTACT.abn}</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <Heading tag="h3" variant="h5">Not Sure What to Include?</Heading>
+            <ul class="sidebar-bullet-list">
+              <li>Have a finished run sheet? Attach it above or share a document link.</li>
+              <li>Let us know your budget and what you need photographed.</li>
+              <li>Coverage, cost and delivery are agreed before booking.</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card highlight-card">
+            <Heading tag="h3" variant="h5">Planning a Larger Project?</Heading>
+            <Paragraph variant="small">
+              The Word brief is optional. Use it for extra dates, venues or photo priorities. You can request a quote without completing or attaching it.
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button element="link" href="/downloads/IWEP_Event_Photography_Project_Brief.docx" download="IWEP_Event_Photography_Project_Brief.docx">
+                Download Brief (Word) &darr;
+              </Button>
+              <Button element="link" href="/docs/event-briefing-template" variant="link">
+                Read the Guide
+              </Button>
+            </ButtonWrapper>
+          </div>
+        </div>
+      </div>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Helpful Guides for Planning -->
+  <Section paddingTop="medium" paddingBottom="large" theme="dark">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">HELPFUL RESOURCES</Eyebrow>
+        <Heading tag="h2" variant="h3"
+          >Planning Your Event?</Heading
+        >
+      </div>
+      <ButtonWrapper slot="column2">
+        <Button element="link" href="/blog#planning-guides" variant="link">
+          All guides and articles
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+
+    <Grid small={1} medium={3}>
+      <Card
+        heading="Briefing Template"
+        text="A checklist of useful details to share with your photographer."
+        buttonHref="/docs/event-briefing-template"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+      <Card
+        heading="Sydney Pricing Guide"
+        text="What to consider when asking for a quote."
+        buttonHref="/docs/pricing-and-rates-guide"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+      <Card
+        heading="Photo Delivery"
+        text="Planning when you need your photos and how you will use them."
+        buttonHref="/docs/turnaround-and-delivery-specs"
+        buttonLabel="Read Guide"
+        theme="dark"
+      />
+    </Grid>
+  </Section>
+</Layout>
+
+<style is:global>
+  @layer components {
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .sidebar-card {
+      background-color: var(--background-2);
+      border-radius: var(--radius-main);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .sidebar-card.highlight-card {
+      border: 1px solid var(--border);
+      background-color: var(--background);
+    }
+
+    .sidebar-contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+      color: var(--text);
+
+      li {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        line-height: 1.4;
+      }
+
+      .contact-label {
+        font-weight: 700;
+        min-width: 5rem;
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+        &:hover {
+          color: var(--heading-accent);
+        }
+      }
+    }
+
+    .sidebar-bullet-list {
+      list-style: disc;
+      padding-left: 1.25rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+      color: var(--text);
+
+      li {
+        line-height: 1.45;
+      }
+    }
+  }
+</style>

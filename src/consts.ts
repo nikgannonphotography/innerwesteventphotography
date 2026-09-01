@@ -2,8 +2,7 @@
 export const SITE_NAME = "Inner West Event Photography";
 
 /** Tagline and concise positioning. */
-export const SITE_TAGLINE =
-  "Event photography across Sydney.";
+export const SITE_TAGLINE = "Event photography across Sydney.";
 
 /** Fallback meta description for pages that don't set their own. */
 export const SITE_DESCRIPTION =
@@ -66,4 +65,5 @@ export const NOINDEX_ROUTES: string[] = [
   "/docs",
   "/example-components",
   "/projects",
+  "/quote-builder",
 ];

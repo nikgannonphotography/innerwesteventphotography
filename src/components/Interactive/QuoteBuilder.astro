@@ -472,12 +472,33 @@ const eventPrices = [
       const formData = new FormData(form);
       const fullName = String(formData.get("fullName") || "").trim();
       const parts = fullName.split(/\s+/);
+      const photographyType = String(formData.get("eventType") || "");
+      const coveragePackage = String(formData.get("coveragePackage") || "");
+      const extraHoursSelected = String(formData.get("extraHours") || "0");
+      const teamSizeSelected = String(formData.get("teamSize") || "");
+      const estimatedTotal = String(formData.get("estimatedTotal") || "");
+      const coverageLabel =
+        coveragePackage === "20"
+          ? "Two days, 10 hours each"
+          : coveragePackage
+            ? `${coveragePackage} hours`
+            : "";
+      const selectionNote = [
+        "Website pricing tool selection",
+        `Photography type: ${photographyType}`,
+        coverageLabel ? `Coverage block: ${coverageLabel}` : "",
+        coverageLabel ? `Extra hours: ${extraHoursSelected}` : "",
+        teamSizeSelected ? `Team size: ${teamSizeSelected} people` : "",
+        `Estimate shown: ${estimatedTotal}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
       const message = [
-        String(formData.get("calculatedQuoteSummary") || ""),
-        `Date: ${String(formData.get("eventDate") || "")}`,
+        selectionNote,
+        `Event date: ${String(formData.get("eventDate") || "")}`,
         `Venue or suburb: ${String(formData.get("venue") || "Not supplied")}`,
         String(formData.get("message") || "")
-          ? `Project details:\n${String(formData.get("message"))}`
+          ? `Client notes:\n${String(formData.get("message"))}`
           : "",
       ]
         .filter(Boolean)
