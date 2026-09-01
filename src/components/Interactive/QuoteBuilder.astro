@@ -1,6 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { HUBSPOT_CONFIG, STUDIO_CONTACT } from "@/consts.ts";
+import Button from "@/components/Button.astro";
+import Input from "@/components/Form/Input.astro";
+import Textarea from "@/components/Form/Textarea.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
 
 interface Props extends HTMLAttributes<"div"> {
   render?: boolean;
@@ -34,14 +39,13 @@ const eventPrices = [
           <div class="pricing-form_step-heading">
             <>
               <span class="pricing-form_number">1</span>
-              <div>
-                <h2 id="pricing-type-heading" class="text-style-h4">
+              <div class="pricing-form_step-copy">
+                <Heading tag="h2" variant="h4" id="pricing-type-heading">
                   What do you need photographed?
-                </h2>
-                <p class="text-style-main">
-                  Choose the closest option. You can explain anything unusual
-                  below.
-                </p>
+                </Heading>
+                <Paragraph>
+                  Choose the closest option. Add any details below.
+                </Paragraph>
               </div>
             </>
           </div>
@@ -113,13 +117,13 @@ const eventPrices = [
           <div class="pricing-form_step-heading">
             <>
               <span class="pricing-form_number">2</span>
-              <div>
-                <h2 id="pricing-options-heading" class="text-style-h4">
+              <div class="pricing-form_step-copy">
+                <Heading tag="h2" variant="h4" id="pricing-options-heading">
                   Choose your coverage
-                </h2>
-                <p class="text-style-main" id="pricing-options-intro">
+                </Heading>
+                <Paragraph id="pricing-options-intro">
                   Select a coverage block.
-                </p>
+                </Paragraph>
               </div>
             </>
           </div>
@@ -146,8 +150,8 @@ const eventPrices = [
               for="extra-hours"
             >
               <>
-                <span>Extra hours</span>
-                <small>
+                <span class="field-label text-style-main">Extra hours</span>
+                <small class="pricing-form_help">
                   Add time beyond the selected block at $175 per hour.
                 </small>
               </>
@@ -159,14 +163,17 @@ const eventPrices = [
                 step="1"
                 value="0"
                 inputmode="numeric"
+                class="field-control text-style-main"
               />
             </label>
           </div>
 
           <div id="headshot-pricing" class="pricing-form_panel" hidden>
             <label class="pricing-form_field" for="team-size">
-              <span>How many people need headshots?</span>
-              <small>
+              <span class="field-label text-style-main">
+                How many people need headshots?
+              </span>
+              <small class="pricing-form_help">
                 Up to five people is $450. Six to nine people is $110 each.
                 Teams of ten or more are quoted after discussion. Two finished
                 headshots per person are included.
@@ -178,14 +185,15 @@ const eventPrices = [
                 min="1"
                 step="1"
                 inputmode="numeric"
+                class="field-control text-style-main"
               />
             </label>
           </div>
           <div id="wedding-pricing" class="pricing-form_panel" hidden>
-            <p class="text-style-main">
+            <Paragraph>
               Wedding coverage is priced after a discussion about the date,
               locations, hours and run sheet.
-            </p>
+            </Paragraph>
           </div>
           <div
             id="pricing-summary"
@@ -212,13 +220,13 @@ const eventPrices = [
           <div class="pricing-form_step-heading">
             <>
               <span class="pricing-form_number">3</span>
-              <div>
-                <h2 id="pricing-details-heading" class="text-style-h4">
+              <div class="pricing-form_step-copy">
+                <Heading tag="h2" variant="h4" id="pricing-details-heading">
                   Tell me about the job
-                </h2>
-                <p class="text-style-main">
+                </Heading>
+                <Paragraph>
                   Share what you know. Venue and organisation are optional.
-                </p>
+                </Paragraph>
               </div>
             </>
           </div>
@@ -247,93 +255,36 @@ const eventPrices = [
             value=""
           />
           <div class="pricing-form_fields">
-            <label class="pricing-form_field" for="pricing-name">
-              <>
-                <span>Name</span>
-                <input
-                  id="pricing-name"
-                  name="fullName"
-                  type="text"
-                  autocomplete="name"
-                  required
-                />
-              </>
-            </label>
-            <label class="pricing-form_field" for="pricing-email">
-              <>
-                <span>Email</span>
-                <input
-                  id="pricing-email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
-              </>
-            </label>
-            <label class="pricing-form_field" for="pricing-phone">
-              <>
-                <span>Phone</span>
-                <input
-                  id="pricing-phone"
-                  name="phone"
-                  type="tel"
-                  autocomplete="tel"
-                  required
-                />
-              </>
-            </label>
-            <label class="pricing-form_field" for="pricing-organisation">
-              <>
-                <span>Company or organisation</span>
-                <input
-                  id="pricing-organisation"
-                  name="organisation"
-                  type="text"
-                  autocomplete="organization"
-                />
-              </>
-            </label>
-            <label class="pricing-form_field" for="pricing-date">
-              <>
-                <span>Date</span>
-                <input
-                  id="pricing-date"
-                  name="eventDate"
-                  type="text"
-                  placeholder="Date or TBC"
-                  required
-                />
-              </>
-            </label>
-            <label class="pricing-form_field" for="pricing-venue">
-              <>
-                <span>Venue or suburb</span>
-                <input id="pricing-venue" name="venue" type="text" />
-              </>
-            </label>
-            <label
-              class="pricing-form_field pricing-form_field-wide"
-              for="pricing-message"
-            >
-              <>
-                <span>Project details</span>
-                <textarea
-                  id="pricing-message"
-                  name="message"
-                  rows="5"
-                  placeholder="Event times, location, what you need photographed, and anything else that will help."
-                />
-              </>
-            </label>
+            <Input label="Name" name="fullName" autocomplete="name" required />
+            <Input label="Email" name="email" variant="email" required />
+            <Input label="Phone" name="phone" variant="phone" required />
+            <Input
+              label="Company or organisation"
+              name="organisation"
+              autocomplete="organization"
+            />
+            <Input
+              label="Date"
+              name="eventDate"
+              placeholder="Date or TBC"
+              required
+            />
+            <Input label="Venue or suburb" name="venue" />
+            <Textarea
+              class="pricing-form_field-wide"
+              label="Project details"
+              name="message"
+              minLines={5}
+              placeholder="Event times, location, what you need photographed, and anything else that will help."
+            />
           </div>
           <div class="pricing-form_submit-row">
-            <>
-              <button type="submit" id="pricing-submit">
-                Send enquiry
-              </button>
-              <p>No payment is taken through this form.</p>
-            </>
+            <Button type="submit" id="pricing-submit">
+              Send enquiry
+            </Button>
+            <Paragraph variant="small">
+              No payment is taken through this form.
+            </Paragraph>
           </div>
           <p
             class="pricing-form_status"
@@ -605,22 +556,26 @@ const eventPrices = [
       display: none !important;
     }
     .pricing-form_step {
-      padding-block: clamp(2rem, 5vw, 4rem);
+      padding-block: var(--space-8);
       border-top: var(--border-width) solid var(--border);
     }
     .pricing-form_step-heading {
       display: grid;
       grid-template-columns: 2.5rem minmax(0, 1fr);
-      gap: 1rem;
+      gap: var(--space-3);
       align-items: start;
-      margin-bottom: 2rem;
+      margin-bottom: var(--space-6);
     }
-    .pricing-form_step-heading h2,
-    .pricing-form_step-heading p {
+    .pricing-form_step-copy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      max-width: 42rem;
+    }
+    .pricing-form_step-copy > * {
       margin: 0;
     }
-    .pricing-form_step-heading p {
-      margin-top: 0.5rem;
+    .pricing-form_step-copy .text {
       color: var(--text-2);
     }
     .pricing-form_number {
@@ -635,7 +590,7 @@ const eventPrices = [
     .pricing-form_choices {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
+      gap: var(--space-3);
     }
     .pricing-form_choices-types .pricing-form_choice:last-child {
       grid-column: 1 / -1;
@@ -654,14 +609,20 @@ const eventPrices = [
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 5rem;
-      padding: 1rem 1.25rem;
+      min-height: 5.5rem;
+      padding: var(--space-4);
       border: var(--border-width) solid var(--border);
-      border-radius: var(--radius-small);
-      background: var(--background);
+      border-radius: var(--radius-main);
+      background: var(--background-2);
       transition:
         background var(--hover-duration) var(--hover-ease),
-        color var(--hover-duration) var(--hover-ease);
+        color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease);
+    }
+    @media (hover: hover) {
+      .pricing-form_choice:hover > span {
+        border-color: var(--text-2);
+      }
     }
     .pricing-form_choice input:checked + span {
       color: var(--background);
@@ -673,54 +634,38 @@ const eventPrices = [
       outline-offset: 0.1875rem;
     }
     .pricing-form_price-choice small {
-      margin-top: 0.25rem;
+      margin-top: var(--space-1);
       font-size: var(--text-small);
     }
     .pricing-form_field {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      font-weight: 600;
+      gap: var(--space-2);
     }
-    .pricing-form_field small {
+    .pricing-form_help {
       max-width: 42rem;
       color: var(--text-2);
       font-weight: 400;
       line-height: 1.5;
     }
-    .pricing-form_field input,
-    .pricing-form_field textarea {
-      width: 100%;
-      padding: 0.875rem 1rem;
-      border: var(--border-width) solid var(--border);
-      border-radius: var(--radius-small);
-      color: var(--text);
-      background: var(--background);
-      font: inherit;
-    }
-    .pricing-form_field input:focus,
-    .pricing-form_field textarea:focus {
-      outline: 0.125rem solid var(--text);
-      outline-offset: 0.125rem;
-    }
     .pricing-form_extra-hours,
     .pricing-form_panel {
       max-width: 36rem;
-      margin-top: 1.5rem;
+      margin-top: var(--space-5);
     }
     .pricing-form_extra-hours input {
       max-width: 9rem;
     }
     .pricing-form_summary {
-      margin-top: 2rem;
-      padding: 1.5rem;
+      margin-top: var(--space-6);
+      padding: var(--space-5);
       border: var(--border-width) solid var(--border);
-      border-radius: var(--radius-small);
+      border-radius: var(--radius-main);
       background: var(--background-2);
     }
     .pricing-form_summary-label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-2);
       font-size: var(--text-small);
       font-weight: 700;
       text-transform: uppercase;
@@ -732,13 +677,13 @@ const eventPrices = [
       line-height: 1;
     }
     .pricing-form_summary p {
-      margin: 0.75rem 0 0;
+      margin: var(--space-3) 0 0;
       color: var(--text-2);
     }
     .pricing-form_fields {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
+      gap: var(--space-5);
     }
     .pricing-form_field-wide {
       grid-column: 1 / -1;
@@ -747,33 +692,26 @@ const eventPrices = [
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
     }
-    .pricing-form_submit-row button {
-      padding: 0.875rem 1.5rem;
-      border: var(--border-width) solid var(--button-border);
-      border-radius: var(--radius-small);
-      color: var(--background);
-      background: var(--dark-900);
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
+    .pricing-form_submit-row .button_wrap {
+      --button-background: var(--dark-900);
+      --button-text: var(--background);
+      --button-border: var(--dark-900);
+      --button-background-hover: var(--background);
+      --button-text-hover: var(--text);
+      --button-border-hover: var(--text);
     }
-    .pricing-form_submit-row button:disabled {
-      cursor: wait;
-      opacity: 0.65;
-    }
-    .pricing-form_submit-row p {
+    .pricing-form_submit-row .text {
       margin: 0;
       color: var(--text-2);
-      font-size: var(--text-small);
     }
     .pricing-form_status {
-      margin-top: 1rem;
-      padding: 1rem;
+      margin-top: var(--space-4);
+      padding: var(--space-4);
       border: var(--border-width) solid var(--border);
-      border-radius: var(--radius-small);
+      border-radius: var(--radius-main);
     }
     @media (max-width: 47.99rem) {
       .pricing-form_choices,
@@ -785,11 +723,12 @@ const eventPrices = [
         grid-column: auto;
       }
       .pricing-form_step-heading {
-        grid-template-columns: 2rem minmax(0, 1fr);
+        grid-template-columns: 2.25rem minmax(0, 1fr);
+        gap: var(--space-2);
       }
       .pricing-form_number {
-        width: 2rem;
-        height: 2rem;
+        width: 2.25rem;
+        height: 2.25rem;
       }
     }
   }
