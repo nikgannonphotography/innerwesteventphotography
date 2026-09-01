@@ -83,38 +83,45 @@ function formatMarkdownText(raw: string): string {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": post.seoTitle,
-  "description": post.metaDescription,
-  "image": `${SITE_URL}${post.heroImage}`,
-  "datePublished": post.isoDate,
-  "dateModified": post.isoDate,
-  "author": {
+  headline: post.seoTitle,
+  description: post.metaDescription,
+  image: `${SITE_URL}${post.heroImage}`,
+  datePublished: post.isoDate,
+  dateModified: post.isoDate,
+  author: {
     "@type": "Person",
-    "name": post.author,
-    "jobTitle": "Photographer & Creative Producer",
-    "url": `${SITE_URL}/about`
+    name: post.author,
+    jobTitle: "Photographer & Creative Producer",
+    url: `${SITE_URL}/about`,
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "name": SITE_NAME,
-    "url": SITE_URL
+    name: SITE_NAME,
+    url: SITE_URL,
   },
-  "mainEntityOfPage": {
+  mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `${SITE_URL}/blog/${post.slug}`
-  }
+    "@id": `${SITE_URL}/blog/${post.slug}`,
+  },
 };
 ---
 
-<Layout
-  title={post.seoTitle}
-  description={post.metaDescription}
-  type="article"
->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<Layout title={post.seoTitle} description={post.metaDescription} type="article">
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(articleSchema)}
+  />
 
   <Section paddingTop="small" paddingBottom="none">
-    <ContentArticleHeader title={post.title} category={post.categoryLabel} backHref="/blog" backLabel="Back to all articles" metadata={[`By ${post.author}`, post.date, post.readTime]} image={post.heroImage} />
+    <ContentArticleHeader
+      title={post.title}
+      category={post.categoryLabel}
+      backHref="/blog"
+      backLabel="Back to all articles"
+      metadata={[`By ${post.author}`, post.date, post.readTime]}
+      image={post.heroImage}
+    />
   </Section>
 
   <!-- Article body -->
@@ -124,89 +131,100 @@ const articleSchema = {
         <Paragraph variant="large">{post.content.intro}</Paragraph>
       </div>
 
-      {post.content.sections.map((sec) => (
-        <div class="article-section-block">
-          <Heading tag="h2" variant="h2">{sec.heading}</Heading>
-          {groupArticleBody(sec.body).map((block) => (
-            block.type === "paragraph" ? (
-              <Paragraph>
-                <Fragment set:html={formatMarkdownText(block.text)} />
-              </Paragraph>
-            ) : block.type === "ordered" ? (
-              <ol class="article-list">
-                {block.items.map((item) => (
-                  <li>
-                    <Fragment set:html={formatMarkdownText(item)} />
-                  </li>
-                ))}
-              </ol>
-            ) : (
-              <ul class="article-list">
-                {block.items.map((item) => (
-                  <li>
-                    <Fragment set:html={formatMarkdownText(item)} />
-                  </li>
-                ))}
-              </ul>
-            )
-          ))}
+      {
+        post.content.sections.map((sec) => (
+          <div class="article-section-block">
+            <Heading tag="h2" variant="h2">
+              {sec.heading}
+            </Heading>
+            {groupArticleBody(sec.body).map((block) =>
+              block.type === "paragraph" ? (
+                <Paragraph>
+                  <Fragment set:html={formatMarkdownText(block.text)} />
+                </Paragraph>
+              ) : block.type === "ordered" ? (
+                <ol class="article-list">
+                  {block.items.map((item) => (
+                    <li>
+                      <Fragment set:html={formatMarkdownText(item)} />
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <ul class="article-list">
+                  {block.items.map((item) => (
+                    <li>
+                      <Fragment set:html={formatMarkdownText(item)} />
+                    </li>
+                  ))}
+                </ul>
+              ),
+            )}
 
-          {sec.callout && (
-            <div class="article-callout">
-              <Paragraph>{sec.callout}</Paragraph>
-            </div>
-          )}
+            {sec.callout && (
+              <div class="article-callout">
+                <Paragraph>{sec.callout}</Paragraph>
+              </div>
+            )}
 
-          {sec.tableData && (
-            <div class="article-table-wrap" tabindex="0" role="region" aria-label={`${sec.heading} comparison table`}>
-              <table class="article-table">
-                <thead>
-                  <tr>
-                    {sec.tableData.headers.map((h) => (
-                      <th scope="col">{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {sec.tableData.rows.map((row) => (
+            {sec.tableData && (
+              <div
+                class="article-table-wrap"
+                tabindex="0"
+                role="region"
+                aria-label={`${sec.heading} comparison table`}
+              >
+                <table class="article-table">
+                  <thead>
                     <tr>
-                      {row.map((cell) => (
-                        <td>{cell}</td>
+                      {sec.tableData.headers.map((h) => (
+                        <th scope="col">{h}</th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                  </thead>
+                  <tbody>
+                    {sec.tableData.rows.map((row) => (
+                      <tr>
+                        {row.map((cell) => (
+                          <td>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
 
-          {sec.faqList && (
-            <div class="article-faqs-wrap">
-              <Accordion openFirst={true}>
-                {sec.faqList.map((faq) => (
-                  <AccordionItem heading={faq.q}>
-                    <Paragraph>{faq.a}</Paragraph>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          )}
-        </div>
-      ))}
+            {sec.faqList && (
+              <div class="article-faqs-wrap">
+                <Accordion openFirst={true}>
+                  {sec.faqList.map((faq) => (
+                    <AccordionItem heading={faq.q}>
+                      <Paragraph>{faq.a}</Paragraph>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            )}
+          </div>
+        ))
+      }
 
       <div class="article-conclusion-block">
         <Paragraph variant="large">{post.content.conclusion}</Paragraph>
-        {relatedService && (
-          <ButtonWrapper marginTop="4">
-            <Button
-              element="link"
-              href={`/services/${relatedService.slug}`}
-              variant="link"
-            >
-              View {relatedService.title}
-            </Button>
-          </ButtonWrapper>
-        )}
+        {
+          relatedService && (
+            <ButtonWrapper marginTop="4">
+              <Button
+                element="link"
+                href={`/services/${relatedService.slug}`}
+                variant="link"
+              >
+                View {relatedService.title}
+              </Button>
+            </ButtonWrapper>
+          )
+        }
       </div>
     </ContentArticle>
   </Section>
@@ -219,13 +237,24 @@ const articleSchema = {
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">GET A QUOTE</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Planning an Event in Sydney?</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Planning an Event in Sydney?</Heading
+      >
       <Paragraph maxWidth={34}>
-        Share your event date, location and what you need photographed for a quote. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a>.
+        Share your event date, location and what you need photographed for a
+        quote. Email <a href={`mailto:${STUDIO_CONTACT.email}`}
+          >{STUDIO_CONTACT.email}</a
+        >.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/docs/event-briefing-template" emphasis="secondary">View Briefing Guide</Button>
+        <Button element="link" href="/quote-builder"
+          >Request a Quote &rarr;</Button
+        >
+        <Button
+          element="link"
+          href="/docs/event-briefing-template"
+          emphasis="secondary">View Briefing Guide</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

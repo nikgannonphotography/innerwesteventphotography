@@ -1,0 +1,105 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Wrapper/Section.astro";
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/Typography/Eyebrow.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import Grid from "@/components/Wrapper/Grid.astro";
+import Card from "@/components/Item/Card.astro";
+import QuoteBuilder from "@/components/Interactive/QuoteBuilder.astro";
+---
+
+<Layout
+  title="Instant Event Photography Quote Builder | Inner West Event Photography"
+  description="Estimate your Sydney event photography investment in real time. Choose coverage hours, crew size, turnaround speed, and production add-ons with transparent pricing."
+  noindex={true}
+>
+  <!-- Page Header -->
+  <Section paddingTop="medium" paddingBottom="small">
+    <ContentWrapper>
+      <Eyebrow variant="tag">INTERACTIVE ESTIMATOR (BETA)</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={26}>
+        Build &amp; Customise Your Event Photography Quote
+      </Heading>
+      <Paragraph variant="large" maxWidth={40}>
+        Select your event type, coverage duration, crew size, and delivery speed below for an instant real-time price estimate. Transparent scoping with no hidden weekend surcharges.
+      </Paragraph>
+    </ContentWrapper>
+  </Section>
+
+  <!-- Interactive Quote Builder Section -->
+  <Section paddingTop="none" paddingBottom="medium">
+    <ContentWrapper>
+      <QuoteBuilder />
+    </ContentWrapper>
+  </Section>
+
+  <!-- How It Works & Transparent Scoping -->
+  <Section id="qb-event-commitments" paddingTop="medium" paddingBottom="medium" theme="dark">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">OUR COMMITMENT</Eyebrow>
+        <Heading tag="h2" variant="h2">Transparent Sydney Event Photography</Heading>
+      </div>
+    </ContentWrapper>
+
+    <Grid small={1} medium={2} large={4}>
+      <div>
+        <Heading tag="h3" variant="h5">No Hidden Surcharges</Heading>
+        <Paragraph>
+          Rates remain consistent across weekdays and weekends. No unexpected travel fees for events within Greater Sydney.
+        </Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Full Commercial Rights</Heading>
+        <Paragraph>
+          Every commission includes standard commercial, web, PR and print publishing rights for your organization in perpetuity.
+        </Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Fast Delivery</Heading>
+        <Paragraph>
+          Full galleries are color-graded and delivered within 3–5 business days, with 24-hour press highlight options available.
+        </Paragraph>
+      </div>
+      <div>
+        <Heading tag="h3" variant="h5">Fully Insured &amp; Backed Up</Heading>
+        <Paragraph>
+          $10M Public Liability insurance with current Certificates of Currency ready for venues (ICC Sydney, Carriageworks, hotels).
+        </Paragraph>
+      </div>
+    </Grid>
+  </Section>
+
+  <!-- Planning Resources -->
+  <Section paddingTop="medium" paddingBottom="large">
+    <ContentWrapper variant="auto-width">
+      <div>
+        <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
+        <Heading tag="h2" variant="h3">Need More Context Before Booking?</Heading>
+      </div>
+    </ContentWrapper>
+
+    <Grid small={1} medium={3}>
+      <Card
+        heading="Sydney Rates & Pricing Guide"
+        text="A detailed breakdown of how corporate and commercial event photography is scoped across Sydney."
+        buttonHref="/docs/pricing-and-rates-guide"
+        buttonLabel="Read Guide"
+      />
+      <Card
+        heading="Event Briefing Checklist"
+        text="Download an editable Word brief or follow our checklist to organise your shot list and run sheet."
+        buttonHref="/docs/event-briefing-template"
+        buttonLabel="Read Guide"
+      />
+      <Card
+        heading="Turnaround & File Specs"
+        text="Everything you need to know about high-res print files, web formats, and PR media delivery."
+        buttonHref="/docs/turnaround-and-delivery-specs"
+        buttonLabel="Read Guide"
+      />
+    </Grid>
+  </Section>
+</Layout>

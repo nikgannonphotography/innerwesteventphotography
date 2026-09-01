@@ -50,13 +50,18 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <div slot="background" class="home-hero_scrim"></div>
     <ContentWrapper class="home-hero_copy">
       <Eyebrow variant="tag">Inner West Event Photography</Eyebrow>
-      <Heading variant="h1" maxWidth={22} tag="h1">Event Photography Across Sydney</Heading>
+      <Heading variant="h1" maxWidth={22} tag="h1"
+        >Event Photography Across Sydney</Heading
+      >
       <Paragraph variant="large" maxWidth={36}>
-        Candid photography for corporate, community and private events, plus workplace portraits and headshots.
+        Candid photography for corporate, community and private events, plus
+        workplace portraits and headshots.
       </Paragraph>
       <ButtonWrapper marginTop="5">
-        <Button element="link" href="/contact">Get a quote</Button>
-        <Button element="link" href="#work" variant="link">View selected work</Button>
+        <Button element="link" href="/quote-builder">Get a quote</Button>
+        <Button element="link" href="#work" variant="link"
+          >View selected work</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
   </Section>
@@ -69,14 +74,25 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
         <Heading tag="h2" variant="h2">Galleries</Heading>
       </div>
       <ButtonWrapper slot="column2">
-        <Button element="link" href="/galleries" variant="link">Explore all galleries</Button>
+        <Button element="link" href="/galleries" variant="link"
+          >Explore all galleries</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
 
     <Grid small={1} medium={2} large={4}>
       {
         selectedWork.map((item) => (
-          <Card heading={item.title} eyebrow={item.categoryLabel} text={item.location} buttonHref={`/galleries/${item.slug}`} buttonLabel="View assignment" image={item.posterImage} imageAlt={item.title} variant="stacked" />
+          <Card
+            heading={item.title}
+            eyebrow={item.categoryLabel}
+            text={item.location}
+            buttonHref={`/galleries/${item.slug}`}
+            buttonLabel="View assignment"
+            image={item.posterImage}
+            imageAlt={item.title}
+            variant="stacked"
+          />
         ))
       }
     </Grid>
@@ -94,19 +110,30 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     <Grid small={1} medium={2} large={4}>
       <div>
         <Heading tag="h3" variant="h5">Clear delivery</Heading>
-        <Paragraph>We agree on when you need the photos before you book.</Paragraph>
+        <Paragraph
+          >We agree on when you need the photos before you book.</Paragraph
+        >
       </div>
       <div>
         <Heading tag="h3" variant="h5">Using your photos</Heading>
-        <Paragraph>Tell us how you plan to use the photos so your quote covers the right usage.</Paragraph>
+        <Paragraph
+          >Tell us how you plan to use the photos so your quote covers the right
+          usage.</Paragraph
+        >
       </div>
       <div>
         <Heading tag="h3" variant="h5">Coverage that fits</Heading>
-        <Paragraph>We plan around your event times and the people and moments you want photographed.</Paragraph>
+        <Paragraph
+          >We plan around your event times and the people and moments you want
+          photographed.</Paragraph
+        >
       </div>
       <div>
         <Heading tag="h3" variant="h5">Venue-ready</Heading>
-        <Paragraph>A current Certificate of Currency can be provided when your venue or production team requires it.</Paragraph>
+        <Paragraph
+          >A current Certificate of Currency can be provided when your venue or
+          production team requires it.</Paragraph
+        >
       </div>
     </Grid>
 
@@ -119,16 +146,20 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
       <Eyebrow variant="tag">SERVICES</Eyebrow>
       <Heading tag="h2" variant="h2">Photography Services</Heading>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/services" variant="link">Explore all services</Button>
+        <Button element="link" href="/services" variant="link"
+          >Explore all services</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
 
-    <ContentLinkGrid items={SERVICES.map((service) => ({
-      heading: service.title,
-      text: service.tagline,
-      href: `/services/${service.slug}`,
-      label: `View ${service.title}`,
-    }))} />
+    <ContentLinkGrid
+      items={SERVICES.map((service) => ({
+        heading: service.title,
+        text: service.tagline,
+        href: `/services/${service.slug}`,
+        label: `View ${service.title}`,
+      }))}
+    />
   </Section>
 
   <!-- Sydney coverage -->
@@ -140,23 +171,32 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
       </div>
     </ContentWrapper>
 
-    <ContentLinkGrid items={LOCATIONS.map((location) => ({
-      heading: location.name,
-      text: location.tagline,
-      href: `/locations/${location.slug}`,
-      label: `View ${location.name} coverage`,
-    }))} />
+    <ContentLinkGrid
+      items={LOCATIONS.map((location) => ({
+        heading: location.name,
+        text: location.tagline,
+        href: `/locations/${location.slug}`,
+        label: `View ${location.name} coverage`,
+      }))}
+    />
   </Section>
 
   <!-- Articles -->
-  <Section id="articles" paddingTop="medium" paddingBottom="medium" theme="dark">
+  <Section
+    id="articles"
+    paddingTop="medium"
+    paddingBottom="medium"
+    theme="dark"
+  >
     <ContentWrapper variant="auto-width">
       <div>
         <Eyebrow variant="tag">LATEST ARTICLES</Eyebrow>
         <Heading tag="h2" variant="h2">Guides &amp; Articles</Heading>
       </div>
       <ButtonWrapper slot="column2">
-        <Button element="link" href="/blog" variant="link">All guides &amp; articles</Button>
+        <Button element="link" href="/blog" variant="link"
+          >All guides &amp; articles</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
 
@@ -179,22 +219,26 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
       <Accordion slot="column2" openFirst={true}>
         <AccordionItem heading="When will I receive the photos?">
           <Paragraph>
-            Delivery timing is agreed before booking. Let us know if you have a deadline for press, social media or another use.
+            Delivery timing is agreed before booking. Let us know if you have a
+            deadline for press, social media or another use.
           </Paragraph>
         </AccordionItem>
         <AccordionItem heading="What usage rights are included?">
           <Paragraph>
-            Tell us where you plan to share or publish the photos. The agreed usage will be set out in your quote.
+            Tell us where you plan to share or publish the photos. The agreed
+            usage will be set out in your quote.
           </Paragraph>
         </AccordionItem>
         <AccordionItem heading="Do I need a detailed brief?">
           <Paragraph>
-            No. Start with your event date, location and what you need photographed. You can share a schedule or shot list if you have one.
+            No. Start with your event date, location and what you need
+            photographed. You can share a schedule or shot list if you have one.
           </Paragraph>
         </AccordionItem>
         <AccordionItem heading="Can you provide proof of insurance?">
           <Paragraph>
-            Yes. A current Certificate of Currency can be supplied for venue and production approvals.
+            Yes. A current Certificate of Currency can be supplied for venue and
+            production approvals.
           </Paragraph>
         </AccordionItem>
       </Accordion>
@@ -205,13 +249,25 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
   <Section id="contact" paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">GET A QUOTE</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Tell Us About Your Upcoming Event</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Tell Us About Your Upcoming Event</Heading
+      >
       <Paragraph maxWidth={36}>
-        Tell us your event date, location and what you need photographed. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a> or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>.
+        Tell us your event date, location and what you need photographed. Email <a
+          href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a
+        > or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}
+          >{STUDIO_CONTACT.phone}</a
+        >.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/docs/event-briefing-template" emphasis="secondary">View briefing guide</Button>
+        <Button element="link" href="/quote-builder"
+          >Request a Quote &rarr;</Button
+        >
+        <Button
+          element="link"
+          href="/docs/event-briefing-template"
+          emphasis="secondary">View briefing guide</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

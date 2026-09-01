@@ -229,7 +229,7 @@ export const DOCS: DocGuide[] = [
       "Agree on the files needed for print and online use.",
       "Confirm gallery access, downloads and how long photos will remain available.",
     ],
-    relatedService: "brand-campaigns-activations",
+    relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
       "live-event-photo-delivery-for-press-social",
       "corporate-event-photography-pricing-guide-sydney",
@@ -632,7 +632,7 @@ export const DOCS: DocGuide[] = [
       "Schedule an empty activation window before opening.",
       "Confirm consent and approval requirements in the brief.",
     ],
-    relatedService: "brand-campaigns-activations",
+    relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
       "live-event-photo-delivery-for-press-social",
       "how-to-write-an-event-photography-brief",
@@ -723,7 +723,7 @@ export const DOCS: DocGuide[] = [
       "Record embargoes and approved product details in writing.",
       "Protect live coverage when ingest and editing overlap.",
     ],
-    relatedService: "brand-campaigns-activations",
+    relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
       "live-event-photo-delivery-for-press-social",
       "how-to-write-an-event-photography-brief",
@@ -747,7 +747,7 @@ export const DOCS: DocGuide[] = [
     lastUpdated: "August 2026",
     readTime: "6 min read",
     summary:
-      "A practical guide for HR, communications and marketing teams organising on-site corporate headshots in a Sydney workplace.",
+      "Workplace headshot sessions usually take 1–3 hours, depending on team size. Share how many people need photos so we can confirm the time and price.",
     searchIntent: "planning",
     seoTitle: "On-Site Corporate Headshots Planning Guide Sydney",
     metaDescription:
@@ -1087,7 +1087,7 @@ export const DOCS: DocGuide[] = [
       "Agree who will arrange any additional people.",
       "Only services expressly agreed in your quote are included.",
     ],
-    relatedService: "brand-campaigns-activations",
+    relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
       "hiring-freelance-event-photographers-sydney-checklist",
       "how-to-write-an-event-photography-brief",

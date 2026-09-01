@@ -7,7 +7,10 @@ import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
 import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
-import { getGalleryCover, getGalleryCoverPosition } from "@/data/gallery-covers";
+import {
+  getGalleryCover,
+  getGalleryCoverPosition,
+} from "@/data/gallery-covers";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import {
@@ -41,7 +44,9 @@ if (!category) {
 }
 
 const projects = getGalleriesByCategorySlug(category.slug);
-const matchedService = SERVICES.find((s) => s.slug === category.matchedServiceSlug);
+const matchedService = SERVICES.find(
+  (s) => s.slug === category.matchedServiceSlug,
+);
 
 // Structured Schema
 const breadcrumbSchema = {
@@ -92,10 +97,21 @@ const collectionSchema = {
 };
 ---
 
-<Layout title={`${category.seoTitle} | ${SITE_NAME}`} description={category.metaDescription}>
+<Layout
+  title={`${category.seoTitle} | ${SITE_NAME}`}
+  description={category.metaDescription}
+>
   <Fragment slot="head">
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(collectionSchema)} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(collectionSchema)}
+    />
   </Fragment>
 
   <!-- Category Hero Header -->
@@ -115,66 +131,76 @@ const collectionSchema = {
   <!-- Gallery Projects Grid -->
   <Section paddingTop="none" paddingBottom="large">
     <ContentWrapper>
-      {projects.length === 0 ? (
-        <Paragraph>No case studies found in this category.</Paragraph>
-      ) : (
-        <Grid small={1} large={projects.length > 2 ? 3 : 2}>
-          {projects.map((item) => (
-            <GalleryCard
-              href={`/galleries/${item.slug}`}
-              title={item.title}
-              meta={`${item.categoryLabel} · ${item.location}`}
-              image={getGalleryCover(item)}
-              imagePosition={getGalleryCoverPosition(item)}
-            />
-          ))}
-        </Grid>
-      )}
+      {
+        projects.length === 0 ? (
+          <Paragraph>No case studies found in this category.</Paragraph>
+        ) : (
+          <Grid small={1} large={projects.length > 2 ? 3 : 2}>
+            {projects.map((item) => (
+              <GalleryCard
+                href={`/galleries/${item.slug}`}
+                title={item.title}
+                meta={[item.categoryLabel, item.location]
+                  .filter(Boolean)
+                  .join(" · ")}
+                image={getGalleryCover(item)}
+                imagePosition={getGalleryCoverPosition(item)}
+              />
+            ))}
+          </Grid>
+        )
+      }
     </ContentWrapper>
   </Section>
 
   <!-- Matched Service Deep-Dive -->
-  {matchedService && (
-    <Section paddingTop="medium" paddingBottom="medium">
-      <ContentWrapper variant="columns">
-        <div>
-          <Eyebrow variant="tag">PRODUCTION SERVICE {matchedService.number}</Eyebrow>
-          <Heading tag="h2" variant="h2">{matchedService.title}</Heading>
-          <Paragraph variant="large">{matchedService.tagline}</Paragraph>
-          <Paragraph>{matchedService.summary}</Paragraph>
-          <ButtonWrapper marginTop="4">
-            <Button element="link" href={`/services/${matchedService.slug}`}>
-              View Full Service Specs &rarr;
-            </Button>
-            <Button element="link" href="/contact" emphasis="secondary">
-              Get a Quote
-            </Button>
-          </ButtonWrapper>
-        </div>
+  {
+    matchedService && (
+      <Section paddingTop="medium" paddingBottom="medium">
+        <ContentWrapper variant="columns">
+          <div>
+            <Eyebrow variant="tag">
+              PRODUCTION SERVICE {matchedService.number}
+            </Eyebrow>
+            <Heading tag="h2" variant="h2">
+              {matchedService.title}
+            </Heading>
+            <Paragraph variant="large">{matchedService.tagline}</Paragraph>
+            <Paragraph>{matchedService.summary}</Paragraph>
+            <ButtonWrapper marginTop="4">
+              <Button element="link" href={`/services/${matchedService.slug}`}>
+                View Full Service Specs &rarr;
+              </Button>
+              <Button element="link" href="/contact" emphasis="secondary">
+                Get a Quote
+              </Button>
+            </ButtonWrapper>
+          </div>
 
-        <div slot="column2">
-          <Grid small={1}>
-            <div class="service_highlight_card">
-              <p class="service_highlight_label">STANDARD DELIVERABLES</p>
-              <ul class="service_deliverables_list">
-                {matchedService.deliverables.map((d) => (
-                  <li>• {d}</li>
-                ))}
-              </ul>
-            </div>
-            <div class="service_highlight_card">
-              <p class="service_highlight_label">COMMISSIONED BY</p>
-              <ul class="service_deliverables_list">
-                {matchedService.commissioners.map((c) => (
-                  <li>• {c}</li>
-                ))}
-              </ul>
-            </div>
-          </Grid>
-        </div>
-      </ContentWrapper>
-    </Section>
-  )}
+          <div slot="column2">
+            <Grid small={1}>
+              <div class="service_highlight_card">
+                <p class="service_highlight_label">STANDARD DELIVERABLES</p>
+                <ul class="service_deliverables_list">
+                  {matchedService.deliverables.map((d) => (
+                    <li>• {d}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="service_highlight_card">
+                <p class="service_highlight_label">COMMISSIONED BY</p>
+                <ul class="service_deliverables_list">
+                  {matchedService.commissioners.map((c) => (
+                    <li>• {c}</li>
+                  ))}
+                </ul>
+              </div>
+            </Grid>
+          </div>
+        </ContentWrapper>
+      </Section>
+    )
+  }
 
   <!-- Sydney Coverage Hubs -->
   <Section paddingTop="medium" paddingBottom="medium">
@@ -191,12 +217,16 @@ const collectionSchema = {
     </ContentWrapper>
 
     <Grid small={1} medium={4}>
-      {LOCATIONS.map((loc) => (
-        <a href={`/locations/${loc.slug}`} class="location_summary_card">
-          <Heading tag="h3" variant="h6">{loc.name}</Heading>
-          <Paragraph variant="small">{loc.tagline}</Paragraph>
-        </a>
-      ))}
+      {
+        LOCATIONS.map((loc) => (
+          <a href={`/locations/${loc.slug}`} class="location_summary_card">
+            <Heading tag="h3" variant="h6">
+              {loc.name}
+            </Heading>
+            <Paragraph variant="small">{loc.tagline}</Paragraph>
+          </a>
+        ))
+      }
     </Grid>
   </Section>
 
@@ -204,13 +234,22 @@ const collectionSchema = {
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">DISCUSS A BRIEF</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Ready to Scope Your Coverage?</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Ready to Scope Your Coverage?</Heading
+      >
       <Paragraph maxWidth={36}>
-        Send your event date, location and what you need photographed for a quote.
+        Send your event date, location and what you need photographed for a
+        quote.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/docs/pricing-and-rates-guide" variant="link">
+        <Button element="link" href="/quote-builder"
+          >Request a Quote &rarr;</Button
+        >
+        <Button
+          element="link"
+          href="/docs/pricing-and-rates-guide"
+          variant="link"
+        >
           Review Rate Structure
         </Button>
       </ButtonWrapper>

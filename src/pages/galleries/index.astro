@@ -7,7 +7,10 @@ import Heading from "@/components/Typography/Heading.astro";
 import Paragraph from "@/components/Typography/Paragraph.astro";
 import Grid from "@/components/Wrapper/Grid.astro";
 import GalleryCard from "@/components/Item/GalleryCard.astro";
-import { getGalleryCover, getGalleryCoverPosition } from "@/data/gallery-covers";
+import {
+  getGalleryCover,
+  getGalleryCoverPosition,
+} from "@/data/gallery-covers";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import { GALLERIES } from "@/data/galleries.ts";
@@ -41,7 +44,9 @@ const remainingGalleries = GALLERIES.filter(
         <GalleryCard
           href={`/galleries/${featuredGallery.slug}`}
           title={featuredGallery.title}
-          meta={`${featuredGallery.categoryLabel} · ${featuredGallery.location}`}
+          meta={[featuredGallery.categoryLabel, featuredGallery.location]
+            .filter(Boolean)
+            .join(" · ")}
           image={getGalleryCover(featuredGallery)}
           imagePosition={getGalleryCoverPosition(featuredGallery)}
           featured
@@ -52,9 +57,11 @@ const remainingGalleries = GALLERIES.filter(
               <GalleryCard
                 href={`/galleries/${item.slug}`}
                 title={item.title}
-                meta={`${item.categoryLabel} · ${item.location}`}
+                meta={[item.categoryLabel, item.location]
+                  .filter(Boolean)
+                  .join(" · ")}
                 image={getGalleryCover(item)}
-              imagePosition={getGalleryCoverPosition(item)}
+                imagePosition={getGalleryCoverPosition(item)}
               />
             ))
           }
@@ -71,7 +78,7 @@ const remainingGalleries = GALLERIES.filter(
         availability and a clear quote.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Get a quote</Button>
+        <Button element="link" href="/quote-builder">Get a quote</Button>
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

@@ -13,10 +13,12 @@ const { coverage, location, year } = Astro.props;
     <dt>Coverage</dt>
     <dd>{coverage}</dd>
   </div>
-  <div>
-    <dt>Location</dt>
-    <dd>{location}</dd>
-  </div>
+  {location && (
+    <div>
+      <dt>Location</dt>
+      <dd>{location}</dd>
+    </div>
+  )}
   <div>
     <dt>Year</dt>
     <dd>{year}</dd>

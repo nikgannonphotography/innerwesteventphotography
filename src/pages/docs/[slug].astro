@@ -104,7 +104,13 @@ const guideSchema = {
   />
 
   <Section paddingTop="small" paddingBottom="none">
-    <ContentArticleHeader title={doc.title} category={doc.categoryLabel} backHref="/docs" backLabel="Back to docs and guides" metadata={[`Updated ${doc.lastUpdated}`, doc.readTime]} />
+    <ContentArticleHeader
+      title={doc.title}
+      category={doc.categoryLabel}
+      backHref="/docs"
+      backLabel="Back to docs and guides"
+      metadata={[`Updated ${doc.lastUpdated}`, doc.readTime]}
+    />
   </Section>
 
   <!-- Guide body -->
@@ -115,22 +121,37 @@ const guideSchema = {
         <Paragraph>{doc.summary}</Paragraph>
       </div>
 
-      {doc.slug === "event-briefing-template" && (
-        <div class="template-download-box">
-          <Heading tag="h2" variant="h3">Download the Project Brief</Heading>
-          <Paragraph variant="small">
-            This Word brief is optional and follows the website enquiry form. Add only the extra details you need. You can request a quote without completing it.
-          </Paragraph>
-          <ButtonWrapper marginTop="3">
-            <Button element="link" href="/downloads/IWEP_Event_Photography_Project_Brief.docx" download="IWEP_Event_Photography_Project_Brief.docx">
-              Download Brief (Word) &darr;
-            </Button>
-            <Button element="link" href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf" download="IWEP_Event_Photography_Briefing_Template.pdf" emphasis="secondary">
-              Download PDF &darr;
-            </Button>
-          </ButtonWrapper>
-        </div>
-      )}
+      {
+        doc.slug === "event-briefing-template" && (
+          <div class="template-download-box">
+            <Heading tag="h2" variant="h3">
+              Download the Project Brief
+            </Heading>
+            <Paragraph variant="small">
+              This Word brief is optional and follows the website enquiry form.
+              Add only the extra details you need. You can request a quote
+              without completing it.
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button
+                element="link"
+                href="/downloads/IWEP_Event_Photography_Project_Brief.docx"
+                download="IWEP_Event_Photography_Project_Brief.docx"
+              >
+                Download Brief (Word) &darr;
+              </Button>
+              <Button
+                element="link"
+                href="/downloads/IWEP_Event_Photography_Briefing_Template.pdf"
+                download="IWEP_Event_Photography_Briefing_Template.pdf"
+                emphasis="secondary"
+              >
+                Download PDF &darr;
+              </Button>
+            </ButtonWrapper>
+          </div>
+        )
+      }
 
       {
         doc.sections.map((section) => (
@@ -176,19 +197,19 @@ const guideSchema = {
 
   <Section paddingTop="small" paddingBottom="medium">
     <Heading tag="h2" variant="h3">Related guides</Heading>
-      <Grid small={1} large={3}>
-        {
-          otherDocs.map((otherDoc) => (
-            <Card
-              heading={otherDoc.title}
-              eyebrow={otherDoc.categoryLabel}
-              text={otherDoc.subtitle}
-              buttonHref={`/docs/${otherDoc.slug}`}
-              buttonLabel="Read guide"
-            />
-          ))
-        }
-      </Grid>
+    <Grid small={1} large={3}>
+      {
+        otherDocs.map((otherDoc) => (
+          <Card
+            heading={otherDoc.title}
+            eyebrow={otherDoc.categoryLabel}
+            text={otherDoc.subtitle}
+            buttonHref={`/docs/${otherDoc.slug}`}
+            buttonLabel="Read guide"
+          />
+        ))
+      }
+    </Grid>
   </Section>
 
   <!-- Related articles -->
@@ -226,11 +247,21 @@ const guideSchema = {
         >Planning an Event in Sydney?</Heading
       >
       <Paragraph maxWidth={34}>
-        Share your event date, location and what you need photographed for a quote. Email <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a>.
+        Share your event date, location and what you need photographed for a
+        quote. Email <a href={`mailto:${STUDIO_CONTACT.email}`}
+          >{STUDIO_CONTACT.email}</a
+        >.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href="/downloads/IWEP_Event_Photography_Project_Brief.docx" download="IWEP_Event_Photography_Project_Brief.docx" emphasis="secondary">Download Brief (Word)</Button>
+        <Button element="link" href="/quote-builder"
+          >Request a Quote &rarr;</Button
+        >
+        <Button
+          element="link"
+          href="/downloads/IWEP_Event_Photography_Project_Brief.docx"
+          download="IWEP_Event_Photography_Project_Brief.docx"
+          emphasis="secondary">Download Brief (Word)</Button
+        >
       </ButtonWrapper>
     </ContentWrapper>
   </Section>

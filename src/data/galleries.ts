@@ -46,6 +46,59 @@ const numberedGalleryImages = (
 
 export const GALLERIES: GalleryProject[] = [
   {
+    slug: "andrew-and-lily-wedding",
+    title: "Andrew and Lily's Wedding",
+    category: "weddings-engagements",
+    categoryLabel: "Weddings & Engagements",
+    subtitle: "Wedding preparations, guest moments and portraits",
+    clientRole: "Wedding photography",
+    year: "2021",
+    location: "",
+    summary:
+      "Andrew and Lily's wedding photographs, from getting ready to portraits together. Selected work by Nikolas Gannon, Inner West Event Photography.",
+    overview:
+      "Four photographs from Andrew and Lily's wedding, including getting ready, a quiet moment down the hallway, a guest taking their picture and a portrait by the window.",
+    scope: [
+      "Wedding preparations",
+      "Candid moments with guests",
+      "Couple portraits",
+    ],
+    deliverables: ["Selected wedding photographs"],
+    featured: false,
+    posterImage:
+      "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00004.webp",
+    images: [
+      {
+        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00001.webp",
+        alt: "Lily having the back of her wedding dress fastened while getting ready",
+        width: 1200,
+        height: 1800,
+        orientation: "portrait",
+      },
+      {
+        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00002.webp",
+        alt: "Black-and-white photograph down a hallway of Andrew getting ready",
+        width: 1200,
+        height: 1800,
+        orientation: "portrait",
+      },
+      {
+        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00003.webp",
+        alt: "A guest photographs Andrew and Lily together on their wedding day",
+        width: 1531,
+        height: 2143,
+        orientation: "portrait",
+      },
+      {
+        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00004.webp",
+        alt: "Andrew and Lily kiss beside a tall arched window",
+        width: 1200,
+        height: 1680,
+        orientation: "portrait",
+      },
+    ],
+  },
+  {
     slug: "sony-foundation-wharf4ward",
     title: "Sony Foundation Wharf4Ward",
     category: "not-for-profit",
@@ -655,6 +708,9 @@ export const GALLERY_PAGE_LINKS: Record<
   string,
   { service: string; location?: string }
 > = {
+  "andrew-and-lily-wedding": {
+    service: "private-events-milestones-celebrations",
+  },
   "sony-foundation-wharf4ward": {
     service: "not-for-profit-community",
     location: "sydney-cbd",
@@ -665,7 +721,7 @@ export const GALLERY_PAGE_LINKS: Record<
   },
   "maggie-beer": { service: "not-for-profit-community" },
   "australian-fashion-week-2026": {
-    service: "brand-campaigns-activations",
+    service: "corporate-events-conferences",
   },
   "guy-jules-sebastian": { service: "not-for-profit-community" },
   "global-impact-summit": { service: "corporate-events-conferences" },
@@ -675,7 +731,7 @@ export const GALLERY_PAGE_LINKS: Record<
     location: "sydney-cbd",
   },
   "royalle-modelling-x-leather-on-me-xteds-cameras": {
-    service: "brand-campaigns-activations",
+    service: "corporate-events-conferences",
   },
   "world-vision": { service: "not-for-profit-community" },
   "order-of-australia-the-school-of-st-jude": {
@@ -683,7 +739,7 @@ export const GALLERY_PAGE_LINKS: Record<
   },
   "kokoda-track-foundation": { service: "not-for-profit-community" },
   "sony-foundation-tones-and-i-at-wharf4ward": {
-    service: "brand-campaigns-activations",
+    service: "corporate-events-conferences",
     location: "sydney-cbd",
   },
   "irish-festival-sydney-2026": {
@@ -759,7 +815,7 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
     seoTitle: "Sydney Fashion & Brand Activation Photography | Case Studies",
     metaDescription:
       "Visual documentation for Australian Fashion Week, commercial brand pop-ups, and studio fashion campaigns in Sydney.",
-    matchedServiceSlug: "brand-campaigns-activations",
+    matchedServiceSlug: "corporate-events-conferences",
     filterCategories: ["fashion-editorial"],
   },
   {

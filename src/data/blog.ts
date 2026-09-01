@@ -263,7 +263,7 @@ export const BLOG_POSTS: BlogPost[] = [
     summary: "How to plan staff photos around your workplace, schedule and the look you need.",
     featured: false,
     content: {
-      intro: "For corporate headshots at your Sydney workplace, start with the number of people, where the photos will be used and a date that suits the team. Share existing staff photos if the new ones need to match.",
+      intro: "Workplace headshot sessions usually take 1–3 hours, depending on team size. Start with how many people need photos and a date that suits the team. Share existing staff photos if the new ones need to match.",
       sections: [
         {
           heading: "Choose a Background",
@@ -383,11 +383,11 @@ export const BLOG_SERVICE_LINKS: Record<string, string> = {
   "icc-sydney-event-photography-guide": "corporate-events-conferences",
   "how-to-write-an-event-photography-brief":
     "corporate-events-conferences",
-  "top-event-venues-inner-west-sydney": "brand-campaigns-activations",
+  "top-event-venues-inner-west-sydney": "corporate-events-conferences",
   "sydney-corporate-headshots-team-portraits-guide":
     "workplace-portraits-headshots",
   "live-event-photo-delivery-for-press-social":
-    "brand-campaigns-activations",
+    "corporate-events-conferences",
   "hiring-freelance-event-photographers-sydney-checklist":
     "corporate-events-conferences",
 };

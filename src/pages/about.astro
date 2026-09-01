@@ -21,9 +21,13 @@ import { STUDIO_CONTACT } from "@/consts.ts";
   <Section paddingTop="medium" paddingBottom="small">
     <ContentWrapper>
       <Eyebrow>ABOUT THE STUDIO</Eyebrow>
-      <Heading tag="h1" variant="h1" maxWidth={26}>About Inner West Event Photography</Heading>
+      <Heading tag="h1" variant="h1" maxWidth={26}
+        >About Inner West Event Photography</Heading
+      >
       <Paragraph variant="large" maxWidth={38}>
-        Inner West Event Photography is run by <strong>Nikolas Gannon</strong>, based in Sydney's Inner West. We photograph corporate events, charity galas, community gatherings and private celebrations across Sydney.
+        Inner West Event Photography is run by <strong>Nikolas Gannon</strong>,
+        based in Sydney's Inner West. We photograph corporate events, charity
+        galas, community gatherings and private celebrations across Sydney.
       </Paragraph>
     </ContentWrapper>
   </Section>
@@ -38,14 +42,24 @@ import { STUDIO_CONTACT } from "@/consts.ts";
           Photographer & Creative Producer
         </Paragraph>
         <Paragraph>
-          Nik's background spans documentary photography, events and creative production. As Client Engagement Director at <em>We Are World Change</em>, he worked on projects for organisations including <strong>Sony Foundation Australia</strong>, <strong>batyr</strong>, <strong>Tranby National Indigenous Adult Education</strong> and <strong>The School of St Jude</strong>.
+          Nik's background spans documentary photography, events and creative
+          production. As Client Engagement Director at <em
+            >We Are World Change</em
+          >, he worked on projects for organisations including <strong
+            >Sony Foundation Australia</strong
+          >, <strong>batyr</strong>, <strong
+            >Tranby National Indigenous Adult Education</strong
+          > and <strong>The School of St Jude</strong>.
         </Paragraph>
         <Paragraph>
-          The focus is candid photography, alongside speeches, presentations, group photos and the details you need covered.
+          The focus is candid photography, alongside speeches, presentations,
+          group photos and the details you need covered.
         </Paragraph>
         <ButtonWrapper marginTop="4">
           <Button element="link" href="/contact">Get in touch</Button>
-          <Button element="link" href="/galleries" emphasis="secondary">View Portfolio</Button>
+          <Button element="link" href="/galleries" emphasis="secondary"
+            >View Portfolio</Button
+          >
         </ButtonWrapper>
       </div>
 
@@ -76,7 +90,8 @@ import { STUDIO_CONTACT } from "@/consts.ts";
         Events, Projects & Published Photos
       </Heading>
       <Paragraph maxWidth={38}>
-        Work across charities, conferences and community events, alongside an open stock photography collection on Unsplash.
+        Work across charities, conferences and community events, alongside an
+        open stock photography collection on Unsplash.
       </Paragraph>
     </ContentWrapper>
 
@@ -137,13 +152,21 @@ import { STUDIO_CONTACT } from "@/consts.ts";
   <Section paddingTop="medium" paddingBottom="large" theme="dark">
     <ContentWrapper centered={true}>
       <Eyebrow variant="tag">START A CONVERSATION</Eyebrow>
-      <Heading tag="h2" variant="h2" maxWidth={24}>Tell Us About Your Event</Heading>
+      <Heading tag="h2" variant="h2" maxWidth={24}
+        >Tell Us About Your Event</Heading
+      >
       <Paragraph maxWidth={36}>
         Get in touch about your event, portraits or headshots.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Request a Quote &rarr;</Button>
-        <Button element="link" href={`tel:${STUDIO_CONTACT.phoneRaw}`} emphasis="secondary">
+        <Button element="link" href="/quote-builder"
+          >Request a Quote &rarr;</Button
+        >
+        <Button
+          element="link"
+          href={`tel:${STUDIO_CONTACT.phoneRaw}`}
+          emphasis="secondary"
+        >
           Call {STUDIO_CONTACT.phone}
         </Button>
       </ButtonWrapper>

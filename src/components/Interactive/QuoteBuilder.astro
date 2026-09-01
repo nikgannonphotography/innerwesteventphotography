@@ -1,0 +1,796 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { HUBSPOT_CONFIG, STUDIO_CONTACT } from "@/consts.ts";
+
+interface Props extends HTMLAttributes<"div"> {
+  render?: boolean;
+}
+const { render = true, class: className, ...rest } = Astro.props;
+const eventPrices = [
+  [2, 500, "2 hours"],
+  [4, 850, "4 hours"],
+  [6, 1150, "6 hours"],
+  [8, 1300, "8 hours"],
+  [10, 1650, "10 hours"],
+  [20, 3000, "Two days, 10 hours each"],
+] as const;
+---
+
+{
+  render && (
+    <div class:list={["pricing-form", className]} {...rest}>
+      <form
+        id="pricing-form"
+        action={STUDIO_CONTACT.formEndpoint}
+        method="post"
+        data-hubspot-portal={HUBSPOT_CONFIG.portalId}
+        data-hubspot-form={HUBSPOT_CONFIG.formId}
+        data-hubspot-region={HUBSPOT_CONFIG.region}
+      >
+        <section
+          class="pricing-form_step"
+          aria-labelledby="pricing-type-heading"
+        >
+          <div class="pricing-form_step-heading">
+            <>
+              <span class="pricing-form_number">1</span>
+              <div>
+                <h2 id="pricing-type-heading" class="text-style-h4">
+                  What do you need photographed?
+                </h2>
+                <p class="text-style-main">
+                  Choose the closest option. You can explain anything unusual
+                  below.
+                </p>
+              </div>
+            </>
+          </div>
+          <div class="pricing-form_choices pricing-form_choices-types">
+            <label class="pricing-form_choice">
+              <>
+                <input
+                  type="radio"
+                  name="photographyType"
+                  value="corporate"
+                  required
+                />
+                <span>Corporate events</span>
+              </>
+            </label>
+            <label class="pricing-form_choice">
+              <>
+                <input
+                  type="radio"
+                  name="photographyType"
+                  value="community"
+                  required
+                />
+                <span>Not-for-profit and community events</span>
+              </>
+            </label>
+            <label class="pricing-form_choice">
+              <>
+                <input
+                  type="radio"
+                  name="photographyType"
+                  value="private"
+                  required
+                />
+                <span>Private celebrations</span>
+              </>
+            </label>
+            <label class="pricing-form_choice">
+              <>
+                <input
+                  type="radio"
+                  name="photographyType"
+                  value="headshots"
+                  required
+                />
+                <span>Workplace headshots</span>
+              </>
+            </label>
+            <label class="pricing-form_choice">
+              <>
+                <input
+                  type="radio"
+                  name="photographyType"
+                  value="wedding"
+                  required
+                />
+                <span>Weddings and elopements</span>
+              </>
+            </label>
+          </div>
+        </section>
+
+        <section
+          class="pricing-form_step"
+          id="pricing-options"
+          aria-labelledby="pricing-options-heading"
+          hidden
+        >
+          <div class="pricing-form_step-heading">
+            <>
+              <span class="pricing-form_number">2</span>
+              <div>
+                <h2 id="pricing-options-heading" class="text-style-h4">
+                  Choose your coverage
+                </h2>
+                <p class="text-style-main" id="pricing-options-intro">
+                  Select a coverage block.
+                </p>
+              </div>
+            </>
+          </div>
+
+          <div id="event-pricing" hidden>
+            <div class="pricing-form_choices pricing-form_choices-prices">
+              {eventPrices.map(([hours, price, label]) => (
+                <label class="pricing-form_choice pricing-form_price-choice">
+                  <input
+                    type="radio"
+                    name="coveragePackage"
+                    value={String(hours)}
+                    data-price={String(price)}
+                  />
+                  <span>
+                    <strong>{label}</strong>
+                    <small>${price.toLocaleString("en-AU")}</small>
+                  </span>
+                </label>
+              ))}
+            </div>
+            <label
+              class="pricing-form_field pricing-form_extra-hours"
+              for="extra-hours"
+            >
+              <>
+                <span>Extra hours</span>
+                <small>
+                  Add time beyond the selected block at $175 per hour.
+                </small>
+              </>
+              <input
+                id="extra-hours"
+                name="extraHours"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+                inputmode="numeric"
+              />
+            </label>
+          </div>
+
+          <div id="headshot-pricing" class="pricing-form_panel" hidden>
+            <label class="pricing-form_field" for="team-size">
+              <span>How many people need headshots?</span>
+              <small>
+                Up to five people is $450. Six to nine people is $110 each.
+                Teams of ten or more are quoted after discussion. Two finished
+                headshots per person are included.
+              </small>
+              <input
+                id="team-size"
+                name="teamSize"
+                type="number"
+                min="1"
+                step="1"
+                inputmode="numeric"
+              />
+            </label>
+          </div>
+          <div id="wedding-pricing" class="pricing-form_panel" hidden>
+            <p class="text-style-main">
+              Wedding coverage is priced after a discussion about the date,
+              locations, hours and run sheet.
+            </p>
+          </div>
+          <div
+            id="pricing-summary"
+            class="pricing-form_summary"
+            aria-live="polite"
+            hidden
+          >
+            <span class="pricing-form_summary-label">
+              Estimated photography fee
+            </span>
+            <>
+              <strong id="pricing-total" />
+              <p id="pricing-summary-text" />
+            </>
+          </div>
+        </section>
+
+        <section
+          class="pricing-form_step"
+          id="pricing-details"
+          aria-labelledby="pricing-details-heading"
+          hidden
+        >
+          <div class="pricing-form_step-heading">
+            <>
+              <span class="pricing-form_number">3</span>
+              <div>
+                <h2 id="pricing-details-heading" class="text-style-h4">
+                  Tell me about the job
+                </h2>
+                <p class="text-style-main">
+                  Share what you know. Venue and organisation are optional.
+                </p>
+              </div>
+            </>
+          </div>
+          <input
+            type="hidden"
+            name="eventType"
+            id="pricing-event-type"
+            value=""
+          />
+          <input
+            type="hidden"
+            name="coverageHours"
+            id="pricing-coverage-hours"
+            value=""
+          />
+          <input
+            type="hidden"
+            name="estimatedTotal"
+            id="pricing-estimated-total"
+            value=""
+          />
+          <input
+            type="hidden"
+            name="calculatedQuoteSummary"
+            id="pricing-quote-summary"
+            value=""
+          />
+          <div class="pricing-form_fields">
+            <label class="pricing-form_field" for="pricing-name">
+              <>
+                <span>Name</span>
+                <input
+                  id="pricing-name"
+                  name="fullName"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
+              </>
+            </label>
+            <label class="pricing-form_field" for="pricing-email">
+              <>
+                <span>Email</span>
+                <input
+                  id="pricing-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </>
+            </label>
+            <label class="pricing-form_field" for="pricing-phone">
+              <>
+                <span>Phone</span>
+                <input
+                  id="pricing-phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                />
+              </>
+            </label>
+            <label class="pricing-form_field" for="pricing-organisation">
+              <>
+                <span>Company or organisation</span>
+                <input
+                  id="pricing-organisation"
+                  name="organisation"
+                  type="text"
+                  autocomplete="organization"
+                />
+              </>
+            </label>
+            <label class="pricing-form_field" for="pricing-date">
+              <>
+                <span>Date</span>
+                <input
+                  id="pricing-date"
+                  name="eventDate"
+                  type="text"
+                  placeholder="Date or TBC"
+                  required
+                />
+              </>
+            </label>
+            <label class="pricing-form_field" for="pricing-venue">
+              <>
+                <span>Venue or suburb</span>
+                <input id="pricing-venue" name="venue" type="text" />
+              </>
+            </label>
+            <label
+              class="pricing-form_field pricing-form_field-wide"
+              for="pricing-message"
+            >
+              <>
+                <span>Project details</span>
+                <textarea
+                  id="pricing-message"
+                  name="message"
+                  rows="5"
+                  placeholder="Event times, location, what you need photographed, and anything else that will help."
+                />
+              </>
+            </label>
+          </div>
+          <div class="pricing-form_submit-row">
+            <>
+              <button type="submit" id="pricing-submit">
+                Send enquiry
+              </button>
+              <p>No payment is taken through this form.</p>
+            </>
+          </div>
+          <p
+            class="pricing-form_status"
+            id="pricing-success"
+            role="status"
+            hidden
+          >
+            Thanks. Your enquiry has been sent. I’ll check the details and get
+            back to you.
+          </p>
+          <p class="pricing-form_status" id="pricing-error" role="alert" hidden>
+            That did not send. Email{" "}
+            <a href={`mailto:${STUDIO_CONTACT.email}`}>
+              {STUDIO_CONTACT.email}
+            </a>{" "}
+            or call{" "}
+            <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>
+              {STUDIO_CONTACT.phone}
+            </a>
+            .
+          </p>
+        </section>
+      </form>
+    </div>
+  )
+}
+
+<script>
+  const typeLabels: Record<string, string> = {
+    corporate: "Corporate event",
+    community: "Not-for-profit or community event",
+    private: "Private celebration",
+    headshots: "Workplace headshots",
+    wedding: "Wedding or elopement",
+  };
+
+  function initPricingForm() {
+    const form = document.querySelector<HTMLFormElement>("#pricing-form");
+    if (!form || form.dataset.ready === "true") return;
+    form.dataset.ready = "true";
+    const find = <T extends Element>(selector: string) =>
+      form.querySelector<T>(selector);
+    const options = find<HTMLElement>("#pricing-options");
+    const details = find<HTMLElement>("#pricing-details");
+    const eventPricing = find<HTMLElement>("#event-pricing");
+    const headshotPricing = find<HTMLElement>("#headshot-pricing");
+    const weddingPricing = find<HTMLElement>("#wedding-pricing");
+    const intro = find<HTMLElement>("#pricing-options-intro");
+    const summary = find<HTMLElement>("#pricing-summary");
+    const total = find<HTMLElement>("#pricing-total");
+    const summaryText = find<HTMLElement>("#pricing-summary-text");
+    const extraHours = find<HTMLInputElement>("#extra-hours");
+    const teamSize = find<HTMLInputElement>("#team-size");
+    const hiddenType = find<HTMLInputElement>("#pricing-event-type");
+    const hiddenHours = find<HTMLInputElement>("#pricing-coverage-hours");
+    const hiddenTotal = find<HTMLInputElement>("#pricing-estimated-total");
+    const hiddenSummary = find<HTMLInputElement>("#pricing-quote-summary");
+    const submit = find<HTMLButtonElement>("#pricing-submit");
+    const success = find<HTMLElement>("#pricing-success");
+    const error = find<HTMLElement>("#pricing-error");
+    const selectedType = () =>
+      find<HTMLInputElement>('input[name="photographyType"]:checked')?.value ||
+      "";
+    const selectedPackage = () =>
+      find<HTMLInputElement>('input[name="coveragePackage"]:checked');
+
+    function clearCoverage() {
+      for (const input of document.querySelectorAll<HTMLInputElement>(
+        '#pricing-form input[name="coveragePackage"]',
+      ))
+        input.checked = false;
+      if (extraHours) extraHours.value = "0";
+      if (teamSize) teamSize.value = "";
+    }
+    function writeSummary(
+      label: string,
+      description: string,
+      fee: string,
+      hours = "",
+    ) {
+      if (total) total.textContent = fee;
+      if (summaryText) summaryText.textContent = description;
+      if (summary) summary.hidden = false;
+      if (details) details.hidden = false;
+      if (hiddenType) hiddenType.value = label;
+      if (hiddenHours) hiddenHours.value = hours;
+      if (hiddenTotal) hiddenTotal.value = fee;
+      if (hiddenSummary)
+        hiddenSummary.value = `${label}\n${description}\nEstimated photography fee: ${fee}`;
+    }
+    function hideSummary() {
+      if (summary) summary.hidden = true;
+      if (details) details.hidden = true;
+      if (hiddenHours) hiddenHours.value = "";
+      if (hiddenTotal) hiddenTotal.value = "";
+      if (hiddenSummary) hiddenSummary.value = "";
+    }
+    function calculate() {
+      const type = selectedType();
+      const label = typeLabels[type] || "Photography enquiry";
+      if (["corporate", "community", "private"].includes(type)) {
+        const coverage = selectedPackage();
+        if (!coverage) return hideSummary();
+        const hours = Number(coverage.value);
+        const basePrice = Number(coverage.dataset.price || 0);
+        const addedHours = Math.max(0, Number(extraHours?.value || 0));
+        const price = basePrice + addedHours * 175;
+        const blockLabel =
+          hours === 20 ? "Two days, 10 hours each" : `${hours} hours`;
+        const extraLabel = addedHours
+          ? ` plus ${addedHours} extra ${addedHours === 1 ? "hour" : "hours"}`
+          : "";
+        writeSummary(
+          label,
+          `${blockLabel}${extraLabel}. Final scope is confirmed before booking.`,
+          `$${price.toLocaleString("en-AU")}`,
+          `${hours + addedHours} hours`,
+        );
+        return;
+      }
+      if (type === "headshots") {
+        const count = Math.max(0, Number(teamSize?.value || 0));
+        if (!count) return hideSummary();
+        if (count >= 10)
+          return writeSummary(
+            label,
+            `${count} people. Two finished headshots per person.`,
+            "Priced after discussion",
+            `${count} people`,
+          );
+        const price = count <= 5 ? 450 : count * 110;
+        writeSummary(
+          label,
+          `${count} ${count === 1 ? "person" : "people"}. Two finished headshots per person.`,
+          `$${price.toLocaleString("en-AU")}`,
+          `${count} people`,
+        );
+        return;
+      }
+      if (type === "wedding")
+        writeSummary(
+          label,
+          "Price confirmed after discussing the date, locations, hours and run sheet.",
+          "Priced after discussion",
+        );
+    }
+
+    form.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.name === "photographyType") {
+        clearCoverage();
+        const type = target.value;
+        if (options) options.hidden = false;
+        if (eventPricing)
+          eventPricing.hidden = !["corporate", "community", "private"].includes(
+            type,
+          );
+        if (headshotPricing) headshotPricing.hidden = type !== "headshots";
+        if (weddingPricing) weddingPricing.hidden = type !== "wedding";
+        if (intro)
+          intro.textContent =
+            type === "headshots"
+              ? "Enter the team size."
+              : type === "wedding"
+                ? "Wedding pricing is confirmed after a short discussion."
+                : "Select a coverage block. Extra time is $175 per hour.";
+        hideSummary();
+        calculate();
+      } else calculate();
+    });
+    form.addEventListener("input", (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.id === "extra-hours" || target.id === "team-size") calculate();
+    });
+
+    form.addEventListener("submit", async (event) => {
+      if (!form.checkValidity()) return;
+      event.preventDefault();
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = "Sending...";
+      }
+      if (success) success.hidden = true;
+      if (error) error.hidden = true;
+      const formData = new FormData(form);
+      const fullName = String(formData.get("fullName") || "").trim();
+      const parts = fullName.split(/\s+/);
+      const message = [
+        String(formData.get("calculatedQuoteSummary") || ""),
+        `Date: ${String(formData.get("eventDate") || "")}`,
+        `Venue or suburb: ${String(formData.get("venue") || "Not supplied")}`,
+        String(formData.get("message") || "")
+          ? `Project details:\n${String(formData.get("message"))}`
+          : "",
+      ]
+        .filter(Boolean)
+        .join("\n\n");
+      try {
+        let sent = false;
+        const portal = form.dataset.hubspotPortal;
+        const formId = form.dataset.hubspotForm;
+        const region = form.dataset.hubspotRegion || "ap1";
+        if (portal && formId) {
+          const response = await fetch(
+            `https://api-${region}.hsforms.com/submissions/v3/integration/submit/${portal}/${formId}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                fields: [
+                  { name: "firstname", value: parts[0] || "" },
+                  {
+                    name: "lastname",
+                    value: parts.slice(1).join(" ") || parts[0] || "",
+                  },
+                  { name: "email", value: String(formData.get("email") || "") },
+                  { name: "phone", value: String(formData.get("phone") || "") },
+                  {
+                    name: "company",
+                    value: String(formData.get("organisation") || ""),
+                  },
+                  { name: "message", value: message },
+                ],
+                context: {
+                  pageUri: window.location.href,
+                  pageName: document.title,
+                },
+              }),
+            },
+          );
+          sent = response.ok;
+        }
+        if (!sent && form.action) {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+          sent = response.ok;
+        }
+        if (!sent) throw new Error("Submission failed");
+        if (success) success.hidden = false;
+        if (submit) submit.textContent = "Enquiry sent";
+        form.reset();
+        if (options) options.hidden = true;
+        hideSummary();
+      } catch {
+        if (error) error.hidden = false;
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = "Send enquiry";
+        }
+      }
+    });
+  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", initPricingForm);
+  else initPricingForm();
+  document.addEventListener("astro:page-load", initPricingForm);
+</script>
+
+<style is:global>
+  @layer components {
+    .pricing-form {
+      max-width: 64rem;
+      margin-inline: auto;
+    }
+    .pricing-form [hidden] {
+      display: none !important;
+    }
+    .pricing-form_step {
+      padding-block: clamp(2rem, 5vw, 4rem);
+      border-top: var(--border-width) solid var(--border);
+    }
+    .pricing-form_step-heading {
+      display: grid;
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+    .pricing-form_step-heading h2,
+    .pricing-form_step-heading p {
+      margin: 0;
+    }
+    .pricing-form_step-heading p {
+      margin-top: 0.5rem;
+      color: var(--text-2);
+    }
+    .pricing-form_number {
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: var(--border-width) solid var(--border);
+      border-radius: 50%;
+      font-weight: 700;
+    }
+    .pricing-form_choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .pricing-form_choices-types .pricing-form_choice:last-child {
+      grid-column: 1 / -1;
+    }
+    .pricing-form_choice {
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+    .pricing-form_choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .pricing-form_choice > span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 5rem;
+      padding: 1rem 1.25rem;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      background: var(--background);
+      transition:
+        background var(--hover-duration) var(--hover-ease),
+        color var(--hover-duration) var(--hover-ease);
+    }
+    .pricing-form_choice input:checked + span {
+      color: var(--background);
+      background: var(--dark-900);
+      border-color: var(--dark-900);
+    }
+    .pricing-form_choice input:focus-visible + span {
+      outline: 0.125rem solid var(--text);
+      outline-offset: 0.1875rem;
+    }
+    .pricing-form_price-choice small {
+      margin-top: 0.25rem;
+      font-size: var(--text-small);
+    }
+    .pricing-form_field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .pricing-form_field small {
+      max-width: 42rem;
+      color: var(--text-2);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .pricing-form_field input,
+    .pricing-form_field textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      color: var(--text);
+      background: var(--background);
+      font: inherit;
+    }
+    .pricing-form_field input:focus,
+    .pricing-form_field textarea:focus {
+      outline: 0.125rem solid var(--text);
+      outline-offset: 0.125rem;
+    }
+    .pricing-form_extra-hours,
+    .pricing-form_panel {
+      max-width: 36rem;
+      margin-top: 1.5rem;
+    }
+    .pricing-form_extra-hours input {
+      max-width: 9rem;
+    }
+    .pricing-form_summary {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      background: var(--background-2);
+    }
+    .pricing-form_summary-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: var(--text-small);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .pricing-form_summary strong {
+      display: block;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      line-height: 1;
+    }
+    .pricing-form_summary p {
+      margin: 0.75rem 0 0;
+      color: var(--text-2);
+    }
+    .pricing-form_fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    .pricing-form_field-wide {
+      grid-column: 1 / -1;
+    }
+    .pricing-form_submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pricing-form_submit-row button {
+      padding: 0.875rem 1.5rem;
+      border: var(--border-width) solid var(--button-border);
+      border-radius: var(--radius-small);
+      color: var(--background);
+      background: var(--dark-900);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .pricing-form_submit-row button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+    .pricing-form_submit-row p {
+      margin: 0;
+      color: var(--text-2);
+      font-size: var(--text-small);
+    }
+    .pricing-form_status {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+    }
+    @media (max-width: 47.99rem) {
+      .pricing-form_choices,
+      .pricing-form_fields {
+        grid-template-columns: 1fr;
+      }
+      .pricing-form_choices-types .pricing-form_choice:last-child,
+      .pricing-form_field-wide {
+        grid-column: auto;
+      }
+      .pricing-form_step-heading {
+        grid-template-columns: 2rem minmax(0, 1fr);
+      }
+      .pricing-form_number {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+</style>

@@ -23,63 +23,65 @@ export const SERVICES: ServicePackage[] = [
   {
     slug: "corporate-events-conferences",
     number: "01",
-    title: "Corporate Events & Conferences",
-    subtitle: "Conferences, Summits, Galas & Award Evenings",
+    title: "Corporate Events, Conferences & Galas",
+    subtitle: "Conferences, Summits, Awards Galas, Dinners & Brand Activations",
     tagline:
-      "Photography for conferences, awards nights, charity galas and corporate dinners.",
+      "Photography for corporate conferences, awards nights, galas, annual dinners and brand activations across Sydney.",
     summary:
-      "From speakers and presentations to guest conversations and group photos, we cover the people and details of your event.",
+      "Comprehensive photographic coverage for keynote speakers, panel discussions, awards presentations, VIP arrivals, sponsor activations and gala celebrations.",
     commissioners: [
       "Corporate event management teams & producers",
       "Marketing and communications directors",
       "Industry associations & professional bodies",
       "Executive conference committees",
+      "Brand marketing teams & creative agencies",
     ],
     subjects: [
       "Keynote addresses & panel discussions",
+      "Awards stage presentations & VIP arrivals",
       "Sponsor activations & branded exhibition booths",
-      "Audience engagement & atmosphere",
-      "VIP arrivals & award presentations",
+      "Audience engagement, delegate networking & gala dinners",
     ],
     businessUses: [
-      "Annual reports & internal updates",
+      "Annual reports, sponsor & stakeholder marketing",
       "Future event promotion & delegate marketing",
-      "Sponsor reports & partner updates",
+      "PR press releases, editorial distributions & trade media",
       "Corporate LinkedIn & internal communications",
     ],
     productionStages: [
       {
         stage: "1. Plan the Coverage",
         detail:
-          "Share your schedule, key people and the photos you need.",
+          "Share your run sheet, key speakers, VIPs and shot priorities.",
       },
       {
         stage: "2. Photograph the Event",
         detail:
-          "Coverage follows the agreed schedule and photo list.",
+          "Coverage follows the agreed schedule, stage presentations and networking.",
       },
       {
         stage: "3. Select the Photos",
         detail:
-          "Photos are reviewed and selected after the shoot.",
+          "Photos are curated, colour graded and edited after the event.",
       },
       {
         stage: "4. Edit and Deliver",
         detail:
-          "Edited photos are delivered in the agreed formats.",
+          "High-res print files and web-optimised formats delivered via private online gallery.",
       },
     ],
     deliverables: [
       "Online gallery to view and download your photos",
-      "Photo usage agreed in your quote",
+      "Full commercial & editorial licence in perpetuity",
       "High-resolution print files and web-optimised formats",
     ],
-    turnaroundStandard: "Delivery timing is agreed before booking.",
-    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
+    turnaroundStandard: "Standard curated delivery within 3–5 business days.",
+    turnaroundFast: "Next-day priority highlights or live same-day PR delivery available upon request.",
     relatedGallerySlugs: [
       "tedx-macquarie-uni",
       "echo-change-future-action-summit-2026",
       "sony-foundation-wharf4ward",
+      "australian-fashion-week-2026",
     ],
     relatedDocSlugs: [
       "event-briefing-template",
@@ -93,9 +95,9 @@ export const SERVICES: ServicePackage[] = [
     title: "Not-For-Profit & Community Forums",
     subtitle: "Charity Galas, Community Festivals & Forums",
     tagline:
-      "Photography for charity events, fundraisers, community festivals and forums.",
+      "Photography for charity events, fundraisers, community festivals, cultural events and forums.",
     summary:
-      "We photograph speakers, volunteers, supporters and guests, with experience across charity fundraisers and community events.",
+      "We photograph speakers, volunteers, supporters, patrons and guests with a dedicated 10% Community Courtesy Benefit.",
     commissioners: [
       "Not-for-profit communications & program leads",
       "Advocacy & charitable foundations",
@@ -153,73 +155,8 @@ export const SERVICES: ServicePackage[] = [
     ],
   },
   {
-    slug: "brand-campaigns-activations",
-    number: "03",
-    title: "Brand Campaigns & Activations",
-    subtitle: "Product Launches, Pop-Ups & Brand Experiences",
-    tagline:
-      "Photography for product launches, brand events, pop-ups and campaigns.",
-    summary:
-      "We photograph your products, displays, guests and event. Share your brand guidelines and where you plan to use the photos.",
-    commissioners: [
-      "Brand marketing teams & creative agencies",
-      "PR agencies & experiential production companies",
-      "Consumer brands & hospitality groups",
-      "Event venue marketing managers",
-    ],
-    subjects: [
-      "Event spaces & product displays",
-      "Consumer interaction & live experiences",
-      "VIP guests & influencer appearances",
-      "Product details & installations",
-    ],
-    businessUses: [
-      "Social media campaigns & digital platform advertising",
-      "Brand pitch decks, case studies & agency portfolios",
-      "PR media distributions, lookbooks & retail displays",
-      "Partner co-marketing campaigns",
-    ],
-    productionStages: [
-      {
-        stage: "1. Discuss the Brief",
-        detail:
-          "Review your brand guidelines, reference photos and intended uses.",
-      },
-      {
-        stage: "2. Photograph the Event",
-        detail:
-          "Photograph the products, people and details on your shot list.",
-      },
-      {
-        stage: "3. Select the Photos",
-        detail:
-          "Review the photos against your brief.",
-      },
-      {
-        stage: "4. Edit and Deliver",
-        detail:
-          "Deliver edited photos in the agreed formats.",
-      },
-    ],
-    deliverables: [
-      "Photo usage agreed in your quote",
-      "High-resolution and web-sized photos",
-    ],
-    turnaroundStandard: "Delivery timing is agreed before booking.",
-    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
-    relatedGallerySlugs: [
-      "australian-fashion-week-2026",
-      "royalle-modelling-x-leather-on-me-xteds-cameras",
-      "sony-foundation-tones-and-i-at-wharf4ward",
-    ],
-    relatedDocSlugs: [
-      "turnaround-and-delivery-specs",
-      "licensing-and-commercial-rights",
-    ],
-  },
-  {
     slug: "workplace-portraits-headshots",
-    number: "04",
+    number: "03",
     title: "Workplace Portraits & Headshots",
     subtitle: "Staff Headshots & Team Photos",
     tagline:
@@ -280,63 +217,58 @@ export const SERVICES: ServicePackage[] = [
   },
   {
     slug: "private-events-milestones-celebrations",
-    number: "05",
-    title: "Private Events, Weddings & Milestones",
-    subtitle: "Intimate Weddings, Engagements, Birthdays & Celebrations",
+    number: "04",
+    title: "Birthdays & Private Celebrations",
+    subtitle: "Birthdays, Dinner Parties, Christenings & Family Gatherings",
     tagline:
-      "Photography for birthdays, engagements, small weddings and family celebrations across Sydney.",
+      "Photography for birthdays, dinner celebrations, engagement parties, christenings and family gatherings across Sydney.",
     summary:
-      "Candid photos of your guests, alongside speeches, group photos and the details of your celebration.",
+      "Candid documentary photography capturing your guests, toasts, speeches and the joyful atmosphere of your celebration.",
     commissioners: [
-      "Couples planning intimate Sydney weddings & engagements",
-      "Families celebrating milestone birthdays (30th, 40th, 50th, 70th, 80th)",
-      "Private celebration hosts & party planners",
-      "Milestone anniversary & family reunion committees",
+      "Families and friends celebrating birthdays of all ages",
+      "Private celebration hosts & dinner party organizers",
+      "Families planning christenings, baptisms and reunions",
     ],
     subjects: [
-      "Candid photos of your guests",
-      "Key ceremony moments, speeches & celebratory toasts",
-      "Couple & family group photos",
-      "Venue, table settings & event details",
-      "Multi-generational family gatherings",
+      "Candid guest interactions & party atmosphere",
+      "Speeches, toasts & cake cutting",
+      "Family group portraits & guest arrivals",
+      "Venue styling, table settings & celebratory details",
     ],
     businessUses: [
-      "Photos to share with family and friends",
-      "Photos for prints and albums",
-      "Thank-you announcements & social milestone posts",
-      "Permanent family photographic archives",
+      "Private online gallery to share with family and friends",
+      "High-resolution files for personal prints and albums",
+      "Social media sharing and thank-you announcements",
     ],
     productionStages: [
       {
-        stage: "1. Plan the Coverage",
+        stage: "1. Plan the Party",
         detail:
-          "Reviewing speech timings, key family members, and specific group portrait requests.",
+          "Review speech timings, key family members and any specific group photos requested.",
       },
       {
         stage: "2. Photograph the Celebration",
         detail:
-          "Candid guest photos, speeches and planned group photos.",
+          "Candid party photos, key moments, speeches and guest groups.",
       },
       {
-        stage: "3. Select the Photos",
+        stage: "3. Curate & Grade",
         detail:
-          "Review the photos from your celebration.",
+          "Every image is individually color graded and edited for consistent warmth and clarity.",
       },
       {
-        stage: "4. Edit and Deliver",
+        stage: "4. Deliver",
         detail:
-          "Deliver edited photos in the agreed formats.",
+          "Delivered via private online gallery with full personal sharing and download rights.",
       },
     ],
     deliverables: [
-      "Online gallery to view and download your photos",
-      "High-resolution and web-sized photos",
-      "Personal printing and sharing terms agreed in your quote",
+      "Private online gallery with unlimited high-res downloads",
+      "Full personal printing and sharing licence",
     ],
-    turnaroundStandard: "Delivery timing is agreed before booking.",
-    turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
+    turnaroundStandard: "Delivery within 3–5 business days.",
+    turnaroundFast: "Next-day highlights available upon request.",
     relatedGallerySlugs: [
-      "george-and-adrianas-engagement",
       "annas-birthday",
     ],
     relatedDocSlugs: [
@@ -344,8 +276,74 @@ export const SERVICES: ServicePackage[] = [
       "pricing-and-rates-guide",
     ],
   },
+  {
+    slug: "weddings-elopements",
+    number: "05",
+    title: "Weddings & Elopements",
+    subtitle: "Intimate Ceremonies, Boutique Micro-Weddings & Full-Day Celebrations",
+    tagline:
+      "Documentary wedding photography for civil ceremonies, boutique weddings and celebrations across Sydney.",
+    summary:
+      "Timeless, authentic wedding photography focusing on real emotions, ceremony vows, bridal party portraits and full evening reception.",
+    commissioners: [
+      "Couples planning Sydney weddings, elopements & intimate ceremonies",
+      "Boutique wedding planners & bridal coordinators",
+    ],
+    subjects: [
+      "Bridal & groom preparations",
+      "Ceremony vows, ring exchange & first kiss",
+      "Creative couple portraits & bridal party shoot",
+      "Family group portraits & guest candids",
+      "Reception entrance, speeches, cake cutting, first dance & open party",
+    ],
+    businessUses: [
+      "Private wedding gallery for couples and guests",
+      "Fine-art prints, albums & archival keepsakes",
+      "Social media announcements & thank-you cards",
+    ],
+    productionStages: [
+      {
+        stage: "1. Timeline & Run Sheet Consultation",
+        detail:
+          "We review your schedule, lighting conditions, location options and shot wish list.",
+      },
+      {
+        stage: "2. Document the Wedding Day",
+        detail:
+          "Calm, observant documentary coverage alongside directed, flattering portrait sessions.",
+      },
+      {
+        stage: "3. Fine-Art Editing & Color Grading",
+        detail:
+          "Every frame is meticulously curated and color-graded with skin-tone precision.",
+      },
+      {
+        stage: "4. Gallery Delivery",
+        detail:
+          "Private online wedding gallery with full high-resolution digital downloads and personal print rights.",
+      },
+    ],
+    deliverables: [
+      "Private high-resolution online gallery with unlimited guest downloads",
+      "Full personal print and sharing licence in perpetuity",
+      "Web-optimised digital gallery for effortless mobile viewing",
+    ],
+    turnaroundStandard: "Full curated wedding gallery delivered within 2–3 weeks.",
+    turnaroundFast: "Next-day sneak peek hero highlights (20–30 images) delivered within 24 hours.",
+    relatedGallerySlugs: [
+      "george-and-adrianas-engagement",
+    ],
+    relatedDocSlugs: [
+      "turnaround-and-delivery-specs",
+      "pricing-and-rates-guide",
+      "intimate-sydney-wedding-engagement-photography-guide",
+    ],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePackage | undefined {
+  if (slug === "brand-campaigns-activations") {
+    return SERVICES.find((s) => s.slug === "corporate-events-conferences");
+  }
   return SERVICES.find((s) => s.slug === slug);
 }

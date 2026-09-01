@@ -1,0 +1,2509 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { STUDIO_CONTACT, HUBSPOT_CONFIG } from "@/consts.ts";
+import Icon from "@/components/Media/Icon.astro";
+import checkIcon from "@/assets/icons/check.svg";
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Set to `false` to skip rendering this component and its children. */
+  render?: boolean;
+}
+
+const { render = true, class: className, ...rest } = Astro.props;
+---
+
+{
+  render && (
+    <div class:list={["quote-builder_wrap", className]} {...rest}>
+      <div class="quote-builder_layout">
+        <!-- Configuration Column -->
+        <div class="quote-builder_config">
+          
+          <!-- Funnel Step 1: Sector Intent Selection -->
+          <div class="quote-builder_section" id="qb-step-sector">
+            <div class="quote-builder_section-header">
+              <span class="quote-builder_step-number">01</span>
+              <div>
+                <h2 class="quote-builder_step-title text-style-h4">What kind of event?</h2>
+                <p class="quote-builder_step-desc text-style-small">Select an option to see relevant packages and pricing.</p>
+              </div>
+            </div>
+
+            <div class="quote-builder_grid quote-builder_grid-sectors" role="radiogroup" aria-label="Sector selection">
+              <!-- Sector: Business / Corporate -->
+              <label class="quote-builder_card quote-builder_sector-card is-selected" data-sector="business">
+                <input type="radio" name="qb_sector" value="business" checked class="quote-builder_sr-only" />
+                <span class="quote-builder_card-icon">🏢</span>
+                <span class="quote-builder_card-title">Business</span>
+                <span class="quote-builder_card-desc">Conferences, events, launches, and headshots.</span>
+              </label>
+
+              <!-- Sector: Not-For-Profit / Charity -->
+              <label class="quote-builder_card quote-builder_sector-card" data-sector="nfp">
+                <input type="radio" name="qb_sector" value="nfp" class="quote-builder_sr-only" />
+                <span class="quote-builder_card-icon">🤝</span>
+                <span class="quote-builder_card-header">
+                  <span class="quote-builder_card-title">Not-For-Profit</span>
+                  <span class="quote-builder_badge">10% Courtesy</span>
+                </span>
+                <span class="quote-builder_card-desc">Charity galas, community events, and forums.</span>
+              </label>
+
+              <!-- Sector: Personal / Private -->
+              <label class="quote-builder_card quote-builder_sector-card" data-sector="personal">
+                <input type="radio" name="qb_sector" value="personal" class="quote-builder_sr-only" />
+                <span class="quote-builder_card-icon">🎉</span>
+                <span class="quote-builder_card-title">Personal</span>
+                <span class="quote-builder_card-desc">Weddings, parties, and family celebrations.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Funnel Step 2: Specific Event Type (Filtered by Sector) -->
+          <div class="quote-builder_section" id="qb-step-type">
+            <div class="quote-builder_section-header">
+              <span class="quote-builder_step-number">02</span>
+              <div>
+                <h2 class="quote-builder_step-title text-style-h4">Event category</h2>
+                <p class="quote-builder_step-desc text-style-small">Pick the option that best fits your event.</p>
+              </div>
+            </div>
+
+            <div class="quote-builder_grid quote-builder_grid-types" id="qb-types-container" role="radiogroup" aria-label="Event category selection">
+              <!-- Dynamically populated via JS based on selected sector -->
+            </div>
+          </div>
+
+          <!-- Funnel Step 2.5: Wedding Scale Sub-Branch (Only shown for Weddings & Elopements) -->
+          <div class="quote-builder_section" id="qb-step-wedding-scale" style="display: none;">
+            <div class="quote-builder_section-header">
+              <span class="quote-builder_step-number">02B</span>
+              <div>
+                <h2 class="quote-builder_step-title text-style-h4">Wedding size</h2>
+                <p class="quote-builder_step-desc text-style-small">Select the scale of your wedding day.</p>
+              </div>
+            </div>
+
+            <div class="quote-builder_grid quote-builder_grid-wedding-scale" role="radiogroup" aria-label="Wedding scale selection">
+              <label class="quote-builder_card is-selected" data-wedding-lane="micro">
+                <input type="radio" name="qb_wedding_scale" value="micro" checked class="quote-builder_sr-only" />
+                <span class="quote-builder_card-header">
+                  <span class="quote-builder_card-title">🌿 Elopement / Micro-Wedding</span>
+                  <span class="quote-builder_badge">2–4 Hours</span>
+                </span>
+                <span class="quote-builder_card-desc">Ceremony, family photos, and portraits (up to 40 guests).</span>
+              </label>
+
+              <label class="quote-builder_card" data-wedding-lane="classic">
+                <input type="radio" name="qb_wedding_scale" value="classic" class="quote-builder_sr-only" />
+                <span class="quote-builder_card-header">
+                  <span class="quote-builder_card-title">👰 Full-Day Wedding</span>
+                  <span class="quote-builder_badge quote-builder_badge-accent">6–10 Hours</span>
+                </span>
+                <span class="quote-builder_card-desc">Getting ready through to the ceremony, reception, and party.</span>
+              </label>
+
+              <label class="quote-builder_card" data-wedding-lane="multiday">
+                <input type="radio" name="qb_wedding_scale" value="multiday" class="quote-builder_sr-only" />
+                <span class="quote-builder_card-header">
+                  <span class="quote-builder_card-title">🎊 Multi-Day Wedding</span>
+                  <span class="quote-builder_badge">14+ Hours (2 Days)</span>
+                </span>
+                <span class="quote-builder_card-desc">Two days of coverage for multi-part or cultural weddings.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Funnel Step 3: Coverage Duration & Dynamic Packages -->
+          <div class="quote-builder_section" id="qb-section-duration">
+            <div class="quote-builder_section-header">
+              <span class="quote-builder_step-number">03</span>
+              <div>
+                <h2 class="quote-builder_step-title text-style-h4">Hours &amp; Packages</h2>
+                <p class="quote-builder_step-desc text-style-small">
+                  Choose a package or use the slider for custom hours.
+                </p>
+              </div>
+            </div>
+
+            <!-- Headshot options (shown when Workplace Portraits selected) -->
+            <div id="qb-headshot-options" hidden>
+              <p class="text-style-main">Staff headshots at your workplace. Sessions usually take 1–3 hours, depending on how many people need photos.</p>
+              <div class="quote-builder_form-grid">
+                <label class="quote-builder_form-field">
+                  <span class="quote-builder_form-label">Session length</span>
+                  <select id="qb-headshot-hours" class="field-control">
+                    <option value="">Not sure yet</option>
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                  </select>
+                </label>
+                <label class="quote-builder_form-field">
+                  <span class="quote-builder_form-label">How many people? (optional)</span>
+                  <input id="qb-headshot-people" type="number" min="1" step="1" class="field-control" placeholder="Approximate team size" />
+                </label>
+              </div>
+              <p class="text-style-small">Leave anything undecided blank. We'll confirm the time, price and photos included before booking.</p>
+            </div>
+
+            <!-- Dynamic Positioning Banner -->
+            <div class="quote-builder_value-banner" data-event-only>
+              <span class="quote-builder_value-icon">💡</span>
+              <div class="quote-builder_value-text text-style-small" id="qb-value-banner-text">
+                <strong>Direct booking with Nikolas Gannon.</strong> High-res print and web files, online gallery, full licence, and $10M public liability insurance included.
+              </div>
+            </div>
+
+            <!-- Dynamic Package Cards Container (Populated by JS for Category) -->
+            <div class="quote-builder_grid quote-builder_duration-grid" id="qb-duration-cards-container">
+              <!-- Dynamically rendered via JS -->
+            </div>
+
+            <!-- Custom Hours Fine-Tuning Block -->
+            <div class="quote-builder_custom-hours-block" data-event-only>
+              <div class="quote-builder_custom-hours-header">
+                <span class="text-style-main"><strong>Need custom hours?</strong></span>
+                <span class="text-style-small text-muted">Select exact duration or drag the slider:</span>
+              </div>
+
+              <!-- Quick Hours Pills -->
+              <div class="quote-builder_pills" id="qb-pills-container" role="group" aria-label="Coverage duration quick selections">
+                <!-- Dynamically rendered via JS -->
+              </div>
+
+              <!-- Interactive Range Slider -->
+              <div class="quote-builder_slider-block">
+                <div class="quote-builder_slider-top">
+                  <span class="text-style-main">Coverage slider:</span>
+                  <span class="quote-builder_slider-val"><strong id="qb-hours-display">8</strong> Hours Coverage</span>
+                </div>
+                <div class="quote-builder_range-wrapper">
+                  <input
+                    type="range"
+                    id="qb-range-input"
+                    min="2"
+                    max="12"
+                    step="1"
+                    value="8"
+                    aria-label="Coverage hours range selector"
+                    class="quote-builder_range"
+                  />
+                  <div class="quote-builder_ticks">
+                    <span>2h</span>
+                    <span>4h (Half)</span>
+                    <span>6h</span>
+                    <span>8h (Full)</span>
+                    <span>10h</span>
+                    <span>12h</span>
+                  </div>
+                </div>
+                <div class="quote-builder_deliverables-hint text-style-small">
+                  <span>Deliverables:</span> <strong id="qb-photos-estimate">~500–650 edited photos</strong> &bull; <span id="qb-scope-suggestion">Full-day conference coverage</span>
+                </div>
+              </div>
+
+              <p class="quote-builder_multiday-hint text-style-small text-muted">
+                📅 <strong>Planning multiple dates or a custom schedule?</strong> Pick your main duration above and mention your dates in the notes below.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Funnel Step 4: Crew, Turnaround & Production Extras -->
+          <div class="quote-builder_section" data-event-only>
+            <div class="quote-builder_section-header">
+              <span class="quote-builder_step-number">04</span>
+              <div>
+                <h2 class="quote-builder_step-title text-style-h4">Options &amp; Extras</h2>
+                <p class="quote-builder_step-desc text-style-small">Add a second photographer or faster turnaround if needed.</p>
+              </div>
+            </div>
+
+            <div class="quote-builder_options-subgroup">
+              <h3 class="quote-builder_subgroup-title text-style-h6">Photographers</h3>
+              <div class="quote-builder_grid quote-builder_grid-2">
+                <label class="quote-builder_option is-selected">
+                  <input type="radio" name="qb_crew" value="single" checked class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">1 Photographer</strong>
+                    <span class="quote-builder_option-desc">For up to 150 guests or single-room schedules.</span>
+                    <span class="quote-builder_option-cost">Included</span>
+                  </span>
+                </label>
+
+                <label class="quote-builder_option" id="qb-second-shooter-card">
+                  <input type="radio" name="qb_crew" value="double" class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">2 Photographers</strong>
+                    <span class="quote-builder_option-desc">For concurrent rooms, separate prep locations, or large crowds.</span>
+                    <span class="quote-builder_option-cost" id="qb-second-cost">+ $600</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quote-builder_options-subgroup">
+              <h3 class="quote-builder_subgroup-title text-style-h6">Delivery Time</h3>
+              <div class="quote-builder_grid quote-builder_grid-turnaround">
+                <label class="quote-builder_option is-selected" data-turnaround-cost="0">
+                  <input type="radio" name="qb_turnaround" value="standard" checked class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">Standard Delivery</strong>
+                    <span class="quote-builder_option-desc">Full edited gallery in 3–5 business days (2–3 weeks for weddings).</span>
+                    <span class="quote-builder_option-cost">Included ($0)</span>
+                  </span>
+                </label>
+
+                <label class="quote-builder_option" data-turnaround-cost="150">
+                  <input type="radio" name="qb_turnaround" value="nextday" class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">Next-Day Highlights (24h)</strong>
+                    <span class="quote-builder_option-desc">15–25 highlight photos within 24 hours for press or social media.</span>
+                    <span class="quote-builder_option-cost">+ $150</span>
+                  </span>
+                </label>
+
+                <label class="quote-builder_option" data-turnaround-cost="300">
+                  <input type="radio" name="qb_turnaround" value="sameday" class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">Same-Day Live Delivery</strong>
+                    <span class="quote-builder_option-desc">Photos delivered during the event for immediate PR or social posts.</span>
+                    <span class="quote-builder_option-cost">+ $300</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quote-builder_options-subgroup">
+              <h3 class="quote-builder_subgroup-title text-style-h6">Optional Add-ons</h3>
+              <div class="quote-builder_grid quote-builder_grid-2">
+                <label class="quote-builder_check-option">
+                  <input type="checkbox" name="qb_addon_studio" id="qb-addon-studio" value="250" class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">Mobile Studio &amp; Backdrop</strong>
+                    <span class="quote-builder_option-desc">On-site backdrop and studio flash for portraits.</span>
+                    <span class="quote-builder_option-cost">+ $250</span>
+                  </span>
+                </label>
+
+                <label class="quote-builder_check-option">
+                  <input type="checkbox" name="qb_addon_sponsor" id="qb-addon-sponsor" value="200" class="quote-builder_sr-only" />
+                  <span class="quote-builder_option-mark"><Icon src={checkIcon} variant="small" /></span>
+                  <span class="quote-builder_option-content">
+                    <strong class="quote-builder_option-title">Commercial Sponsor Licence</strong>
+                    <span class="quote-builder_option-desc">Permits event sponsors to use photos in their own marketing.</span>
+                    <span class="quote-builder_option-cost">+ $200</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Live Estimate Summary Column (Sticky) -->
+        <aside class="quote-builder_sidebar">
+          <div class="quote-builder_summary-card" id="qb-summary-card">
+            
+            <div class="quote-builder_summary-top">
+              <span class="quote-builder_summary-eyebrow text-style-tag">Estimated Total</span>
+              <div class="quote-builder_price-box">
+                <span class="quote-builder_price-currency">$</span>
+                <span class="quote-builder_price-amount" id="qb-total-price">1,300</span>
+                <span class="quote-builder_price-tax">AUD</span>
+              </div>
+              <p class="quote-builder_price-note text-style-small">No hidden weekend or travel fees across Sydney</p>
+            </div>
+
+            <hr class="quote-builder_divider" />
+
+            <!-- Itemized Line Items -->
+            <div class="quote-builder_breakdown">
+              <h3 class="quote-builder_breakdown-title text-style-h6">Quote Summary</h3>
+              <ul class="quote-builder_line-items" id="qb-breakdown-list">
+                <li class="quote-builder_line-item">
+                  <span class="quote-builder_line-name">8 Hours Coverage (Corporate Conferences &amp; Events)</span>
+                  <span class="quote-builder_line-val">$1,300</span>
+                </li>
+                <li class="quote-builder_line-item">
+                  <span class="quote-builder_line-name">1 Photographer</span>
+                  <span class="quote-builder_line-val">Included</span>
+                </li>
+                <li class="quote-builder_line-item">
+                  <span class="quote-builder_line-name">Standard Delivery</span>
+                  <span class="quote-builder_line-val">$0</span>
+                </li>
+              </ul>
+            </div>
+
+            <hr class="quote-builder_divider" />
+
+            <!-- Inclusions Checklist -->
+            <div class="quote-builder_inclusions">
+              <h3 class="quote-builder_inclusions-title text-style-h6">What's Included</h3>
+              <ul class="quote-builder_inclusions-list" id="qb-inclusions-list">
+                <li><Icon src={checkIcon} variant="small" class="quote-builder_tick" /> High-resolution print &amp; web JPEG files</li>
+                <li><Icon src={checkIcon} variant="small" class="quote-builder_tick" /> Private online gallery with free downloads</li>
+                <li><Icon src={checkIcon} variant="small" class="quote-builder_tick" /> Full photo licence (commercial or personal)</li>
+                <li><Icon src={checkIcon} variant="small" class="quote-builder_tick" /> $10M Public Liability Insurance</li>
+                <li><Icon src={checkIcon} variant="small" class="quote-builder_tick" /> Dual memory card backup on shoot</li>
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="quote-builder_actions">
+              <a href="#qb-enquiry" class="quote-builder_btn-primary" id="qb-btn-enquire">
+                <span>Check Date Availability &rarr;</span>
+              </a>
+              
+              <button type="button" class="quote-builder_btn-secondary" id="qb-btn-copy">
+                <span id="qb-copy-text">Copy Summary</span>
+              </button>
+            </div>
+
+          </div>
+        </aside>
+      </div>
+
+      <!-- Integrated Fast Inquiry Form -->
+      <section id="qb-enquiry" class="quote-builder_form-section">
+        <div class="quote-builder_form-container">
+          <div class="quote-builder_form-header">
+            <span class="text-style-tag">NEXT STEP</span>
+            <h2 class="text-style-h2">Check Date Availability</h2>
+            <p class="text-style-main">Send your quote details to check availability. We'll reply within 24 hours to confirm.</p>
+          </div>
+
+          <form
+            id="qb-inquiry-form"
+            class="quote-builder_form"
+            action={STUDIO_CONTACT.formEndpoint}
+            method="post"
+            data-hubspot-portal={HUBSPOT_CONFIG.portalId}
+            data-hubspot-form={HUBSPOT_CONFIG.formId}
+            data-hubspot-region={HUBSPOT_CONFIG.region}
+          >
+            <!-- Hidden payload containing quote builder summary -->
+            <input type="hidden" name="calculatedQuoteSummary" id="qb-hidden-summary" value="" />
+            <input type="hidden" name="estimatedTotal" id="qb-hidden-total" value="$1,300" />
+            <input type="hidden" name="coverageHours" id="qb-hidden-hours" value="8 Hours" />
+            <input type="hidden" name="eventType" id="qb-hidden-type" value="Corporate Conferences & Events" />
+
+            <div class="quote-builder_form-grid">
+              <div class="quote-builder_form-field">
+                <label for="qb-name" class="quote-builder_form-label text-style-main">Full Name <span class="quote-builder_star">*</span></label>
+                <input type="text" id="qb-name" name="fullName" class="field-control" placeholder="e.g. Sarah Jenkins" required />
+              </div>
+
+              <div class="quote-builder_form-field">
+                <label for="qb-email" class="quote-builder_form-label text-style-main">Email Address <span class="quote-builder_star">*</span></label>
+                <input type="email" id="qb-email" name="email" class="field-control" placeholder="sarah@company.com" required />
+              </div>
+
+              <div class="quote-builder_form-field">
+                <label for="qb-phone" class="quote-builder_form-label text-style-main">Phone <span class="quote-builder_star">*</span></label>
+                <input type="tel" id="qb-phone" name="phone" class="field-control" placeholder="+61 400 000 000" required />
+              </div>
+
+              <div class="quote-builder_form-field">
+                <label for="qb-org" class="quote-builder_form-label text-style-main">Company / Organisation</label>
+                <input type="text" id="qb-org" name="organisation" class="field-control" placeholder="Leave blank for personal events" />
+              </div>
+
+              <div class="quote-builder_form-field">
+                <label for="qb-date" class="quote-builder_form-label text-style-main">Event Date <span class="quote-builder_star">*</span></label>
+                <input type="text" id="qb-date" name="eventDate" class="field-control" placeholder="e.g. 18 November 2026 (or TBC)" required />
+              </div>
+
+              <div class="quote-builder_form-field">
+                <label for="qb-venue" class="quote-builder_form-label text-style-main">Venue / Location <span class="quote-builder_star">*</span></label>
+                <input type="text" id="qb-venue" name="venue" class="field-control" placeholder="e.g. ICC Sydney, The Grounds, Private Residence" required />
+              </div>
+
+              <div class="quote-builder_form-field quote-builder_form-field-full">
+                <label for="qb-notes" class="quote-builder_form-label text-style-main">Event Notes or Questions</label>
+                <textarea id="qb-notes" name="message" class="field-control" rows="4" placeholder="Tell us about your event schedule, key moments, or any questions..."></textarea>
+              </div>
+            </div>
+
+            <div class="quote-builder_form-footer">
+              <button type="submit" class="quote-builder_btn-primary quote-builder_btn-large" id="qb-submit-btn">
+                <span>Send Enquiry &rarr;</span>
+              </button>
+              <p class="quote-builder_form-reassurance text-style-small">
+                No payment required now. We will check our availability and confirm your details.
+              </p>
+            </div>
+
+            <div class="quote-builder_status-msg quote-builder_status-success" id="qb-form-success" role="status" style="display: none;">
+              <strong>Thank you for your enquiry!</strong> Your quote estimate and event details have been received. We will be in touch shortly to confirm availability.
+            </div>
+            <div class="quote-builder_status-msg quote-builder_status-error" id="qb-form-error" role="alert" style="display: none;">
+              There was an issue sending your enquiry. Please email us directly at <a href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a> or call <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>.
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  )
+}
+
+<script>
+  interface DurationPackage {
+    hours: number;
+    badge?: string;
+    badgeAccent?: boolean;
+    name: string;
+    price: number;
+    rateDesc: string;
+    desc: string;
+    savings?: string;
+    isPopular?: boolean;
+  }
+
+  interface SectorTypeOption {
+    id: string;
+    title: string;
+    badge?: string;
+    badgeAccent?: boolean;
+    desc: string;
+    label: string;
+    baseMult: number;
+    discountLabel?: string;
+  }
+
+  // Sector categories mapping
+  const SECTOR_TYPES: Record<string, SectorTypeOption[]> = {
+    business: [
+      {
+        id: "corporate",
+        title: "Conferences, Summits & Galas",
+        badge: "Most Popular",
+        badgeAccent: true,
+        desc: "Keynote stages, breakout sessions, annual dinners, awards ceremonies, and trade expos.",
+        label: "Corporate Conferences, Summits & Galas",
+        baseMult: 1.0,
+      },
+      {
+        id: "brand",
+        title: "Brand & PR Activations",
+        desc: "Pop-ups, media calls, product launches, PR campaigns, and sponsor events.",
+        label: "Brand Activations & PR Launches",
+        baseMult: 1.0,
+      },
+      {
+        id: "portraits",
+        title: "Workplace Portraits & Headshots",
+        desc: "On-site mobile studio headshots for teams, executive portraits, and team culture.",
+        label: "Workplace Portraits & Headshots",
+        baseMult: 1.0,
+      },
+    ],
+    nfp: [
+      {
+        id: "nfp-gala",
+        title: "Charity Galas & Fundraisers",
+        badge: "10% Courtesy",
+        desc: "Fundraising dinners, live auctions, donor awards, and stage presentations.",
+        label: "Not-For-Profit Charity Galas & Fundraisers",
+        baseMult: 0.9,
+        discountLabel: "10% Community Courtesy Benefit",
+      },
+      {
+        id: "nfp-forum",
+        title: "Community Forums & Festivals",
+        badge: "10% Courtesy",
+        desc: "Advocacy symposiums, public assemblies, and community cultural festivals.",
+        label: "Community Forums & Cultural Festivals",
+        baseMult: 0.9,
+        discountLabel: "10% Community Courtesy Benefit",
+      },
+    ],
+    personal: [
+      {
+        id: "birthdays",
+        title: "Birthdays & Private Parties",
+        badge: "Parties",
+        desc: "Birthdays, engagement drinks, christenings, baby showers, and family gatherings.",
+        label: "Birthdays & Private Celebrations",
+        baseMult: 1.0,
+      },
+      {
+        id: "weddings",
+        title: "Weddings & Elopements",
+        badge: "Fine-Art",
+        badgeAccent: true,
+        desc: "Civil ceremonies, foreshore elopements, micro-weddings, and full-day celebrations.",
+        label: "Weddings & Elopements",
+        baseMult: 1.0,
+      },
+    ],
+  };
+
+  // Base Standard Event Pricing Table
+  const PRICING_TABLE: Record<number, number> = {
+    2: 500,
+    3: 680,
+    4: 850,
+    5: 1000,
+    6: 1150,
+    7: 1225,
+    8: 1300, // Baseline anchor ($1300 for 8h)
+    9: 1475,
+    10: 1650,
+    11: 1815,
+    12: 1980,
+    20: 3250, // 2-Day Summit Package (20 Hours / 2 Days @ 10h/day)
+  };
+
+  // Dedicated Wedding & Elopement Pricing Table
+  const WEDDING_PRICING_TABLE: Record<number, number> = {
+    2: 850,   // Elopement / Civil Ceremony & Portraits
+    3: 1180,
+    4: 1500,  // Micro-Wedding / Intimate Ceremony & Reception
+    5: 1825,
+    6: 2150,  // Boutique Wedding
+    7: 2475,
+    8: 2800,  // Classic Full-Day Wedding
+    9: 3125,
+    10: 3450, // Full Day + Extended Reception
+    12: 4100,
+    14: 4800, // 2-Day Cultural Wedding Package (14h Total)
+  };
+
+  // Category-specific dynamic package cards (Symmetric 2x2 or 2x3 grids)
+  const CATEGORY_PACKAGES: Record<string, DurationPackage[]> = {
+    corporate: [
+      {
+        hours: 2,
+        badge: "Short Assignment",
+        name: "2 Hours Coverage",
+        price: 500,
+        rateDesc: "$250 / hr • ~100–150 retouched images",
+        desc: "Short assignment for media calls, VIP arrivals, panel talks, or networking drinks.",
+      },
+      {
+        hours: 4,
+        badge: "Half-Day",
+        name: "4 Hours (Half Day)",
+        price: 850,
+        rateDesc: "$212.50 / hr • ~250–320 retouched images",
+        desc: "Single-track conferences, morning symposiums, corporate lunches, or brand activations.",
+      },
+      {
+        hours: 6,
+        badge: "Extended Half-Day",
+        name: "6 Hours Coverage",
+        price: 1150,
+        rateDesc: "$191.60 / hr • ~380–480 retouched images",
+        desc: "Afternoon conference sessions running straight into evening drinks and speeches.",
+      },
+      {
+        hours: 8,
+        badge: "★ Most Popular • Best Value",
+        badgeAccent: true,
+        name: "8 Hours (Full Day)",
+        price: 1300,
+        rateDesc: "$162.50 / hr • ~500–650 retouched images",
+        desc: "All-day summits, conventions, trade expos, keynotes, breakouts, and dinners.",
+        savings: "✓ Save $450+ vs Shootday ($1,752) & agency rates",
+        isPopular: true,
+      },
+      {
+        hours: 10,
+        badge: "Full Day + Gala",
+        name: "10 Hours (Day + Gala)",
+        price: 1650,
+        rateDesc: "$165 / hr • ~650–800 retouched images",
+        desc: "Daytime conference sessions through to the evening awards gala and dinner.",
+      },
+      {
+        hours: 20,
+        badge: "★ 2-Day Flagship Summit",
+        badgeAccent: true,
+        name: "2-Day Summit (20h Total)",
+        price: 3250,
+        rateDesc: "2 Days @ 10h / day • ~1,300–1,600+ images",
+        desc: "Multi-day convention coverage across keynote stages, breakout rooms, and networking.",
+        savings: "✓ Dedicated multi-day production rate",
+      },
+    ],
+    brand: [
+      {
+        hours: 2,
+        badge: "Media Doorstop",
+        name: "2 Hours PR Announcement",
+        price: 500,
+        rateDesc: "$250 / hr • ~100–150 retouched images",
+        desc: "Press calls, VIP arrivals, product unveilings, and media wall photos.",
+      },
+      {
+        hours: 4,
+        badge: "Brand Pop-Up",
+        name: "4 Hours Activation Block",
+        price: 850,
+        rateDesc: "$212.50 / hr • ~250–320 retouched images",
+        desc: "Experiential pop-ups, influencer events, product testing stations, and customer interactions.",
+      },
+      {
+        hours: 6,
+        badge: "Extended Launch",
+        name: "6 Hours Campaign Event",
+        price: 1150,
+        rateDesc: "$191.60 / hr • ~380–480 retouched images",
+        desc: "Multi-session brand launches from media preview through to the evening party.",
+      },
+      {
+        hours: 8,
+        badge: "★ Full Campaign Day",
+        badgeAccent: true,
+        name: "8 Hours Brand Showcase",
+        price: 1300,
+        rateDesc: "$162.50 / hr • ~500–650 retouched images",
+        desc: "All-day brand activations, trade exhibition booths, and campaign showcases.",
+        savings: "✓ Maximum brand content assets per shoot",
+        isPopular: true,
+      },
+    ],
+    "nfp-gala": [
+      {
+        hours: 2,
+        badge: "VIP Welcome",
+        name: "2 Hours Patron Reception",
+        price: 500,
+        rateDesc: "Net $450 with 10% courtesy • ~100–150 images",
+        desc: "Patron doorstops, VIP arrivals, media walls, and donor recognition receptions.",
+      },
+      {
+        hours: 4,
+        badge: "Fundraiser Lunch",
+        name: "4 Hours Luncheon / Forum",
+        price: 850,
+        rateDesc: "Net $765 with 10% courtesy • ~250–320 images",
+        desc: "Charity luncheons, donor appeals, board assemblies, and keynote speeches.",
+      },
+      {
+        hours: 6,
+        badge: "Charity Gala",
+        name: "6 Hours Gala & Auction",
+        price: 1150,
+        rateDesc: "Net $1,035 with 10% courtesy • ~380–480 images",
+        desc: "Fundraising galas, live auctions, donor awards, keynote addresses, and entertainment.",
+        isPopular: true,
+      },
+      {
+        hours: 8,
+        badge: "★ Full Gala Production",
+        badgeAccent: true,
+        name: "8 Hours Gala & Afterparty",
+        price: 1300,
+        rateDesc: "Net $1,170 with 10% courtesy • ~500–650 images",
+        desc: "Complete gala night: VIP arrivals, awards dinner, live auction, and the dance floor.",
+        savings: "✓ 10% Community Courtesy Benefit Applied",
+      },
+    ],
+    "nfp-forum": [
+      {
+        hours: 2,
+        badge: "Community Doorstop",
+        name: "2 Hours Media Callout",
+        price: 500,
+        rateDesc: "Net $450 with 10% courtesy • ~100–150 images",
+        desc: "Press announcements, grassroots campaign launches, and advocate doorstops.",
+      },
+      {
+        hours: 4,
+        badge: "Half-Day Forum",
+        name: "4 Hours Community Forum / AGM",
+        price: 850,
+        rateDesc: "Net $765 with 10% courtesy • ~250–320 images",
+        desc: "Community assemblies, stakeholder forums, annual general meetings, and panel discussions.",
+      },
+      {
+        hours: 6,
+        badge: "Extended Forum",
+        name: "6 Hours Symposium",
+        price: 1150,
+        rateDesc: "Net $1,035 with 10% courtesy • ~380–480 images",
+        desc: "Advocacy symposiums with keynote lectures, breakout workshops, and networking.",
+      },
+      {
+        hours: 8,
+        badge: "★ Full Festival Day",
+        badgeAccent: true,
+        name: "8 Hours Cultural Festival / Summit",
+        price: 1300,
+        rateDesc: "Net $1,170 with 10% courtesy • ~500–650 images",
+        desc: "All-day cultural festivals, volunteer rallies, and public community celebrations.",
+        savings: "✓ 10% Community Courtesy Benefit Applied",
+        isPopular: true,
+      },
+    ],
+    birthdays: [
+      {
+        hours: 2,
+        badge: "Short Coverage",
+        name: "2 Hours Coverage",
+        price: 500,
+        rateDesc: "$250 / hr • ~100–150 retouched images",
+        desc: "Intimate dinners, baptisms, christenings, and small birthday gatherings.",
+      },
+      {
+        hours: 4,
+        badge: "Half-Day Party",
+        name: "4 Hours Party",
+        price: 850,
+        rateDesc: "$212.50 / hr • ~250–320 retouched images",
+        desc: "Birthday parties, engagement drinks, baby showers, and family celebrations.",
+        isPopular: true,
+      },
+      {
+        hours: 6,
+        badge: "Evening Party",
+        name: "6 Hours Evening Party",
+        price: 1150,
+        rateDesc: "$191.60 / hr • ~380–480 retouched images",
+        desc: "Larger birthday parties, evening celebrations, and anniversary dinners.",
+      },
+      {
+        hours: 8,
+        badge: "★ Full Day Party",
+        badgeAccent: true,
+        name: "8 Hours Full Day Celebration",
+        price: 1300,
+        rateDesc: "$162.50 / hr • ~500–650 retouched images",
+        desc: "Full-day family celebrations, combined ceremonies and receptions, or all-day parties.",
+        savings: "✓ Complete day coverage without rushed timelines",
+      },
+    ],
+    weddings_micro: [
+      {
+        hours: 2,
+        badge: "Elopement / Civil",
+        name: "2 Hours Ceremony & Portraits",
+        price: 850,
+        rateDesc: "$425 / hr • ~120–180 fine-art images",
+        desc: "Civil ceremonies, registry office weddings, and elopements with a portrait session.",
+      },
+      {
+        hours: 3,
+        badge: "Extended Elopement",
+        name: "3 Hours Ceremony + Scenic Shoot",
+        price: 1180,
+        rateDesc: "$393.30 / hr • ~180–250 fine-art images",
+        desc: "Elopements and intimate ceremonies with couple portraits.",
+      },
+      {
+        hours: 4,
+        badge: "★ Micro-Wedding",
+        badgeAccent: true,
+        name: "4 Hours Micro-Wedding",
+        price: 1500,
+        rateDesc: "$375 / hr • ~250–350 fine-art images",
+        desc: "Micro-weddings and intimate ceremonies with a lunch or cocktail reception (up to 40 guests).",
+        savings: "✓ Perfect boutique celebration package",
+        isPopular: true,
+      },
+    ],
+    weddings_classic: [
+      {
+        hours: 6,
+        badge: "Boutique Wedding",
+        name: "6 Hours Boutique Coverage",
+        price: 2150,
+        rateDesc: "~$358 / hr • ~400–550 fine-art images",
+        desc: "Boutique weddings covering ceremony through to reception speeches.",
+      },
+      {
+        hours: 8,
+        badge: "★ Most Popular",
+        badgeAccent: true,
+        name: "8 Hours Classic Wedding",
+        price: 2800,
+        rateDesc: "$350 / hr • ~600–800 fine-art images",
+        desc: "Full-day weddings covering preparations, ceremony, portraits, and reception.",
+        savings: "✓ Complete day story without rushing",
+        isPopular: true,
+      },
+      {
+        hours: 10,
+        badge: "Full Day + Grand Exit",
+        name: "10 Hours Extended Wedding",
+        price: 3450,
+        rateDesc: "~$345 / hr • ~800–1,000+ fine-art images",
+        desc: "Extended full-day weddings from preparations through to the farewell.",
+      },
+    ],
+    weddings_multiday: [
+      {
+        hours: 12,
+        badge: "Extended 2-Day",
+        name: "12 Hours 2-Day Wedding",
+        price: 4100,
+        rateDesc: "~$341 / hr • ~1,000–1,300+ images",
+        desc: "Two-day weddings and cultural ceremonies.",
+      },
+      {
+        hours: 14,
+        badge: "★ Cultural Flagship",
+        badgeAccent: true,
+        name: "14 Hours 2-Day Cultural Wedding",
+        price: 4800,
+        rateDesc: "2 Days (e.g. 6h + 8h) • ~1,200–1,500+ images",
+        desc: "Two-day cultural weddings, tea ceremonies, and receptions.",
+        savings: "✓ Dedicated multi-day wedding production package",
+        isPopular: true,
+      },
+    ],
+  };
+
+  const SCOPE_SUGGESTIONS: Record<number, { photos: string; desc: string }> = {
+    2: { photos: "~100–150 edited photos", desc: "Media calls, panel sessions, or short dinners" },
+    3: { photos: "~180–240 edited photos", desc: "Evening dinners, keynote talks, or presentations" },
+    4: { photos: "~250–320 edited photos", desc: "Half-day conferences, luncheons, or parties" },
+    5: { photos: "~300–400 edited photos", desc: "Extended half-day seminars and networking" },
+    6: { photos: "~380–480 edited photos", desc: "Afternoon conferences, evening parties, or galas" },
+    7: { photos: "~440–560 edited photos", desc: "Full day events and symposiums" },
+    8: { photos: "~500–650 edited photos", desc: "Full-day summits, conferences, or all-day parties" },
+    9: { photos: "~560–720 edited photos", desc: "Extended conference days with early registration" },
+    10: { photos: "~650–800 edited photos", desc: "All-day conferences with evening gala dinners" },
+    11: { photos: "~700–880 edited photos", desc: "Multi-room summits, festivals, and expos" },
+    12: { photos: "~750–950 edited photos", desc: "Full-day multi-venue festivals or launches" },
+    14: { photos: "~1,200–1,500+ photos", desc: "Two-day cultural wedding ceremonies & receptions" },
+    20: { photos: "~1,300–1,600+ photos", desc: "Two-day conferences, expos, and summits" },
+  };
+
+  const WEDDING_SCOPE_SUGGESTIONS: Record<number, { photos: string; desc: string }> = {
+    2: { photos: "~120–180 edited photos", desc: "Civil registry ceremonies and elopements" },
+    3: { photos: "~180–250 edited photos", desc: "Ceremonies and couple portraits" },
+    4: { photos: "~250–350 edited photos", desc: "Micro-weddings, ceremony, and lunch/drinks" },
+    5: { photos: "~320–420 edited photos", desc: "Ceremony, couple portraits, and dinner toasts" },
+    6: { photos: "~400–550 edited photos", desc: "Ceremony, bridal portraits, and reception speeches" },
+    7: { photos: "~480–620 edited photos", desc: "Ceremony, portraits, and reception" },
+    8: { photos: "~600–800 edited photos", desc: "Full wedding day from preparations to reception" },
+    9: { photos: "~700–900 edited photos", desc: "Preparations, ceremony, reception, and party" },
+    10: { photos: "~800–1,000+ photos", desc: "Full day from getting ready through to the farewell" },
+    12: { photos: "~950–1,200+ photos", desc: "Two-day wedding celebrations" },
+    14: { photos: "~1,200–1,500+ photos", desc: "Two-day cultural wedding ceremonies and receptions" },
+  };
+
+  const SECOND_SHOOTER_RATES = {
+    halfDay: 350,  // up to 4 hours
+    fullDay: 600,  // 5+ hours
+    multiDay: 1200, // 2-Day Summit (20h)
+    weddingHalfDay: 450,
+    weddingFullDay: 800,
+    weddingMultiDay: 1500,
+  };
+
+  function initQuoteBuilder() {
+    const element = document.querySelector<HTMLElement>(".quote-builder_wrap");
+    if (!element) return;
+    const wrap: HTMLElement = element;
+
+    // Elements
+    const sectorCards = wrap.querySelectorAll<HTMLLabelElement>(".quote-builder_grid-sectors .quote-builder_sector-card");
+    const typesContainer = wrap.querySelector<HTMLElement>("#qb-types-container");
+    const weddingScaleSection = wrap.querySelector<HTMLElement>("#qb-step-wedding-scale");
+    const weddingScaleCards = wrap.querySelectorAll<HTMLLabelElement>(".quote-builder_grid-wedding-scale .quote-builder_card");
+    const durationCardsContainer = wrap.querySelector<HTMLElement>("#qb-duration-cards-container");
+    const pillsContainer = wrap.querySelector<HTMLElement>("#qb-pills-container");
+    const rangeInput = wrap.querySelector<HTMLInputElement>("#qb-range-input");
+    const hoursDisplay = wrap.querySelector<HTMLElement>("#qb-hours-display");
+    const photosEstimate = wrap.querySelector<HTMLElement>("#qb-photos-estimate");
+    const scopeSuggestion = wrap.querySelector<HTMLElement>("#qb-scope-suggestion");
+    const crewOptions = wrap.querySelectorAll<HTMLInputElement>("input[name='qb_crew']");
+    const secondCostDisplay = wrap.querySelector<HTMLElement>("#qb-second-cost");
+    const turnaroundOptions = wrap.querySelectorAll<HTMLInputElement>("input[name='qb_turnaround']");
+    const addonStudio = wrap.querySelector<HTMLInputElement>("#qb-addon-studio");
+    const addonSponsor = wrap.querySelector<HTMLInputElement>("#qb-addon-sponsor");
+    const valueBannerText = wrap.querySelector<HTMLElement>("#qb-value-banner-text");
+    
+    // Outputs & Summary
+    const totalPriceEl = wrap.querySelector<HTMLElement>("#qb-total-price");
+    const breakdownList = wrap.querySelector<HTMLUListElement>("#qb-breakdown-list");
+    const copyBtn = wrap.querySelector<HTMLButtonElement>("#qb-btn-copy");
+    const copyText = wrap.querySelector<HTMLElement>("#qb-copy-text");
+
+    // Hidden form fields
+    const hiddenSummary = wrap.querySelector<HTMLInputElement>("#qb-hidden-summary");
+    const hiddenTotal = wrap.querySelector<HTMLInputElement>("#qb-hidden-total");
+    const hiddenHours = wrap.querySelector<HTMLInputElement>("#qb-hidden-hours");
+    const hiddenType = wrap.querySelector<HTMLInputElement>("#qb-hidden-type");
+
+    let currentSector = "business";
+    let selectedEventType = "corporate";
+    let selectedWeddingLane = "micro";
+    let eventTypeLabel = "Corporate Conferences, Summits & Galas";
+    let eventDiscount = 1.0; // 0.9 for NFP
+    let eventDiscountLabel = "";
+    let currentHours = 8;
+
+    function renderStep2Types(sectorKey: string) {
+      if (!typesContainer) return;
+      const options = SECTOR_TYPES[sectorKey] || SECTOR_TYPES.business;
+
+      typesContainer.innerHTML = options
+        .map((opt, idx) => {
+          const isSelected = idx === 0;
+          if (isSelected) {
+            selectedEventType = opt.id;
+            eventTypeLabel = opt.label;
+            eventDiscount = opt.baseMult;
+            eventDiscountLabel = opt.discountLabel || "";
+          }
+          return `
+            <label class="quote-builder_card ${isSelected ? "is-selected" : ""}" data-type-id="${opt.id}" data-base-mult="${opt.baseMult}" data-discount-label="${opt.discountLabel || ""}" data-label="${opt.label}">
+              <input type="radio" name="qb_event_type" value="${opt.id}" ${isSelected ? "checked" : ""} class="quote-builder_sr-only" />
+              <span class="quote-builder_card-header">
+                <span class="quote-builder_card-title">${opt.title}</span>
+                ${opt.badge ? `<span class="quote-builder_badge ${opt.badgeAccent ? "quote-builder_badge-accent" : ""}">${opt.badge}</span>` : ""}
+              </span>
+              <span class="quote-builder_card-desc">${opt.desc}</span>
+            </label>
+          `;
+        })
+        .join("");
+
+      // Bind click events on Step 2 cards
+      typesContainer.querySelectorAll<HTMLLabelElement>(".quote-builder_card").forEach((card) => {
+        const input = card.querySelector<HTMLInputElement>("input[type='radio']");
+        card.addEventListener("click", () => {
+          typesContainer.querySelectorAll(".quote-builder_card").forEach((c) => c.classList.remove("is-selected"));
+          card.classList.add("is-selected");
+          if (input) input.checked = true;
+
+          selectedEventType = card.dataset.typeId || "corporate";
+          eventTypeLabel = card.dataset.label || "Corporate Event";
+          eventDiscount = Number(card.dataset.baseMult || "1.0");
+          eventDiscountLabel = card.dataset.discountLabel || "";
+
+          handleTypeChanged();
+        });
+      });
+
+      handleTypeChanged();
+    }
+
+    function handleTypeChanged() {
+      // Toggle Wedding Scale sub-step
+      const isWedding = selectedEventType === "weddings";
+      if (weddingScaleSection) {
+        weddingScaleSection.style.display = isWedding ? "flex" : "none";
+      }
+
+      // Update active package category key
+      let packageKey = selectedEventType;
+      if (isWedding) {
+        packageKey = `weddings_${selectedWeddingLane}`;
+      }
+
+      renderDynamicPills(selectedEventType);
+      renderDynamicDurationCards(packageKey);
+
+      // Set default hours based on selected type
+      if (isWedding) {
+        if (selectedWeddingLane === "micro") currentHours = 4;
+        else if (selectedWeddingLane === "classic") currentHours = 8;
+        else if (selectedWeddingLane === "multiday") currentHours = 14;
+      } else if (selectedEventType === "portraits") {
+        currentHours = 2;
+      } else {
+        currentHours = 8;
+      }
+
+      syncDurationUI(currentHours);
+      calculateTotal();
+    }
+
+    function renderDynamicPills(category: string) {
+      if (!pillsContainer) return;
+      const isWedding = category === "weddings";
+      
+      let pillData: { hours: number; label: string; price: number }[] = [];
+      if (isWedding) {
+        pillData = [
+          { hours: 2, label: "2h (Elopement)", price: 850 },
+          { hours: 3, label: "3h", price: 1180 },
+          { hours: 4, label: "4h (Micro)", price: 1500 },
+          { hours: 5, label: "5h", price: 1825 },
+          { hours: 6, label: "6h (Boutique)", price: 2150 },
+          { hours: 7, label: "7h", price: 2475 },
+          { hours: 8, label: "8h (Classic)", price: 2800 },
+          { hours: 9, label: "9h", price: 3125 },
+          { hours: 10, label: "10h (Grand)", price: 3450 },
+          { hours: 12, label: "12h", price: 4100 },
+          { hours: 14, label: "2-Day (14h)", price: 4800 },
+        ];
+      } else {
+        pillData = [
+          { hours: 2, label: "2h", price: 500 },
+          { hours: 3, label: "3h", price: 680 },
+          { hours: 4, label: "4h (Half)", price: 850 },
+          { hours: 5, label: "5h", price: 1000 },
+          { hours: 6, label: "6h", price: 1150 },
+          { hours: 7, label: "7h", price: 1225 },
+          { hours: 8, label: "8h (Full)", price: 1300 },
+          { hours: 9, label: "9h", price: 1475 },
+          { hours: 10, label: "10h (Gala)", price: 1650 },
+          { hours: 12, label: "12h", price: 1980 },
+          { hours: 20, label: "2-Day (20h)", price: 3250 },
+        ];
+      }
+
+      pillsContainer.innerHTML = pillData
+        .map(
+          (p) => `
+          <button type="button" class="quote-builder_pill ${p.hours === currentHours ? "is-active" : ""}" data-hours="${p.hours}">
+            ${p.label} <span class="quote-builder_pill-price">$${p.price.toLocaleString("en-AU")}</span>
+          </button>
+        `
+        )
+        .join("");
+
+      pillsContainer.querySelectorAll<HTMLButtonElement>(".quote-builder_pill").forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const hrs = Number(pill.dataset.hours || 8);
+          syncDurationUI(hrs);
+          calculateTotal();
+        });
+      });
+    }
+
+    function renderDynamicDurationCards(packageKey: string) {
+      if (!durationCardsContainer) return;
+      if (selectedEventType === "portraits") {
+        durationCardsContainer.innerHTML = "";
+        return;
+      }
+      const packages = CATEGORY_PACKAGES[packageKey] || CATEGORY_PACKAGES.corporate;
+
+      durationCardsContainer.innerHTML = packages
+        .map((pkg) => {
+          const isSelected = pkg.hours === currentHours;
+          const isMultiDay = pkg.hours === 20 || pkg.hours === 14 || pkg.hours === 12;
+          return `
+            <div class="quote-builder_duration-card ${pkg.isPopular ? "is-popular" : ""} ${isSelected ? "is-selected" : ""}" data-card-hours="${pkg.hours}">
+              <div class="quote-builder_duration-card-top">
+                <span class="quote-builder_badge ${pkg.badgeAccent ? "quote-builder_badge-accent" : ""}">${pkg.badge || ""}</span>
+                <span class="quote-builder_duration-price">$${pkg.price.toLocaleString("en-AU")}</span>
+              </div>
+              <h3 class="quote-builder_duration-name text-style-h6">${pkg.name}</h3>
+              <span class="quote-builder_duration-rate text-style-small">${pkg.rateDesc}</span>
+              <p class="quote-builder_duration-desc text-style-small">${pkg.desc}</p>
+              ${pkg.savings ? `<div class="quote-builder_duration-savings text-style-small">${pkg.savings}</div>` : ""}
+              <button type="button" class="quote-builder_duration-btn" data-hours="${pkg.hours}">
+                ${isSelected ? `Selected (${isMultiDay ? "Multi-Day" : pkg.hours + "h"})` : `Select ${isMultiDay ? "Multi-Day" : pkg.hours + "h Package"}`}
+              </button>
+            </div>
+          `;
+        })
+        .join("");
+
+      // Bind click events on newly rendered cards
+      const newCards = durationCardsContainer.querySelectorAll<HTMLElement>(".quote-builder_duration-card");
+      newCards.forEach((card) => {
+        const hrs = Number(card.dataset.cardHours || 8);
+        const handleCardClick = () => {
+          syncDurationUI(hrs);
+          calculateTotal();
+        };
+        card.addEventListener("click", handleCardClick);
+        card.querySelector(".quote-builder_duration-btn")?.addEventListener("click", (e) => {
+          e.stopPropagation();
+          handleCardClick();
+        });
+      });
+    }
+
+    function syncDurationUI(hours: number) {
+      currentHours = hours;
+
+      // Sync Duration Cards
+      const currentCards = wrap.querySelectorAll<HTMLElement>(".quote-builder_duration-card");
+      currentCards.forEach((card) => {
+        const cardHrs = Number(card.dataset.cardHours);
+        const btn = card.querySelector<HTMLButtonElement>(".quote-builder_duration-btn");
+        const isMulti = cardHrs === 20 || cardHrs === 14 || cardHrs === 12;
+
+        if (cardHrs === currentHours) {
+          card.classList.add("is-selected");
+          if (btn) {
+            btn.textContent = `Selected (${isMulti ? "Multi-Day" : cardHrs + "h"})`;
+          }
+        } else {
+          card.classList.remove("is-selected");
+          if (btn) {
+            btn.textContent = `Select ${isMulti ? "Multi-Day" : cardHrs + "h Package"}`;
+          }
+        }
+      });
+
+      // Sync Quick Pills
+      const activePills = wrap.querySelectorAll<HTMLButtonElement>(".quote-builder_pills .quote-builder_pill");
+      activePills.forEach((p) => {
+        const pillHrs = Number(p.dataset.hours);
+        if (pillHrs === currentHours) {
+          p.classList.add("is-active");
+        } else {
+          p.classList.remove("is-active");
+        }
+      });
+
+      // Sync Slider
+      if (rangeInput) {
+        if (currentHours === 20 || currentHours === 14) {
+          rangeInput.value = "10";
+        } else {
+          rangeInput.value = String(Math.min(12, Math.max(2, currentHours)));
+        }
+      }
+    }
+
+    function calculateTotal() {
+      const isWedding = selectedEventType === "weddings";
+
+      // 1. Base price from hours (dedicated wedding rates vs standard event rates)
+      let baseRate = 0;
+      if (isWedding) {
+        baseRate = WEDDING_PRICING_TABLE[currentHours] || (2800 + (currentHours - 8) * 325);
+      } else {
+        baseRate = PRICING_TABLE[currentHours] || (1300 + (currentHours - 8) * 160);
+      }
+      
+      // 2. Second shooter
+      let secondShooterCost = 0;
+      const isDoubleCrew = Array.from(crewOptions).find(r => r.checked)?.value === "double";
+      
+      let secondRate = isWedding ? SECOND_SHOOTER_RATES.weddingFullDay : SECOND_SHOOTER_RATES.fullDay;
+      if (currentHours <= 4) {
+        secondRate = isWedding ? SECOND_SHOOTER_RATES.weddingHalfDay : SECOND_SHOOTER_RATES.halfDay;
+      } else if (currentHours === 20 || currentHours === 14) {
+        secondRate = isWedding ? SECOND_SHOOTER_RATES.weddingMultiDay : SECOND_SHOOTER_RATES.multiDay;
+      }
+
+      if (secondCostDisplay) {
+        secondCostDisplay.textContent = (currentHours === 20 || currentHours === 14) 
+          ? `+ $${secondRate} (2 Days)` 
+          : `+ $${secondRate}`;
+      }
+      if (isDoubleCrew) {
+        secondShooterCost = secondRate;
+      }
+
+      // 3. Turnaround
+      let turnaroundCost = 0;
+      let turnaroundLabel = isWedding ? "Standard Delivery (2–3 Weeks)" : "Standard 3–5 Day Delivery";
+      const selectedTurnaround = Array.from(turnaroundOptions).find(r => r.checked);
+      if (selectedTurnaround) {
+        const optionWrapper = selectedTurnaround.closest(".quote-builder_option") as HTMLElement;
+        turnaroundCost = Number(optionWrapper?.dataset.turnaroundCost || 0);
+        if (selectedTurnaround.value === "nextday") {
+          turnaroundLabel = isWedding ? "Next-Day Sneak Peek Highlights" : "Next-Day Priority Selects";
+        }
+        if (selectedTurnaround.value === "sameday") turnaroundLabel = "Same-Day / Live PR Dispatch";
+      }
+
+      // 4. Addons
+      let addonCost = 0;
+      let hasStudio = addonStudio?.checked || false;
+      let hasSponsor = addonSponsor?.checked || false;
+      if (hasStudio) addonCost += 250;
+      if (hasSponsor) addonCost += 200;
+
+      // 5. Category discount / modifier (e.g. 10% NFP discount)
+      let discountAmount = 0;
+      let subtotal = baseRate + secondShooterCost + turnaroundCost + addonCost;
+      if (eventDiscount < 1.0) {
+        discountAmount = Math.round(subtotal * (1 - eventDiscount));
+      }
+      let finalTotal = subtotal - discountAmount;
+
+      // Render Total
+      if (totalPriceEl) {
+        totalPriceEl.textContent = finalTotal.toLocaleString("en-AU");
+      }
+
+      // Render Outputs & Breakdown
+      if (hoursDisplay) {
+        if (currentHours === 20) {
+          hoursDisplay.textContent = "20 (2 Days @ 10h)";
+        } else if (currentHours === 14) {
+          hoursDisplay.textContent = "14 (2-Day Cultural Wedding)";
+        } else {
+          hoursDisplay.textContent = String(currentHours);
+        }
+      }
+      
+      const scopeData = isWedding 
+        ? (WEDDING_SCOPE_SUGGESTIONS[currentHours] || { photos: `~${currentHours * 75}–${currentHours * 100} fine-art images`, desc: "Custom wedding coverage" })
+        : (SCOPE_SUGGESTIONS[currentHours] || { photos: `~${currentHours * 60}–${currentHours * 80} edited high-res images`, desc: "Custom event coverage scope" });
+
+      if (photosEstimate) {
+        photosEstimate.textContent = scopeData.photos;
+      }
+      if (scopeSuggestion) {
+        scopeSuggestion.textContent = scopeData.desc;
+      }
+
+      // Value banner update
+      if (valueBannerText) {
+        if (isWedding) {
+          valueBannerText.innerHTML = `<strong>Dedicated Documentary Wedding Coverage:</strong> Deal directly with principal photographer Nikolas Gannon. Includes pre-wedding run-sheet consultation, fine-art skin tone colour grading, private high-res digital gallery &amp; full personal printing rights.`;
+        } else if (selectedEventType === "birthdays" || selectedEventType === "milestones") {
+          valueBannerText.innerHTML = `<strong>Birthdays &amp; Private Celebrations:</strong> Professional, candid photography for birthdays, family celebrations, baptisms, christenings, and private parties. High-res print &amp; web files included.`;
+        } else if (eventDiscount < 1.0) {
+          valueBannerText.innerHTML = `<strong>Community Courtesy Benefit:</strong> Dedicated 10% courtesy discount applied for registered charities, foundations, and community forums. High-res print + web files included.`;
+        } else {
+          valueBannerText.innerHTML = `<strong>Direct Principal Photographer Coverage:</strong> Deal directly with senior principal photographer Nikolas Gannon. No middleman agency markups. $10M Public Liability Insurance &amp; full commercial licence included.`;
+        }
+      }
+
+      // Build breakdown HTML
+      const lines: { name: string; val: string; isDiscount?: boolean }[] = [];
+      let coverageLineName = `${currentHours} Hours Coverage (${eventTypeLabel})`;
+      if (currentHours === 20) {
+        coverageLineName = `2-Day Summit Coverage (20h / 2x 10h Days)`;
+      } else if (currentHours === 14 && isWedding) {
+        coverageLineName = `2-Day Cultural Wedding (14 Hours)`;
+      }
+
+      lines.push({
+        name: coverageLineName,
+        val: `$${baseRate.toLocaleString("en-AU")}`,
+      });
+
+      lines.push({
+        name: isDoubleCrew 
+          ? ((currentHours === 20 || currentHours === 14) ? "2x Photographers (2 Full Days)" : "2x Photographers (Lead + Second)")
+          : "1x Lead Photographer",
+        val: isDoubleCrew ? `+$${secondShooterCost}` : "Included",
+      });
+
+      if (turnaroundCost > 0) {
+        lines.push({
+          name: turnaroundLabel,
+          val: `+$${turnaroundCost}`,
+        });
+      } else {
+        lines.push({
+          name: turnaroundLabel,
+          val: "$0",
+        });
+      }
+
+      if (hasStudio) {
+        lines.push({ name: "Mobile Studio & Lighting Setup", val: "+$250" });
+      }
+      if (hasSponsor) {
+        lines.push({ name: "Commercial Sponsor Rights", val: "+$200" });
+      }
+
+      if (discountAmount > 0) {
+        lines.push({
+          name: eventDiscountLabel || "10% Community Courtesy Benefit",
+          val: `-$${discountAmount}`,
+          isDiscount: true,
+        });
+      }
+
+      if (breakdownList) {
+        breakdownList.innerHTML = lines
+          .map(
+            (l) =>
+              `<li class="quote-builder_line-item ${l.isDiscount ? "is-discount" : ""}">
+                <span class="quote-builder_line-name">${l.name}</span>
+                <span class="quote-builder_line-val">${l.val}</span>
+              </li>`
+          )
+          .join("");
+      }
+
+      // Update hidden form inputs
+      const summaryText = [
+        `=== IWEP QUOTE BUILDER ESTIMATE ===`,
+        `Sector: ${currentSector === "business" ? "Business & Corporate" : (currentSector === "nfp" ? "Not-For-Profit / Charity" : "Personal & Private Celebrations")}`,
+        `Event Type: ${eventTypeLabel}`,
+        `Coverage: ${coverageLineName}`,
+        `Photographers: ${isDoubleCrew ? "2 Photographers (Lead + Second)" : "1 Lead Photographer"}`,
+        `Turnaround: ${turnaroundLabel}`,
+        hasStudio ? `Add-on: Mobile Studio Lighting & Backdrop (+$250)` : ``,
+        hasSponsor ? `Add-on: Commercial Sponsor Rights Package (+$200)` : ``,
+        discountAmount > 0 ? `Courtesy Benefit: -AU$${discountAmount} (${eventDiscountLabel})` : ``,
+        `Estimated Total Investment: AU$${finalTotal.toLocaleString("en-AU")}`,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      if (hiddenSummary) hiddenSummary.value = summaryText;
+      if (hiddenTotal) hiddenTotal.value = `AU$${finalTotal.toLocaleString("en-AU")}`;
+      if (hiddenHours) hiddenHours.value = currentHours === 20 ? "2-Day Summit (20h)" : (currentHours === 14 ? "2-Day Wedding (14h)" : `${currentHours} Hours`);
+      if (hiddenType) hiddenType.value = eventTypeLabel;
+
+      return { finalTotal, summaryText };
+    }
+
+    // Step 1: Sector selection
+    sectorCards.forEach((card) => {
+      const input = card.querySelector<HTMLInputElement>("input[type='radio']");
+      card.addEventListener("click", () => {
+        sectorCards.forEach((c) => c.classList.remove("is-selected"));
+        card.classList.add("is-selected");
+        if (input) input.checked = true;
+
+        currentSector = card.dataset.sector || "business";
+        renderStep2Types(currentSector);
+      });
+    });
+
+    // Step 2.5: Wedding Scale selection
+    weddingScaleCards.forEach((card) => {
+      const input = card.querySelector<HTMLInputElement>("input[type='radio']");
+      card.addEventListener("click", () => {
+        weddingScaleCards.forEach((c) => c.classList.remove("is-selected"));
+        card.classList.add("is-selected");
+        if (input) input.checked = true;
+
+        selectedWeddingLane = card.dataset.weddingLane || "micro";
+        renderDynamicDurationCards(`weddings_${selectedWeddingLane}`);
+        
+        if (selectedWeddingLane === "micro") currentHours = 4;
+        else if (selectedWeddingLane === "classic") currentHours = 8;
+        else if (selectedWeddingLane === "multiday") currentHours = 14;
+
+        syncDurationUI(currentHours);
+        calculateTotal();
+      });
+    });
+
+    // Range Slider
+    if (rangeInput) {
+      rangeInput.addEventListener("input", () => {
+        const hrs = Number(rangeInput.value);
+        syncDurationUI(hrs);
+        calculateTotal();
+      });
+    }
+
+    // Crew Selection
+    crewOptions.forEach((crew) => {
+      crew.addEventListener("change", () => {
+        wrap.querySelectorAll(".quote-builder_grid-2 .quote-builder_option").forEach((opt) => {
+          opt.classList.remove("is-selected");
+        });
+        const parent = crew.closest(".quote-builder_option");
+        if (parent) parent.classList.add("is-selected");
+        calculateTotal();
+      });
+    });
+
+    // Turnaround Selection
+    turnaroundOptions.forEach((turnaround) => {
+      turnaround.addEventListener("change", () => {
+        wrap.querySelectorAll(".quote-builder_grid-turnaround .quote-builder_option").forEach((opt) => {
+          opt.classList.remove("is-selected");
+        });
+        const parent = turnaround.closest(".quote-builder_option");
+        if (parent) parent.classList.add("is-selected");
+        calculateTotal();
+      });
+    });
+
+    // Add-on checkboxes
+    [addonStudio, addonSponsor].forEach((addon) => {
+      addon?.addEventListener("change", () => {
+        const parent = addon.closest(".quote-builder_check-option");
+        if (parent) {
+          if (addon.checked) {
+            parent.classList.add("is-checked");
+          } else {
+            parent.classList.remove("is-checked");
+          }
+        }
+        calculateTotal();
+      });
+    });
+
+    // Copy Summary Button
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        const { summaryText } = calculateTotal();
+        try {
+          await navigator.clipboard.writeText(summaryText);
+          if (copyText) copyText.textContent = "✓ Copied to Clipboard!";
+          setTimeout(() => {
+            if (copyText) copyText.textContent = "Copy Quote Summary";
+          }, 2500);
+        } catch (err) {
+          console.error("Clipboard copy failed", err);
+        }
+      });
+    }
+
+    // Smooth scroll for Enquire button
+    const enquireBtn = wrap.querySelector<HTMLAnchorElement>("#qb-btn-enquire");
+    enquireBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.querySelector("#qb-enquiry");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        const firstField = target.querySelector<HTMLInputElement>("#qb-name");
+        firstField?.focus();
+      }
+    });
+
+    // Form Submission (HubSpot CRM & Formspree)
+    const form = wrap.querySelector<HTMLFormElement>("#qb-inquiry-form");
+    const submitBtn = wrap.querySelector<HTMLButtonElement>("#qb-submit-btn");
+    const successMsg = wrap.querySelector<HTMLElement>("#qb-form-success");
+    const errorMsg = wrap.querySelector<HTMLElement>("#qb-form-error");
+
+    form?.addEventListener("submit", async (e) => {
+      if (!form.checkValidity()) return;
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting Quote Enquiry...";
+      }
+      if (successMsg) successMsg.style.display = "none";
+      if (errorMsg) errorMsg.style.display = "none";
+
+      const formData = new FormData(form);
+      const fullName = String(formData.get("fullName") || "").trim();
+      const nameParts = fullName.split(/\s+/);
+      const firstname = nameParts[0] || "";
+      const lastname = nameParts.slice(1).join(" ") || firstname;
+      const email = String(formData.get("email") || "");
+      const phone = String(formData.get("phone") || "");
+      const company = String(formData.get("organisation") || "");
+      const eventDate = String(formData.get("eventDate") || "");
+      const venue = String(formData.get("venue") || "");
+      const userMessage = String(formData.get("message") || "");
+      const quoteSummary = String(formData.get("calculatedQuoteSummary") || "");
+
+      const fullCrmMessage = [
+        quoteSummary,
+        `--- Client Event Details ---`,
+        `Event Date: ${eventDate}`,
+        `Venue: ${venue}`,
+        userMessage ? `\nClient Notes & Scope:\n${userMessage}` : ``,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      const hubspotPortalId = form.dataset.hubspotPortal;
+      const hubspotFormId = form.dataset.hubspotForm;
+      const hubspotRegion = form.dataset.hubspotRegion || "ap1";
+
+      try {
+        let sent = false;
+
+        // Try HubSpot native submission
+        if (hubspotPortalId && hubspotFormId) {
+          const hubspotPayload = {
+            fields: [
+              { name: "firstname", value: firstname },
+              { name: "lastname", value: lastname },
+              { name: "email", value: email },
+              { name: "phone", value: phone },
+              { name: "company", value: company },
+              { name: "message", value: fullCrmMessage },
+            ],
+            context: {
+              pageUri: window.location.href,
+              pageName: "Quote Builder - " + document.title,
+            },
+          };
+
+          const endpoint = `https://api-${hubspotRegion}.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(hubspotPayload),
+          });
+
+          if (res.ok) {
+            sent = true;
+          }
+        }
+
+        // Backup to Formspree endpoint
+        if (!sent && form.action) {
+          const formspreeRes = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+          if (formspreeRes.ok) {
+            sent = true;
+          }
+        }
+
+        if (sent) {
+          if (successMsg) successMsg.style.display = "block";
+          form.reset();
+          calculateTotal();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Quote Request Sent ✓";
+          }
+        } else {
+          throw new Error("Submission not completed");
+        }
+      } catch (err) {
+        console.error(err);
+        if (errorMsg) errorMsg.style.display = "block";
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Quote & Check Availability →";
+        }
+      }
+    });
+
+    // Initial render
+    renderStep2Types("business");
+  }
+
+  // Initialize on load and on client-side navigation
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initQuoteBuilder);
+  } else {
+    initQuoteBuilder();
+  }
+  document.addEventListener("astro:page-load", initQuoteBuilder);
+</script>
+
+<style is:global>
+  @layer components {
+    .quote-builder_wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      width: 100%;
+    }
+
+    .quote-builder_layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    @media (min-width: 64rem) {
+      .quote-builder_layout {
+        grid-template-columns: minmax(0, 1fr) 22rem;
+        gap: var(--space-8);
+      }
+    }
+
+    @media (min-width: 80rem) {
+      .quote-builder_layout {
+        grid-template-columns: minmax(0, 1fr) 24rem;
+      }
+    }
+
+    /* Configuration Column */
+    .quote-builder_config {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .quote-builder_section {
+      background-color: var(--background-2);
+      border-radius: var(--radius-main);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      border: var(--border-width) solid var(--border);
+    }
+
+    .quote-builder_section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .quote-builder_step-number {
+      font-size: var(--text-small);
+      font-weight: 700;
+      color: var(--brand-text);
+      background-color: var(--brand-500);
+      padding: 0.15em 0.55em;
+      border-radius: var(--radius-small);
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    .quote-builder_step-title {
+      margin: 0;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .quote-builder_step-desc {
+      margin: var(--space-1) 0 0 0;
+      color: var(--text-2);
+    }
+
+    /* Sector Cards & Grids */
+    .quote-builder_grid {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .quote-builder_grid-sectors {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 48rem) {
+      .quote-builder_grid-sectors {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .quote-builder_sector-card {
+      text-align: left;
+      padding: var(--space-5);
+    }
+
+    .quote-builder_card-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: var(--space-1);
+    }
+
+    /* Step 2 Types Grid */
+    .quote-builder_grid-types {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 36rem) {
+      .quote-builder_grid-types {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Wedding Scale Grid */
+    .quote-builder_grid-wedding-scale {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 48rem) {
+      .quote-builder_grid-wedding-scale {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Section 2 Duration Cards: Strictly 2 columns on >= 36rem (Symmetric 2x2 or 2x3) */
+    .quote-builder_duration-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 36rem) {
+      .quote-builder_duration-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Options Subgroups */
+    .quote-builder_options-subgroup {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+    }
+
+    .quote-builder_subgroup-title {
+      font-size: var(--text-main);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .quote-builder_grid-2 {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 36rem) {
+      .quote-builder_grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .quote-builder_grid-turnaround {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 48rem) {
+      .quote-builder_grid-turnaround {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Value Positioning Banner */
+    .quote-builder_value-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-small);
+      line-height: 1.4;
+    }
+
+    .quote-builder_value-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .quote-builder_value-text {
+      color: var(--text);
+      strong {
+        color: var(--heading-accent);
+      }
+    }
+
+    /* Duration Cards */
+    .quote-builder_duration-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-5);
+      background-color: var(--background);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      cursor: pointer;
+      position: relative;
+      transition:
+        border-color var(--hover-duration) var(--hover-ease),
+        background-color var(--hover-duration) var(--hover-ease),
+        transform var(--hover-duration) var(--hover-ease);
+
+      &:hover {
+        border-color: var(--text-2);
+        background-color: var(--background-3);
+      }
+
+      &.is-selected {
+        border-color: var(--brand-500);
+        background-color: var(--background-3);
+        box-shadow: inset 0 0 0 2px var(--brand-500);
+      }
+
+      &.is-popular {
+        border-color: var(--brand-500);
+      }
+    }
+
+    .quote-builder_duration-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_duration-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--heading-accent);
+      line-height: 1;
+    }
+
+    .quote-builder_duration-name {
+      margin: var(--space-1) 0 0 0;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .quote-builder_duration-rate {
+      color: var(--text-2);
+      font-weight: 500;
+    }
+
+    .quote-builder_duration-desc {
+      color: var(--text-2);
+      line-height: 1.4;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .quote-builder_duration-savings {
+      color: var(--brand-500);
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--background-2);
+      border-radius: var(--radius-small);
+      align-self: flex-start;
+    }
+
+    .quote-builder_duration-btn {
+      margin-top: var(--space-2);
+      padding: 0.5em 1em;
+      background-color: var(--background-2);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-round);
+      color: var(--text);
+      font-size: var(--text-small);
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease),
+        color var(--hover-duration) var(--hover-ease);
+
+      .quote-builder_duration-card.is-selected & {
+        background-color: var(--brand-500);
+        border-color: var(--brand-500);
+        color: var(--brand-text);
+      }
+    }
+
+    /* Custom Hours Fine Tuning */
+    .quote-builder_custom-hours-block {
+      background-color: var(--background);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .quote-builder_custom-hours-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .text-muted {
+      color: var(--text-2);
+    }
+
+    /* Selectable Cards */
+    .quote-builder_card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      background-color: var(--background);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      cursor: pointer;
+      transition:
+        border-color var(--hover-duration) var(--hover-ease),
+        background-color var(--hover-duration) var(--hover-ease),
+        transform var(--hover-duration) var(--hover-ease);
+      user-select: none;
+
+      &:hover {
+        border-color: var(--text-2);
+        background-color: var(--background-3);
+      }
+
+      &.is-selected {
+        border-color: var(--brand-500);
+        background-color: var(--background-3);
+        box-shadow: inset 0 0 0 1px var(--brand-500);
+      }
+    }
+
+    .quote-builder_card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_card-title {
+      font-weight: 600;
+      font-size: var(--text-main);
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .quote-builder_card-desc {
+      font-size: var(--text-small);
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+
+    .quote-builder_badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2em 0.5em;
+      background-color: var(--background-2);
+      color: var(--text);
+      border-radius: var(--radius-small);
+      white-space: nowrap;
+    }
+
+    .quote-builder_badge-accent {
+      background-color: var(--brand-500);
+      color: var(--brand-text);
+    }
+
+    /* Pills */
+    .quote-builder_pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.5em 0.85em;
+      background-color: var(--background-2);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-round);
+      color: var(--text);
+      font-size: var(--text-small);
+      font-weight: 500;
+      cursor: pointer;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease),
+        color var(--hover-duration) var(--hover-ease);
+
+      &:hover {
+        background-color: var(--background-3);
+        border-color: var(--text-2);
+      }
+
+      &.is-active {
+        background-color: var(--brand-500);
+        border-color: var(--brand-500);
+        color: var(--brand-text);
+        font-weight: 700;
+
+        .quote-builder_pill-price {
+          background-color: var(--brand-text);
+          color: var(--brand-500);
+        }
+      }
+    }
+
+    .quote-builder_pill-price {
+      font-size: 0.75rem;
+      padding: 0.15em 0.45em;
+      background-color: var(--background);
+      color: var(--text);
+      border-radius: var(--radius-round);
+    }
+
+    /* Slider Block */
+    .quote-builder_slider-block {
+      background-color: var(--background-2);
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-small);
+      border: var(--border-width) solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .quote-builder_slider-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-main);
+    }
+
+    .quote-builder_slider-val {
+      font-size: var(--text-large);
+      color: var(--text);
+      strong {
+        font-size: 1.3em;
+        color: var(--heading-accent);
+      }
+    }
+
+    .quote-builder_range-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_range {
+      appearance: none;
+      width: 100%;
+      height: 0.5rem;
+      border-radius: var(--radius-round);
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: var(--radius-round);
+        background: var(--brand-500);
+        border: 2px solid var(--dark-900);
+        cursor: grab;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        transition: scale 0.15s ease;
+        &:hover {
+          scale: 1.15;
+        }
+        &:active {
+          cursor: grabbing;
+        }
+      }
+
+      &::-moz-range-thumb {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: var(--radius-round);
+        background: var(--brand-500);
+        border: 2px solid var(--dark-900);
+        cursor: grab;
+      }
+    }
+
+    .quote-builder_ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-2);
+    }
+
+    .quote-builder_deliverables-hint {
+      color: var(--text-2);
+      line-height: 1.4;
+      strong {
+        color: var(--text);
+      }
+    }
+
+    /* Options & Checkboxes */
+    .quote-builder_option,
+    .quote-builder_check-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background-color: var(--background);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      cursor: pointer;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease);
+      user-select: none;
+
+      &:hover {
+        background-color: var(--background-3);
+        border-color: var(--text-2);
+      }
+
+      &.is-selected,
+      &.is-checked {
+        background-color: var(--background-3);
+        border-color: var(--brand-500);
+        box-shadow: inset 0 0 0 1px var(--brand-500);
+
+        .quote-builder_option-mark {
+          background-color: var(--brand-500);
+          color: var(--brand-text);
+          border-color: var(--brand-500);
+        }
+      }
+    }
+
+    .quote-builder_option-mark {
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: var(--radius-small);
+      border: var(--border-width) solid var(--border);
+      background-color: var(--background-2);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: transparent;
+      margin-top: 0.15rem;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        color var(--hover-duration) var(--hover-ease);
+    }
+
+    .quote-builder_option-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      flex-grow: 1;
+    }
+
+    .quote-builder_option-title {
+      font-size: var(--text-main);
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .quote-builder_option-desc {
+      font-size: var(--text-small);
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+
+    .quote-builder_option-cost {
+      font-size: var(--text-small);
+      font-weight: 700;
+      color: var(--heading-accent);
+      margin-top: var(--space-1);
+    }
+
+    /* Screen reader only utility */
+    .quote-builder_sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Sticky Sidebar Summary Card */
+    .quote-builder_sidebar {
+      position: relative;
+    }
+
+    @media (min-width: 64rem) {
+      .quote-builder_sidebar {
+        position: sticky;
+        top: calc(var(--nav-height) + var(--space-4));
+      }
+    }
+
+    .quote-builder_summary-card {
+      background-color: var(--background-2);
+      border: 2px solid var(--brand-500);
+      border-radius: var(--radius-main);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .quote-builder_summary-top {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .quote-builder_summary-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-2);
+    }
+
+    .quote-builder_price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+    }
+
+    .quote-builder_price-currency {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .quote-builder_price-amount {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--heading-accent);
+      letter-spacing: -0.03em;
+    }
+
+    .quote-builder_price-tax {
+      font-size: var(--text-small);
+      color: var(--text-2);
+      font-weight: 600;
+    }
+
+    .quote-builder_price-note {
+      color: var(--text-2);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .quote-builder_divider {
+      border: 0;
+      border-top: var(--border-width) solid var(--border);
+      margin: 0;
+    }
+
+    /* Breakdown List */
+    .quote-builder_breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_breakdown-title,
+    .quote-builder_inclusions-title {
+      font-size: var(--text-small);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .quote-builder_line-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+    }
+
+    .quote-builder_line-item {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-2);
+      color: var(--text);
+      line-height: 1.3;
+
+      &.is-discount {
+        color: var(--brand-500);
+        font-weight: 600;
+      }
+    }
+
+    .quote-builder_line-name {
+      color: var(--text-2);
+    }
+
+    .quote-builder_line-val {
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Inclusions List */
+    .quote-builder_inclusions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_inclusions-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--text-small);
+      color: var(--text-2);
+      line-height: 1.35;
+
+      li {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+    }
+
+    .quote-builder_tick {
+      color: var(--brand-500);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    /* Action Buttons */
+    .quote-builder_actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+    }
+
+    .quote-builder_btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      background-color: var(--button-background);
+      color: var(--button-text);
+      font-weight: 700;
+      font-size: var(--text-main);
+      border-radius: var(--radius-round);
+      text-align: center;
+      text-decoration: none;
+      border: var(--border-width) solid var(--button-border);
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        color var(--hover-duration) var(--hover-ease);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--button-background-hover);
+        color: var(--button-text-hover);
+      }
+    }
+
+    .quote-builder_btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      background-color: transparent;
+      color: var(--text);
+      font-weight: 600;
+      font-size: var(--text-small);
+      border-radius: var(--radius-round);
+      border: var(--border-width) solid var(--border);
+      cursor: pointer;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease);
+
+      &:hover {
+        background-color: var(--background-3);
+        border-color: var(--text);
+      }
+    }
+
+    .quote-builder_btn-large {
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--text-large);
+    }
+
+    /* Enquiry Form Section */
+    .quote-builder_form-section {
+      background-color: var(--background-2);
+      border-radius: var(--radius-main);
+      padding: var(--space-6) var(--space-6) var(--space-8);
+      border: var(--border-width) solid var(--border);
+      scroll-margin-top: calc(var(--nav-height) + var(--space-4));
+    }
+
+    @media (min-width: 48rem) {
+      .quote-builder_form-section {
+        padding: var(--space-8);
+      }
+    }
+
+    .quote-builder_form-container {
+      max-width: 48rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .quote-builder_form-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .quote-builder_form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 40rem) {
+      .quote-builder_form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .quote-builder_form-field-full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .quote-builder_form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .quote-builder_form-label {
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .quote-builder_star {
+      color: var(--heading-accent);
+    }
+
+    .quote-builder_form-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+
+    .quote-builder_form-reassurance {
+      color: var(--text-2);
+      margin: 0;
+    }
+
+    .quote-builder_status-msg {
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-small);
+      font-size: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .quote-builder_status-success {
+      background-color: var(--background-3);
+      border: 1px solid var(--brand-500);
+      color: var(--text);
+      strong {
+        color: var(--heading-accent);
+      }
+    }
+
+    .quote-builder_status-error {
+      background-color: var(--background-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      a {
+        color: var(--heading-accent);
+        text-decoration: underline;
+      }
+    }
+  }
+</style>

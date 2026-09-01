@@ -59,28 +59,30 @@ const relatedLocation = LOCATIONS.find(
         <Heading tag="h2" variant="h3">Overview</Heading>
         <Paragraph>{project.subtitle}</Paragraph>
         <Paragraph>{project.overview}</Paragraph>
-        {(relatedService || relatedLocation) && (
-          <ButtonWrapper marginTop="4">
-            {relatedService && (
-              <Button
-                element="link"
-                href={`/services/${relatedService.slug}`}
-                variant="link"
-              >
-                View {relatedService.title}
-              </Button>
-            )}
-            {relatedLocation && (
-              <Button
-                element="link"
-                href={`/locations/${relatedLocation.slug}`}
-                variant="link"
-              >
-                Photography in {relatedLocation.name}
-              </Button>
-            )}
-          </ButtonWrapper>
-        )}
+        {
+          (relatedService || relatedLocation) && (
+            <ButtonWrapper marginTop="4">
+              {relatedService && (
+                <Button
+                  element="link"
+                  href={`/services/${relatedService.slug}`}
+                  variant="link"
+                >
+                  View {relatedService.title}
+                </Button>
+              )}
+              {relatedLocation && (
+                <Button
+                  element="link"
+                  href={`/locations/${relatedLocation.slug}`}
+                  variant="link"
+                >
+                  Photography in {relatedLocation.name}
+                </Button>
+              )}
+            </ButtonWrapper>
+          )
+        }
       </div>
       <GalleryFacts
         slot="column2"
@@ -112,7 +114,7 @@ const relatedLocation = LOCATIONS.find(
         availability and a clear quote.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Get a quote</Button>
+        <Button element="link" href="/quote-builder">Get a quote</Button>
       </ButtonWrapper>
     </ContentWrapper>
   </Section>
