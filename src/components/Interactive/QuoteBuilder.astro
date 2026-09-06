@@ -11,13 +11,36 @@ interface Props extends HTMLAttributes<"div"> {
   render?: boolean;
 }
 const { render = true, class: className, ...rest } = Astro.props;
-const eventPrices = [
-  [2, 500, "2 hours"],
-  [4, 850, "4 hours"],
-  [6, 1150, "6 hours"],
-  [8, 1300, "8 hours"],
-  [10, 1650, "10 hours"],
-  [20, 3000, "Two days, 10 hours each"],
+interface CoveragePackage {
+  hours: string;
+  price: number;
+  label: string;
+}
+
+const corporatePackages: readonly CoveragePackage[] = [
+  { hours: "2-3", price: 450, label: "2-3 hours" },
+  { hours: "4-5", price: 700, label: "4-5 hours" },
+  { hours: "6-7", price: 1100, label: "6-7 hours" },
+  { hours: "8-9", price: 1400, label: "8-9 hours" },
+  { hours: "10", price: 1650, label: "10 hours" },
+  { hours: "20", price: 3000, label: "Two days (20 hours total)" },
+] as const;
+
+const communityPackages: readonly CoveragePackage[] = [
+  { hours: "2-3", price: 300, label: "2-3 hours" },
+  { hours: "4-5", price: 450, label: "4-5 hours" },
+  { hours: "6-7", price: 700, label: "6-7 hours" },
+  { hours: "8-9", price: 1100, label: "8-9 hours" },
+  { hours: "10", price: 1500, label: "10 hours" },
+  { hours: "20", price: 2800, label: "Two days (20 hours max)" },
+] as const;
+
+const privatePackages: readonly CoveragePackage[] = [
+  { hours: "2", price: 350, label: "2 hours" },
+  { hours: "4-5", price: 500, label: "4-5 hours" },
+  { hours: "6-7", price: 750, label: "6-7 hours" },
+  { hours: "8-9", price: 1000, label: "8-9 hours" },
+  { hours: "10", price: 1200, label: "10 hours" },
 ] as const;
 ---
 
@@ -128,23 +151,67 @@ const eventPrices = [
             </>
           </div>
 
-          <div id="event-pricing" hidden>
+          <div id="corporate-pricing" class="pricing-form_packages" hidden>
             <div class="pricing-form_choices pricing-form_choices-prices">
-              {eventPrices.map(([hours, price, label]) => (
+              {corporatePackages.map((pkg) => (
                 <label class="pricing-form_choice pricing-form_price-choice">
                   <input
                     type="radio"
                     name="coveragePackage"
-                    value={String(hours)}
-                    data-price={String(price)}
+                    value={pkg.hours}
+                    data-label={pkg.label}
+                    data-price={String(pkg.price)}
                   />
                   <span>
-                    <strong>{label}</strong>
-                    <small>${price.toLocaleString("en-AU")}</small>
+                    <strong>{pkg.label}</strong>
+                    <small>${pkg.price.toLocaleString("en-AU")}</small>
                   </span>
                 </label>
               ))}
             </div>
+          </div>
+
+          <div id="community-pricing" class="pricing-form_packages" hidden>
+            <div class="pricing-form_choices pricing-form_choices-prices">
+              {communityPackages.map((pkg) => (
+                <label class="pricing-form_choice pricing-form_price-choice">
+                  <input
+                    type="radio"
+                    name="coveragePackage"
+                    value={pkg.hours}
+                    data-label={pkg.label}
+                    data-price={String(pkg.price)}
+                  />
+                  <span>
+                    <strong>{pkg.label}</strong>
+                    <small>${pkg.price.toLocaleString("en-AU")}</small>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div id="private-pricing" class="pricing-form_packages" hidden>
+            <div class="pricing-form_choices pricing-form_choices-prices">
+              {privatePackages.map((pkg) => (
+                <label class="pricing-form_choice pricing-form_price-choice">
+                  <input
+                    type="radio"
+                    name="coveragePackage"
+                    value={pkg.hours}
+                    data-label={pkg.label}
+                    data-price={String(pkg.price)}
+                  />
+                  <span>
+                    <strong>{pkg.label}</strong>
+                    <small>${pkg.price.toLocaleString("en-AU")}</small>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div id="extra-hours-panel" hidden>
             <label
               class="pricing-form_field pricing-form_extra-hours"
               for="extra-hours"
@@ -174,9 +241,8 @@ const eventPrices = [
                 How many people need headshots?
               </span>
               <small class="pricing-form_help">
-                Up to five people is $450. Six to nine people is $110 each.
-                Teams of ten or more are quoted after discussion. Two finished
-                headshots per person are included.
+                Individuals from $120 (including 3 edited headshots). Teams of 3 to 5 are $450.
+                Six to nine staff is $110 each. Teams of 10 or more are quoted after discussion.
               </small>
               <input
                 id="team-size"
@@ -329,7 +395,10 @@ const eventPrices = [
       form.querySelector<T>(selector);
     const options = find<HTMLElement>("#pricing-options");
     const details = find<HTMLElement>("#pricing-details");
-    const eventPricing = find<HTMLElement>("#event-pricing");
+    const corporatePricing = find<HTMLElement>("#corporate-pricing");
+    const communityPricing = find<HTMLElement>("#community-pricing");
+    const privatePricing = find<HTMLElement>("#private-pricing");
+    const extraHoursPanel = find<HTMLElement>("#extra-hours-panel");
     const headshotPricing = find<HTMLElement>("#headshot-pricing");
     const weddingPricing = find<HTMLElement>("#wedding-pricing");
     const intro = find<HTMLElement>("#pricing-options-intro");
@@ -388,20 +457,22 @@ const eventPrices = [
       if (["corporate", "community", "private"].includes(type)) {
         const coverage = selectedPackage();
         if (!coverage) return hideSummary();
-        const hours = Number(coverage.value);
+        const packageLabel = coverage.dataset.label || coverage.value;
         const basePrice = Number(coverage.dataset.price || 0);
         const addedHours = Math.max(0, Number(extraHours?.value || 0));
         const price = basePrice + addedHours * 175;
-        const blockLabel =
-          hours === 20 ? "Two days, 10 hours each" : `${hours} hours`;
         const extraLabel = addedHours
           ? ` plus ${addedHours} extra ${addedHours === 1 ? "hour" : "hours"}`
           : "";
+        const note =
+          type === "corporate" && coverage.value === "20"
+            ? "Review the run sheet before confirming two-day work. Final scope is confirmed before booking."
+            : "Final scope is confirmed before booking.";
         writeSummary(
           label,
-          `${blockLabel}${extraLabel}. Final scope is confirmed before booking.`,
+          `${packageLabel}${extraLabel}. ${note}`,
           `$${price.toLocaleString("en-AU")}`,
-          `${hours + addedHours} hours`,
+          addedHours > 0 ? `${packageLabel} + ${addedHours}h extra` : packageLabel,
         );
         return;
       }
@@ -411,14 +482,28 @@ const eventPrices = [
         if (count >= 10)
           return writeSummary(
             label,
-            `${count} people. Two finished headshots per person.`,
+            `${count} people. Quoted after discussion. Two finished headshots per person included.`,
             "Priced after discussion",
             `${count} people`,
           );
-        const price = count <= 5 ? 450 : count * 110;
+        let price = 450;
+        let description = "";
+        if (count === 1) {
+          price = 120;
+          description = "1 person. Three edited headshots included.";
+        } else if (count === 2) {
+          price = 240;
+          description = "2 people. Three edited headshots each included.";
+        } else if (count <= 5) {
+          price = 450;
+          description = `${count} people. Small team base with edited headshots included.`;
+        } else {
+          price = count * 110;
+          description = `${count} people at $110 per person. Two finished headshots per person included.`;
+        }
         writeSummary(
           label,
-          `${count} ${count === 1 ? "person" : "people"}. Two finished headshots per person.`,
+          `${description} Final scope is confirmed before booking.`,
           `$${price.toLocaleString("en-AU")}`,
           `${count} people`,
         );
@@ -438,8 +523,11 @@ const eventPrices = [
         clearCoverage();
         const type = target.value;
         if (options) options.hidden = false;
-        if (eventPricing)
-          eventPricing.hidden = !["corporate", "community", "private"].includes(
+        if (corporatePricing) corporatePricing.hidden = type !== "corporate";
+        if (communityPricing) communityPricing.hidden = type !== "community";
+        if (privatePricing) privatePricing.hidden = type !== "private";
+        if (extraHoursPanel)
+          extraHoursPanel.hidden = !["corporate", "community", "private"].includes(
             type,
           );
         if (headshotPricing) headshotPricing.hidden = type !== "headshots";
@@ -473,21 +561,18 @@ const eventPrices = [
       const fullName = String(formData.get("fullName") || "").trim();
       const parts = fullName.split(/\s+/);
       const photographyType = String(formData.get("eventType") || "");
-      const coveragePackage = String(formData.get("coveragePackage") || "");
+      const selectedPkg = selectedPackage();
+      const coverageLabel =
+        selectedPkg?.dataset.label ||
+        String(formData.get("coveragePackage") || "");
       const extraHoursSelected = String(formData.get("extraHours") || "0");
       const teamSizeSelected = String(formData.get("teamSize") || "");
       const estimatedTotal = String(formData.get("estimatedTotal") || "");
-      const coverageLabel =
-        coveragePackage === "20"
-          ? "Two days, 10 hours each"
-          : coveragePackage
-            ? `${coveragePackage} hours`
-            : "";
       const selectionNote = [
         "Website pricing tool selection",
         `Photography type: ${photographyType}`,
         coverageLabel ? `Coverage block: ${coverageLabel}` : "",
-        coverageLabel ? `Extra hours: ${extraHoursSelected}` : "",
+        Number(extraHoursSelected) > 0 ? `Extra hours: ${extraHoursSelected}` : "",
         teamSizeSelected ? `Team size: ${teamSizeSelected} people` : "",
         `Estimate shown: ${estimatedTotal}`,
       ]
