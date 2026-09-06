@@ -346,7 +346,7 @@ const privatePackages: readonly CoveragePackage[] = [
           </div>
           <div class="pricing-form_submit-row">
             <Button type="submit" id="pricing-submit">
-              Send enquiry
+              Request a Quote
             </Button>
             <Paragraph variant="small">
               No payment is taken through this form.
@@ -649,7 +649,7 @@ const privatePackages: readonly CoveragePackage[] = [
         }
         if (!sent) throw new Error("Submission failed");
         if (success) success.hidden = false;
-        if (submit) submit.textContent = "Enquiry sent";
+        if (submit) submit.textContent = "Quote requested";
         form.reset();
         if (options) options.hidden = true;
         hideSummary();
@@ -657,7 +657,7 @@ const privatePackages: readonly CoveragePackage[] = [
         if (error) error.hidden = false;
         if (submit) {
           submit.disabled = false;
-          submit.textContent = "Send enquiry";
+          submit.textContent = "Request a Quote";
         }
       }
     });
