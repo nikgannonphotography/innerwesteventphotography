@@ -1,8 +1,8 @@
 import type { GalleryProject } from "./galleries";
 
 const GALLERY_COVERS: Record<string, string> = {
-  "andrew-and-lily-wedding":
-    "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00004.webp",
+  "lillie-and-andrew-wedding":
+    "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00004.webp",
   "sony-foundation-wharf4ward":
     "/galleries/sony-foundation-wharf4ward/sony-foundation-wharf4ward-1.webp",
   "tedx-macquarie-uni":

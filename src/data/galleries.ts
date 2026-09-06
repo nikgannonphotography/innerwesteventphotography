@@ -46,8 +46,8 @@ const numberedGalleryImages = (
 
 export const GALLERIES: GalleryProject[] = [
   {
-    slug: "andrew-and-lily-wedding",
-    title: "Andrew and Lily's Wedding",
+    slug: "lillie-and-andrew-wedding",
+    title: "Lillie & Andrew's Wedding",
     category: "weddings-engagements",
     categoryLabel: "Weddings & Engagements",
     subtitle: "Wedding preparations, guest moments and portraits",
@@ -55,9 +55,9 @@ export const GALLERIES: GalleryProject[] = [
     year: "2021",
     location: "",
     summary:
-      "Andrew and Lily's wedding photographs, from getting ready to portraits together. Selected work by Nikolas Gannon, Inner West Event Photography.",
+      "Lillie & Andrew's wedding photographs, from getting ready to portraits together. Selected work by Nikolas Gannon, Inner West Event Photography.",
     overview:
-      "Four photographs from Andrew and Lily's wedding, including getting ready, a quiet moment down the hallway, a guest taking their picture and a portrait by the window.",
+      "Four photographs from Lillie & Andrew's wedding, including getting ready, a quiet moment down the hallway, a guest taking their picture and a portrait by the window.",
     scope: [
       "Wedding preparations",
       "Candid moments with guests",
@@ -66,32 +66,32 @@ export const GALLERIES: GalleryProject[] = [
     deliverables: ["Selected wedding photographs"],
     featured: false,
     posterImage:
-      "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00004.webp",
+      "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00004.webp",
     images: [
       {
-        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00001.webp",
-        alt: "Lily having the back of her wedding dress fastened while getting ready",
+        src: "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00001.webp",
+        alt: "Lillie having the back of her wedding dress fastened while getting ready",
         width: 1200,
         height: 1800,
         orientation: "portrait",
       },
       {
-        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00002.webp",
+        src: "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00002.webp",
         alt: "Black-and-white photograph down a hallway of Andrew getting ready",
         width: 1200,
         height: 1800,
         orientation: "portrait",
       },
       {
-        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00003.webp",
-        alt: "A guest photographs Andrew and Lily together on their wedding day",
+        src: "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00003.webp",
+        alt: "A guest photographs Lillie and Andrew together on their wedding day",
         width: 1531,
         height: 2143,
         orientation: "portrait",
       },
       {
-        src: "/galleries/andrew-and-lily-wedding/andrew-lily-wedding_00004.webp",
-        alt: "Andrew and Lily kiss beside a tall arched window",
+        src: "/galleries/lillie-and-andrew-wedding/lillie-and-andrew-wedding_00004.webp",
+        alt: "Lillie and Andrew kiss beside a tall arched window",
         width: 1200,
         height: 1680,
         orientation: "portrait",
@@ -368,10 +368,7 @@ export const GALLERIES: GalleryProject[] = [
       "Team and delegate engagement",
       "Brand signage details",
     ],
-    deliverables: [
-      "High-resolution digital gallery",
-      "Partner recap assets",
-    ],
+    deliverables: ["High-resolution digital gallery", "Partner recap assets"],
     featured: false,
     posterImage: "/galleries/posters/oz-harvest.webp",
     images: numberedGalleryImages("oz-harvest", "", 7),
@@ -546,14 +543,8 @@ export const GALLERIES: GalleryProject[] = [
       "Documentation of the Kokoda Track Foundation stand and team engagement at the Global Impact Summit.",
     overview:
       "On-site documentation of the Kokoda Track Foundation activation area, capturing team members and delegate conversations.",
-    scope: [
-      "Partner stand coverage",
-      "Team portraits and interactions",
-    ],
-    deliverables: [
-      "High-resolution digital gallery",
-      "Web-ready assets",
-    ],
+    scope: ["Partner stand coverage", "Team portraits and interactions"],
+    deliverables: ["High-resolution digital gallery", "Web-ready assets"],
     featured: false,
     posterImage: "/galleries/posters/kokoda-track-foundation.webp",
     images: numberedGalleryImages("kokoda-track-foundation", "", 3),
@@ -638,10 +629,7 @@ export const GALLERIES: GalleryProject[] = [
       "Documentation of Laundry Lane Productions' brand stand and video presentation at the Global Impact Summit.",
     overview:
       "Coverage of Laundry Lane's creative exhibition booth, capturing team interactions and video showcase displays.",
-    scope: [
-      "Booth and stand documentation",
-      "Team engagement and displays",
-    ],
+    scope: ["Booth and stand documentation", "Team engagement and displays"],
     deliverables: [
       "High-resolution commercial library",
       "Social and marketing selects",
@@ -708,7 +696,7 @@ export const GALLERY_PAGE_LINKS: Record<
   string,
   { service: string; location?: string }
 > = {
-  "andrew-and-lily-wedding": {
+  "lillie-and-andrew-wedding": {
     service: "private-events-milestones-celebrations",
   },
   "sony-foundation-wharf4ward": {
@@ -770,7 +758,8 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
       "High-impact documentary photography for corporate conferences, executive summits, and awards galas across Sydney.",
     description:
       "Disciplined photographic coverage for keynote addresses, executive panel discussions, sponsor exhibition activations, and corporate dinners at premier venues including ICC Sydney, Barangaroo, and the CBD.",
-    seoTitle: "Corporate Event Photography Sydney | Conference & Summit Case Studies",
+    seoTitle:
+      "Corporate Event Photography Sydney | Conference & Summit Case Studies",
     metaDescription:
       "Explore Sydney corporate event and conference photography case studies. Stage keynote coverage, sponsor activations, executive summits, and awards galas.",
     matchedServiceSlug: "corporate-events-conferences",
@@ -780,8 +769,7 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
     slug: "not-for-profit",
     name: "Not-For-Profit & Charity Galas",
     shortName: "Not-For-Profit & Community",
-    tagline:
-      "Photography for charities, not-for-profits and community events.",
+    tagline: "Photography for charities, not-for-profits and community events.",
     description:
       "Authentic documentation for flagship charity fundraisers, community assemblies, advocacy summits, and cultural festivals across Sydney and nationwide.",
     seoTitle: "Not-For-Profit & Charity Gala Photography Sydney | Case Studies",
@@ -842,11 +830,15 @@ export function getGalleryBySlug(slug: string): GalleryProject | undefined {
   return GALLERIES.find((g) => g.slug === slug);
 }
 
-export function getCategoryBySlug(slug: string): GalleryCategoryMeta | undefined {
+export function getCategoryBySlug(
+  slug: string,
+): GalleryCategoryMeta | undefined {
   return GALLERY_CATEGORIES.find((c) => c.slug === slug);
 }
 
-export function getGalleriesByCategorySlug(categorySlug: string): GalleryProject[] {
+export function getGalleriesByCategorySlug(
+  categorySlug: string,
+): GalleryProject[] {
   const cat = getCategoryBySlug(categorySlug);
   if (!cat) return [];
   return GALLERIES.filter((g) => cat.filterCategories.includes(g.category));
