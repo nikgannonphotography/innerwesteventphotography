@@ -938,7 +938,7 @@ const privatePackages: readonly CoveragePackage[] = [
 <style is:global>
   @layer components {
     .pricing-form {
-      max-width: 68rem;
+      max-width: 72rem;
       margin-inline: auto;
     }
     .pricing-form [hidden] {
@@ -946,7 +946,7 @@ const privatePackages: readonly CoveragePackage[] = [
     }
     .pricing-form_layout {
       display: grid;
-      grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr);
+      grid-template-columns: minmax(19rem, 23.5rem) minmax(0, 1fr);
       gap: var(--space-8);
       align-items: start;
     }
@@ -960,11 +960,15 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_header {
       display: flex;
       flex-direction: column;
-      gap: var(--space-3);
+      gap: 0;
     }
     .pricing-form_title {
       margin: 0;
+      margin-bottom: var(--space-4) !important;
       line-height: 1.15;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
     }
     .pricing-form_desc {
       margin: 0;
@@ -1042,12 +1046,15 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_step-copy {
       display: flex;
       flex-direction: column;
-      gap: var(--space-1);
+      gap: 0;
     }
-    .pricing-form_step-copy > * {
+    .pricing-form_step-copy .heading {
       margin: 0;
+      margin-bottom: var(--space-2) !important;
+      line-height: 1.25;
     }
     .pricing-form_step-copy .text {
+      margin: 0;
       color: var(--text-2);
       font-size: var(--text-small);
       line-height: 1.45;
@@ -1238,14 +1245,20 @@ const privatePackages: readonly CoveragePackage[] = [
       padding: var(--space-5);
       background: var(--surface-2, rgba(0, 0, 0, 0.02));
       border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-main);
     }
+    .pricing-form_status-success .heading:has(+ .text),
     .pricing-form_success-title {
       margin-top: 0;
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-2) !important;
+      color: var(--text);
+      line-height: 1.25;
     }
     .pricing-form_success-desc {
       margin: 0;
-      color: var(--text-2);
+      margin-top: 0 !important;
+      color: var(--text) !important;
+      line-height: 1.5;
     }
     .pricing-form_reset-row {
       margin-top: var(--space-1);
