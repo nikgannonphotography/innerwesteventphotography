@@ -55,8 +55,44 @@ const privatePackages: readonly CoveragePackage[] = [
         data-hubspot-form={HUBSPOT_CONFIG.formId}
         data-hubspot-region={HUBSPOT_CONFIG.region}
       >
+        <div class="pricing-form_wizard-bar" id="pricing-wizard-bar">
+          <div class="pricing-form_wizard-nav">
+            <button
+              type="button"
+              class="pricing-form_back-button"
+              id="pricing-back-button"
+              aria-label="Back to previous step"
+              hidden
+            >
+              <span aria-hidden="true">&larr;</span>
+              <span>Back</span>
+            </button>
+            <span
+              class="pricing-form_wizard-step"
+              id="pricing-wizard-step"
+              aria-live="polite"
+            >
+              Step 1 of 3: Event type
+            </span>
+          </div>
+          <div
+            class="pricing-form_progress-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="33"
+          >
+            <div
+              class="pricing-form_progress-fill"
+              id="pricing-progress-fill"
+              style="width: 33.33%;"
+            />
+          </div>
+        </div>
+
         <section
           class="pricing-form_step"
+          id="pricing-type-step"
           aria-labelledby="pricing-type-heading"
         >
           <div class="pricing-form_step-heading">
@@ -261,6 +297,34 @@ const privatePackages: readonly CoveragePackage[] = [
               locations, hours and run sheet.
             </Paragraph>
           </div>
+
+          <div class="pricing-form_stage-actions" id="pricing-step-2-actions">
+            <Button type="button" id="pricing-step-2-continue" variant="secondary">
+              Continue to details &rarr;
+            </Button>
+          </div>
+        </section>
+
+        <section
+          class="pricing-form_step"
+          id="pricing-details"
+          aria-labelledby="pricing-details-heading"
+          hidden
+        >
+          <div class="pricing-form_step-heading">
+            <>
+              <span class="pricing-form_number" id="pricing-step-3-number">3</span>
+              <div class="pricing-form_step-copy">
+                <Heading tag="h2" variant="h4" id="pricing-details-heading">
+                  Tell me about the job
+                </Heading>
+                <Paragraph>
+                  Share what you know. Venue and organisation are optional.
+                </Paragraph>
+              </div>
+            </>
+          </div>
+
           <div
             id="pricing-summary"
             class="pricing-form_summary"
@@ -273,27 +337,6 @@ const privatePackages: readonly CoveragePackage[] = [
             <>
               <strong id="pricing-total" />
               <p id="pricing-summary-text" />
-            </>
-          </div>
-        </section>
-
-        <section
-          class="pricing-form_step"
-          id="pricing-details"
-          aria-labelledby="pricing-details-heading"
-          hidden
-        >
-          <div class="pricing-form_step-heading">
-            <>
-              <span class="pricing-form_number">3</span>
-              <div class="pricing-form_step-copy">
-                <Heading tag="h2" variant="h4" id="pricing-details-heading">
-                  Tell me about the job
-                </Heading>
-                <Paragraph>
-                  Share what you know. Venue and organisation are optional.
-                </Paragraph>
-              </div>
             </>
           </div>
           <input
@@ -393,8 +436,16 @@ const privatePackages: readonly CoveragePackage[] = [
     form.dataset.ready = "true";
     const find = <T extends Element>(selector: string) =>
       form.querySelector<T>(selector);
-    const options = find<HTMLElement>("#pricing-options");
-    const details = find<HTMLElement>("#pricing-details");
+
+    const step1 = find<HTMLElement>("#pricing-type-step");
+    const step2 = find<HTMLElement>("#pricing-options");
+    const step3 = find<HTMLElement>("#pricing-details");
+    const backButton = find<HTMLButtonElement>("#pricing-back-button");
+    const wizardStep = find<HTMLElement>("#pricing-wizard-step");
+    const progressFill = find<HTMLElement>("#pricing-progress-fill");
+    const step3Number = find<HTMLElement>("#pricing-step-3-number");
+    const step2Continue = find<HTMLButtonElement>("#pricing-step-2-continue");
+
     const corporatePricing = find<HTMLElement>("#corporate-pricing");
     const communityPricing = find<HTMLElement>("#community-pricing");
     const privatePricing = find<HTMLElement>("#private-pricing");
@@ -414,6 +465,10 @@ const privatePackages: readonly CoveragePackage[] = [
     const submit = find<HTMLButtonElement>("#pricing-submit");
     const success = find<HTMLElement>("#pricing-success");
     const error = find<HTMLElement>("#pricing-error");
+
+    let currentStep = 1;
+    let currentType = "";
+
     const selectedType = () =>
       find<HTMLInputElement>('input[name="photographyType"]:checked')?.value ||
       "";
@@ -428,6 +483,7 @@ const privatePackages: readonly CoveragePackage[] = [
       if (extraHours) extraHours.value = "0";
       if (teamSize) teamSize.value = "";
     }
+
     function writeSummary(
       label: string,
       description: string,
@@ -437,20 +493,20 @@ const privatePackages: readonly CoveragePackage[] = [
       if (total) total.textContent = fee;
       if (summaryText) summaryText.textContent = description;
       if (summary) summary.hidden = false;
-      if (details) details.hidden = false;
       if (hiddenType) hiddenType.value = label;
       if (hiddenHours) hiddenHours.value = hours;
       if (hiddenTotal) hiddenTotal.value = fee;
       if (hiddenSummary)
         hiddenSummary.value = `${label}\n${description}\nEstimated photography fee: ${fee}`;
     }
+
     function hideSummary() {
       if (summary) summary.hidden = true;
-      if (details) details.hidden = true;
       if (hiddenHours) hiddenHours.value = "";
       if (hiddenTotal) hiddenTotal.value = "";
       if (hiddenSummary) hiddenSummary.value = "";
     }
+
     function calculate() {
       const type = selectedType();
       const label = typeLabels[type] || "Photography enquiry";
@@ -517,12 +573,102 @@ const privatePackages: readonly CoveragePackage[] = [
         );
     }
 
+    function updateProgress() {
+      const type = selectedType();
+      const isWedding = type === "wedding";
+      const totalSteps = isWedding ? 2 : 3;
+
+      if (currentStep === 1) {
+        if (backButton) backButton.hidden = true;
+        if (wizardStep)
+          wizardStep.textContent = `Step 1 of ${totalSteps}: Event type`;
+        if (progressFill)
+          progressFill.style.width = isWedding ? "50%" : "33.33%";
+      } else if (currentStep === 2) {
+        if (backButton) backButton.hidden = false;
+        const stepName = type === "headshots" ? "Team size" : "Coverage";
+        if (wizardStep)
+          wizardStep.textContent = `Step 2 of ${totalSteps}: ${stepName}`;
+        if (progressFill) progressFill.style.width = "66.66%";
+      } else if (currentStep === 3) {
+        if (backButton) backButton.hidden = false;
+        const stepNum = isWedding ? 2 : 3;
+        if (wizardStep)
+          wizardStep.textContent = `Step ${stepNum} of ${totalSteps}: Your details`;
+        if (progressFill) progressFill.style.width = "100%";
+        if (step3Number) step3Number.textContent = String(stepNum);
+      }
+    }
+
+    function goToStep(step: number, scroll = true) {
+      currentStep = step;
+
+      if (step === 1) {
+        if (step1) step1.hidden = false;
+        if (step2) step2.hidden = true;
+        if (step3) step3.hidden = true;
+      } else if (step === 2) {
+        if (step1) step1.hidden = true;
+        if (step2) step2.hidden = false;
+        if (step3) step3.hidden = true;
+      } else if (step === 3) {
+        if (step1) step1.hidden = true;
+        if (step2) step2.hidden = true;
+        if (step3) step3.hidden = false;
+        calculate();
+      }
+
+      updateProgress();
+
+      if (scroll && form) {
+        const rect = form.getBoundingClientRect();
+        if (rect.top < 0 || rect.top > 150) {
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+
+    if (backButton) {
+      backButton.addEventListener("click", () => {
+        if (currentStep === 3) {
+          if (selectedType() === "wedding") {
+            goToStep(1);
+          } else {
+            goToStep(2);
+          }
+        } else if (currentStep === 2) {
+          goToStep(1);
+        }
+      });
+    }
+
+    if (step2Continue) {
+      step2Continue.addEventListener("click", () => {
+        const type = selectedType();
+        if (type === "headshots") {
+          const count = Number(teamSize?.value || 0);
+          if (!count) {
+            teamSize?.focus();
+            return;
+          }
+        } else if (["corporate", "community", "private"].includes(type)) {
+          if (!selectedPackage()) {
+            return;
+          }
+        }
+        calculate();
+        goToStep(3);
+      });
+    }
+
     form.addEventListener("change", (event) => {
       const target = event.target as HTMLInputElement;
       if (target.name === "photographyType") {
-        clearCoverage();
         const type = target.value;
-        if (options) options.hidden = false;
+        if (type !== currentType) {
+          currentType = type;
+          clearCoverage();
+        }
         if (corporatePricing) corporatePricing.hidden = type !== "corporate";
         if (communityPricing) communityPricing.hidden = type !== "community";
         if (privatePricing) privatePricing.hidden = type !== "private";
@@ -539,13 +685,50 @@ const privatePackages: readonly CoveragePackage[] = [
               : type === "wedding"
                 ? "Wedding pricing is confirmed after a short discussion."
                 : "Select a coverage block. Extra time is $175 per hour.";
-        hideSummary();
         calculate();
-      } else calculate();
+
+        // Card auto-advance to next layer
+        setTimeout(() => {
+          if (type === "wedding") {
+            goToStep(3);
+          } else {
+            goToStep(2);
+          }
+        }, 150);
+      } else if (target.name === "coveragePackage") {
+        calculate();
+        // Card auto-advance to form layer
+        setTimeout(() => {
+          goToStep(3);
+        }, 160);
+      } else {
+        calculate();
+      }
     });
+
     form.addEventListener("input", (event) => {
       const target = event.target as HTMLInputElement;
       if (target.id === "extra-hours" || target.id === "team-size") calculate();
+    });
+
+    form.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && currentStep === 2) {
+        const target = event.target as HTMLElement;
+        if (target.id === "team-size" || target.id === "extra-hours") {
+          event.preventDefault();
+          const type = selectedType();
+          if (type === "headshots" && Number(teamSize?.value || 0) > 0) {
+            calculate();
+            goToStep(3);
+          } else if (
+            ["corporate", "community", "private"].includes(type) &&
+            selectedPackage()
+          ) {
+            calculate();
+            goToStep(3);
+          }
+        }
+      }
     });
 
     for (const input of form.querySelectorAll<HTMLInputElement>(
@@ -651,8 +834,10 @@ const privatePackages: readonly CoveragePackage[] = [
         if (success) success.hidden = false;
         if (submit) submit.textContent = "Quote requested";
         form.reset();
-        if (options) options.hidden = true;
+        clearCoverage();
         hideSummary();
+        currentType = "";
+        goToStep(1, false);
       } catch {
         if (error) error.hidden = false;
         if (submit) {
@@ -661,6 +846,8 @@ const privatePackages: readonly CoveragePackage[] = [
         }
       }
     });
+
+    goToStep(1, false);
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", initPricingForm);
@@ -677,9 +864,76 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form [hidden] {
       display: none !important;
     }
+    .pricing-form_wizard-bar {
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: var(--border-width) solid var(--border);
+    }
+    .pricing-form_wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 2.25rem;
+      margin-bottom: var(--space-3);
+    }
+    .pricing-form_back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.4rem 0.9rem;
+      font-family: inherit;
+      font-size: var(--text-small);
+      font-weight: 500;
+      color: var(--text);
+      background: var(--background-2);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-small);
+      cursor: pointer;
+      transition:
+        background var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease);
+    }
+    .pricing-form_back-button:hover {
+      background: var(--background-3);
+      border-color: var(--text-2);
+    }
+    .pricing-form_wizard-step {
+      font-size: var(--text-small);
+      color: var(--text-2);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-left: auto;
+    }
+    .pricing-form_progress-track {
+      width: 100%;
+      height: 0.375rem;
+      background: var(--background-2);
+      border-radius: var(--radius-round);
+      overflow: hidden;
+    }
+    .pricing-form_progress-fill {
+      height: 100%;
+      background: var(--brand-500);
+      border-radius: var(--radius-round);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pricing-form_stage-actions {
+      margin-top: var(--space-6);
+    }
     .pricing-form_step {
-      padding-block: var(--space-8);
-      border-top: var(--border-width) solid var(--border);
+      padding-block: var(--space-2) var(--space-6);
+      border-top: none;
+      animation: stepFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes stepFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(0.35rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .pricing-form_step-heading {
       display: grid;
