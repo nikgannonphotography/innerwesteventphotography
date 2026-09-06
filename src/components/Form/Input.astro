@@ -42,6 +42,10 @@ interface Props extends Omit<HTMLAttributes<"input">, "type"> {
   required?: boolean;
   /** Keeps the label for a screen reader, and takes it off the page. */
   labelHidden?: boolean;
+  /** HTML5 validation pattern. */
+  pattern?: string;
+  /** Browser tooltip/description for validation requirement. */
+  title?: string;
 }
 
 const {
@@ -51,6 +55,8 @@ const {
   variant = "text",
   name,
   placeholder,
+  pattern,
+  title,
   required = false,
   labelHidden = false,
   class: className,
@@ -66,6 +72,9 @@ const KINDS: Record<
     type: NonNullable<InputAttrs["type"]>;
     mode: NonNullable<InputAttrs["inputmode"]>;
     fill: NonNullable<InputAttrs["autocomplete"]>;
+    pattern?: string;
+    placeholder?: string;
+    title?: string;
   }
 > = {
   text: { label: "Text", type: "text", mode: "text", fill: "on" },
@@ -81,8 +90,26 @@ const KINDS: Record<
     mode: "text",
     fill: "family-name",
   },
-  email: { label: "Email", type: "email", mode: "email", fill: "email" },
-  phone: { label: "Phone", type: "tel", mode: "tel", fill: "tel" },
+  email: {
+    label: "Email",
+    type: "email",
+    mode: "email",
+    fill: "email",
+    pattern: "[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}",
+    placeholder: "name@company.com",
+    title: "Please enter a valid email address (e.g. name@domain.com)",
+  },
+  phone: {
+    label: "Phone",
+    type: "tel",
+    mode: "tel",
+    fill: "tel",
+    pattern:
+      "(\\+?[1-9][0-9\\s\\-\\(\\)\\.]{7,18}|0[2-8][0-9\\s\\-\\(\\)\\.]{8,14}|\\(0[2-8]\\)[\\s\\-\\.]?[0-9\\s\\-\\.]{6,12}|\\([1-9][0-9]{1,4}\\)[\\s\\-\\.]?[0-9\\s\\-\\.]{6,12})",
+    placeholder: "0412 345 678 or +61 ...",
+    title:
+      "Please enter a valid Australian (e.g. 0412 345 678) or international (e.g. +61 412 345 678) phone number",
+  },
   date: { label: "Date", type: "date", mode: "text", fill: "bday" },
   "zip-code": {
     label: "Zip Code",
@@ -123,9 +150,11 @@ const text = label ?? kind.label;
         class="field-control text-style-main"
         type={kind.type}
         name={name ?? slug(text)}
-        placeholder={placeholder ?? text}
+        placeholder={placeholder ?? kind.placeholder ?? text}
         inputmode={kind.mode}
         autocomplete={kind.fill}
+        pattern={pattern ?? kind.pattern}
+        title={title ?? kind.title}
         required={required || undefined}
         value={value}
         {...rest}

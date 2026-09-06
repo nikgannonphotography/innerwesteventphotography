@@ -548,8 +548,19 @@ const privatePackages: readonly CoveragePackage[] = [
       if (target.id === "extra-hours" || target.id === "team-size") calculate();
     });
 
+    for (const input of form.querySelectorAll<HTMLInputElement>(
+      'input[type="text"], input[type="email"], input[type="tel"]',
+    )) {
+      input.addEventListener("blur", () => {
+        input.value = input.value.trim();
+      });
+    }
+
     form.addEventListener("submit", async (event) => {
-      if (!form.checkValidity()) return;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
       event.preventDefault();
       if (submit) {
         submit.disabled = true;
@@ -560,6 +571,13 @@ const privatePackages: readonly CoveragePackage[] = [
       const formData = new FormData(form);
       const fullName = String(formData.get("fullName") || "").trim();
       const parts = fullName.split(/\s+/);
+      const email = String(formData.get("email") || "").trim().toLowerCase();
+      const phone = String(formData.get("phone") || "").trim();
+      const company = String(formData.get("organisation") || "").trim();
+      const eventDate = String(formData.get("eventDate") || "").trim();
+      const venue = String(formData.get("venue") || "").trim();
+      const userMessage = String(formData.get("message") || "").trim();
+
       const photographyType = String(formData.get("eventType") || "");
       const selectedPkg = selectedPackage();
       const coverageLabel =
@@ -580,11 +598,9 @@ const privatePackages: readonly CoveragePackage[] = [
         .join("\n");
       const message = [
         selectionNote,
-        `Event date: ${String(formData.get("eventDate") || "")}`,
-        `Venue or suburb: ${String(formData.get("venue") || "Not supplied")}`,
-        String(formData.get("message") || "")
-          ? `Client notes:\n${String(formData.get("message"))}`
-          : "",
+        `Event date: ${eventDate || "Not supplied"}`,
+        `Venue or suburb: ${venue || "Not supplied"}`,
+        userMessage ? `Client notes:\n${userMessage}` : "",
       ]
         .filter(Boolean)
         .join("\n\n");
@@ -606,11 +622,11 @@ const privatePackages: readonly CoveragePackage[] = [
                     name: "lastname",
                     value: parts.slice(1).join(" ") || parts[0] || "",
                   },
-                  { name: "email", value: String(formData.get("email") || "") },
-                  { name: "phone", value: String(formData.get("phone") || "") },
+                  { name: "email", value: email },
+                  { name: "phone", value: phone },
                   {
                     name: "company",
-                    value: String(formData.get("organisation") || ""),
+                    value: company,
                   },
                   { name: "message", value: message },
                 ],

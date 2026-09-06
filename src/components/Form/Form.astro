@@ -87,13 +87,24 @@ const content = await slotContent(Astro.slots);
     const hubspotFormId = form.dataset.hubspotForm;
     const hubspotRegion = form.dataset.hubspotRegion || "ap1";
 
+    for (const input of fields.querySelectorAll<HTMLInputElement>(
+      'input[type="text"], input[type="email"], input[type="tel"]',
+    )) {
+      input.addEventListener("blur", () => {
+        input.value = input.value.trim();
+      });
+    }
+
     if (hubspotPortalId && hubspotFormId) {
       const submit = fields.querySelector<HTMLButtonElement | HTMLInputElement>(
         'button:not([type]), button[type="submit"], input[type="submit"]',
       );
 
       fields.addEventListener("submit", async (event) => {
-        if (!fields.checkValidity()) return;
+        if (!fields.checkValidity()) {
+          fields.reportValidity();
+          return;
+        }
 
         event.preventDefault();
         form.dataset.state = "sending";
@@ -101,14 +112,14 @@ const content = await slotContent(Astro.slots);
 
         try {
           const formData = new FormData(fields);
-          const fullName = String(formData.get("fullName") || "");
-          const nameParts = fullName.trim().split(/\s+/);
+          const fullName = String(formData.get("fullName") || "").trim();
+          const nameParts = fullName.split(/\s+/);
           const firstname = nameParts[0] || "";
           const lastname = nameParts.slice(1).join(" ") || firstname;
 
-          const email = String(formData.get("email") || "");
-          const phone = String(formData.get("phone") || "");
-          const company = String(formData.get("organisation") || "");
+          const email = String(formData.get("email") || "").trim().toLowerCase();
+          const phone = String(formData.get("phone") || "").trim();
+          const company = String(formData.get("organisation") || "").trim();
           const eventType = String(formData.get("eventType") || "");
           const eventDate = String(formData.get("eventDate") || "");
           const venue = String(formData.get("venue") || "");
