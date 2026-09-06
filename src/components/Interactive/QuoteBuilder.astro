@@ -95,8 +95,8 @@ const privatePackages: readonly CoveragePackage[] = [
           id="pricing-type-step"
           aria-labelledby="pricing-type-heading"
         >
-          <div class="pricing-form_step-heading">
-            <>
+          <div class="pricing-form_step-sidebar">
+            <div class="pricing-form_step-heading">
               <span class="pricing-form_number">1</span>
               <div class="pricing-form_step-copy">
                 <Heading tag="h2" variant="h4" id="pricing-type-heading">
@@ -106,64 +106,66 @@ const privatePackages: readonly CoveragePackage[] = [
                   Choose the closest option. Add any details below.
                 </Paragraph>
               </div>
-            </>
+            </div>
           </div>
-          <div class="pricing-form_choices pricing-form_choices-types">
-            <label class="pricing-form_choice">
-              <>
-                <input
-                  type="radio"
-                  name="photographyType"
-                  value="corporate"
-                  required
-                />
-                <span>Corporate events</span>
-              </>
-            </label>
-            <label class="pricing-form_choice">
-              <>
-                <input
-                  type="radio"
-                  name="photographyType"
-                  value="community"
-                  required
-                />
-                <span>Not-for-profit and community events</span>
-              </>
-            </label>
-            <label class="pricing-form_choice">
-              <>
-                <input
-                  type="radio"
-                  name="photographyType"
-                  value="private"
-                  required
-                />
-                <span>Private celebrations</span>
-              </>
-            </label>
-            <label class="pricing-form_choice">
-              <>
-                <input
-                  type="radio"
-                  name="photographyType"
-                  value="headshots"
-                  required
-                />
-                <span>Workplace headshots</span>
-              </>
-            </label>
-            <label class="pricing-form_choice">
-              <>
-                <input
-                  type="radio"
-                  name="photographyType"
-                  value="wedding"
-                  required
-                />
-                <span>Weddings and elopements</span>
-              </>
-            </label>
+          <div class="pricing-form_step-content">
+            <div class="pricing-form_choices pricing-form_choices-types">
+              <label class="pricing-form_choice">
+                <>
+                  <input
+                    type="radio"
+                    name="photographyType"
+                    value="corporate"
+                    required
+                  />
+                  <span>Corporate events</span>
+                </>
+              </label>
+              <label class="pricing-form_choice">
+                <>
+                  <input
+                    type="radio"
+                    name="photographyType"
+                    value="community"
+                    required
+                  />
+                  <span>Not-for-profit and community events</span>
+                </>
+              </label>
+              <label class="pricing-form_choice">
+                <>
+                  <input
+                    type="radio"
+                    name="photographyType"
+                    value="private"
+                    required
+                  />
+                  <span>Private celebrations</span>
+                </>
+              </label>
+              <label class="pricing-form_choice">
+                <>
+                  <input
+                    type="radio"
+                    name="photographyType"
+                    value="headshots"
+                    required
+                  />
+                  <span>Workplace headshots</span>
+                </>
+              </label>
+              <label class="pricing-form_choice">
+                <>
+                  <input
+                    type="radio"
+                    name="photographyType"
+                    value="wedding"
+                    required
+                  />
+                  <span>Weddings and elopements</span>
+                </>
+              </label>
+            </div>
           </div>
         </section>
 
@@ -173,8 +175,8 @@ const privatePackages: readonly CoveragePackage[] = [
           aria-labelledby="pricing-options-heading"
           hidden
         >
-          <div class="pricing-form_step-heading">
-            <>
+          <div class="pricing-form_step-sidebar">
+            <div class="pricing-form_step-heading">
               <span class="pricing-form_number">2</span>
               <div class="pricing-form_step-copy">
                 <Heading tag="h2" variant="h4" id="pricing-options-heading">
@@ -184,124 +186,126 @@ const privatePackages: readonly CoveragePackage[] = [
                   Select a coverage block.
                 </Paragraph>
               </div>
-            </>
-          </div>
-
-          <div id="corporate-pricing" class="pricing-form_packages" hidden>
-            <div class="pricing-form_choices pricing-form_choices-prices">
-              {corporatePackages.map((pkg) => (
-                <label class="pricing-form_choice pricing-form_price-choice">
-                  <input
-                    type="radio"
-                    name="coveragePackage"
-                    value={pkg.hours}
-                    data-label={pkg.label}
-                    data-price={String(pkg.price)}
-                  />
-                  <span>
-                    <strong>{pkg.label}</strong>
-                    <small>${pkg.price.toLocaleString("en-AU")}</small>
-                  </span>
-                </label>
-              ))}
             </div>
           </div>
 
-          <div id="community-pricing" class="pricing-form_packages" hidden>
-            <div class="pricing-form_choices pricing-form_choices-prices">
-              {communityPackages.map((pkg) => (
-                <label class="pricing-form_choice pricing-form_price-choice">
-                  <input
-                    type="radio"
-                    name="coveragePackage"
-                    value={pkg.hours}
-                    data-label={pkg.label}
-                    data-price={String(pkg.price)}
-                  />
-                  <span>
-                    <strong>{pkg.label}</strong>
-                    <small>${pkg.price.toLocaleString("en-AU")}</small>
-                  </span>
-                </label>
-              ))}
+          <div class="pricing-form_step-content">
+            <div id="corporate-pricing" class="pricing-form_packages" hidden>
+              <div class="pricing-form_choices pricing-form_choices-prices">
+                {corporatePackages.map((pkg) => (
+                  <label class="pricing-form_choice pricing-form_price-choice">
+                    <input
+                      type="radio"
+                      name="coveragePackage"
+                      value={pkg.hours}
+                      data-label={pkg.label}
+                      data-price={String(pkg.price)}
+                    />
+                    <span>
+                      <strong>{pkg.label}</strong>
+                      <small>${pkg.price.toLocaleString("en-AU")}</small>
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div id="private-pricing" class="pricing-form_packages" hidden>
-            <div class="pricing-form_choices pricing-form_choices-prices">
-              {privatePackages.map((pkg) => (
-                <label class="pricing-form_choice pricing-form_price-choice">
-                  <input
-                    type="radio"
-                    name="coveragePackage"
-                    value={pkg.hours}
-                    data-label={pkg.label}
-                    data-price={String(pkg.price)}
-                  />
-                  <span>
-                    <strong>{pkg.label}</strong>
-                    <small>${pkg.price.toLocaleString("en-AU")}</small>
-                  </span>
-                </label>
-              ))}
+            <div id="community-pricing" class="pricing-form_packages" hidden>
+              <div class="pricing-form_choices pricing-form_choices-prices">
+                {communityPackages.map((pkg) => (
+                  <label class="pricing-form_choice pricing-form_price-choice">
+                    <input
+                      type="radio"
+                      name="coveragePackage"
+                      value={pkg.hours}
+                      data-label={pkg.label}
+                      data-price={String(pkg.price)}
+                    />
+                    <span>
+                      <strong>{pkg.label}</strong>
+                      <small>${pkg.price.toLocaleString("en-AU")}</small>
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div id="extra-hours-panel" hidden>
-            <label
-              class="pricing-form_field pricing-form_extra-hours"
-              for="extra-hours"
-            >
-              <>
-                <span class="field-label text-style-main">Extra hours</span>
+            <div id="private-pricing" class="pricing-form_packages" hidden>
+              <div class="pricing-form_choices pricing-form_choices-prices">
+                {privatePackages.map((pkg) => (
+                  <label class="pricing-form_choice pricing-form_price-choice">
+                    <input
+                      type="radio"
+                      name="coveragePackage"
+                      value={pkg.hours}
+                      data-label={pkg.label}
+                      data-price={String(pkg.price)}
+                    />
+                    <span>
+                      <strong>{pkg.label}</strong>
+                      <small>${pkg.price.toLocaleString("en-AU")}</small>
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div id="extra-hours-panel" hidden>
+              <label
+                class="pricing-form_field pricing-form_extra-hours"
+                for="extra-hours"
+              >
+                <>
+                  <span class="field-label text-style-main">Extra hours</span>
+                  <small class="pricing-form_help">
+                    Add time beyond the selected block at $175 per hour.
+                  </small>
+                </>
+                <input
+                  id="extra-hours"
+                  name="extraHours"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                  inputmode="numeric"
+                  class="field-control text-style-main"
+                />
+              </label>
+            </div>
+
+            <div id="headshot-pricing" class="pricing-form_panel" hidden>
+              <label class="pricing-form_field" for="team-size">
+                <span class="field-label text-style-main">
+                  How many people need headshots?
+                </span>
                 <small class="pricing-form_help">
-                  Add time beyond the selected block at $175 per hour.
+                  Individuals from $120 (including 3 edited headshots). Teams of 3 to 5 are $450.
+                  Six to nine staff is $110 each. Teams of 10 or more are quoted after discussion.
                 </small>
-              </>
-              <input
-                id="extra-hours"
-                name="extraHours"
-                type="number"
-                min="0"
-                step="1"
-                value="0"
-                inputmode="numeric"
-                class="field-control text-style-main"
-              />
-            </label>
-          </div>
+                <input
+                  id="team-size"
+                  name="teamSize"
+                  type="number"
+                  min="1"
+                  step="1"
+                  inputmode="numeric"
+                  class="field-control text-style-main"
+                />
+              </label>
+            </div>
+            <div id="wedding-pricing" class="pricing-form_panel" hidden>
+              <Paragraph>
+                Wedding coverage is priced after a discussion about the date,
+                locations, hours and run sheet.
+              </Paragraph>
+            </div>
 
-          <div id="headshot-pricing" class="pricing-form_panel" hidden>
-            <label class="pricing-form_field" for="team-size">
-              <span class="field-label text-style-main">
-                How many people need headshots?
-              </span>
-              <small class="pricing-form_help">
-                Individuals from $120 (including 3 edited headshots). Teams of 3 to 5 are $450.
-                Six to nine staff is $110 each. Teams of 10 or more are quoted after discussion.
-              </small>
-              <input
-                id="team-size"
-                name="teamSize"
-                type="number"
-                min="1"
-                step="1"
-                inputmode="numeric"
-                class="field-control text-style-main"
-              />
-            </label>
-          </div>
-          <div id="wedding-pricing" class="pricing-form_panel" hidden>
-            <Paragraph>
-              Wedding coverage is priced after a discussion about the date,
-              locations, hours and run sheet.
-            </Paragraph>
-          </div>
-
-          <div class="pricing-form_stage-actions" id="pricing-step-2-actions">
-            <Button type="button" id="pricing-step-2-continue" variant="secondary">
-              Continue to details &rarr;
-            </Button>
+            <div class="pricing-form_stage-actions" id="pricing-step-2-actions">
+              <Button type="button" id="pricing-step-2-continue" variant="secondary">
+                Continue to details &rarr;
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -311,8 +315,8 @@ const privatePackages: readonly CoveragePackage[] = [
           aria-labelledby="pricing-details-heading"
           hidden
         >
-          <div class="pricing-form_step-heading">
-            <>
+          <div class="pricing-form_step-sidebar">
+            <div class="pricing-form_step-heading">
               <span class="pricing-form_number" id="pricing-step-3-number">3</span>
               <div class="pricing-form_step-copy">
                 <Heading tag="h2" variant="h4" id="pricing-details-heading">
@@ -322,99 +326,100 @@ const privatePackages: readonly CoveragePackage[] = [
                   Share what you know. Venue and organisation are optional.
                 </Paragraph>
               </div>
-            </>
-          </div>
+            </div>
 
-          <div
-            id="pricing-summary"
-            class="pricing-form_summary"
-            aria-live="polite"
-            hidden
-          >
-            <span class="pricing-form_summary-label">
-              Estimated photography fee
-            </span>
-            <>
+            <div
+              id="pricing-summary"
+              class="pricing-form_summary"
+              aria-live="polite"
+              hidden
+            >
+              <span class="pricing-form_summary-label">
+                Estimated photography fee
+              </span>
               <strong id="pricing-total" />
               <p id="pricing-summary-text" />
-            </>
+            </div>
           </div>
-          <input
-            type="hidden"
-            name="eventType"
-            id="pricing-event-type"
-            value=""
-          />
-          <input
-            type="hidden"
-            name="coverageHours"
-            id="pricing-coverage-hours"
-            value=""
-          />
-          <input
-            type="hidden"
-            name="estimatedTotal"
-            id="pricing-estimated-total"
-            value=""
-          />
-          <input
-            type="hidden"
-            name="calculatedQuoteSummary"
-            id="pricing-quote-summary"
-            value=""
-          />
-          <div class="pricing-form_fields">
-            <Input label="Name" name="fullName" autocomplete="name" required />
-            <Input label="Email" name="email" variant="email" required />
-            <Input label="Phone" name="phone" variant="phone" required />
-            <Input
-              label="Company or organisation"
-              name="organisation"
-              autocomplete="organization"
+
+          <div class="pricing-form_step-content">
+            <input
+              type="hidden"
+              name="eventType"
+              id="pricing-event-type"
+              value=""
             />
-            <Input
-              label="Date"
-              name="eventDate"
-              placeholder="Date or TBC"
-              required
+            <input
+              type="hidden"
+              name="coverageHours"
+              id="pricing-coverage-hours"
+              value=""
             />
-            <Input label="Venue or suburb" name="venue" />
-            <Textarea
-              class="pricing-form_field-wide"
-              label="Project details"
-              name="message"
-              minLines={5}
-              placeholder="Event times, location, what you need photographed, and anything else that will help."
+            <input
+              type="hidden"
+              name="estimatedTotal"
+              id="pricing-estimated-total"
+              value=""
             />
+            <input
+              type="hidden"
+              name="calculatedQuoteSummary"
+              id="pricing-quote-summary"
+              value=""
+            />
+            <div class="pricing-form_fields">
+              <Input label="Name" name="fullName" autocomplete="name" required />
+              <Input label="Email" name="email" variant="email" required />
+              <Input label="Phone" name="phone" variant="phone" required />
+              <Input
+                label="Company or organisation"
+                name="organisation"
+                autocomplete="organization"
+              />
+              <Input
+                label="Date"
+                name="eventDate"
+                placeholder="Date or TBC"
+                required
+              />
+              <Input label="Venue or suburb" name="venue" />
+              <Textarea
+                class="pricing-form_field-wide"
+                label="Project details"
+                name="message"
+                minLines={5}
+                placeholder="Event times, location, what you need photographed, and anything else that will help."
+              />
+            </div>
+            <div class="pricing-form_submit-row">
+              <Button type="submit" id="pricing-submit">
+                Request a Quote
+              </Button>
+              <Paragraph variant="small">
+                No payment is taken through this form.
+              </Paragraph>
+            </div>
+            <p
+              class="pricing-form_status"
+              id="pricing-success"
+              role="status"
+              hidden
+            >
+              Thanks. Your enquiry has been sent. I’ll check the details and get
+              back to you.
+            </p>
+            <p class="pricing-form_status" id="pricing-error" role="alert" hidden>
+              That did not send. Email{" "}
+              <a href={`mailto:${STUDIO_CONTACT.email}`}>
+                {STUDIO_CONTACT.email}
+              </a>{" "}
+              or call{" "}
+              <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>
+                {STUDIO_CONTACT.phone}
+              </a>
+              .
+            </p>
           </div>
-          <div class="pricing-form_submit-row">
-            <Button type="submit" id="pricing-submit">
-              Request a Quote
-            </Button>
-            <Paragraph variant="small">
-              No payment is taken through this form.
-            </Paragraph>
-          </div>
-          <p
-            class="pricing-form_status"
-            id="pricing-success"
-            role="status"
-            hidden
-          >
-            Thanks. Your enquiry has been sent. I’ll check the details and get
-            back to you.
-          </p>
-          <p class="pricing-form_status" id="pricing-error" role="alert" hidden>
-            That did not send. Email{" "}
-            <a href={`mailto:${STUDIO_CONTACT.email}`}>
-              {STUDIO_CONTACT.email}
-            </a>{" "}
-            or call{" "}
-            <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>
-              {STUDIO_CONTACT.phone}
-            </a>
-            .
-          </p>
         </section>
       </form>
     </div>
@@ -918,10 +923,16 @@ const privatePackages: readonly CoveragePackage[] = [
       transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .pricing-form_stage-actions {
-      margin-top: var(--space-6);
+      margin-top: var(--space-4);
+      display: flex;
+      justify-content: flex-end;
     }
     .pricing-form_step {
-      padding-block: var(--space-2) var(--space-6);
+      display: grid;
+      grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr);
+      gap: var(--space-6);
+      align-items: start;
+      padding-block: var(--space-2) var(--space-4);
       border-top: none;
       animation: stepFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -935,33 +946,46 @@ const privatePackages: readonly CoveragePackage[] = [
         transform: translateY(0);
       }
     }
+    .pricing-form_step-sidebar {
+      position: sticky;
+      top: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
     .pricing-form_step-heading {
       display: grid;
-      grid-template-columns: 2.5rem minmax(0, 1fr);
+      grid-template-columns: 2.25rem minmax(0, 1fr);
       gap: var(--space-3);
       align-items: start;
-      margin-bottom: var(--space-6);
+      margin-bottom: 0;
     }
     .pricing-form_step-copy {
       display: flex;
       flex-direction: column;
-      gap: var(--space-4);
-      max-width: 42rem;
+      gap: var(--space-2);
     }
     .pricing-form_step-copy > * {
       margin: 0;
     }
     .pricing-form_step-copy .text {
       color: var(--text-2);
+      font-size: var(--text-small);
+      line-height: 1.45;
     }
     .pricing-form_number {
       display: grid;
       place-items: center;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.25rem;
+      height: 2.25rem;
       border: var(--border-width) solid var(--border);
       border-radius: 50%;
       font-weight: 700;
+      font-size: var(--text-small);
+      background: var(--background-2);
+    }
+    .pricing-form_step-content {
+      min-width: 0;
     }
     .pricing-form_choices {
       display: grid;
@@ -985,11 +1009,14 @@ const privatePackages: readonly CoveragePackage[] = [
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 5.5rem;
-      padding: var(--space-4);
+      min-height: 4.25rem;
+      padding: var(--space-3) var(--space-4);
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
       background: var(--background-2);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.35;
       transition:
         background var(--hover-duration) var(--hover-ease),
         color var(--hover-duration) var(--hover-ease),
@@ -998,20 +1025,29 @@ const privatePackages: readonly CoveragePackage[] = [
     @media (hover: hover) {
       .pricing-form_choice:hover > span {
         border-color: var(--text-2);
+        background: var(--background-3);
       }
     }
     .pricing-form_choice input:checked + span {
       color: var(--background);
-      background: var(--dark-900);
-      border-color: var(--dark-900);
+      background: var(--text);
+      border-color: var(--text);
     }
     .pricing-form_choice input:focus-visible + span {
-      outline: 0.125rem solid var(--text);
+      outline: 0.125rem solid var(--brand-500);
       outline-offset: 0.1875rem;
     }
+    .pricing-form_price-choice > span {
+      min-height: 4.5rem;
+    }
+    .pricing-form_price-choice strong {
+      font-size: 1rem;
+      line-height: 1.25;
+    }
     .pricing-form_price-choice small {
-      margin-top: var(--space-1);
+      margin-top: 0.2rem;
       font-size: var(--text-small);
+      opacity: 0.85;
     }
     .pricing-form_field {
       display: flex;
@@ -1019,47 +1055,52 @@ const privatePackages: readonly CoveragePackage[] = [
       gap: var(--space-2);
     }
     .pricing-form_help {
-      max-width: 42rem;
+      max-width: 100%;
       color: var(--text-2);
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.45;
+      font-size: var(--text-small);
     }
     .pricing-form_extra-hours,
     .pricing-form_panel {
-      max-width: 36rem;
-      margin-top: var(--space-5);
+      max-width: 100%;
+      margin-top: var(--space-4);
     }
     .pricing-form_extra-hours input {
-      max-width: 9rem;
+      max-width: 8rem;
     }
     .pricing-form_summary {
-      margin-top: var(--space-6);
-      padding: var(--space-5);
+      margin-top: var(--space-2);
+      padding: var(--space-4);
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
       background: var(--background-2);
     }
     .pricing-form_summary-label {
       display: block;
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-1);
       font-size: var(--text-small);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      color: var(--text-2);
     }
     .pricing-form_summary strong {
       display: block;
-      font-size: clamp(2rem, 7vw, 3.5rem);
-      line-height: 1;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      line-height: 1.1;
+      color: var(--text);
     }
     .pricing-form_summary p {
-      margin: var(--space-3) 0 0;
+      margin: var(--space-2) 0 0;
+      font-size: var(--text-small);
       color: var(--text-2);
+      line-height: 1.4;
     }
     .pricing-form_fields {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-5);
+      gap: var(--space-3) var(--space-4);
     }
     .pricing-form_field-wide {
       grid-column: 1 / -1;
@@ -1069,19 +1110,20 @@ const privatePackages: readonly CoveragePackage[] = [
       flex-wrap: wrap;
       align-items: center;
       gap: var(--space-3);
-      margin-top: var(--space-6);
+      margin-top: var(--space-4);
     }
     .pricing-form_submit-row .button_wrap {
-      --button-background: var(--dark-900);
-      --button-text: var(--background);
-      --button-border: var(--dark-900);
-      --button-background-hover: var(--background);
-      --button-text-hover: var(--text);
+      --button-background: var(--brand-500);
+      --button-text: var(--brand-text);
+      --button-border: var(--brand-500);
+      --button-background-hover: var(--text);
+      --button-text-hover: var(--background);
       --button-border-hover: var(--text);
     }
     .pricing-form_submit-row .text {
       margin: 0;
       color: var(--text-2);
+      font-size: var(--text-small);
     }
     .pricing-form_status {
       margin-top: var(--space-4);
@@ -1089,7 +1131,14 @@ const privatePackages: readonly CoveragePackage[] = [
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
     }
-    @media (max-width: 47.99rem) {
+    @media (max-width: 52rem) {
+      .pricing-form_step {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+      .pricing-form_step-sidebar {
+        position: static;
+      }
       .pricing-form_choices,
       .pricing-form_fields {
         grid-template-columns: 1fr;
