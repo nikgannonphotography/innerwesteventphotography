@@ -399,15 +399,25 @@ const privatePackages: readonly CoveragePackage[] = [
                   No payment is taken through this form.
                 </Paragraph>
               </div>
-              <p
-                class="pricing-form_status"
-                id="pricing-success"
-                role="status"
-                hidden
-              >
-                Thanks. Your enquiry has been sent. I’ll check the details and get
-                back to you.
-              </p>
+              <div class="pricing-form_status-block" id="pricing-success-wrap" hidden>
+                <div
+                  class="pricing-form_status pricing-form_status-success"
+                  id="pricing-success"
+                  role="status"
+                >
+                  <Heading tag="h3" variant="h3" class="pricing-form_success-title">
+                    Quote requested
+                  </Heading>
+                  <Paragraph class="pricing-form_success-desc">
+                    Thanks. Your enquiry has been sent. I’ll check the details and get back to you shortly.
+                  </Paragraph>
+                </div>
+                <div class="pricing-form_reset-row">
+                  <Button type="button" emphasis="secondary" id="pricing-reset-btn">
+                    Start a new enquiry
+                  </Button>
+                </div>
+              </div>
               <p class="pricing-form_status" id="pricing-error" role="alert" hidden>
                 That did not send. Email{" "}
                 <a href={`mailto:${STUDIO_CONTACT.email}`}>
@@ -472,8 +482,12 @@ const privatePackages: readonly CoveragePackage[] = [
     const hiddenTotal = find<HTMLInputElement>("#pricing-estimated-total");
     const hiddenSummary = find<HTMLInputElement>("#pricing-quote-summary");
     const submit = find<HTMLButtonElement>("#pricing-submit");
+    const successWrap = find<HTMLElement>("#pricing-success-wrap");
     const success = find<HTMLElement>("#pricing-success");
     const error = find<HTMLElement>("#pricing-error");
+    const resetBtn = find<HTMLButtonElement>("#pricing-reset-btn");
+    const fieldsContainer = find<HTMLElement>(".pricing-form_fields");
+    const submitRow = find<HTMLElement>(".pricing-form_submit-row");
 
     let currentStep = 1;
     let currentType = "";
@@ -653,6 +667,24 @@ const privatePackages: readonly CoveragePackage[] = [
       });
     }
 
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        form.reset();
+        clearCoverage();
+        hideSummary();
+        currentType = "";
+        if (fieldsContainer) fieldsContainer.hidden = false;
+        if (submitRow) submitRow.hidden = false;
+        if (successWrap) successWrap.hidden = true;
+        if (error) error.hidden = true;
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = "Request a Quote";
+        }
+        goToStep(1);
+      });
+    }
+
     if (step2Continue) {
       step2Continue.addEventListener("click", () => {
         const type = selectedType();
@@ -804,52 +836,89 @@ const privatePackages: readonly CoveragePackage[] = [
         const formId = form.dataset.hubspotForm;
         const region = form.dataset.hubspotRegion || "ap1";
         if (portal && formId) {
-          const response = await fetch(
-            `https://api-${region}.hsforms.com/submissions/v3/integration/submit/${portal}/${formId}`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                fields: [
-                  { name: "firstname", value: parts[0] || "" },
-                  {
-                    name: "lastname",
-                    value: parts.slice(1).join(" ") || parts[0] || "",
-                  },
-                  { name: "email", value: email },
-                  { name: "phone", value: phone },
-                  {
-                    name: "company",
-                    value: company,
-                  },
-                  { name: "message", value: message },
-                ],
-                context: {
-                  pageUri: window.location.href,
-                  pageName: document.title,
-                },
-              }),
+          const companyVal = company || "Individual / Private";
+          const hsPayload = {
+            fields: [
+              { name: "firstname", value: parts[0] || "Client" },
+              {
+                name: "lastname",
+                value: parts.slice(1).join(" ") || parts[0] || "Client",
+              },
+              { name: "email", value: email },
+              { name: "phone", value: phone },
+              { name: "company", value: companyVal },
+              { name: "0-2/name", value: companyVal },
+              { name: "message", value: message },
+            ],
+            context: {
+              pageUri: window.location.href,
+              pageName: document.title,
             },
-          );
-          sent = response.ok;
+          };
+
+          try {
+            const response = await fetch(
+              `https://api-${region}.hsforms.com/submissions/v3/integration/submit/${portal}/${formId}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(hsPayload),
+              },
+            );
+            if (response.ok) {
+              sent = true;
+            } else {
+              const fallbackResponse = await fetch(
+                `https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${formId}`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(hsPayload),
+                },
+              );
+              sent = fallbackResponse.ok;
+            }
+          } catch (hsErr) {
+            console.warn("HubSpot submission error:", hsErr);
+          }
         }
         if (!sent && form.action) {
+          const fallbackData = new FormData(form);
+          if (!fallbackData.get("fullName")) fallbackData.set("fullName", fullName);
+          if (!fallbackData.get("organisation")) {
+            fallbackData.set("organisation", company || "Individual / Private");
+          }
+          if (!fallbackData.get("venue")) {
+            fallbackData.set("venue", venue || "TBC / Sydney");
+          }
+          if (!fallbackData.get("turnaround")) {
+            fallbackData.set("turnaround", "Standard (3-5 days)");
+          }
+          if (!fallbackData.get("coverageHours")) {
+            fallbackData.set("coverageHours", coverageLabel || "Not specified");
+          }
+          if (!fallbackData.get("eventType")) {
+            fallbackData.set("eventType", photographyType || "Event photography");
+          }
           const response = await fetch(form.action, {
             method: "POST",
-            body: formData,
+            body: fallbackData,
             headers: { Accept: "application/json" },
           });
           sent = response.ok;
         }
         if (!sent) throw new Error("Submission failed");
+
+        if (fieldsContainer) fieldsContainer.hidden = true;
+        if (submitRow) submitRow.hidden = true;
+        if (successWrap) successWrap.hidden = false;
         if (success) success.hidden = false;
-        if (submit) submit.textContent = "Quote requested";
-        form.reset();
-        clearCoverage();
-        hideSummary();
-        currentType = "";
-        goToStep(1);
-      } catch {
+        if (error) error.hidden = true;
+        if (backButton) backButton.hidden = true;
+        if (wizardStep) wizardStep.textContent = "Quote requested";
+        if (progressFill) progressFill.style.width = "100%";
+      } catch (err) {
+        console.error("Submission failed:", err);
         if (error) error.hidden = false;
         if (submit) {
           submit.disabled = false;
@@ -1152,11 +1221,34 @@ const privatePackages: readonly CoveragePackage[] = [
       color: var(--text-2);
       font-size: var(--text-small);
     }
+    .pricing-form_status-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-3);
+    }
     .pricing-form_status {
       margin-top: var(--space-4);
       padding: var(--space-4);
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
+    }
+    .pricing-form_status-success {
+      margin-top: 0;
+      padding: var(--space-5);
+      background: var(--surface-2, rgba(0, 0, 0, 0.02));
+      border: var(--border-width) solid var(--border);
+    }
+    .pricing-form_success-title {
+      margin-top: 0;
+      margin-bottom: var(--space-2);
+    }
+    .pricing-form_success-desc {
+      margin: 0;
+      color: var(--text-2);
+    }
+    .pricing-form_reset-row {
+      margin-top: var(--space-1);
     }
     @media (max-width: 52rem) {
       .pricing-form_layout {

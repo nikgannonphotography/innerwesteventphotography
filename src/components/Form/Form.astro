@@ -156,12 +156,14 @@ const content = await slotContent(Astro.slots);
 
           const uploadValue = [runSheetLink, fileNotice].filter(Boolean).join(" | ");
 
+          const hubspotCompany = company || "Individual / Private";
           const hubspotFields = [
-            { name: "firstname", value: firstname },
-            { name: "lastname", value: lastname },
+            { name: "firstname", value: firstname || "Client" },
+            { name: "lastname", value: lastname || firstname || "Client" },
             { name: "email", value: email },
             { name: "phone", value: phone },
-            { name: "company", value: company },
+            { name: "company", value: hubspotCompany },
+            { name: "0-2/name", value: hubspotCompany },
             { name: "message", value: combinedMessage },
           ];
 
