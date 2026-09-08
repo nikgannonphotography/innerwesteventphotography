@@ -1,0 +1,62 @@
+---
+import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
+import Heading from "@/components/Typography/Heading.astro";
+import Paragraph from "@/components/Typography/Paragraph.astro";
+import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+
+interface Props {
+  /** Set to `false` to skip rendering this component and its children. */
+  render?: boolean;
+}
+const { render = true } = Astro.props;
+---
+
+{
+  render && (
+    <ContentWrapper variant="columns" class="cta-main_wrap">
+      <Heading tag="h2" variant="h2">
+        Tell us about your event
+      </Heading>
+      <Paragraph maxWidth={42}>
+        Send your date, venue and what you need photographed.
+      </Paragraph>
+      <ButtonWrapper slot="column2" class="cta-main_actions">
+        <Button element="link" href="/contact">
+          Get a quote
+        </Button>
+        <Button
+          element="link"
+          href="/docs/event-briefing-template"
+          variant="link"
+        >
+          View briefing guide
+        </Button>
+      </ButtonWrapper>
+    </ContentWrapper>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .cta-main_wrap {
+      row-gap: var(--space-4);
+      & > :first-child {
+        align-self: center;
+      }
+      & > :last-child {
+        align-self: center;
+      }
+      & .heading {
+        margin-bottom: var(--space-4);
+      }
+      & .cta-main_actions {
+        margin: 0;
+        gap: var(--space-3) var(--space-4);
+      }
+      @media (width >= 64rem) {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+    }
+  }
+</style>

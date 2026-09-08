@@ -1,8 +1,5 @@
 ---
 import { SITE_NAME, SITE_TAGLINE, STUDIO_CONTACT } from "@/consts.ts";
-import { SERVICES } from "@/data/services.ts";
-import { DOCS } from "@/data/docs.ts";
-import { LOCATIONS } from "@/data/locations.ts";
 
 interface Props {
   /** Set to `false` to skip rendering this component and its children. */
@@ -10,108 +7,55 @@ interface Props {
 }
 
 const { render = true } = Astro.props;
+const links = [
+  ["Selected work", "/galleries"],
+  ["Services", "/services"],
+  ["Guides & articles", "/docs"],
+  ["Sydney coverage", "/locations"],
+  ["About", "/about"],
+  ["Get a quote", "/contact"],
+];
 ---
 
 {
   render && (
     <footer class="footer_wrap">
       <div class="footer_inner">
-        <div class="footer_grid">
-          <!-- Brand -->
-          <div class="footer_col">
-            <a class="footer_logo" href="/" aria-label={SITE_NAME}>
+        <div class="footer_main">
+          <div class="footer_identity">
+            <a href="/" aria-label={SITE_NAME}>
               <img
                 src="/logos/IWEP - Desktop Website (160 x 40px).png"
                 alt={SITE_NAME}
-                class="footer_logo_img"
+                class="footer_logo"
                 width="160"
                 height="40"
               />
             </a>
-            <p class="footer_desc text-style-small">
-              {SITE_TAGLINE}
-            </p>
-            <div class="footer_abn text-style-small">
-              <a class="footer_link" href={`mailto:${STUDIO_CONTACT.email}`}>{STUDIO_CONTACT.email}</a>
-              <a class="footer_link" href={`tel:${STUDIO_CONTACT.phoneRaw}`}>{STUDIO_CONTACT.phone}</a>
-              <span>ABN {STUDIO_CONTACT.abn}</span>
+            <p class="footer_desc">{SITE_TAGLINE}</p>
+            <div class="footer_contact">
+              <a href={`mailto:${STUDIO_CONTACT.email}`}>
+                {STUDIO_CONTACT.email}
+              </a>
+              <a href={`tel:${STUDIO_CONTACT.phoneRaw}`}>
+                {STUDIO_CONTACT.phone}
+              </a>
             </div>
           </div>
-
-          <!-- Services -->
-          <div class="footer_col">
-            <p class="footer_heading">SERVICES</p>
-            <ul class="footer_nav_list">
-              {SERVICES.map((s) => (
-                <li>
-                  <a class="footer_link" href={`/services/${s.slug}`}>
-                    {s.title}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a class="footer_link footer_link_all" href="/services">
-                  All services
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Resources -->
-          <div class="footer_col">
-            <p class="footer_heading">GUIDES & ARTICLES</p>
-            <ul class="footer_nav_list">
-              {DOCS.slice(0, 5).map((d) => (
-                <li>
-                  <a class="footer_link" href={`/docs/${d.slug}`}>
-                    {d.title}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a class="footer_link footer_link_all" href="/docs">
-                  All docs and guides
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Explore -->
-          <div class="footer_col">
-            <p class="footer_heading">EXPLORE</p>
-            <ul class="footer_nav_list">
-              <li>
-                <a class="footer_link" href="/galleries">Selected work</a>
-              </li>
-              <li>
-                <a class="footer_link" href="/locations">Sydney coverage</a>
-              </li>
-              <li>
-                <a class="footer_link" href="/blog">Articles</a>
-              </li>
-              <li>
-                <a class="footer_link" href="/about">About IWEP</a>
-              </li>
-              <li>
-                <a class="footer_link" href="/contact">Get a quote</a>
-              </li>
-              {LOCATIONS.map((loc) => (
-                <li><a class="footer_link" href={`/locations/${loc.slug}`}>{loc.name}</a></li>
-              ))}
-            </ul>
-          </div>
+          <nav class="footer_nav" aria-label="Footer">
+            {links.map(([label, href]) => (
+              <a href={href}>{label}</a>
+            ))}
+          </nav>
         </div>
-
         <div class="footer_bottom">
-          <p class="footer_copyright text-style-small">
-            &copy; <span id="year">{new Date().getFullYear()}</span> {SITE_NAME}. All Rights Reserved. · Sydney, NSW, Australia
+          <p>
+            &copy; {new Date().getFullYear()} {SITE_NAME}. ABN{" "}
+            {STUDIO_CONTACT.abn}
           </p>
-          <div class="footer_bottom_links text-style-small">
-            <a class="footer_link" href="/docs/licensing-and-commercial-rights">Licensing Rights</a>
-            <span>•</span>
-            <a class="footer_link" href="/docs/pricing-and-rates-guide">Rate Structure</a>
-            <span>•</span>
-            <a class="footer_link" href="/contact">Get a quote</a>
+          <div class="footer_legal">
+            <a href="/docs/licensing-and-commercial-rights">Licensing rights</a>
+            <a href="/docs/pricing-and-rates-guide">Pricing guide</a>
           </div>
         </div>
       </div>
@@ -119,155 +63,78 @@ const { render = true } = Astro.props;
   )
 }
 
-<script>
-  const year = document.querySelector<HTMLSpanElement>("#year");
-  if (year) {
-    year.textContent = new Date().getFullYear().toString();
-  }
-</script>
-
 <style is:global>
   @layer components {
     .footer_wrap {
-      display: flex;
-      justify-content: center;
-      padding-block: var(--section-space-medium);
-      padding-inline: var(--site-margin);
-      background-color: var(--background);
-      color: var(--text);
+      padding: var(--space-5) var(--site-margin);
+      background: var(--background);
+      color: var(--text-2);
       border-top: var(--border-width) solid var(--border);
-    }
-
-    .footer_inner {
-      width: 100%;
-      max-width: var(--max-width-main);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-7);
-    }
-
-    .footer_grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6) var(--space-5);
-
-      @media (width >= 40rem) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @media (width >= 64rem) {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-
-    .footer_col {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-
-    .footer_logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      transition: opacity var(--hover-duration) var(--hover-ease);
-
-      @media (hover: hover) {
-        &:hover {
-          opacity: 0.75;
-        }
-      }
-    }
-
-    .footer_logo_img {
-      height: 2.25rem;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    [class*="theme-dark"] .footer_logo_img,
-    html.theme-dark .footer_logo_img {
-      filter: brightness(0) invert(1);
-    }
-
-    .footer_desc {
-      color: var(--text);
-      font-weight: var(--primary-regular);
-      line-height: 1.45;
-      max-width: 28ch;
-    }
-
-    .footer_subdesc {
-      color: var(--text-2);
-      line-height: 1.45;
-      max-width: 32ch;
-    }
-
-    .footer_abn {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      color: var(--text-2);
-      font-size: 0.75rem;
-    }
-
-    .footer_heading {
-      font-size: 0.75rem;
-      font-weight: var(--primary-regular);
-      letter-spacing: var(--letter-spacing-normal);
-      text-transform: uppercase;
-      color: var(--heading-accent);
-      margin-bottom: var(--space-1);
-    }
-
-    .footer_nav_list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-
-    .footer_link {
       font-size: var(--text-small);
-      color: var(--text-2);
-      text-decoration: none;
       line-height: 1.4;
-      transition: color var(--hover-duration) var(--hover-ease);
-
-      @media (hover: hover) {
+      & a {
+        text-decoration: none;
+        overflow-wrap: anywhere;
         &:hover {
           color: var(--text);
+          text-decoration: underline;
+          text-underline-offset: 0.2em;
         }
       }
     }
-
-    .footer_link_all {
-      font-weight: var(--primary-regular);
-      color: var(--heading-accent);
+    .footer_inner {
+      max-width: var(--max-width-main);
+      margin-inline: auto;
+      display: grid;
+      gap: var(--space-4);
     }
-
+    .footer_main {
+      display: grid;
+      gap: var(--space-4);
+      @media (width >= 48rem) {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+    }
+    .footer_identity {
+      display: grid;
+      gap: var(--space-2);
+    }
+    .footer_logo {
+      width: 6rem;
+      height: auto;
+    }
+    .footer_desc {
+      margin: 0;
+    }
+    .footer_contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-4);
+    }
+    .footer_nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-1) var(--space-5);
+      color: var(--text);
+      & a {
+        padding-block: 0.25rem;
+      }
+    }
     .footer_bottom {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
-      gap: var(--space-4);
-      padding-top: var(--space-4);
-      border-top: var(--border-width) solid var(--border);
+      gap: var(--space-2) var(--space-4);
+      font-size: 0.75rem;
+      & p {
+        margin: 0;
+      }
     }
-
-    .footer_copyright {
-      color: var(--text-2);
-    }
-
-    .footer_bottom_links {
+    .footer_legal {
       display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      color: var(--text-2);
+      flex-wrap: wrap;
+      gap: var(--space-4);
     }
   }
 </style>

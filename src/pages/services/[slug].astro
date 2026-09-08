@@ -152,18 +152,21 @@ const breadcrumbSchema = {
   <Section paddingTop="none" paddingBottom="medium">
     <Grid small={1} medium={3}>
       <Card
+        headingTag="h2"
         heading="Who It Is For"
         text={service.commissioners
           .map((c) => `<span class="meta_line">• ${c}</span>`)
           .join("")}
       />
       <Card
+        headingTag="h2"
         heading="What We Photograph"
         text={service.subjects
           .map((s) => `<span class="meta_line">• ${s}</span>`)
           .join("")}
       />
       <Card
+        headingTag="h2"
         heading="How You Can Use the Photos"
         text={service.businessUses
           .map((b) => `<span class="meta_line">• ${b}</span>`)
@@ -228,7 +231,7 @@ const breadcrumbSchema = {
         <ContentWrapper variant="auto-width">
           <div>
             <Eyebrow variant="tag">SELECTED WORK</Eyebrow>
-            <Heading tag="h2" variant="h3">
+            <Heading tag="h2" variant="h2">
               Event Galleries
             </Heading>
           </div>
@@ -261,7 +264,7 @@ const breadcrumbSchema = {
         <ContentWrapper variant="auto-width">
           <div>
             <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
-            <Heading tag="h2" variant="h3">
+            <Heading tag="h2" variant="h2">
               Plan the Assignment
             </Heading>
           </div>
@@ -291,7 +294,7 @@ const breadcrumbSchema = {
     <ContentWrapper variant="auto-width">
       <div>
         <Eyebrow variant="tag">SYDNEY VENUES & REGIONS</Eyebrow>
-        <Heading tag="h2" variant="h3"
+        <Heading tag="h2" variant="h2"
           >Coverage Across Sydney Suburbs & Venues</Heading
         >
       </div>

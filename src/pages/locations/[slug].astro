@@ -132,18 +132,21 @@ const breadcrumbSchema = {
   <Section paddingTop="none" paddingBottom="medium">
     <Grid small={1} medium={3}>
       <Card
+        headingTag="h2"
         heading={`Suburbs Covered (${location.suburbs.length})`}
         text={location.suburbs
           .map((s) => `<span class="suburb_pill">${s}</span>`)
           .join(" ")}
       />
       <Card
+        headingTag="h2"
         heading="Prominent Venues"
         text={location.keyVenues
           .map((v) => `<span class="meta_line">• ${v}</span>`)
           .join("")}
       />
       <Card
+        headingTag="h2"
         heading="Typical Assignments"
         text={location.eventTypes
           .map((e) => `<span class="meta_line">• ${e}</span>`)
@@ -188,7 +191,7 @@ const breadcrumbSchema = {
         <ContentWrapper variant="auto-width">
           <div>
             <Eyebrow variant="tag">PORTFOLIO</Eyebrow>
-            <Heading tag="h2" variant="h3">
+            <Heading tag="h2" variant="h2">
               Selected Work Shot in {location.name}
             </Heading>
           </div>
@@ -222,7 +225,7 @@ const breadcrumbSchema = {
         <ContentWrapper variant="auto-width">
           <div>
             <Eyebrow variant="tag">PLANNING GUIDES</Eyebrow>
-            <Heading tag="h2" variant="h3">
+            <Heading tag="h2" variant="h2">
               Planning for {location.name}
             </Heading>
           </div>
@@ -252,7 +255,7 @@ const breadcrumbSchema = {
     <ContentWrapper variant="auto-width">
       <div>
         <Eyebrow variant="tag">ALL SYDNEY HUBS</Eyebrow>
-        <Heading tag="h2" variant="h3"
+        <Heading tag="h2" variant="h2"
           >Explore Other Sydney Coverage Regions</Heading
         >
       </div>

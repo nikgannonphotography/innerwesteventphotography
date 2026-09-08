@@ -43,8 +43,8 @@
   --open-ease: var(--hover-ease);
 
   /* Radius */
-  --radius-small: 0.5rem;
-  --radius-main: 0.75rem;
+  --radius-small: 0.25rem;
+  --radius-main: 0.25rem;
   --radius-round: 100vw;
 
   /* Fluid scale range */

@@ -7,6 +7,8 @@ import Paragraph from "@/components/Typography/Paragraph.astro";
 import ButtonWrapper from "@/components/Wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
 import ContentGallery from "@/components/Content/ContentGallery.astro";
+import Accordion from "@/components/Interactive/Accordion.astro";
+import AccordionItem from "@/components/Interactive/AccordionItem.astro";
 import ContentList from "@/components/Content/ContentList.astro";
 import GalleryFacts from "@/components/Item/GalleryFacts.astro";
 import {
@@ -84,24 +86,20 @@ const relatedLocation = LOCATIONS.find(
           )
         }
       </div>
-      <GalleryFacts
-        slot="column2"
-        coverage={project.clientRole}
-        location={project.location}
-        year={project.year}
-      />
-    </ContentWrapper>
-  </Section>
-
-  <Section paddingTop="small" paddingBottom="medium">
-    <ContentWrapper variant="columns">
-      <div>
-        <Heading tag="h2" variant="h3">Scope of Coverage</Heading>
-        <ContentList items={project.scope} />
-      </div>
       <div slot="column2">
-        <Heading tag="h2" variant="h3">Deliverables</Heading>
-        <ContentList items={project.deliverables} />
+        <GalleryFacts
+          coverage={project.clientRole}
+          location={project.location}
+          year={project.year}
+        />
+        <Accordion>
+          <AccordionItem heading="Scope of coverage">
+            <ContentList items={project.scope} />
+          </AccordionItem>
+          <AccordionItem heading="Deliverables">
+            <ContentList items={project.deliverables} />
+          </AccordionItem>
+        </Accordion>
       </div>
     </ContentWrapper>
   </Section>

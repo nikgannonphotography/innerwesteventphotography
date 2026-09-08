@@ -11,6 +11,8 @@ interface Props extends HTMLAttributes<"a"> {
   image: string;
   imagePosition?: string;
   featured?: boolean;
+  /** Heading level for the page outline, without changing the caption style. */
+  headingTag?: "h2" | "h3";
 }
 
 const {
@@ -20,6 +22,7 @@ const {
   image,
   imagePosition = "50% 50%",
   featured = false,
+  headingTag = "h3",
   class: className,
   ...rest
 } = Astro.props;
@@ -42,7 +45,7 @@ const {
     />
   </div>
   <div class="gallery-card_content">
-    <Heading tag="h3" variant="h5">{title}</Heading>
+    <Heading tag={headingTag} variant="h5">{title}</Heading>
     <Paragraph>{meta}</Paragraph>
   </div>
 </a>
@@ -79,7 +82,7 @@ const {
       gap: var(--space-2);
     }
 
-    .gallery-card_content :is(h3, p) {
+    .gallery-card_content :is(h2, h3, p) {
       margin: 0;
       font-size: var(--text-small);
       line-height: 1.25;
@@ -103,7 +106,7 @@ const {
     }
 
     @media (hover: hover) {
-      .gallery-card:hover h3 {
+      .gallery-card:hover :is(h2, h3) {
         text-decoration: underline;
         text-underline-offset: 0.18em;
       }

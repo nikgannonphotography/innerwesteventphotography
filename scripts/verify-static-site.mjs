@@ -45,9 +45,14 @@ assert.match(home, /class="[^"]*home-hero_media/);
 assert.match(home, /fetchpriority="high"/i);
 assert.match(home, /"hasOfferCatalog"/);
 const footer = home.match(/<footer.*?<\/footer>/s)?.[0] ?? "";
-const footerDocLinks = [...footer.matchAll(/href="\/docs\/[^\"]+"/g)];
-assert.equal(footerDocLinks.length, 7);
-assert.match(footer, /href="\/docs"/);
+for (const href of [
+  "/galleries", "/services", "/docs", "/locations", "/about", "/contact",
+  "/docs/licensing-and-commercial-rights", "/docs/pricing-and-rates-guide",
+]) {
+  assert.ok(footer.includes(`href="${href}"`), `Missing footer link ${href}`);
+}
+assert.match(footer, /href="mailto:/);
+assert.match(footer, /href="tel:/);
 
 const briefingGuide = readPage("/docs/event-briefing-template/");
 assert.match(briefingGuide, /href="\/docs"/);

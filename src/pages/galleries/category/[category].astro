@@ -138,6 +138,7 @@ const collectionSchema = {
           <Grid small={1} large={projects.length > 2 ? 3 : 2}>
             {projects.map((item) => (
               <GalleryCard
+                headingTag="h2"
                 href={`/galleries/${item.slug}`}
                 title={item.title}
                 meta={[item.categoryLabel, item.location]
@@ -207,7 +208,7 @@ const collectionSchema = {
     <ContentWrapper variant="auto-width">
       <div>
         <Eyebrow variant="tag">SYDNEY VENUES & REGIONS</Eyebrow>
-        <Heading tag="h2" variant="h3">Sydney Coverage Locations</Heading>
+        <Heading tag="h2" variant="h2">Sydney Coverage Locations</Heading>
       </div>
       <ButtonWrapper slot="column2">
         <Button element="link" href="/locations" emphasis="secondary">

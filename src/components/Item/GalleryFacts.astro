@@ -13,12 +13,14 @@ const { coverage, location, year } = Astro.props;
     <dt>Coverage</dt>
     <dd>{coverage}</dd>
   </div>
-  {location && (
-    <div>
-      <dt>Location</dt>
-      <dd>{location}</dd>
-    </div>
-  )}
+  {
+    location && (
+      <div>
+        <dt>Location</dt>
+        <dd>{location}</dd>
+      </div>
+    )
+  }
   <div>
     <dt>Year</dt>
     <dd>{year}</dd>
@@ -29,21 +31,22 @@ const { coverage, location, year } = Astro.props;
   @layer components {
     .gallery-facts {
       display: grid;
-      gap: var(--space-5);
+      gap: var(--space-3);
       margin: 0;
     }
 
     .gallery-facts > div {
-      padding-bottom: var(--space-4);
-      border-bottom: var(--border-width) solid var(--border);
+      display: grid;
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: var(--space-3);
     }
 
     .gallery-facts dt {
-      margin-bottom: var(--space-2);
-      color: var(--text-muted);
-      font-size: var(--text-small);
+      margin-bottom: 0;
+      color: var(--text-2);
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: var(--letter-spacing-normal);
     }
 
     .gallery-facts dd {

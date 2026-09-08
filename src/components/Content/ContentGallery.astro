@@ -47,7 +47,7 @@ const normalized = images.map((image, index) =>
           class="content-gallery_stage"
           id={id}
           tabindex="0"
-          aria-label="Photographs. Use left and right arrow keys to browse."
+          aria-label="Photographs. Tap the left or right half, swipe, or use arrow keys to browse."
         >
           {normalized.map((image, index) => (
             <figure
@@ -152,6 +152,21 @@ const normalized = images.map((image, index) =>
             : ("smooth" as const);
         const update = (index: number) => {
           current = index;
+          const photo = slides[index].querySelector<HTMLImageElement>("img")!;
+          const sizePhoto = () => {
+            if (
+              current === index &&
+              photo.naturalWidth &&
+              photo.naturalHeight
+            ) {
+              stage.style.setProperty(
+                "--_image-ratio",
+                String(photo.naturalWidth / photo.naturalHeight),
+              );
+            }
+          };
+          if (photo.complete) sizePhoto();
+          else photo.addEventListener("load", sizePhoto, { once: true });
           slides.forEach((slide, i) =>
             slide.setAttribute("aria-hidden", String(i !== index)),
           );
@@ -179,6 +194,30 @@ const normalized = images.map((image, index) =>
             behavior: motion(),
           });
         };
+        let pointerStart: { x: number; y: number; id: number } | undefined;
+        stage.addEventListener("pointerdown", (event) => {
+          if (!event.isPrimary || event.button !== 0) return;
+          pointerStart = {
+            x: event.clientX,
+            y: event.clientY,
+            id: event.pointerId,
+          };
+        });
+        stage.addEventListener("pointercancel", () => {
+          pointerStart = undefined;
+        });
+        stage.addEventListener("pointerup", (event) => {
+          const start = pointerStart;
+          pointerStart = undefined;
+          if (!start || start.id !== event.pointerId) return;
+          if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 12)
+            return;
+          const bounds = stage.getBoundingClientRect();
+          go(
+            current + (event.clientX - bounds.left < bounds.width / 2 ? -1 : 1),
+          );
+        });
+        stage.addEventListener("dragstart", (event) => event.preventDefault());
         previous.addEventListener("click", () => go(current - 1));
         next.addEventListener("click", () => go(current + 1));
         thumbnails.forEach((thumbnail, index) =>
@@ -232,10 +271,11 @@ const normalized = images.map((image, index) =>
     .content-gallery_wrap {
       display: grid;
       grid-template-rows: auto minmax(0, 1fr);
-      gap: 1rem;
+      gap: 0.75rem;
       width: 100%;
       min-width: 0;
-      height: max(28rem, calc(100svh - var(--nav-height) - 2rem));
+      height: calc(100svh - var(--nav-height));
+      max-height: 60rem;
       padding-block: 1rem;
       @media (orientation: landscape) and (height <= 32rem) {
         height: calc(100svh - var(--nav-height) - 1rem);
@@ -264,11 +304,11 @@ const normalized = images.map((image, index) =>
     .content-gallery_header {
       display: grid;
       justify-items: start;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
     .content-gallery_header .heading {
       margin: 0;
-      font-size: clamp(1.25rem, 2.5vw, 2.25rem);
+      font-size: var(--h3);
       line-height: 1.15;
     }
     .content-gallery_viewer {
@@ -286,7 +326,8 @@ const normalized = images.map((image, index) =>
       overscroll-behavior-x: contain;
       scrollbar-width: none;
       min-height: 0;
-      background: var(--background-2);
+      cursor: pointer;
+      background: transparent;
     }
     .content-gallery_stage::-webkit-scrollbar {
       display: none;
@@ -306,6 +347,7 @@ const normalized = images.map((image, index) =>
       height: 100%;
       object-fit: contain;
       border-radius: 0;
+      background: transparent;
     }
     .content-gallery_controls {
       display: none;
@@ -319,10 +361,10 @@ const normalized = images.map((image, index) =>
     .content-gallery_controls .button_wrap {
       --button-background: #fff;
       --button-text: #000;
-      --button-border: #000;
-      --button-background-hover: #000;
-      --button-text-hover: #fff;
-      --button-border-hover: #000;
+      --button-border: transparent;
+      --button-background-hover: var(--background-2);
+      --button-text-hover: var(--text);
+      --button-border-hover: transparent;
       width: 2.75rem;
       height: 2.75rem;
       min-height: 2.75rem;
@@ -344,28 +386,30 @@ const normalized = images.map((image, index) =>
       gap: 0.5rem;
       overflow-x: auto;
       overscroll-behavior-x: contain;
-      padding: 0.25rem;
+      padding: 0;
       scrollbar-width: thin;
     }
     .content-gallery_thumbnail {
       position: relative;
       display: block;
-      flex: 0 0 4.75rem;
-      height: 3.5rem;
-      padding: 0.1875rem;
-      border: 0.125rem solid transparent;
-      background: var(--background-2);
+      flex: 0 0 3.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: 0;
+      opacity: 0.5;
+      background: transparent;
       color: inherit;
     }
     .content-gallery_thumbnail[aria-current] {
-      border-color: currentColor;
+      opacity: 1;
     }
     .content-gallery_thumbnail .image {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 0;
+      background: transparent;
     }
     .content-gallery_number {
       position: absolute;
@@ -376,6 +420,36 @@ const normalized = images.map((image, index) =>
       color: #000;
       font-size: 0.625rem;
       line-height: 1.4;
+    }
+    @media (width < 48rem) {
+      .content-gallery_wrap {
+        height: auto;
+        padding-block: 0.5rem;
+      }
+      .content-gallery_stage {
+        height: min(
+          calc((100vw - var(--site-margin) * 2) / var(--_image-ratio, 1.5)),
+          calc(100svh - var(--nav-height) - 10rem)
+        );
+      }
+      .content-gallery_viewer {
+        grid-template-rows: minmax(0, 1fr) auto;
+        gap: 0.25rem;
+      }
+      .content-gallery_thumbnails {
+        display: none;
+      }
+      .content-gallery_header .button_wrap {
+        min-height: 2rem;
+        padding-block: 0.25rem;
+      }
+      .content-gallery_header .heading {
+        font-size: 1.125rem;
+        line-height: 1.2;
+      }
+      .content-gallery_count {
+        font-size: var(--text-small);
+      }
     }
     .content-gallery_wrap :focus-visible {
       outline: var(--focus-width) solid currentColor;
