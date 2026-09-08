@@ -135,6 +135,10 @@ const columns =
   render && content && (
     <div
       class:list={["grid", variant !== "columns" && variant, className]}
+      data-cols-xs={xsmall}
+      data-cols-sm={small ?? xsmall}
+      data-cols-md={medium ?? small ?? xsmall}
+      data-cols-lg={large ?? medium ?? small ?? xsmall}
       style={columns}
       {...rest}
     >
@@ -181,6 +185,48 @@ const columns =
       }
       &.autofill {
         grid-template-columns: repeat(auto-fill, minmax(var(--_track), 1fr));
+      }
+    }
+
+    .grid:not(.autofit, .autofill):has(> :is(.card_wrap, .gallery-card)):not(:has(> :not(.card_wrap, .gallery-card))) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      & > * {
+        min-width: 0;
+        flex: 1 1 calc((100% - (var(--_cols) - 1) * var(--_gap-size)) / var(--_cols));
+      }
+      @media (width < 30rem) {
+        &[data-cols-xs="3"]:has(> :nth-child(3n + 1):last-child):has(> :nth-child(4)) > :nth-last-child(-n + 4) {
+          flex-basis: calc((100% - 1 * var(--_gap-size)) / 2);
+        }
+        &[data-cols-xs="4"]:has(> :nth-child(4n + 1):last-child):has(> :nth-child(5)) > :nth-last-child(-n + 5) {
+          flex-basis: calc((100% - 2 * var(--_gap-size)) / 3);
+        }
+      }
+      @media (30rem <= width < 48rem) {
+        &[data-cols-sm="3"]:has(> :nth-child(3n + 1):last-child):has(> :nth-child(4)) > :nth-last-child(-n + 4) {
+          flex-basis: calc((100% - 1 * var(--_gap-size)) / 2);
+        }
+        &[data-cols-sm="4"]:has(> :nth-child(4n + 1):last-child):has(> :nth-child(5)) > :nth-last-child(-n + 5) {
+          flex-basis: calc((100% - 2 * var(--_gap-size)) / 3);
+        }
+      }
+      @media (48rem <= width < 64rem) {
+        &[data-cols-md="3"]:has(> :nth-child(3n + 1):last-child):has(> :nth-child(4)) > :nth-last-child(-n + 4) {
+          flex-basis: calc((100% - 1 * var(--_gap-size)) / 2);
+        }
+        &[data-cols-md="4"]:has(> :nth-child(4n + 1):last-child):has(> :nth-child(5)) > :nth-last-child(-n + 5) {
+          flex-basis: calc((100% - 2 * var(--_gap-size)) / 3);
+        }
+      }
+      @media (width >= 64rem) {
+        &[data-cols-lg="3"]:has(> :nth-child(3n + 1):last-child):has(> :nth-child(4)) > :nth-last-child(-n + 4) {
+          flex-basis: calc((100% - 1 * var(--_gap-size)) / 2);
+        }
+        &[data-cols-lg="4"]:has(> :nth-child(4n + 1):last-child):has(> :nth-child(5)) > :nth-last-child(-n + 5) {
+          flex-basis: calc((100% - 2 * var(--_gap-size)) / 3);
+        }
       }
     }
   }

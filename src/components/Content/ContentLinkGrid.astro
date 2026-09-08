@@ -15,21 +15,30 @@ interface Props {
 const { render = true, items } = Astro.props;
 ---
 
-{render && items.length > 0 && (
-  <Grid class="link-grid_wrap">
-    {items.map((item) => (
-      <div class="link-grid_item">
-        <Heading tag="h3" variant="h5" class="link-grid_heading">{item.heading}</Heading>
-        <Paragraph class="link-grid_text">{item.text}</Paragraph>
-        <ButtonWrapper marginTop="0" class="link-grid_actions">
-          <Button element="link" href={item.href} variant="link" class="link-grid_link">
-            {item.label}
-          </Button>
-        </ButtonWrapper>
-      </div>
-    ))}
-  </Grid>
-)}
+{
+  render && items.length > 0 && (
+    <Grid class="link-grid_wrap">
+      {items.map((item) => (
+        <div class="link-grid_item">
+          <Heading tag="h3" variant="h5" class="link-grid_heading">
+            {item.heading}
+          </Heading>
+          <Paragraph class="link-grid_text">{item.text}</Paragraph>
+          <ButtonWrapper marginTop="0" class="link-grid_actions">
+            <Button
+              element="link"
+              href={item.href}
+              variant="link"
+              class="link-grid_link"
+            >
+              {item.label}
+            </Button>
+          </ButtonWrapper>
+        </div>
+      ))}
+    </Grid>
+  )
+}
 
 <style is:global>
   @layer components {
@@ -45,6 +54,19 @@ const { render = true, items } = Astro.props;
 
       @media (width >= 64rem) {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+        &:has(> :nth-child(3):last-child),
+        &:has(> :nth-child(6):last-child) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        &:has(> :nth-child(5):last-child) {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          & > * {
+            grid-column: span 2;
+          }
+          & > :nth-last-child(-n + 2) {
+            grid-column: span 3;
+          }
+        }
       }
     }
 

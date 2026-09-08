@@ -117,7 +117,11 @@ const privatePackages: readonly CoveragePackage[] = [
               </div>
             </div>
 
-            <div class="pricing-form_step-context" id="pricing-step-2-context" hidden>
+            <div
+              class="pricing-form_step-context"
+              id="pricing-step-2-context"
+              hidden
+            >
               <div class="pricing-form_step-heading">
                 <span class="pricing-form_number">2</span>
                 <div class="pricing-form_step-copy">
@@ -131,9 +135,15 @@ const privatePackages: readonly CoveragePackage[] = [
               </div>
             </div>
 
-            <div class="pricing-form_step-context" id="pricing-step-3-context" hidden>
+            <div
+              class="pricing-form_step-context"
+              id="pricing-step-3-context"
+              hidden
+            >
               <div class="pricing-form_step-heading">
-                <span class="pricing-form_number" id="pricing-step-3-number">3</span>
+                <span class="pricing-form_number" id="pricing-step-3-number">
+                  3
+                </span>
                 <div class="pricing-form_step-copy">
                   <Heading tag="h2" variant="h4" id="pricing-details-heading">
                     Tell me about the job
@@ -308,8 +318,9 @@ const privatePackages: readonly CoveragePackage[] = [
                     How many people need headshots?
                   </span>
                   <small class="pricing-form_help">
-                    Individuals from $120 (including 3 edited headshots). Teams of 3 to 5 are $450.
-                    Six to nine staff is $110 each. Teams of 10 or more are quoted after discussion.
+                    Individuals from $120 (including 3 edited headshots). Teams
+                    of 3 to 5 are $450. Six to nine staff is $110 each. Teams of
+                    10 or more are quoted after discussion.
                   </small>
                   <input
                     id="team-size"
@@ -330,8 +341,16 @@ const privatePackages: readonly CoveragePackage[] = [
                 </Paragraph>
               </div>
 
-              <div class="pricing-form_stage-actions" id="pricing-step-2-actions">
-                <Button type="button" id="pricing-step-2-continue" variant="secondary">
+              <div
+                class="pricing-form_stage-actions"
+                id="pricing-step-2-actions"
+              >
+                <Button
+                  type="button"
+                  id="pricing-step-2-continue"
+                  variant="main"
+                  emphasis="secondary"
+                >
                   Continue to details &rarr;
                 </Button>
               </div>
@@ -368,7 +387,12 @@ const privatePackages: readonly CoveragePackage[] = [
                 value=""
               />
               <div class="pricing-form_fields">
-                <Input label="Name" name="fullName" autocomplete="name" required />
+                <Input
+                  label="Name"
+                  name="fullName"
+                  autocomplete="name"
+                  required
+                />
                 <Input label="Email" name="email" variant="email" required />
                 <Input label="Phone" name="phone" variant="phone" required />
                 <Input
@@ -399,26 +423,44 @@ const privatePackages: readonly CoveragePackage[] = [
                   No payment is taken through this form.
                 </Paragraph>
               </div>
-              <div class="pricing-form_status-block" id="pricing-success-wrap" hidden>
+              <div
+                class="pricing-form_status-block"
+                id="pricing-success-wrap"
+                hidden
+              >
                 <div
                   class="pricing-form_status pricing-form_status-success"
                   id="pricing-success"
                   role="status"
                 >
-                  <Heading tag="h3" variant="h3" class="pricing-form_success-title">
-                    Quote requested
+                  <Heading
+                    tag="h3"
+                    variant="h3"
+                    class="pricing-form_success-title"
+                  >
+                    Quote request received
                   </Heading>
                   <Paragraph class="pricing-form_success-desc">
-                    Thanks. Your enquiry has been sent. I’ll check the details and get back to you shortly.
+                    Thanks. Your details have been sent. I’ll review them and
+                    reply by email shortly.
                   </Paragraph>
                 </div>
                 <div class="pricing-form_reset-row">
-                  <Button type="button" emphasis="secondary" id="pricing-reset-btn">
+                  <Button
+                    type="button"
+                    emphasis="secondary"
+                    id="pricing-reset-btn"
+                  >
                     Start a new enquiry
                   </Button>
                 </div>
               </div>
-              <p class="pricing-form_status" id="pricing-error" role="alert" hidden>
+              <p
+                class="pricing-form_status"
+                id="pricing-error"
+                role="alert"
+                hidden
+              >
                 That did not send. Email{" "}
                 <a href={`mailto:${STUDIO_CONTACT.email}`}>
                   {STUDIO_CONTACT.email}
@@ -551,7 +593,9 @@ const privatePackages: readonly CoveragePackage[] = [
           label,
           `${packageLabel}${extraLabel}. ${note}`,
           `$${price.toLocaleString("en-AU")}`,
-          addedHours > 0 ? `${packageLabel} + ${addedHours}h extra` : packageLabel,
+          addedHours > 0
+            ? `${packageLabel} + ${addedHours}h extra`
+            : packageLabel,
         );
         return;
       }
@@ -716,9 +760,11 @@ const privatePackages: readonly CoveragePackage[] = [
         if (communityPricing) communityPricing.hidden = type !== "community";
         if (privatePricing) privatePricing.hidden = type !== "private";
         if (extraHoursPanel)
-          extraHoursPanel.hidden = !["corporate", "community", "private"].includes(
-            type,
-          );
+          extraHoursPanel.hidden = ![
+            "corporate",
+            "community",
+            "private",
+          ].includes(type);
         if (headshotPricing) headshotPricing.hidden = type !== "headshots";
         if (weddingPricing) weddingPricing.hidden = type !== "wedding";
         if (intro)
@@ -797,7 +843,9 @@ const privatePackages: readonly CoveragePackage[] = [
       const formData = new FormData(form);
       const fullName = String(formData.get("fullName") || "").trim();
       const parts = fullName.split(/\s+/);
-      const email = String(formData.get("email") || "").trim().toLowerCase();
+      const email = String(formData.get("email") || "")
+        .trim()
+        .toLowerCase();
       const phone = String(formData.get("phone") || "").trim();
       const company = String(formData.get("organisation") || "").trim();
       const eventDate = String(formData.get("eventDate") || "").trim();
@@ -816,7 +864,9 @@ const privatePackages: readonly CoveragePackage[] = [
         "Website pricing tool selection",
         `Photography type: ${photographyType}`,
         coverageLabel ? `Coverage block: ${coverageLabel}` : "",
-        Number(extraHoursSelected) > 0 ? `Extra hours: ${extraHoursSelected}` : "",
+        Number(extraHoursSelected) > 0
+          ? `Extra hours: ${extraHoursSelected}`
+          : "",
         teamSizeSelected ? `Team size: ${teamSizeSelected} people` : "",
         `Estimate shown: ${estimatedTotal}`,
       ]
@@ -884,7 +934,8 @@ const privatePackages: readonly CoveragePackage[] = [
         }
         if (!sent && form.action) {
           const fallbackData = new FormData(form);
-          if (!fallbackData.get("fullName")) fallbackData.set("fullName", fullName);
+          if (!fallbackData.get("fullName"))
+            fallbackData.set("fullName", fullName);
           if (!fallbackData.get("organisation")) {
             fallbackData.set("organisation", company || "Individual / Private");
           }
@@ -898,7 +949,10 @@ const privatePackages: readonly CoveragePackage[] = [
             fallbackData.set("coverageHours", coverageLabel || "Not specified");
           }
           if (!fallbackData.get("eventType")) {
-            fallbackData.set("eventType", photographyType || "Event photography");
+            fallbackData.set(
+              "eventType",
+              photographyType || "Event photography",
+            );
           }
           const response = await fetch(form.action, {
             method: "POST",
@@ -996,7 +1050,7 @@ const privatePackages: readonly CoveragePackage[] = [
       padding: 0.35rem 0.85rem;
       font-family: inherit;
       font-size: var(--text-small);
-      font-weight: 500;
+      font-weight: var(--primary-regular);
       color: var(--text);
       background: var(--background-2);
       border: var(--border-width) solid var(--border);
@@ -1013,8 +1067,8 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_wizard-step {
       font-size: var(--text-small);
       color: var(--text-2);
-      font-weight: 500;
-      letter-spacing: 0.02em;
+      font-weight: var(--primary-regular);
+      letter-spacing: var(--letter-spacing-normal);
       margin-left: auto;
     }
     .pricing-form_progress-track {
@@ -1066,9 +1120,10 @@ const privatePackages: readonly CoveragePackage[] = [
       height: 2.25rem;
       border: var(--border-width) solid var(--border);
       border-radius: 50%;
-      font-weight: 700;
+      font-weight: var(--primary-regular);
       font-size: var(--text-small);
-      background: var(--background-2);
+      background: var(--text);
+      color: var(--background);
     }
     .pricing-form_main {
       min-width: 0;
@@ -1112,8 +1167,8 @@ const privatePackages: readonly CoveragePackage[] = [
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
       background: var(--background-2);
-      font-size: 0.9375rem;
-      font-weight: 500;
+      font-size: var(--text-small);
+      font-weight: var(--primary-regular);
       line-height: 1.35;
       transition:
         background var(--hover-duration) var(--hover-ease),
@@ -1183,9 +1238,9 @@ const privatePackages: readonly CoveragePackage[] = [
       display: block;
       margin-bottom: var(--space-1);
       font-size: var(--text-small);
-      font-weight: 700;
+      font-weight: var(--primary-regular);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: var(--letter-spacing-normal);
       color: var(--text-2);
     }
     .pricing-form_summary strong {
@@ -1243,6 +1298,7 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_status-success {
       margin-top: 0;
       padding: var(--space-5);
+      color: var(--text);
       background: var(--surface-2, rgba(0, 0, 0, 0.02));
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
@@ -1250,13 +1306,14 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_status-success .heading:has(+ .text),
     .pricing-form_success-title {
       margin-top: 0;
-      margin-bottom: var(--space-2) !important;
+      margin-bottom: var(--space-4) !important;
       color: var(--text);
       line-height: 1.25;
     }
     .pricing-form_success-desc {
       margin: 0;
       margin-top: 0 !important;
+      max-width: 60ch;
       color: var(--text) !important;
       line-height: 1.5;
     }

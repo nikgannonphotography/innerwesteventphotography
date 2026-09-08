@@ -193,7 +193,7 @@ const { render = true } = Astro.props;
 
     .footer_desc {
       color: var(--text);
-      font-weight: 500;
+      font-weight: var(--primary-regular);
       line-height: 1.45;
       max-width: 28ch;
     }
@@ -213,9 +213,9 @@ const { render = true } = Astro.props;
     }
 
     .footer_heading {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: var(--primary-regular);
+      letter-spacing: var(--letter-spacing-normal);
       text-transform: uppercase;
       color: var(--heading-accent);
       margin-bottom: var(--space-1);
@@ -245,7 +245,7 @@ const { render = true } = Astro.props;
     }
 
     .footer_link_all {
-      font-weight: 600;
+      font-weight: var(--primary-regular);
       color: var(--heading-accent);
     }
 

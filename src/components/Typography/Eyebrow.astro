@@ -59,6 +59,15 @@ const content = await slotContent(Astro.slots);
       justify-content: var(--_alignment, start);
       gap: var(--space-2);
 
+      & + .heading {
+        margin-top: var(--space-3);
+      }
+
+      .eyebrow_text {
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
+
       &.tag {
         background-color: var(--text);
         color: var(--background);

@@ -13,15 +13,15 @@ export default defineConfig({
   ],
   fonts: [
     {
-      name: "Inter",
-      cssVariable: "--font-inter",
+      name: "Inter Tight",
+      cssVariable: "--font-inter-tight",
       provider: fontProviders.local(),
       options: {
         variants: [
           {
             weight: 400,
             style: "normal",
-            src: ["./src/assets/fonts/inter-regular.woff2"],
+            src: ["./src/assets/fonts/inter-tight-regular.ttf"],
           },
         ],
       },

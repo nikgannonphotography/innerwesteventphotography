@@ -40,32 +40,20 @@ const remainingGalleries = GALLERIES.filter(
 
   <Section paddingTop="none" paddingBottom="large">
     <ContentWrapper>
-      <Grid small={1}>
-        <GalleryCard
-          href={`/galleries/${featuredGallery.slug}`}
-          title={featuredGallery.title}
-          meta={[featuredGallery.categoryLabel, featuredGallery.location]
-            .filter(Boolean)
-            .join(" · ")}
-          image={getGalleryCover(featuredGallery)}
-          imagePosition={getGalleryCoverPosition(featuredGallery)}
-          featured
-        />
-        <Grid small={1} large={3}>
-          {
-            remainingGalleries.map((item) => (
-              <GalleryCard
-                href={`/galleries/${item.slug}`}
-                title={item.title}
-                meta={[item.categoryLabel, item.location]
-                  .filter(Boolean)
-                  .join(" · ")}
-                image={getGalleryCover(item)}
-                imagePosition={getGalleryCoverPosition(item)}
-              />
-            ))
-          }
-        </Grid>
+      <Grid small={1} medium={2} large={3}>
+        {
+          [featuredGallery, ...remainingGalleries].map((item) => (
+            <GalleryCard
+              href={`/galleries/${item.slug}`}
+              title={item.title}
+              meta={[item.categoryLabel, item.location]
+                .filter(Boolean)
+                .join(" · ")}
+              image={getGalleryCover(item)}
+              imagePosition={getGalleryCoverPosition(item)}
+            />
+          ))
+        }
       </Grid>
     </ContentWrapper>
   </Section>

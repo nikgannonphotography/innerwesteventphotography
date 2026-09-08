@@ -37,7 +37,6 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
     paddingTop="even"
     paddingBottom="even"
     theme="dark"
-    fullHeight={true}
   >
     <Img
       slot="background"
@@ -274,6 +273,7 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
 <style is:global>
   @layer components {
     .home-hero {
+      min-height: clamp(32rem, 72svh, 48rem);
       isolation: isolate;
       justify-content: flex-end;
       overflow: clip;
@@ -286,7 +286,7 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
 
     .home-hero_scrim {
       z-index: -1;
-      background-color: rgb(31 29 30 / 58%);
+      background-color: rgb(26 26 26 / 58%);
     }
 
     .home-hero_content {
@@ -295,6 +295,9 @@ const featuredArticles = BLOG_POSTS.slice(0, 3);
 
     .home-hero_copy {
       max-width: 48rem;
+      & .text {
+        color: var(--text);
+      }
     }
 
     @media (width < 48rem) {

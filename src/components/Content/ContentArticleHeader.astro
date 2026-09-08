@@ -61,7 +61,7 @@ const {
       display: grid;
       justify-items: start;
       gap: 1rem;
-      font-size: 1.0625rem;
+      font-size: var(--text-main);
     }
     .content-article-header_wrap > * {
       margin: 0;
@@ -70,7 +70,7 @@ const {
       margin-bottom: 0.75rem;
     }
     .content-article-header_wrap .heading {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: var(--h1);
       line-height: 1.15;
       font-weight: var(--primary-medium);
       text-wrap: pretty;
@@ -82,7 +82,7 @@ const {
       row-gap: 0.375rem;
       list-style: none;
       padding: 0;
-      font-size: 0.875rem;
+      font-size: var(--text-small);
       line-height: 1.5;
     }
     .content-article-header_image {
