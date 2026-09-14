@@ -55,59 +55,48 @@ const privatePackages: readonly CoveragePackage[] = [
         data-hubspot-form={HUBSPOT_CONFIG.formId}
         data-hubspot-region={HUBSPOT_CONFIG.region}
       >
+        <div class="pricing-form_wizard-bar" id="pricing-wizard-bar">
+          <div class="pricing-form_wizard-nav">
+            <button
+              type="button"
+              class="pricing-form_back-button"
+              id="pricing-back-button"
+              aria-label="Back to previous step"
+              hidden
+            >
+              <span aria-hidden="true">&larr;</span>
+              <span>Back</span>
+            </button>
+            <span
+              class="pricing-form_wizard-step"
+              id="pricing-wizard-step"
+              aria-live="polite"
+            >
+              Step 1 of 3: Event type
+            </span>
+          </div>
+          <div
+            class="pricing-form_progress-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="33"
+          >
+            <div
+              class="pricing-form_progress-fill"
+              id="pricing-progress-fill"
+              style="width: 33.33%;"
+            />
+          </div>
+        </div>
+
         <div class="pricing-form_layout">
           <aside class="pricing-form_sidebar">
-            <div class="pricing-form_header">
-              <Heading tag="h2" variant="h2" class="pricing-form_title">
-                Event photography pricing
-              </Heading>
-              <Paragraph variant="small" class="pricing-form_desc">
-                Choose the type of photography and the time you need. You will
-                see an estimate before sending an enquiry. Weddings and larger
-                headshot teams are quoted after a short discussion.
-              </Paragraph>
-            </div>
-
-            <div class="pricing-form_wizard-bar" id="pricing-wizard-bar">
-              <div class="pricing-form_wizard-nav">
-                <button
-                  type="button"
-                  class="pricing-form_back-button"
-                  id="pricing-back-button"
-                  aria-label="Back to previous step"
-                  hidden
-                >
-                  <span aria-hidden="true">&larr;</span>
-                  <span>Back</span>
-                </button>
-                <span
-                  class="pricing-form_wizard-step"
-                  id="pricing-wizard-step"
-                  aria-live="polite"
-                >
-                  Step 1 of 3: Event type
-                </span>
-              </div>
-              <div
-                class="pricing-form_progress-track"
-                role="progressbar"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-valuenow="33"
-              >
-                <div
-                  class="pricing-form_progress-fill"
-                  id="pricing-progress-fill"
-                  style="width: 33.33%;"
-                />
-              </div>
-            </div>
-
             <div class="pricing-form_step-context" id="pricing-step-1-context">
               <div class="pricing-form_step-heading">
-                <span class="pricing-form_number">1</span>
+                <span class="pricing-form_number" aria-hidden="true">1</span>
                 <div class="pricing-form_step-copy">
-                  <Heading tag="h2" variant="h4" id="pricing-type-heading">
+                  <Heading tag="h2" variant="h4" id="pricing-type-heading" tabindex="-1">
                     What do you need photographed?
                   </Heading>
                   <Paragraph variant="small">
@@ -123,9 +112,9 @@ const privatePackages: readonly CoveragePackage[] = [
               hidden
             >
               <div class="pricing-form_step-heading">
-                <span class="pricing-form_number">2</span>
+                <span class="pricing-form_number" aria-hidden="true">2</span>
                 <div class="pricing-form_step-copy">
-                  <Heading tag="h2" variant="h4" id="pricing-options-heading">
+                  <Heading tag="h2" variant="h4" id="pricing-options-heading" tabindex="-1">
                     Choose your coverage
                   </Heading>
                   <Paragraph variant="small" id="pricing-options-intro">
@@ -141,11 +130,11 @@ const privatePackages: readonly CoveragePackage[] = [
               hidden
             >
               <div class="pricing-form_step-heading">
-                <span class="pricing-form_number" id="pricing-step-3-number">
+                <span class="pricing-form_number" id="pricing-step-3-number" aria-hidden="true">
                   3
                 </span>
                 <div class="pricing-form_step-copy">
-                  <Heading tag="h2" variant="h4" id="pricing-details-heading">
+                  <Heading tag="h2" variant="h4" id="pricing-details-heading" tabindex="-1">
                     Tell me about the job
                   </Heading>
                   <Paragraph variant="small">
@@ -696,6 +685,21 @@ const privatePackages: readonly CoveragePackage[] = [
       }
     }
 
+    function focusStepHeading(headingId: string) {
+      if (currentStep === 1 && !builderStarted) return;
+      const heading = document.getElementById(headingId);
+      const wizardBar = document.getElementById("pricing-wizard-bar");
+      if (heading) {
+        heading.focus({ preventScroll: true });
+      }
+      if (wizardBar) {
+        const rect = wizardBar.getBoundingClientRect();
+        if (rect.top < 70 || rect.top > 250) {
+          wizardBar.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+
     function goToStep(step: number) {
       currentStep = step;
 
@@ -706,6 +710,7 @@ const privatePackages: readonly CoveragePackage[] = [
         if (step1Context) step1Context.hidden = false;
         if (step2Context) step2Context.hidden = true;
         if (step3Context) step3Context.hidden = true;
+        focusStepHeading("pricing-type-heading");
       } else if (step === 2) {
         if (step1) step1.hidden = true;
         if (step2) step2.hidden = false;
@@ -713,6 +718,7 @@ const privatePackages: readonly CoveragePackage[] = [
         if (step1Context) step1Context.hidden = true;
         if (step2Context) step2Context.hidden = false;
         if (step3Context) step3Context.hidden = true;
+        focusStepHeading("pricing-options-heading");
       } else if (step === 3) {
         if (step1) step1.hidden = true;
         if (step2) step2.hidden = true;
@@ -721,6 +727,7 @@ const privatePackages: readonly CoveragePackage[] = [
         if (step2Context) step2Context.hidden = true;
         if (step3Context) step3Context.hidden = false;
         calculate();
+        focusStepHeading("pricing-details-heading");
       }
 
       updateProgress();
@@ -1038,44 +1045,12 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form [hidden] {
       display: none !important;
     }
-    .pricing-form_layout {
-      display: grid;
-      grid-template-columns: minmax(19rem, 23.5rem) minmax(0, 1fr);
-      gap: var(--space-8);
-      align-items: start;
-    }
-    .pricing-form_sidebar {
-      position: sticky;
-      top: var(--space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-5);
-    }
-    .pricing-form_header {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .pricing-form_title {
-      margin: 0;
-      margin-bottom: var(--space-4) !important;
-      line-height: 1.15;
-      overflow-wrap: normal;
-      word-break: normal;
-      hyphens: none;
-    }
-    .pricing-form_desc {
-      margin: 0;
-      color: var(--text-2);
-      font-size: var(--text-small);
-      line-height: 1.5;
-    }
     .pricing-form_wizard-bar {
       display: flex;
       flex-direction: column;
-      gap: var(--space-3);
-      padding-block: var(--space-3);
-      border-block: var(--border-width) solid var(--border);
+      gap: 0.75rem;
+      padding-bottom: var(--space-3);
+      border-bottom: var(--border-width) solid var(--border);
     }
     .pricing-form_wizard-nav {
       display: flex;
@@ -1124,6 +1099,20 @@ const privatePackages: readonly CoveragePackage[] = [
       border-radius: var(--radius-round);
       transition: width 0.25s ease-out;
     }
+    .pricing-form_layout {
+      display: grid;
+      grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+      gap: var(--space-7);
+      align-items: start;
+      margin-top: 1.75rem;
+    }
+    .pricing-form_sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + 1.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
     .pricing-form_step-context {
       display: flex;
       flex-direction: column;
@@ -1133,7 +1122,7 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_step-heading {
       display: grid;
       grid-template-columns: 2.25rem minmax(0, 1fr);
-      gap: var(--space-3);
+      gap: 0.75rem;
       align-items: start;
       margin-bottom: 0;
     }
@@ -1144,8 +1133,9 @@ const privatePackages: readonly CoveragePackage[] = [
     }
     .pricing-form_step-copy .heading {
       margin: 0;
-      margin-bottom: var(--space-2) !important;
-      line-height: 1.25;
+      margin-bottom: 0.5rem !important;
+      line-height: 1.2;
+      outline: none;
     }
     .pricing-form_step-copy .text {
       margin: 0;
@@ -1167,7 +1157,6 @@ const privatePackages: readonly CoveragePackage[] = [
     }
     .pricing-form_main {
       min-width: 0;
-      min-height: 24rem;
     }
     .pricing-form_stage {
       animation: stageFadeIn 0.18s ease;
@@ -1183,7 +1172,7 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_choices {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-3);
+      gap: 0.75rem;
     }
     .pricing-form_choices-types .pricing-form_choice:last-child {
       grid-column: 1 / -1;
@@ -1200,16 +1189,15 @@ const privatePackages: readonly CoveragePackage[] = [
     }
     .pricing-form_choice > span {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 4.25rem;
-      padding: var(--space-3) var(--space-4);
+      align-items: center;
+      min-height: 3.5rem;
+      padding: 0.75rem 1rem;
       border: var(--border-width) solid var(--border);
       border-radius: var(--radius-main);
       background: var(--background-2);
       font-size: var(--text-small);
       font-weight: var(--primary-regular);
-      line-height: 1.35;
+      line-height: 1.3;
       transition:
         background var(--hover-duration) var(--hover-ease),
         color var(--hover-duration) var(--hover-ease),
@@ -1230,22 +1218,37 @@ const privatePackages: readonly CoveragePackage[] = [
       outline: 0.125rem solid var(--brand-500);
       outline-offset: 0.1875rem;
     }
+    .pricing-form_choices-types .pricing-form_choice > span {
+      flex-direction: row;
+      justify-content: flex-start;
+      min-height: 3.5rem;
+    }
     .pricing-form_price-choice > span {
-      min-height: 4.5rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 3.5rem;
+      padding: 0.75rem 1rem;
     }
     .pricing-form_price-choice strong {
-      font-size: 1rem;
+      font-size: 0.9375rem;
       line-height: 1.25;
+      font-weight: var(--primary-regular);
     }
     .pricing-form_price-choice small {
-      margin-top: 0.2rem;
-      font-size: var(--text-small);
-      opacity: 0.85;
+      font-size: 0.9375rem;
+      color: var(--text-2);
+      font-weight: var(--primary-medium);
+      white-space: nowrap;
+    }
+    .pricing-form_choice input:checked + span small {
+      color: var(--background);
+      opacity: 0.9;
     }
     .pricing-form_field {
       display: flex;
       flex-direction: column;
-      gap: var(--space-2);
+      gap: 0.5rem;
     }
     .pricing-form_help {
       max-width: 100%;
@@ -1257,13 +1260,13 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_extra-hours,
     .pricing-form_panel {
       max-width: 100%;
-      margin-top: var(--space-4);
+      margin-top: 1rem;
     }
     .pricing-form_extra-hours input {
       max-width: 8rem;
     }
     .pricing-form_stage-actions {
-      margin-top: var(--space-4);
+      margin-top: 1.25rem;
       display: flex;
       justify-content: flex-end;
     }
@@ -1298,17 +1301,20 @@ const privatePackages: readonly CoveragePackage[] = [
     .pricing-form_fields {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-3) var(--space-4);
+      gap: 1rem;
     }
     .pricing-form_field-wide {
       grid-column: 1 / -1;
+    }
+    .pricing-form_field-wide textarea {
+      min-height: 6rem;
     }
     .pricing-form_submit-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: var(--space-3);
-      margin-top: var(--space-4);
+      margin-top: 1.25rem;
     }
     .pricing-form_submit-row .button_wrap {
       --button-background: var(--brand-500);
@@ -1363,18 +1369,17 @@ const privatePackages: readonly CoveragePackage[] = [
     @media (max-width: 52rem) {
       .pricing-form_layout {
         grid-template-columns: 1fr;
-        gap: var(--space-5);
+        gap: 1.25rem;
+        margin-top: 1.25rem;
       }
       .pricing-form_sidebar {
         position: static;
-        gap: var(--space-4);
-      }
-      .pricing-form_main {
-        min-height: auto;
+        gap: var(--space-3);
       }
       .pricing-form_choices,
       .pricing-form_fields {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
       }
       .pricing-form_choices-types .pricing-form_choice:last-child,
       .pricing-form_field-wide {
@@ -1382,7 +1387,7 @@ const privatePackages: readonly CoveragePackage[] = [
       }
       .pricing-form_step-heading {
         grid-template-columns: 2.25rem minmax(0, 1fr);
-        gap: var(--space-2);
+        gap: 0.75rem;
       }
       .pricing-form_number {
         width: 2.25rem;

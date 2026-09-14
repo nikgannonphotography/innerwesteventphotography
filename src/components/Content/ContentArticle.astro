@@ -136,6 +136,60 @@ const content = await slotContent(Astro.slots);
     .article-table tr:last-child td {
       border-bottom: none;
     }
+    .article-table .table-cell-label {
+      display: none;
+    }
+    @media (max-width: 47.99rem) {
+      .article-table-wrap {
+        border: none;
+        overflow-x: visible;
+      }
+      .article-table {
+        min-width: 0;
+        display: block;
+      }
+      .article-table thead {
+        display: none;
+      }
+      .article-table tbody,
+      .article-table tr,
+      .article-table td {
+        display: block;
+        width: 100%;
+      }
+      .article-table tr {
+        margin-bottom: var(--space-4);
+        padding: var(--space-4);
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--radius-main);
+        background: var(--background-2);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+      .article-table tr:last-child {
+        margin-bottom: 0;
+      }
+      .article-table td {
+        padding: 0;
+        border-bottom: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .article-table .table-cell-label {
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--text-2);
+      }
+      .article-table .table-cell-val {
+        font-size: var(--text-small);
+        line-height: 1.45;
+        color: var(--text);
+      }
+    }
     .article-conclusion-block {
       padding-top: 2rem;
       border-top: var(--border-width) solid var(--border);

@@ -128,7 +128,9 @@ const articleSchema = {
   <Section paddingTop="none" paddingBottom="medium">
     <ContentArticle>
       <div class="article-intro-block">
-        <Paragraph variant="large">{post.content.intro}</Paragraph>
+        <Paragraph variant="large">
+          <Fragment set:html={formatMarkdownText(post.content.intro)} />
+        </Paragraph>
       </div>
 
       {
@@ -163,7 +165,9 @@ const articleSchema = {
 
             {sec.callout && (
               <div class="article-callout">
-                <Paragraph>{sec.callout}</Paragraph>
+                <Paragraph>
+                  <Fragment set:html={formatMarkdownText(sec.callout)} />
+                </Paragraph>
               </div>
             )}
 
@@ -185,8 +189,13 @@ const articleSchema = {
                   <tbody>
                     {sec.tableData.rows.map((row) => (
                       <tr>
-                        {row.map((cell) => (
-                          <td>{cell}</td>
+                        {row.map((cell, idx) => (
+                          <td data-label={sec.tableData?.headers[idx]}>
+                            <span class="table-cell-label" aria-hidden="true">
+                              {sec.tableData?.headers[idx]}
+                            </span>
+                            <span class="table-cell-val">{cell}</span>
+                          </td>
                         ))}
                       </tr>
                     ))}
