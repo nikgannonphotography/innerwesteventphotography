@@ -23,6 +23,9 @@ const mainContent = (html) => html.match(/<main.*?<\/main>/s)?.[0] ?? "";
 
 for (const route of [
   "/",
+  "/pricing/",
+  "/services/brand-campaigns-activations/",
+  "/services/not-for-profit-community/",
   "/docs/",
   "/docs/event-briefing-template/",
   "/docs/pricing-and-rates-guide/",
@@ -46,7 +49,7 @@ assert.match(home, /fetchpriority="high"/i);
 assert.match(home, /"hasOfferCatalog"/);
 const footer = home.match(/<footer.*?<\/footer>/s)?.[0] ?? "";
 for (const href of [
-  "/galleries", "/services", "/docs", "/locations", "/about", "/contact",
+  "/galleries", "/services", "/docs", "/locations", "/about", "/pricing#pricing-builder",
   "/docs/licensing-and-commercial-rights", "/docs/pricing-and-rates-guide",
 ]) {
   assert.ok(footer.includes(`href="${href}"`), `Missing footer link ${href}`);
@@ -86,5 +89,18 @@ assert.match(
   mainContent(innerWest),
   /href="\/docs\/sydney-venue-lighting-guide"/,
 );
+
+const pricingPage = readPage("/pricing/");
+assert.match(pricingPage, /id="pricing-builder"/);
+assert.match(pricingPage, /Event Photography Pricing Sydney/);
+assert.match(pricingPage, /"@type":"BreadcrumbList"/);
+
+const activationService = readPage("/services/brand-campaigns-activations/");
+assert.match(activationService, /Brand Activation Photographer Sydney/);
+assert.match(mainContent(activationService), /href="\/pricing#pricing-builder"/);
+
+const nfpService = readPage("/services/not-for-profit-community/");
+assert.match(nfpService, /Charity Event Photographer Sydney/);
+assert.match(mainContent(nfpService), /href="\/pricing#pricing-builder"/);
 
 console.log("Static route baseline passed");

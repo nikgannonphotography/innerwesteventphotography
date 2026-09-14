@@ -87,7 +87,7 @@ const articleSchema = {
   description: post.metaDescription,
   image: `${SITE_URL}${post.heroImage}`,
   datePublished: post.isoDate,
-  dateModified: post.isoDate,
+  dateModified: post.modifiedDate ?? post.isoDate,
   author: {
     "@type": "Person",
     name: post.author,
@@ -247,7 +247,7 @@ const articleSchema = {
         >.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Get a quote</Button>
+        <Button element="link" href="/pricing#pricing-builder">See pricing</Button>
         <Button
           element="link"
           href="/docs/event-briefing-template"

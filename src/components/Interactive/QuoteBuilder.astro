@@ -46,7 +46,7 @@ const privatePackages: readonly CoveragePackage[] = [
 
 {
   render && (
-    <div class:list={["pricing-form", className]} {...rest}>
+    <div id="pricing-builder" class:list={["pricing-form", className]} {...rest}>
       <form
         id="pricing-form"
         action={STUDIO_CONTACT.formEndpoint}
@@ -58,7 +58,7 @@ const privatePackages: readonly CoveragePackage[] = [
         <div class="pricing-form_layout">
           <aside class="pricing-form_sidebar">
             <div class="pricing-form_header">
-              <Heading tag="h1" variant="h2" class="pricing-form_title">
+              <Heading tag="h2" variant="h2" class="pricing-form_title">
                 Event photography pricing
               </Heading>
               <Paragraph variant="small" class="pricing-form_desc">
@@ -533,6 +533,34 @@ const privatePackages: readonly CoveragePackage[] = [
 
     let currentStep = 1;
     let currentType = "";
+    let builderStarted = false;
+    let estimateViewed = false;
+
+    function trackBuilderStart() {
+      if (builderStarted) return;
+      builderStarted = true;
+      try {
+        if (typeof (window as any).gtag === "function") {
+          (window as any).gtag("event", "quote_builder_start", {
+            form_name: "pricing_builder",
+            page_location: window.location.href,
+          });
+        }
+      } catch {}
+    }
+
+    function trackEstimateViewed() {
+      if (estimateViewed) return;
+      estimateViewed = true;
+      try {
+        if (typeof (window as any).gtag === "function") {
+          (window as any).gtag("event", "quote_estimate_viewed", {
+            form_name: "pricing_builder",
+            page_location: window.location.href,
+          });
+        }
+      } catch {}
+    }
 
     const selectedType = () =>
       find<HTMLInputElement>('input[name="photographyType"]:checked')?.value ||
@@ -563,6 +591,7 @@ const privatePackages: readonly CoveragePackage[] = [
       if (hiddenTotal) hiddenTotal.value = fee;
       if (hiddenSummary)
         hiddenSummary.value = `${label}\n${description}\nEstimated photography fee: ${fee}`;
+      trackEstimateViewed();
     }
 
     function hideSummary() {
@@ -749,6 +778,7 @@ const privatePackages: readonly CoveragePackage[] = [
     }
 
     form.addEventListener("change", (event) => {
+      trackBuilderStart();
       const target = event.target as HTMLInputElement;
       if (target.name === "photographyType") {
         const type = target.value;
@@ -796,6 +826,7 @@ const privatePackages: readonly CoveragePackage[] = [
     });
 
     form.addEventListener("input", (event) => {
+      trackBuilderStart();
       const target = event.target as HTMLInputElement;
       if (target.id === "extra-hours" || target.id === "team-size") calculate();
     });
@@ -962,6 +993,15 @@ const privatePackages: readonly CoveragePackage[] = [
           sent = response.ok;
         }
         if (!sent) throw new Error("Submission failed");
+
+        try {
+          if (typeof (window as any).gtag === "function") {
+            (window as any).gtag("event", "generate_lead", {
+              form_name: "pricing_builder",
+              page_location: window.location.href,
+            });
+          }
+        } catch {}
 
         if (fieldsContainer) fieldsContainer.hidden = true;
         if (submitRow) submitRow.hidden = true;

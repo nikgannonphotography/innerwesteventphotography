@@ -5,6 +5,8 @@ export interface ServicePackage {
   subtitle: string;
   tagline: string;
   summary: string;
+  seoTitle?: string;
+  metaDescription?: string;
   commissioners: string[];
   subjects: string[];
   businessUses: string[];
@@ -92,55 +94,59 @@ export const SERVICES: ServicePackage[] = [
   {
     slug: "not-for-profit-community",
     number: "02",
-    title: "Not-For-Profit & Community Forums",
-    subtitle: "Charity Galas, Community Festivals & Forums",
+    title: "Not-For-Profit, Charity & Community Events",
+    subtitle: "Charity Galas, Fundraisers, Community Festivals & Forums",
+    seoTitle: "Charity Event Photographer Sydney | Not-For-Profit & Community",
+    metaDescription:
+      "Sydney charity event photographer for fundraising galas, foundation dinners, community festivals and advocacy forums. Professional coverage with a 10% Community Courtesy Benefit.",
     tagline:
-      "Photography for charity events, fundraisers, community festivals, cultural events and forums.",
+      "Photography for charity galas, fundraising dinners, community festivals, cultural events and advocacy forums across Sydney.",
     summary:
-      "We photograph speakers, volunteers, supporters, patrons and guests with a dedicated 10% Community Courtesy Benefit.",
+      "Photographic coverage for speakers, donors, patrons, volunteers and guests with clear consent protocols, dignity, and a dedicated 10% Community Courtesy Benefit.",
     commissioners: [
       "Not-for-profit communications & program leads",
-      "Advocacy & charitable foundations",
+      "Charitable foundations & fundraising directors",
       "Cultural organisations & community festival committees",
-      "Philanthropic trusts & civic institutions",
+      "Philanthropic trusts & advocacy institutions",
     ],
     subjects: [
-      "Speeches & keynote speakers",
+      "Fundraising galas, donor recognition & patron conversations",
+      "Keynote addresses, stage presentations & panel discussions",
       "Community assemblies & cultural performances",
-      "Volunteer teams & frontline participants",
-      "Donor recognition & patron conversations",
+      "Volunteer teams, frontline participants & award recipients",
     ],
     businessUses: [
-      "Impact reports, grant applications & donor updates",
-      "Advocacy campaigns, community newsletters & web archives",
-      "Event reports & community archives",
+      "Impact reports, grant acquittal applications & donor updates",
+      "Advocacy campaigns, community newsletters & editorial distribution",
+      "Website hero imagery, donor gratitude updates & social archives",
+      "Event recap reports for boards and funding partners",
     ],
     productionStages: [
       {
         stage: "1. Plan the Coverage",
         detail:
-          "Discuss key people, permissions and any sensitive situations.",
+          "Discuss key people, run sheet timings, permissions, and any sensitive situations.",
       },
       {
         stage: "2. Photograph the Event",
-        detail: "Photograph speakers, guests, volunteers and activities.",
+        detail: "Photograph speakers, donors, guests, volunteers, and key moments.",
       },
       {
         stage: "3. Select the Photos",
         detail:
-          "Choose photos that cover the people and activities at your event.",
+          "Choose photos that cover the people, mission, and activities at your event.",
       },
       {
         stage: "4. Edit and Deliver",
         detail:
-          "Deliver edited photos for the uses agreed in your quote.",
+          "Deliver edited photos for the uses and deadlines agreed in your quote.",
       },
     ],
     deliverables: [
-      "Edited event photos",
-      "Photo usage agreed in your quote",
-      "High-resolution photos for print",
-      "Web-sized photos for online updates",
+      "Edited event photos in high-resolution and web-optimised formats",
+      "Photo usage and commercial reproduction agreed in your quote",
+      "Private online gallery for easy viewing and team downloads",
+      "Dedicated 10% Community Courtesy Benefit applied to standard rates",
     ],
     turnaroundStandard: "Delivery timing is agreed before booking.",
     turnaroundFast: "Tell us when you need the photos so we can confirm what is possible.",
@@ -150,8 +156,9 @@ export const SERVICES: ServicePackage[] = [
       "irish-festival-sydney-2026",
     ],
     relatedDocSlugs: [
-      "licensing-and-commercial-rights",
+      "not-for-profit-charity-event-photography-guide",
       "event-briefing-template",
+      "licensing-and-commercial-rights",
     ],
   },
   {
@@ -339,11 +346,81 @@ export const SERVICES: ServicePackage[] = [
       "intimate-sydney-wedding-engagement-photography-guide",
     ],
   },
+  {
+    slug: "brand-campaigns-activations",
+    number: "06",
+    title: "Brand Activation Photographer Sydney",
+    subtitle: "Launches, Pop-Ups, Experiential Campaigns & Sponsor Experiences",
+    seoTitle: "Brand Activation Photographer Sydney | IWEP",
+    metaDescription:
+      "Sydney brand activation photographer for launches, pop-ups, sponsor experiences and experiential events. Campaign-ready images with fast delivery available.",
+    tagline:
+      "Sydney brand activation photographer for launches, pop-ups, sponsor experiences and experiential events. Campaign-ready images with fast delivery available.",
+    summary:
+      "Specialist photographic coverage for brand activations, commercial pop-ups, retail experiences, and sponsor activations across Sydney. We capture genuine audience engagement, custom architectural builds, product details, and key talent with publication-grade clarity.",
+    commissioners: [
+      "Brand marketing managers & campaign directors",
+      "Experiential marketing agencies & event producers",
+      "PR, communications & influencer management teams",
+      "Retail asset managers & commercial sponsors",
+    ],
+    subjects: [
+      "Customer interaction & audience engagement with the experience",
+      "Branded environments, custom fabrication & signage detail",
+      "Product displays, sampling moments & live demonstrations",
+      "Brand ambassadors, VIP guests, talent & event staff",
+      "Atmospheric crowd framing & overall activation footprint",
+    ],
+    businessUses: [
+      "Same-day PR distribution & media outreach selects",
+      "Social media campaigns, reels covers & live story feeds",
+      "Agency pitch decks, post-campaign recaps & case studies",
+      "Sponsor reporting & stakeholder ROI documentation",
+    ],
+    productionStages: [
+      {
+        stage: "1. Scope & Shot Requirements",
+        detail:
+          "We review your campaign objectives, hero branding elements, key talent, and required deliverables before on-site production.",
+      },
+      {
+        stage: "2. Capture the Activation",
+        detail:
+          "Unobtrusive coverage capturing wide build views, tactile product details, and authentic visitor interaction throughout the live event.",
+      },
+      {
+        stage: "3. Priority Curation & Grade",
+        detail:
+          "Images are curated and color graded with color precision to match your brand guidelines and lookbook standards.",
+      },
+      {
+        stage: "4. Rapid Asset Delivery",
+        detail:
+          "Curated hero selects delivered for press or embargo deadlines when pre-scheduled, followed by the complete commercial collection via private online gallery.",
+      },
+    ],
+    deliverables: [
+      "High-resolution print files and web-optimised formats",
+      "Full commercial & PR reproduction licence in perpetuity",
+      "Private digital gallery for agency and brand stakeholders",
+      "Priority turnaround selects when pre-scheduled",
+    ],
+    turnaroundStandard: "Standard curated delivery within 3–5 business days.",
+    turnaroundFast:
+      "Next-day priority highlights or live same-day PR delivery available when scoped prior to the event.",
+    relatedGallerySlugs: [
+      "australian-fashion-week-2026",
+      "echo-change-future-action-summit-2026",
+      "tedx-macquarie-uni",
+    ],
+    relatedDocSlugs: [
+      "brand-activation-photography-production-guide",
+      "product-launch-photography-pr-delivery-guide",
+      "pricing-and-rates-guide",
+    ],
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePackage | undefined {
-  if (slug === "brand-campaigns-activations") {
-    return SERVICES.find((s) => s.slug === "corporate-events-conferences");
-  }
   return SERVICES.find((s) => s.slug === slug);
 }

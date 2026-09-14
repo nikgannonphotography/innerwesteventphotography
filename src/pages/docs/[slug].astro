@@ -57,7 +57,7 @@ const articleSchema = {
   headline: doc.title,
   description: doc.metaDescription,
   datePublished: doc.publishedDate,
-  dateModified: doc.publishedDate,
+  dateModified: doc.modifiedDate ?? doc.publishedDate,
   mainEntityOfPage: `${SITE_URL}/docs/${doc.slug}`,
   author: {
     "@type": "Person",
@@ -147,6 +147,76 @@ const guideSchema = {
                 emphasis="secondary"
               >
                 Download PDF &darr;
+              </Button>
+            </ButtonWrapper>
+          </div>
+        )
+      }
+
+      {
+        doc.slug === "pricing-and-rates-guide" && (
+          <div class="template-download-box">
+            <Heading tag="h2" variant="h3">
+              Calculate an Instant Estimate
+            </Heading>
+            <Paragraph variant="small">
+              Use our live interactive Pricing Builder to select your coverage hours and event type for an instant indicative fee before requesting a formal quote.
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button
+                element="link"
+                href="/pricing#pricing-builder"
+              >
+                Build your estimate &rarr;
+              </Button>
+            </ButtonWrapper>
+          </div>
+        )
+      }
+
+      {
+        doc.slug === "not-for-profit-charity-event-photography-guide" && (
+          <div class="template-download-box">
+            <Heading tag="h2" variant="h3">
+              Community Courtesy Benefit
+            </Heading>
+            <Paragraph variant="small">
+              Eligible charities, advocacy foundations, and community organisations receive a dedicated 10% Community Courtesy Benefit across all standard event photography rates.
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button
+                element="link"
+                href="/pricing#pricing-builder"
+              >
+                Estimate this coverage &rarr;
+              </Button>
+            </ButtonWrapper>
+          </div>
+        )
+      }
+
+      {
+        doc.slug === "brand-activation-photography-production-guide" && (
+          <div class="template-download-box">
+            <Heading tag="h2" variant="h3">
+              Brand Activation Coverage
+            </Heading>
+            <Paragraph variant="small">
+              Explore our dedicated brand activation photography service or calculate an indicative fee for your pop-up or experiential campaign.
+            </Paragraph>
+            <ButtonWrapper marginTop="3">
+              <Button
+                element="link"
+                href="/services/brand-campaigns-activations"
+              >
+                View Activation Service &rarr;
+              </Button>
+              <Button
+                element="link"
+                href="/pricing#pricing-builder"
+                emphasis="secondary"
+              >
+                Estimate this coverage &rarr;
               </Button>
             </ButtonWrapper>
           </div>
@@ -253,7 +323,7 @@ const guideSchema = {
         >.
       </Paragraph>
       <ButtonWrapper marginTop="4">
-        <Button element="link" href="/contact">Get a quote</Button>
+        <Button element="link" href="/pricing#pricing-builder">See pricing</Button>
         <Button
           element="link"
           href="/downloads/IWEP_Event_Photography_Project_Brief.docx"

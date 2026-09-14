@@ -767,14 +767,14 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
   },
   {
     slug: "not-for-profit",
-    name: "Not-For-Profit & Charity Galas",
+    name: "Charity Galas & Not-For-Profit Events",
     shortName: "Not-For-Profit & Community",
-    tagline: "Photography for charities, not-for-profits and community events.",
+    tagline: "Proven charity and not-for-profit event photography across Sydney.",
     description:
-      "Authentic documentation for flagship charity fundraisers, community assemblies, advocacy summits, and cultural festivals across Sydney and nationwide.",
-    seoTitle: "Not-For-Profit & Charity Gala Photography Sydney | Case Studies",
+      "Documentary photography for charity fundraisers, philanthropic galas, advocacy summits, and community forums. Proven track record with Sony Foundation Wharf4Ward, Order of Australia and The School of St Jude, batyr, World Vision, OzHarvest, and Kokoda Track Foundation.",
+    seoTitle: "Charity Event Photographer Sydney | Case Studies",
     metaDescription:
-      "Documentary photography for Sydney charity galas, philanthropic foundations, and community forums. Proven track record with Sony Foundation, batyr, and Order of Australia.",
+      "Explore Sydney charity event and not-for-profit photography case studies. Proven documentation for major fundraising galas, donor summits, and community initiatives.",
     matchedServiceSlug: "not-for-profit-community",
     filterCategories: ["not-for-profit"],
   },
@@ -794,16 +794,16 @@ export const GALLERY_CATEGORIES: GalleryCategoryMeta[] = [
   },
   {
     slug: "fashion-campaigns",
-    name: "Fashion Campaigns & Brand Activations",
-    shortName: "Fashion & Activations",
+    name: "Brand Activations & Fashion Campaigns",
+    shortName: "Brand Activations & Fashion",
     tagline:
-      "Clean, publication-ready visual assets for fashion runways, lookbooks, and commercial brand launches.",
+      "Clean, publication-ready visual assets for brand activations, commercial pop-ups, and fashion runways.",
     description:
-      "High-energy runway documentation, studio editorial productions, and commercial pop-ups designed for marketing lookbooks, PR distribution, and social advertising.",
-    seoTitle: "Sydney Fashion & Brand Activation Photography | Case Studies",
+      "High-impact documentation for brand activations, experiential pop-ups, and Australian Fashion Week runway productions designed for PR distribution, social feeds, and agency case studies.",
+    seoTitle: "Brand Activation Photography Sydney | Case Studies",
     metaDescription:
-      "Visual documentation for Australian Fashion Week, commercial brand pop-ups, and studio fashion campaigns in Sydney.",
-    matchedServiceSlug: "corporate-events-conferences",
+      "Visual documentation for Sydney brand activations, commercial pop-ups, sponsor experiences, and fashion events including Australian Fashion Week.",
+    matchedServiceSlug: "brand-campaigns-activations",
     filterCategories: ["fashion-editorial"],
   },
   {

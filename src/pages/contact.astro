@@ -1,17 +1,3 @@
 ---
-import Layout from "@/layouts/BaseLayout.astro";
-import Section from "@/components/Wrapper/Section.astro";
-import ContentWrapper from "@/components/Wrapper/ContentWrapper.astro";
-import QuoteBuilder from "@/components/Interactive/QuoteBuilder.astro";
+return Astro.redirect("/pricing", 301);
 ---
-
-<Layout
-  title="Event Photography Pricing and Contact Sydney | Inner West Event Photography"
-  description="Choose an event photography coverage time, see the estimated fee, and send the details for a confirmed quote. Sydney event photography from $300."
->
-  <Section paddingTop="small" paddingBottom="large">
-    <ContentWrapper>
-      <QuoteBuilder />
-    </ContentWrapper>
-  </Section>
-</Layout>

@@ -1,5 +1,6 @@
 ---
 import NavLink from "@/components/Global/NavLink.astro";
+import Button from "@/components/Button.astro";
 import { SITE_NAME } from "@/consts.ts";
 
 interface Props {
@@ -46,8 +47,10 @@ const { render = true, overlap = false } = Astro.props;
               <NavLink href="/services">Services</NavLink>
               <NavLink href="/blog">Guides & Articles</NavLink>
               <NavLink href="/about">About</NavLink>
-              <NavLink href="/contact">Get a Quote</NavLink>
             </ul>
+            <div class="nav_action">
+              <Button element="link" href="/pricing#pricing-builder">See pricing</Button>
+            </div>
           </div>
         </nav>
       </div>
@@ -272,6 +275,14 @@ const { render = true, overlap = false } = Astro.props;
       }
     }
 
+    .nav_action {
+      padding: 0 var(--site-margin) var(--space-4);
+      & .button_wrap {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     @media (width >= 48rem) {
       .nav_toggle {
         display: none;
@@ -288,6 +299,17 @@ const { render = true, overlap = false } = Astro.props;
       .nav_menu_inner {
         overflow: visible;
         opacity: 1;
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+      }
+
+      .nav_action {
+        padding: 0;
+        margin-left: var(--space-2);
+        & .button_wrap {
+          width: auto;
+        }
       }
 
       .nav_links {

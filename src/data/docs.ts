@@ -12,6 +12,7 @@ export interface DocGuide {
   seoTitle: string;
   metaDescription: string;
   publishedDate: string;
+  modifiedDate?: string;
   sections: {
     heading: string;
     content: string;
@@ -109,56 +110,85 @@ export const DOCS: DocGuide[] = [
       "What affects your event photography quote and what to confirm before booking.",
     category: "pricing",
     categoryLabel: "Commercial Rates",
-    lastUpdated: "August 2026",
-    readTime: "2 min read",
+    lastUpdated: "September 2026",
+    readTime: "3 min read",
     summary:
-      "Plan coverage for a short event, a full day or several days. Confirm the hours, editing, delivery and usage included in your quote.",
+      "Plan coverage for a short event, a full day or several days. Confirm the hours, editing, delivery, licensing, and payment terms in your quote.",
     searchIntent: "cost",
-    seoTitle: "Sydney Event Photography Pricing and Rate Guide",
+    seoTitle: "Event Photography Pricing Guide Sydney",
     metaDescription:
-      "Understand how Sydney event photography is scoped across half-day, full-day and multi-day coverage, including additional photographers and delivery needs.",
+      "Understand Sydney event photography pricing, hourly rates, and scope. Learn what your confirmed quote should include for corporate, charity, and private events.",
     publishedDate: "2026-08-28",
+    modifiedDate: "2026-09-14",
     sections: [
       {
         heading: "1. How Sydney Event Photography is Priced",
         content:
-          "Your quote depends on the time, locations and photos needed. The examples below are planning points, not fixed packages or guaranteed image counts.",
+          "Your quote depends on on-site time, locations, and the photos needed. Rather than inflexible packages, coverage is tailored to your run sheet. To generate an instant indicative fee before requesting a formal quote, use our live interactive Pricing Builder on the pricing page.",
         subsections: [
           {
-            title: "Part of the Day",
-            body: "Share the start and finish times, venue and important moments. Confirm the coverage hours, editing and delivery in your quote.",
+            title: "Part-Day Coverage",
+            body: "Suitable for breakfast panels, launch announcements, cocktail receptions, and keynotes. Pricing is based on continuous hours on site, including professional curation and colour grading.",
           },
           {
-            title: "A Full Day",
-            body: "Send the run sheet so we can plan the sessions and activities you need covered. Mention any room changes, breaks or photos needed before the full gallery.",
+            title: "Full-Day Summits and Conferences",
+            body: "Designed for full-day programs with multiple keynote speakers, panel discussions, sponsor exhibition areas, and networking sessions.",
           },
           {
-            title: "Multi-Day Conference Coverage",
-            body: "List the schedule and venues for each day. We will discuss coverage and delivery needs before quoting for the project.",
+            title: "Multi-Day Programs",
+            body: "For multi-day conventions, festivals, or consecutive event programs, coverage is scoped across each day's distinct schedule and venue logistics.",
           },
         ],
       },
       {
-        heading: "2. Overlapping Sessions and Delivery Deadlines",
+        heading: "2. What Your Quote Should State",
         content:
-          "One photographer cannot be in two places at once. Flag overlapping sessions so we can agree priorities and discuss whether additional coverage is needed.",
+          "A transparent commercial photography quote should leave no ambiguity about what is delivered, when it arrives, and how the photos can be used. Ensure your written agreement explicitly defines these key areas.",
+        subsections: [
+          {
+            title: "Coverage Hours and Overtime",
+            body: "Exact arrival time, scheduled finish time, and continuous on-site hours. Overtime rates should be stated clearly upfront so unexpected run sheet delays can be accommodated smoothly.",
+          },
+          {
+            title: "Editing and Turnaround Deadlines",
+            body: "Individual curation, colour balancing, and delivery timing. Standard delivery is typically 3 to 5 business days, with any priority next-day or same-day PR selects agreed before the event.",
+          },
+          {
+            title: "Commercial Licensing and Rights",
+            body: "Full commercial, PR, editorial, web, and internal communications rights granted in perpetuity, without ongoing renewal or syndication fees.",
+          },
+          {
+            title: "Multiple Rooms and Additional Photographers",
+            body: "Confirmation of whether single-photographer coverage is sufficient, or if concurrent breakout rooms require a second accredited photographer.",
+          },
+          {
+            title: "GST, Invoicing and Terms",
+            body: "Transparent GST disclosure, clear payment terms, and deposit expectations confirmed prior to holding the date.",
+          },
+        ],
+      },
+      {
+        heading: "3. Overlapping Sessions and Priority Delivery",
+        content:
+          "One photographer cannot be in two breakout rooms simultaneously. Flag overlapping sessions early so priorities can be agreed or additional coverage quoted.",
         subsections: [
           {
             title: "Coverage in Different Rooms",
-            body: "Tell us which sessions need photos and whether any must be covered in full. Additional photographers are not included unless agreed in the quote.",
+            body: "Identify which concurrent sessions are essential to photograph and which can be documented through ambient room views between speeches.",
           },
           {
-            title: "Photos Needed Earlier",
-            body: "Share the deadline and how many photos you need. Early delivery depends on the schedule and time available for editing, and must be agreed before booking.",
+            title: "Priority PR Selects",
+            body: "If your media team needs hero images during the event or first thing the following morning, agree on the exact quantity and delivery window before the event.",
           },
         ],
       },
     ],
     keyTakeaways: [
-      "Confirm coverage hours, editing and delivery in the quote.",
-      "Check the permitted uses and duration of your photo licence in writing.",
-      "Flag overlapping sessions and discuss any additional coverage needed.",
-      "Confirm that the photographer can provide a current Certificate of Currency that meets the venue's requirements.",
+      "Generate an instant estimate via the Pricing Builder before requesting a formal quote.",
+      "Confirm on-site coverage hours, editing, and delivery deadlines in writing.",
+      "Ensure full commercial reproduction rights are granted in perpetuity without renewal fees.",
+      "Flag overlapping breakout rooms and priority PR selects before booking.",
+      "Verify the photographer holds current public liability insurance meeting venue requirements.",
     ],
     relatedService: "corporate-events-conferences",
     relatedBlogSlugs: [
@@ -560,79 +590,84 @@ export const DOCS: DocGuide[] = [
   {
     slug: "brand-activation-photography-production-guide",
     number: "DOC-08",
-    title: "Brand Activation Photography Production Guide",
+    title: "Brand Activation Photographer Sydney Production Guide",
     subtitle:
       "Plan useful campaign coverage around customer interaction, brand visibility, agency priorities and final asset use.",
     category: "briefing",
     categoryLabel: "Activation Planning",
-    lastUpdated: "August 2026",
+    lastUpdated: "September 2026",
     readTime: "7 min read",
     summary:
-      "A production guide for photographing brand activations, pop-ups and experiential events without losing the real customer experience.",
+      "A production guide for hiring a brand activation photographer in Sydney, documenting pop-ups, sponsor experiences, and experiential marketing without disrupting the customer flow.",
     searchIntent: "planning",
-    seoTitle: "Brand Activation Photography Production Guide Sydney",
+    seoTitle: "Brand Activation Photographer Sydney | Production Guide",
     metaDescription:
-      "Plan Sydney brand activation photography around campaign use, customer interaction, branded environments, agency priorities and delivery.",
+      "Plan Sydney brand activation photography around campaign use, customer interaction, branded environments, agency priorities and fast PR delivery.",
     publishedDate: "2026-08-28",
+    modifiedDate: "2026-09-14",
     sections: [
       {
         heading: "Define campaign use before the event",
         content:
-          "Start with the channels and formats the campaign team needs after the activation. A press release, case study, social sequence and internal report each require different combinations of people, environment, branding and detail.",
+          "Start with the channels and formats the brand team needs after the activation. A press release, agency case study, social sequence, and internal stakeholder report each require different combinations of people, custom environment, branding, and detail.",
         subsections: [
           {
             title: "List required formats",
-            body: "Identify where horizontal, vertical and square crops matter so important brand elements are not trapped at the edge of every frame.",
+            body: "Identify where horizontal, vertical, and square crops matter so critical brand marks and hero architecture are framed naturally for each channel.",
           },
           {
             title: "Separate hero images from documentation",
-            body: "Name the few frames expected to lead the campaign and the broader set needed to prove participation and delivery.",
+            body: "Name the key frames expected to lead the campaign and the broader documentary set needed to verify footfall, sponsor integration, and delivery.",
           },
         ],
       },
       {
         heading: "Plan customer interaction and brand visibility",
         content:
-          "The strongest activation photographs show what people did and how the brand enabled it. Build the brief around genuine participation, then identify the signs, products and environments that need to remain legible.",
+          "The strongest brand activation photography captures what people did and how the brand enabled it. Build the brief around authentic visitor engagement, then identify the products, signage, and environmental textures that must remain sharp and legible.",
         subsections: [
           {
-            title: "Photograph use, not empty display",
-            body: "Prioritise people engaging with the experience before repeating static product and signage frames.",
+            title: "Photograph engagement, not empty displays",
+            body: "Prioritise people actively interacting with the experience, sampling products, or engaging with staff before repeating static display angles.",
           },
           {
             title: "Protect key brand marks",
-            body: "Show the photographer which product faces, campaign messages and partner marks must be readable in final selections.",
+            body: "Brief the photographer on which logos, campaign taglines, and sponsor marks must be clearly readable across wide and detail selections.",
           },
         ],
       },
       {
         heading: "Coordinate agency, venue and production teams",
         content:
-          "Confirm access before opening, public interaction periods, talent timings, media arrivals and any restricted zones. Give the photographer one production contact for schedule changes and one communications contact for asset priorities.",
+          "Confirm access before opening, peak consumer periods, talent timings, VIP arrivals, and any media windows. Give the photographer one production contact for on-site schedule updates and one PR or comms contact for priority asset delivery.",
         subsections: [
           {
-            title: "Schedule clean environment frames",
-            body: "Allow a short window after build completion and before doors open for uncluttered photographs of the finished activation.",
+            title: "Collaborating with Activation Agencies and Producers",
+            body: "Experiential marketing agencies design and install the build, while the photographer provides clean, publication-ready proof. Working closely with agency producers, PR teams, and venue managers ensures the installation and crowd interaction are captured seamlessly without claiming agency fabrication duties.",
           },
           {
-            title: "Flag consent requirements",
-            body: "Record any talent releases, participant notices or client approval steps that affect what can be photographed and published.",
+            title: "Schedule clean environment frames",
+            body: "Allow a dedicated 15-minute window after build completion and before doors open for pristine, unobstructed photographs of the architectural installation.",
+          },
+          {
+            title: "Flag consent and talent releases",
+            body: "Confirm any talent contracts, influencer obligations, or crowd notice requirements that govern how the final images can be distributed.",
           },
         ],
       },
       {
         heading: "Build a usable campaign image library",
         content:
-          "Group the final brief around hero campaign frames, active participation, product detail, partner visibility, staff delivery and environmental context. This creates a varied library instead of dozens of near-identical crowd photographs.",
+          "Group the final brief around hero campaign frames, active consumer participation, product detail, partner visibility, and atmospheric wide shots. This creates a multi-purpose asset library for PR, social feeds, and agency portfolio recaps.",
       },
     ],
     keyTakeaways: [
-      "Define campaign channels and crop needs before capture.",
-      "Show real participation with clear brand context.",
-      "Schedule an empty activation window before opening.",
-      "Confirm consent and approval requirements in the brief.",
+      "Collaborate directly with experiential agencies and producers to schedule clean build frames before doors open.",
+      "Focus on authentic consumer participation and legible brand signage rather than static displays.",
+      "Scope same-day PR selects or rapid delivery prior to the event for embargo and press distribution.",
+      "Generate an instant estimate via the Pricing Builder on our pricing page.",
     ],
-    relatedService: "corporate-events-conferences",
+    relatedService: "brand-campaigns-activations",
     relatedBlogSlugs: [
       "live-event-photo-delivery-for-press-social",
       "how-to-write-an-event-photography-brief",
@@ -645,7 +680,7 @@ export const DOCS: DocGuide[] = [
     relatedGuides: [
       "product-launch-photography-pr-delivery-guide",
       "event-briefing-template",
-      "licensing-and-commercial-rights",
+      "pricing-and-rates-guide",
     ],
   },
   {
@@ -656,15 +691,16 @@ export const DOCS: DocGuide[] = [
       "Plan capture, approvals and priority delivery around press, social and stakeholder deadlines.",
     category: "delivery",
     categoryLabel: "PR Delivery",
-    lastUpdated: "August 2026",
+    lastUpdated: "September 2026",
     readTime: "6 min read",
     summary:
       "A practical workflow for product launch photography when communications teams need selected images during or soon after the event.",
     searchIntent: "delivery",
-    seoTitle: "Product Launch Photography and PR Delivery Sydney",
+    seoTitle: "Product Launch Photographer Sydney | PR Delivery Guide",
     metaDescription:
-      "Plan Sydney product launch photography around media deadlines, priority selections, approval contacts and reliable PR image delivery.",
+      "Plan Sydney product launch photography around media deadlines, priority selections, approval contacts, and reliable PR image delivery.",
     publishedDate: "2026-08-28",
+    modifiedDate: "2026-09-14",
     sections: [
       {
         heading: "Work backwards from publication deadlines",
@@ -722,8 +758,9 @@ export const DOCS: DocGuide[] = [
       "Define a small priority set and one approval contact.",
       "Record embargoes and approved product details in writing.",
       "Protect live coverage when ingest and editing overlap.",
+      "Generate an instant estimate via the Pricing Builder on our pricing page.",
     ],
-    relatedService: "corporate-events-conferences",
+    relatedService: "brand-campaigns-activations",
     relatedBlogSlugs: [
       "live-event-photo-delivery-for-press-social",
       "how-to-write-an-event-photography-brief",
@@ -734,6 +771,7 @@ export const DOCS: DocGuide[] = [
       "turnaround-and-delivery-specs",
       "brand-activation-photography-production-guide",
       "event-briefing-template",
+      "pricing-and-rates-guide",
     ],
   },
   {
@@ -826,89 +864,94 @@ export const DOCS: DocGuide[] = [
   {
     slug: "not-for-profit-charity-event-photography-guide",
     number: "DOC-11",
-    title: "Not-For-Profit and Charity Event Photography Planning Guide",
+    title: "Charity Event Photographer Sydney Planning Guide",
     subtitle:
       "Plan respectful event coverage around mission, consent, supporters, community and communications needs.",
     category: "briefing",
     categoryLabel: "Community Planning",
-    lastUpdated: "August 2026",
+    lastUpdated: "September 2026",
     readTime: "7 min read",
     summary:
-      "A briefing guide for charities and not-for-profit teams balancing event documentation, participant dignity and useful communications assets.",
+      "A briefing guide for charities and not-for-profit teams briefing a charity event photographer or charity gala photographer in Sydney.",
     searchIntent: "planning",
-    seoTitle: "Not-For-Profit Event Photography Planning Guide Sydney",
+    seoTitle: "Charity Event Photographer Sydney | Planning Guide",
     metaDescription:
-      "Plan respectful not-for-profit and charity event photography in Sydney around mission, consent, community, supporters and communications needs.",
+      "Plan respectful charity event photography in Sydney. Guidance for fundraising galas, donor summits, consent protocols, and impact communications.",
     publishedDate: "2026-08-28",
+    modifiedDate: "2026-09-14",
     sections: [
       {
         heading: "Translate the mission into a photography brief",
         content:
-          "Start with what the organisation needs people to understand after seeing the images. Name the work, people and outcomes that matter, then connect event moments to those themes without staging a false version of the community.",
+          "When briefing a charity event photographer or charity gala photographer in Sydney, start with what the organisation needs supporters and stakeholders to understand after seeing the images. Name the cause, people, and community impact that matter, then connect event moments to those themes without staging a false version of the occasion.",
         subsections: [
           {
             title: "Define the story in plain language",
-            body: "Give the photographer a short explanation of the organisation, the event purpose and the audiences who will use the final images.",
+            body: "Give the photographer a clear briefing on the foundation, the fundraising or forum purpose, and the audiences who will use the final images.",
           },
           {
             title: "Identify essential people and moments",
-            body: "List speakers, volunteers, participants, partners and program milestones that must be represented.",
+            body: "List keynote speakers, major donors, patrons, frontline volunteers, and award milestones that must be documented.",
           },
         ],
       },
       {
         heading: "Handle dignity, consent and sensitive situations",
         content:
-          "Photography should not expose a participant, service user or family to risk. Flag people who cannot be photographed, restricted spaces, cultural protocols and situations where explicit permission is required.",
+          "Photography should never expose a participant, service user, or vulnerable family to risk. Flag people who cannot be photographed, restricted spaces, cultural protocols, and situations where explicit written permission is required.",
         subsections: [
           {
             title: "Make restrictions usable on site",
-            body: "Use clear identifiers, staff guidance or controlled zones so privacy requirements can be followed during a moving event.",
+            body: "Use discrete lanyard identifiers, staff chaperones, or designated photo-free zones so privacy requirements can be respected without disrupting the event.",
           },
           {
             title: "Avoid token images",
-            body: "Document people as active participants with context and agency rather than reducing them to a generic symbol of need.",
+            body: "Document participants as active leaders with agency and dignity rather than reducing them to generic symbols of disadvantage.",
           },
         ],
       },
       {
         heading: "Balance speakers, supporters and community",
         content:
-          "Formal stakeholders matter, but the final gallery should also show volunteers, participants, service delivery and real interaction. Set priorities that reflect both accountability and lived experience.",
+          "At a charity gala or community celebration, formal donors and board members matter, but the final gallery must also celebrate volunteers, frontline workers, and authentic engagement. Balanced coverage delivers proof of both financial accountability and lived community impact.",
         subsections: [
           {
-            title: "Record partner obligations",
-            body: "List required sponsor or funder moments while keeping them proportionate to the event story.",
+            title: "Record partner and sponsor obligations",
+            body: "List required sponsor activations, cheque handovers, and patron portraits while keeping them proportionate to the real event atmosphere.",
           },
           {
             title: "Plan quiet and active coverage",
-            body: "Include wide context, individual interactions, practical work, stage moments and small details that explain how the event felt.",
+            body: "Include wide room atmosphere, heartfelt conversations, auction moments, and stage addresses that convey how the evening truly felt.",
           },
         ],
       },
       {
-        heading: "Plan communications delivery",
+        heading: "Plan communications delivery and impact reporting",
         content:
-          "Identify the first images needed for media, supporter updates, fundraising, reports and internal records. Confirm approval steps for sensitive material and keep restricted images separate from general distribution.",
+          "Identify the first hero images needed for post-event media distributions, donor thank-you emails, and board updates. Confirm approval processes for sensitive material and keep restricted images clearly separated from general marketing assets.",
       },
     ],
     keyTakeaways: [
-      "Connect the image brief to the organisation's real mission and audiences.",
-      "Make consent and privacy restrictions practical on site.",
-      "Balance formal stakeholders with participants, volunteers and service delivery.",
-      "Separate restricted material from general communications delivery.",
+      "Connect the photography brief directly to your mission, donor reporting, and public advocacy.",
+      "Establish practical, on-the-ground consent protocols to protect participant dignity.",
+      "Balance formal stage presentations with authentic donor, volunteer, and community interactions.",
+      "Eligible organisations receive a dedicated 10% Community Courtesy Benefit on standard event coverage.",
     ],
     relatedService: "not-for-profit-community",
     relatedBlogSlugs: [
       "how-to-write-an-event-photography-brief",
-      "live-event-photo-delivery-for-press-social",
+      "hiring-freelance-event-photographers-sydney-checklist",
     ],
     relatedLocations: ["inner-west", "sydney-cbd"],
-    relatedGalleries: ["world-vision", "oz-harvest", "kokoda-track-foundation"],
+    relatedGalleries: [
+      "sony-foundation-wharf4ward",
+      "order-of-australia-the-school-of-st-jude",
+      "irish-festival-sydney-2026",
+    ],
     relatedGuides: [
       "event-briefing-template",
+      "pricing-and-rates-guide",
       "licensing-and-commercial-rights",
-      "turnaround-and-delivery-specs",
     ],
   },
   {
